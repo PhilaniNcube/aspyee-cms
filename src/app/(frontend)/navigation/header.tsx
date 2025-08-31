@@ -47,7 +47,7 @@ const FontendHeader = () => {
         </Link>
 
         {/* Desktop Navigation Menu */}
-        <div className="hidden lg:block uppercase">
+        <div className="hidden lg:block ">
           <NavigationMenu viewport={false}>
             <NavigationMenuList className="space-x-4">
               {/* Home */}
@@ -55,18 +55,18 @@ const FontendHeader = () => {
                 <Link href="/" passHref>
                   <NavigationMenuLink
                     className={cn(
-                      'group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50',
+                      'group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-amber-600 hover:text-white focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50',
                     )}
                   >
-                    HOME
+                    <span className="hover:text-white">HOME</span>
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
 
               {/* Programmes with dropdown */}
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-sm font-medium ">
-                  <span className="uppercase">Programmes</span>
+                <NavigationMenuTrigger className="text-sm font-medium hover:bg-amber-600">
+                  <span className="uppercase hover:text-white ">Programmes</span>
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="p-0">
                   <div className="bg-[#FD680C] p-4 w-64 rounded-md shadow-lg">
@@ -150,10 +150,10 @@ const FontendHeader = () => {
                 <Link href="/news-events" passHref>
                   <NavigationMenuLink
                     className={cn(
-                      'group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50',
+                      'group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-amber-600 hover:text-white focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50',
                     )}
                   >
-                    News & Events
+                    <span className="uppercase hover:text-white">News & Events</span>
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
@@ -163,10 +163,10 @@ const FontendHeader = () => {
                 <Link href="/connect-collaborate" passHref>
                   <NavigationMenuLink
                     className={cn(
-                      'group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50',
+                      'group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-amber-600 hover:text-white focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50',
                     )}
                   >
-                    Connect & Collaborate
+                    <span className="uppercase hover:text-white">Connect & Collaborate</span>
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
@@ -287,7 +287,7 @@ const FontendHeader = () => {
                   className="text-lg font-medium py-2 hover:text-brand transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  News & Events
+                  <span className="uppercase">News & Events</span>
                 </Link>
 
                 {/* Connect & Collaborate */}
@@ -296,7 +296,7 @@ const FontendHeader = () => {
                   className="text-lg font-medium py-2 hover:text-brand transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  Connect & Collaborate
+                  <span className="uppercase">Connect & Collaborate</span>
                 </Link>
               </div>
             </SheetContent>
