@@ -70,7 +70,6 @@ export interface Config {
     users: User;
     media: Media;
     resources: Resource;
-    countries: Country;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -80,7 +79,6 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     resources: ResourcesSelect<false> | ResourcesSelect<true>;
-    countries: CountriesSelect<false> | CountriesSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -148,6 +146,7 @@ export interface User {
 export interface Media {
   id: number;
   alt: string;
+  _key?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -167,7 +166,7 @@ export interface Media {
 export interface Resource {
   id: number;
   title: string;
-  type: 'framework' | 'report' | 'toolkit' | 'policy' | 'case_study' | 'evaluation' | 'academic';
+  type: 'academic' | 'case_study' | 'evaluation' | 'framework' | 'multimedia' | 'policy' | 'report' | 'toolkit';
   good_practice: 'yes' | 'no';
   /**
    * Select up to 3 themes
@@ -177,6 +176,7 @@ export interface Resource {
         | 'Industrial, technical and vocational training'
         | 'Gender and Transformation'
         | 'Entrepreneurship and informal sector formalisation'
+        | 'Human Capital Development'
         | 'Labour migration & mobility'
         | 'Digital skills & future of work'
         | 'Education systems & policy'
@@ -203,9 +203,72 @@ export interface Resource {
     | null;
   language: 'English' | 'French' | 'Portuguese' | 'Arabic' | 'Other';
   /**
-   * Select the country or region this resource applies to
+   * Select one or more countries this resource applies to
    */
-  country_region: number | Country;
+  countries?:
+    | (
+        | 'Algeria'
+        | 'Egypt'
+        | 'Libya'
+        | 'Morocco'
+        | 'Sudan'
+        | 'Tunisia'
+        | 'Benin'
+        | 'Burkina_Faso'
+        | 'Cape_Verde'
+        | 'Cote_dIvoire'
+        | 'Gambia'
+        | 'Ghana'
+        | 'Guinea'
+        | 'Guinea_Bissau'
+        | 'Liberia'
+        | 'Mali'
+        | 'Mauritania'
+        | 'Niger'
+        | 'Nigeria'
+        | 'Senegal'
+        | 'Sierra_Leone'
+        | 'Togo'
+        | 'Cameroon'
+        | 'Central_African_Republic'
+        | 'Chad'
+        | 'Democratic_Republic_of_Congo'
+        | 'Equatorial_Guinea'
+        | 'Gabon'
+        | 'Republic_of_Congo'
+        | 'Sao_Tome_and_Principe'
+        | 'Burundi'
+        | 'Comoros'
+        | 'Djibouti'
+        | 'Eritrea'
+        | 'Ethiopia'
+        | 'Kenya'
+        | 'Madagascar'
+        | 'Mauritius'
+        | 'Rwanda'
+        | 'Seychelles'
+        | 'Somalia'
+        | 'South_Sudan'
+        | 'Tanzania'
+        | 'Uganda'
+        | 'Angola'
+        | 'Botswana'
+        | 'Eswatini'
+        | 'Lesotho'
+        | 'Malawi'
+        | 'Mozambique'
+        | 'Namibia'
+        | 'South_Africa'
+        | 'Zambia'
+        | 'Zimbabwe'
+      )[]
+    | null;
+  /**
+   * Select the regional scope this resource applies to
+   */
+  region?:
+    | ('Continental' | 'East_Africa' | 'West_Africa' | 'Central_Africa' | 'North_Africa' | 'Southern_Africa')
+    | null;
   /**
    * Enter the year the resource was published
    */
@@ -217,6 +280,7 @@ export interface Resource {
     | (
         | 'African Union'
         | 'ILO'
+        | 'AUDA-NEPAD'
         | 'UNESCO'
         | 'World Bank'
         | 'African Development Bank'
@@ -240,21 +304,17 @@ export interface Resource {
   featured_image?: (number | null) | Media;
   description: string;
   link: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "countries".
- */
-export interface Country {
-  id: number;
-  name: string;
-  value: string;
-  type: 'continental' | 'regional' | 'country';
-  region?:
-    | ('africa_wide' | 'north_africa' | 'west_africa' | 'central_africa' | 'east_africa' | 'southern_africa')
-    | null;
+  /**
+   * Upload files related to this resource
+   */
+  files: {
+    file: number | Media;
+    /**
+     * Enter a description for this file
+     */
+    description?: string | null;
+    id?: string | null;
+  }[];
   updatedAt: string;
   createdAt: string;
 }
@@ -276,10 +336,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'resources';
         value: number | Resource;
-      } | null)
-    | ({
-        relationTo: 'countries';
-        value: number | Country;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -351,6 +407,7 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  _key?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -374,25 +431,21 @@ export interface ResourcesSelect<T extends boolean = true> {
   themes?: T;
   target_groups?: T;
   language?: T;
-  country_region?: T;
+  countries?: T;
+  region?: T;
   year_published?: T;
   publisher?: T;
   custom_publisher?: T;
   featured_image?: T;
   description?: T;
   link?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "countries_select".
- */
-export interface CountriesSelect<T extends boolean = true> {
-  name?: T;
-  value?: T;
-  type?: T;
-  region?: T;
+  files?:
+    | T
+    | {
+        file?: T;
+        description?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
