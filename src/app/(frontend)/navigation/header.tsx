@@ -55,7 +55,7 @@ const FontendHeader = () => {
                 <Link href="/" passHref>
                   <NavigationMenuLink
                     className={cn(
-                      'group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 font-medium transition-colors hover:bg-amber-600 hover:text-white focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50',
+                      'group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-2 py-2 font-medium transition-colors hover:bg-amber-600 hover:text-white focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50',
                     )}
                     style={{ fontSize: '13px' }}
                   >
@@ -154,7 +154,7 @@ const FontendHeader = () => {
                 <Link href="/news-events" passHref>
                   <NavigationMenuLink
                     className={cn(
-                      'group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 font-medium transition-colors hover:bg-amber-600 hover:text-white focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50',
+                      'group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-2 py-2 font-medium transition-colors hover:bg-amber-600 hover:text-white focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50',
                     )}
                     style={{ fontSize: '13px' }}
                   >
@@ -168,7 +168,7 @@ const FontendHeader = () => {
                 <Link href="/connect-collaborate" passHref>
                   <NavigationMenuLink
                     className={cn(
-                      'group inline-flex h-9 items-center justify-center rounded-md bg-background px-4 py-2 font-medium transition-colors hover:bg-amber-600 hover:text-white focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 w-[239px]',
+                      'group inline-flex h-9 items-center justify-center rounded-md bg-background px-2 py-2 font-medium transition-colors hover:bg-amber-600 hover:text-white focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 w-[239px]',
                     )}
                     style={{ fontSize: '13px' }}
                   >
