@@ -1,12 +1,9 @@
 'use client'
 
-import React, { useMemo } from 'react'
+import React, { useMemo, Suspense } from 'react'
 import { Resource } from '@/payload-types'
 import ResourceFilters from './resource-filters'
-import Image from 'next/image'
-import { Calendar, Share2, Bookmark, Download, Star, CircleOffIcon } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
+import ResourceCard from './resource-card'
 
 interface ResourceListProps {
   initialResources: Resource[]
@@ -123,7 +120,11 @@ const ResourceList: React.FC<ResourceListProps> = ({ initialResources }) => {
         {/* Filters Sidebar */}
         <div className="lg:w-1/4">
           <div className="sticky top-4">
-            <ResourceFilters onFiltersChange={handleFiltersChange} />
+            <Suspense
+              fallback={<div className="p-4 text-center text-gray-500">Loading filters...</div>}
+            >
+              <ResourceFilters onFiltersChange={handleFiltersChange} />
+            </Suspense>
           </div>
         </div>
 
@@ -146,92 +147,12 @@ const ResourceList: React.FC<ResourceListProps> = ({ initialResources }) => {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-6">
               {filteredResources.map((resource) => (
-                <div
+                <ResourceCard
                   key={resource.id}
-                  className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200"
-                >
-                  {/* Featured Image */}
-                  <div className="relative h-48 bg-gradient-to-br from-blue-50 to-blue-100">
-                    {resource.featured_image &&
-                    typeof resource.featured_image === 'object' &&
-                    'url' in resource.featured_image ? (
-                      <Image
-                        src={resource.featured_image.url || ''}
-                        alt={resource.title}
-                        fill
-                        className="object-cover"
-                      />
-                    ) : (
-                      <Image
-                        src="https://4kav3digtb.ufs.sh/f/FBDFb9YX4geO2vwcZQrzOM7sxtk6jHilDYeuQU9LayhdfS3w"
-                        alt={resource.title}
-                        fill
-                        className="object-cover"
-                      />
-                    )}
-
-                    {/* Target Group Badge */}
-
-                    {/* Good Practice Badge */}
-                  </div>
-
-                  <div className="p-6">
-                    <div className="flex items-center justify-between p-0 mb-3">
-                      {resource.target_groups && resource.target_groups.length > 0 && (
-                        <div className="">
-                          <Badge className="px-3 py-1 bg-blue-600 text-white text-xs font-medium rounded-full">
-                            {(resource.target_groups as string[])[0]}
-                          </Badge>
-                        </div>
-                      )}
-                      <div className="flex items-center text-gray-500 text-sm">
-                        <Calendar className="w-4 h-4 mr-1" />
-                        {formatDate(resource.year_published)}
-                      </div>
-                    </div>
-                    {/* Date */}
-
-                    {/* Title */}
-                    <h3 className="text-lg font-semibold capitalize text-gray-900 mb-3 line-clamp-2">
-                      {resource.title}
-                    </h3>
-
-                    {/* Resource Type and Language */}
-                    <div className="text-sm text-gray-600 mb-4">
-                      <span>{getResourceTypeLabel(resource.type)}</span>
-                      {resource.language && <span className="ml-2">| {resource.language}</span>}
-                    </div>
-
-                    {/* Action Buttons */}
-                    <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                      <div className="flex items-center space-x-4">
-                        <Button variant="ghost" size="sm" className="p-2 h-auto">
-                          <Share2 className="w-4 h-4" />
-                        </Button>
-                        <Button variant="ghost" size="sm" className="p-2 h-auto">
-                          <Bookmark className="w-4 h-4" />
-                        </Button>
-                        <div className="flex items-center text-gray-500 text-sm">
-                          <Download className="w-4 h-4 mr-1" />
-                          254
-                        </div>
-                      </div>
-                      {resource.good_practice === 'yes' ? (
-                        <Badge className="">
-                          <span className="inline-flex items-center px-2 py-1 bg-yellow-400 text-yellow-900 text-xs font-medium rounded-full">
-                            <Star className="w-3 h-3 mr-1" />
-                            Good Practice
-                          </span>
-                        </Badge>
-                      ) : (
-                        <Badge className="bg-red-100 text-red-800">
-                          <CircleOffIcon className="w-3 h-3 mr-1" />
-                          <span className="text-gray-500">Good Practice</span>
-                        </Badge>
-                      )}
-                    </div>
-                  </div>
-                </div>
+                  resource={resource}
+                  getResourceTypeLabel={getResourceTypeLabel}
+                  formatDate={formatDate}
+                />
               ))}
             </div>
           )}

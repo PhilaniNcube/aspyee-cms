@@ -1,26 +1,12 @@
-'use client'
 import React from 'react'
-import Hero from './hero'
-import HeroTop from '../knowledge-centre/hero-top'
+import Hero from './_components/hero'
 
-const KnowledgeHomePage = () => {
+const page = () => {
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        width: '100vw',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-        <HeroTop />
-      </div>
+    <div>
       <Hero />
     </div>
   )
 }
 
-export default KnowledgeHomePage
+export default page

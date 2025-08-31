@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -95,33 +95,35 @@ const FontendHeader = () => {
   const [programmesOpen, setProgrammesOpen] = useState(false)
   const [knowledgeOpen, setKnowledgeOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
-  // Use logoState to track which logo is active
-  const [logoState, setLogoState] = useState(LOGO_WHITE)
-
-  React.useEffect(() => {
-    const onScroll = () => {
-      if (window.scrollY > 80) {
-        setLogoState(LOGO_COLOR)
-      } else {
-        setLogoState(LOGO_WHITE)
-      }
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY
+      setScrolled(scrollTop > 300)
     }
-    window.addEventListener('scroll', onScroll)
-    // Set initial state
-    onScroll()
-    return () => window.removeEventListener('scroll', onScroll)
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
-    <header className="bg-transparent fixed py-4 top-0 z-50 left-0 right-0 shadow-lg">
+    <header
+      className={cn(
+        scrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-2',
+        'fixed top-0 z-50 left-0 right-0 transition-all duration-300',
+      )}
+    >
       <div className="container mx-auto max-w-[1440px] items-center flex justify-end">
-        <Link href="/sign-in" className="text-sm font-medium text-brand hover:text-brand/80">
-          <span className="text-brand">Sign In</span>
+        <Link href="/sign-in" className={cn(scrolled ? 'text-brand' : 'text-white')}>
+          <span className={cn(scrolled ? 'text-brand' : 'text-white')}>Sign In</span>
         </Link>
-        <span className="mx-2 text-brand">|</span>
-        <Link href="/register" className="text-sm font-medium text-brand hover:text-brand/80">
-          <span className="text-brand">Register</span>
+        <span className={cn(scrolled ? 'text-brand' : 'text-white')}>|</span>
+        <Link
+          href="/register"
+          className={cn(' font-medium hover:opacity-80', scrolled ? 'text-brand' : 'text-white')}
+        >
+          <span className={cn(scrolled ? 'text-brand' : 'text-white')}>Register</span>
         </Link>
       </div>
 
@@ -129,7 +131,7 @@ const FontendHeader = () => {
       <div className="container mx-auto max-w-[1440px] flex justify-between items-center">
         <Link href="/">
           <Image
-            src={logoState}
+            src={scrolled ? '/images/logo.png' : '/images/logo-white.png'}
             className="w-[250px] object-cover"
             alt="Logo"
             width={1037}
@@ -155,7 +157,9 @@ const FontendHeader = () => {
                         )}
                         style={{ fontSize: '13px' }}
                       >
-                        <span className={cn('uppercase text-white', logoState === LOGO_COLOR ? 'text-white' : 'text-black')}>{route.label}</span>
+                        <span className={cn('uppercase', scrolled ? 'text-black' : 'text-white')}>
+                          {route.label}
+                        </span>
                       </NavigationMenuTrigger>
                       <NavigationMenuContent className="p-0 border-0 outline-0 border-none">
                         <div className="p-4 w-64 rounded-md border-0 border-none outline-none bg-brand-orange-60">
@@ -163,7 +167,10 @@ const FontendHeader = () => {
                             {route.subRoutes?.map((subRoute, subIndex) => (
                               <li key={subIndex}>
                                 <Link href={subRoute.href} passHref>
-                                  <NavigationMenuLink className="block px-3 py-2 text-sm text-white hover:bg-white/10 rounded-md transition-colors">
+                                  <NavigationMenuLink
+                                    asChild
+                                    className="block px-3 py-2 text-sm text-white hover:bg-white/10 rounded-md transition-colors"
+                                  >
                                     <span className="text-white">{subRoute.label}</span>
                                   </NavigationMenuLink>
                                 </Link>
@@ -176,6 +183,7 @@ const FontendHeader = () => {
                   ) : (
                     <Link href={route.href} passHref>
                       <NavigationMenuLink
+                        asChild
                         className={cn(
                           route.isSpecial
                             ? 'bg-brand hover:bg-brand/80 rounded-full'
@@ -188,7 +196,10 @@ const FontendHeader = () => {
                           className={
                             route.isSpecial
                               ? 'uppercase text-white text-xs'
-                              : 'uppercase hover:text-white'
+                              : cn(
+                                  'uppercase hover:text-white',
+                                  scrolled ? 'text-black' : 'text-white',
+                                )
                           }
                         >
                           {route.label}
@@ -221,7 +232,12 @@ const FontendHeader = () => {
                           route.label === 'Programmes' ? setProgrammesOpen : setKnowledgeOpen
                         }
                       >
-                        <CollapsibleTrigger className="flex items-center justify-between w-full text-lg font-medium py-2 hover:text-brand transition-colors">
+                        <CollapsibleTrigger
+                          className={cn(
+                            'flex items-center justify-between w-full text-lg font-medium py-2 hover:opacity-80 transition-colors',
+                            scrolled ? 'text-black' : 'text-white',
+                          )}
+                        >
                           {route.label}
                           {(route.label === 'Programmes' ? programmesOpen : knowledgeOpen) ? (
                             <ChevronDown className="h-4 w-4" />
@@ -250,7 +266,10 @@ const FontendHeader = () => {
                     ) : (
                       <Link
                         href={route.href}
-                        className="text-lg font-medium py-2 hover:text-brand transition-colors"
+                        className={cn(
+                          'text-lg font-medium py-2 hover:opacity-80 transition-colors',
+                          scrolled ? 'text-black' : 'text-white',
+                        )}
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         <span className="uppercase">{route.label}</span>

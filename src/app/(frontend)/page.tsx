@@ -1,3 +1,9 @@
+import Hero from './knowledge-centre/_components/hero'
+
 export default async function HomePage() {
-  return <h1 className="text-3xl">Hello world!</h1>
+  return (
+    <div>
+      <Hero />
+    </div>
+  )
 }
