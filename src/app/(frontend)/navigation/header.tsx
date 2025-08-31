@@ -55,8 +55,9 @@ const FontendHeader = () => {
                 <Link href="/" passHref>
                   <NavigationMenuLink
                     className={cn(
-                      'group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-amber-600 hover:text-white focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50',
+                      'group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 font-medium transition-colors hover:bg-amber-600 hover:text-white focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50',
                     )}
+                    style={{ fontSize: '13px' }}
                   >
                     <span className="hover:text-white">HOME</span>
                   </NavigationMenuLink>
@@ -65,7 +66,7 @@ const FontendHeader = () => {
 
               {/* Programmes with dropdown */}
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-sm font-medium hover:bg-amber-600">
+                <NavigationMenuTrigger className="font-medium hover:bg-amber-600" style={{ fontSize: '13px' }}>
                   <span className="uppercase hover:text-white ">Programmes</span>
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="p-0">
@@ -106,7 +107,7 @@ const FontendHeader = () => {
 
               {/* The Knowledge Centre with dropdown */}
               <NavigationMenuItem className="p-0">
-                <NavigationMenuTrigger className="text-sm font-medium ">
+                <NavigationMenuTrigger className="font-medium" style={{ fontSize: '13px' }}>
                   <span className="uppercase">The Knowledge Centre</span>
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="p-0">
@@ -150,8 +151,9 @@ const FontendHeader = () => {
                 <Link href="/news-events" passHref>
                   <NavigationMenuLink
                     className={cn(
-                      'group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-amber-600 hover:text-white focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50',
+                      'group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 font-medium transition-colors hover:bg-amber-600 hover:text-white focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50',
                     )}
+                    style={{ fontSize: '13px' }}
                   >
                     <span className="uppercase hover:text-white">News & Events</span>
                   </NavigationMenuLink>
@@ -163,10 +165,21 @@ const FontendHeader = () => {
                 <Link href="/connect-collaborate" passHref>
                   <NavigationMenuLink
                     className={cn(
-                      'group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-amber-600 hover:text-white focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50',
+                      'group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 font-medium transition-colors hover:bg-amber-600 hover:text-white focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50',
                     )}
+                    style={{ fontSize: '13px' }}
                   >
                     <span className="uppercase hover:text-white">Connect & Collaborate</span>
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <Link href="/about" passHref>
+                  <NavigationMenuLink className={cn('bg-brand rounded-full')} style={{ fontSize: '13px' }}>
+                    <span className="uppercase text-white">
+                      <span className="text-xs">AFRICA CRITICAL SKILLS BANK</span>
+                    </span>
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
