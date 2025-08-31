@@ -42,7 +42,6 @@ export default buildConfig({
       },
       options: {
         token: process.env.UPLOADTHING_TOKEN,
-        acl: 'public-read',
       },
     }),
   ],

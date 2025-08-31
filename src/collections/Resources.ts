@@ -279,5 +279,28 @@ export const Resources: CollectionConfig = {
       type: 'text',
       required: true,
     },
+    {
+      name: 'files',
+      type: 'array',
+      required: true,
+      admin: {
+        description: 'Upload files related to this resource',
+      },
+      fields: [
+        {
+          name: 'file',
+          type: 'upload',
+          relationTo: 'media',
+          required: true,
+        },
+        {
+          name: 'description',
+          type: 'text',
+          admin: {
+            description: 'Enter a description for this file',
+          },
+        },
+      ],
+    },
   ],
 }

@@ -304,6 +304,17 @@ export interface Resource {
   featured_image?: (number | null) | Media;
   description: string;
   link: string;
+  /**
+   * Upload files related to this resource
+   */
+  files: {
+    file: number | Media;
+    /**
+     * Enter a description for this file
+     */
+    description?: string | null;
+    id?: string | null;
+  }[];
   updatedAt: string;
   createdAt: string;
 }
@@ -428,6 +439,13 @@ export interface ResourcesSelect<T extends boolean = true> {
   featured_image?: T;
   description?: T;
   link?: T;
+  files?:
+    | T
+    | {
+        file?: T;
+        description?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
