@@ -128,7 +128,7 @@ const FontendHeader = () => {
       <div className="container mx-auto max-w-[1440px] flex justify-between items-center">
         <Link href="/">
           <Image
-            src="/images/logo.png"
+            src={scrolled ? '/images/logo.png' : '/images/logo-white.png'}
             className="w-[250px] object-cover"
             alt="Logo"
             width={1037}
