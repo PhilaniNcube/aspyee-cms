@@ -68,6 +68,10 @@ export const Resources: CollectionConfig = {
           label: 'Entrepreneurship and informal sector formalisation',
           value: 'Entrepreneurship and informal sector formalisation',
         },
+        {
+          label: 'Human Capital Development',
+          value: 'Human Capital Development',
+        },
         { label: 'Labour migration & mobility', value: 'Labour migration & mobility' },
         { label: 'Digital skills & future of work', value: 'Digital skills & future of work' },
         { label: 'Education systems & policy', value: 'Education systems & policy' },
@@ -95,7 +99,6 @@ export const Resources: CollectionConfig = {
         { label: 'Policymakers', value: 'Policymakers' },
         { label: 'Educators & Implementers', value: 'Educators & Implementers' },
         { label: 'Youth', value: 'Youth' },
-        { label: 'Multimedia', value: 'Multimedia' },
         { label: 'Private Sector / Employers', value: 'Private Sector / Employers' },
         { label: 'Researchers', value: 'Researchers' },
         { label: 'TVET Managers / Principals', value: 'TVET Managers / Principals' },
@@ -234,6 +237,7 @@ export const Resources: CollectionConfig = {
       options: [
         { label: 'African Union (AU)', value: 'African Union' },
         { label: 'International Labour Organization (ILO)', value: 'ILO' },
+        { label: 'AUDA-NEPAD', value: 'AUDA-NEPAD' },
         { label: 'UNESCO', value: 'UNESCO' },
         { label: 'World Bank', value: 'World Bank' },
         { label: 'African Development Bank (AfDB)', value: 'African Development Bank' },

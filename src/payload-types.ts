@@ -176,6 +176,7 @@ export interface Resource {
         | 'Industrial, technical and vocational training'
         | 'Gender and Transformation'
         | 'Entrepreneurship and informal sector formalisation'
+        | 'Human Capital Development'
         | 'Labour migration & mobility'
         | 'Digital skills & future of work'
         | 'Education systems & policy'
@@ -193,7 +194,6 @@ export interface Resource {
         | 'Policymakers'
         | 'Educators & Implementers'
         | 'Youth'
-        | 'Multimedia'
         | 'Private Sector / Employers'
         | 'Researchers'
         | 'TVET Managers / Principals'
@@ -280,6 +280,7 @@ export interface Resource {
     | (
         | 'African Union'
         | 'ILO'
+        | 'AUDA-NEPAD'
         | 'UNESCO'
         | 'World Bank'
         | 'African Development Bank'
