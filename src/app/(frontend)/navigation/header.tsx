@@ -49,7 +49,7 @@ const FontendHeader = () => {
         {/* Desktop Navigation Menu */}
         <div className="hidden lg:block ">
           <NavigationMenu viewport={false}>
-            <NavigationMenuList className="space-x-4">
+            <NavigationMenuList className="space-x-1">
               {/* Home */}
               <NavigationMenuItem>
                 <Link href="/" passHref>
@@ -66,7 +66,10 @@ const FontendHeader = () => {
 
               {/* Programmes with dropdown */}
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="font-medium hover:bg-amber-600" style={{ fontSize: '13px' }}>
+                <NavigationMenuTrigger
+                  className="font-medium hover:bg-amber-600"
+                  style={{ fontSize: '13px' }}
+                >
                   <span className="uppercase hover:text-white ">Programmes</span>
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="p-0">
@@ -165,7 +168,7 @@ const FontendHeader = () => {
                 <Link href="/connect-collaborate" passHref>
                   <NavigationMenuLink
                     className={cn(
-                      'group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 font-medium transition-colors hover:bg-amber-600 hover:text-white focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50',
+                      'group inline-flex h-9 items-center justify-center rounded-md bg-background px-4 py-2 font-medium transition-colors hover:bg-amber-600 hover:text-white focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 w-[239px]',
                     )}
                     style={{ fontSize: '13px' }}
                   >
@@ -176,7 +179,10 @@ const FontendHeader = () => {
 
               <NavigationMenuItem>
                 <Link href="/about" passHref>
-                  <NavigationMenuLink className={cn('bg-brand rounded-full')} style={{ fontSize: '13px' }}>
+                  <NavigationMenuLink
+                    className={cn('bg-brand rounded-full')}
+                    style={{ fontSize: '13px' }}
+                  >
                     <span className="uppercase text-white">
                       <span className="text-xs">AFRICA CRITICAL SKILLS BANK</span>
                     </span>
