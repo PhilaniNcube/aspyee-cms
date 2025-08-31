@@ -69,6 +69,8 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    resources: Resource;
+    countries: Country;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -77,6 +79,8 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    resources: ResourcesSelect<false> | ResourcesSelect<true>;
+    countries: CountriesSelect<false> | CountriesSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -158,6 +162,104 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "resources".
+ */
+export interface Resource {
+  id: number;
+  title: string;
+  type: 'framework' | 'report' | 'toolkit' | 'policy' | 'case_study' | 'evaluation' | 'academic';
+  good_practice: 'yes' | 'no';
+  /**
+   * Select up to 3 themes
+   */
+  themes?:
+    | (
+        | 'Industrial, technical and vocational training'
+        | 'Gender and Transformation'
+        | 'Entrepreneurship and informal sector formalisation'
+        | 'Labour migration & mobility'
+        | 'Digital skills & future of work'
+        | 'Education systems & policy'
+        | 'Financing & investment in skills'
+        | 'Informal sector & livelihoods'
+        | 'Green skills / sustainability'
+        | 'Innovation & partnerships'
+      )[]
+    | null;
+  /**
+   * Select up to 3 target groups
+   */
+  target_groups?:
+    | (
+        | 'Policymakers'
+        | 'Educators & Implementers'
+        | 'Youth'
+        | 'Private Sector / Employers'
+        | 'Researchers'
+        | 'TVET Managers / Principals'
+        | 'HR / Labour Market Actors'
+        | 'Donors & Development Partners'
+      )[]
+    | null;
+  language: 'English' | 'French' | 'Portuguese' | 'Arabic' | 'Other';
+  /**
+   * Select the country or region this resource applies to
+   */
+  country_region: number | Country;
+  /**
+   * Enter the year the resource was published
+   */
+  year_published?: number | null;
+  /**
+   * Select a publisher or choose "Other" to enter a custom publisher
+   */
+  publisher?:
+    | (
+        | 'African Union'
+        | 'ILO'
+        | 'UNESCO'
+        | 'World Bank'
+        | 'African Development Bank'
+        | 'UNECA'
+        | 'UNICEF'
+        | 'UNDP'
+        | 'GIZ'
+        | 'British Council'
+        | 'European Union'
+        | 'USAID'
+        | 'Other'
+      )
+    | null;
+  /**
+   * Enter custom publisher name (only if "Other" is selected above)
+   */
+  custom_publisher?: string | null;
+  /**
+   * Upload a featured image for this resource
+   */
+  featured_image?: (number | null) | Media;
+  description: string;
+  link: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "countries".
+ */
+export interface Country {
+  id: number;
+  name: string;
+  value: string;
+  type: 'continental' | 'regional' | 'country';
+  region?:
+    | ('africa_wide' | 'north_africa' | 'west_africa' | 'central_africa' | 'east_africa' | 'southern_africa')
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -170,6 +272,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'resources';
+        value: number | Resource;
+      } | null)
+    | ({
+        relationTo: 'countries';
+        value: number | Country;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -252,6 +362,39 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "resources_select".
+ */
+export interface ResourcesSelect<T extends boolean = true> {
+  title?: T;
+  type?: T;
+  good_practice?: T;
+  themes?: T;
+  target_groups?: T;
+  language?: T;
+  country_region?: T;
+  year_published?: T;
+  publisher?: T;
+  custom_publisher?: T;
+  featured_image?: T;
+  description?: T;
+  link?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "countries_select".
+ */
+export interface CountriesSelect<T extends boolean = true> {
+  name?: T;
+  value?: T;
+  type?: T;
+  region?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

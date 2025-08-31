@@ -55,7 +55,7 @@ const FontendHeader = () => {
                 <Link href="/" passHref>
                   <NavigationMenuLink
                     className={cn(
-                      'group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-2 py-2 font-medium transition-colors hover:bg-amber-600 hover:text-white focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50',
+                      ' inline-flex h-9 rounded-xs w-max items-center justify-center bg-background px-2 py-2 font-medium transition-colors hover:bg-brand-orange-60  focus:bg-brand-orange-60 focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50',
                     )}
                     style={{ fontSize: '13px' }}
                   >
@@ -65,15 +65,15 @@ const FontendHeader = () => {
               </NavigationMenuItem>
 
               {/* Programmes with dropdown */}
-              <NavigationMenuItem>
+              <NavigationMenuItem className="">
                 <NavigationMenuTrigger
-                  className="font-medium hover:bg-amber-600"
+                  className="font-medium rounded-xs "
                   style={{ fontSize: '13px' }}
                 >
-                  <span className="uppercase hover:text-white ">Programmes</span>
+                  <span className="uppercase ">Programmes</span>
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="p-0">
-                  <div className="bg-[#FD680C] p-4 w-64 rounded-md shadow-lg">
+                  <div className="p-4 w-64 rounded-md shadow-lg bg-brand-orange-60">
                     <ul className="space-y-2">
                       <li>
                         <Link href="/programmes" passHref>
@@ -109,12 +109,15 @@ const FontendHeader = () => {
               </NavigationMenuItem>
 
               {/* The Knowledge Centre with dropdown */}
-              <NavigationMenuItem className="p-0">
-                <NavigationMenuTrigger className="font-medium" style={{ fontSize: '13px' }}>
+              <NavigationMenuItem className="p-0 rounded-xs">
+                <NavigationMenuTrigger
+                  className="font-medium rounded-xs"
+                  style={{ fontSize: '13px' }}
+                >
                   <span className="uppercase">The Knowledge Centre</span>
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="p-0">
-                  <div className="bg-[#FD680C] p-4 w-64 rounded-md shadow-lg">
+                  <div className="p-4 w-64 rounded-md shadow-lg bg-brand-orange-60">
                     <ul className="space-y-2">
                       <li>
                         <Link href="/knowledge-centre" passHref>
@@ -154,7 +157,7 @@ const FontendHeader = () => {
                 <Link href="/news-events" passHref>
                   <NavigationMenuLink
                     className={cn(
-                      'group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-2 py-2 font-medium transition-colors hover:bg-amber-600 hover:text-white focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50',
+                      'group inline-flex h-9 w-max items-center justify-center rounded-xs bg-background px-2 py-2 font-medium transition-colors hover:bg-brand-orange-60 hover:text-white focus:bg-brand-orange-60 focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50',
                     )}
                     style={{ fontSize: '13px' }}
                   >
@@ -168,7 +171,7 @@ const FontendHeader = () => {
                 <Link href="/connect-collaborate" passHref>
                   <NavigationMenuLink
                     className={cn(
-                      'group inline-flex h-9 items-center justify-center rounded-md bg-background px-2 py-2 font-medium transition-colors hover:bg-amber-600 hover:text-white focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 w-[239px]',
+                      'group inline-flex h-9 items-center justify-center rounded-xs bg-background px-2 py-2 font-medium transition-colors hover:bg-brand-orange-60 hover:text-white focus:bg-brand-orange-60 focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50',
                     )}
                     style={{ fontSize: '13px' }}
                   >
@@ -180,7 +183,7 @@ const FontendHeader = () => {
               <NavigationMenuItem>
                 <Link href="/about" passHref>
                   <NavigationMenuLink
-                    className={cn('bg-brand rounded-full')}
+                    className={cn('bg-brand hover:bg-brand/80 rounded-full')}
                     style={{ fontSize: '13px' }}
                   >
                     <span className="uppercase text-white">
@@ -222,7 +225,10 @@ const FontendHeader = () => {
                       <ChevronRight className="h-4 w-4" />
                     )}
                   </CollapsibleTrigger>
-                  <CollapsibleContent className="bg-[#FD680C] rounded-md mt-2">
+                  <CollapsibleContent
+                    className="rounded-md mt-2"
+                    style={{ backgroundColor: 'oklch(0.7 0.2 45)' }}
+                  >
                     <div className="pl-4 py-2 space-y-2">
                       <Link
                         href="/programmes"
@@ -266,7 +272,10 @@ const FontendHeader = () => {
                       <ChevronRight className="h-4 w-4" />
                     )}
                   </CollapsibleTrigger>
-                  <CollapsibleContent className="bg-[#FD680C] rounded-md mt-2">
+                  <CollapsibleContent
+                    className="rounded-md mt-2"
+                    style={{ backgroundColor: 'oklch(0.7 0.2 45)' }}
+                  >
                     <div className="pl-4 py-2 space-y-2">
                       <Link
                         href="/knowledge-centre"
