@@ -161,7 +161,10 @@ const FontendHeader = () => {
                             {route.subRoutes?.map((subRoute, subIndex) => (
                               <li key={subIndex}>
                                 <Link href={subRoute.href} passHref>
-                                  <NavigationMenuLink className="block px-3 py-2 text-sm text-white hover:bg-white/10 rounded-md transition-colors">
+                                  <NavigationMenuLink
+                                    asChild
+                                    className="block px-3 py-2 text-sm text-white hover:bg-white/10 rounded-md transition-colors"
+                                  >
                                     <span className="text-white">{subRoute.label}</span>
                                   </NavigationMenuLink>
                                 </Link>
@@ -174,6 +177,7 @@ const FontendHeader = () => {
                   ) : (
                     <Link href={route.href} passHref>
                       <NavigationMenuLink
+                        asChild
                         className={cn(
                           route.isSpecial
                             ? 'bg-brand hover:bg-brand/80 rounded-full'
