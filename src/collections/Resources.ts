@@ -72,6 +72,10 @@ export const Resources: CollectionConfig = {
           label: 'Human Capital Development',
           value: 'Human Capital Development',
         },
+        {
+          label: 'Agribusiness and agricultural skills',
+          value: 'Agribusiness and agricultural skills',
+        },
         { label: 'Labour migration & mobility', value: 'Labour migration & mobility' },
         { label: 'Digital skills & future of work', value: 'Digital skills & future of work' },
         { label: 'Education systems & policy', value: 'Education systems & policy' },
@@ -79,6 +83,7 @@ export const Resources: CollectionConfig = {
         { label: 'Informal sector & livelihoods', value: 'Informal sector & livelihoods' },
         { label: 'Green skills / sustainability', value: 'Green skills / sustainability' },
         { label: 'Innovation & partnerships', value: 'Innovation & partnerships' },
+        { label: 'Governance', value: 'Governance' },
       ],
     },
     {

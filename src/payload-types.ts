@@ -177,6 +177,7 @@ export interface Resource {
         | 'Gender and Transformation'
         | 'Entrepreneurship and informal sector formalisation'
         | 'Human Capital Development'
+        | 'Agribusiness and agricultural skills'
         | 'Labour migration & mobility'
         | 'Digital skills & future of work'
         | 'Education systems & policy'
@@ -184,6 +185,7 @@ export interface Resource {
         | 'Informal sector & livelihoods'
         | 'Green skills / sustainability'
         | 'Innovation & partnerships'
+        | 'Governance'
       )[]
     | null;
   /**
