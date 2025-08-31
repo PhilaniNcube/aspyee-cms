@@ -17,13 +17,25 @@ import { Button } from '@/components/ui/button'
 import { Menu, ChevronDown, ChevronRight } from 'lucide-react'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 
+const LOGO_WHITE = '/images/logo-white.png'
+const LOGO_COLOR = '/images/logo.png'
+
 const FontendHeader = () => {
   const [programmesOpen, setProgrammesOpen] = useState(false)
   const [knowledgeOpen, setKnowledgeOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  React.useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 80)
+    }
+    window.addEventListener('scroll', onScroll)
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
-    <header className="bg-transparent sticky py-4 top-0 z-50 left-0 right-0 shadow-lg">
+    <header className="bg-transparent fixed py-4 top-0 z-50 left-0 right-0 shadow-lg">
       <div className="container mx-auto max-w-[1440px] items-center flex justify-end">
         <Link href="/sign-in" className="text-sm font-medium text-brand hover:text-brand/80">
           <span className="text-brand">Sign In</span>
@@ -38,7 +50,7 @@ const FontendHeader = () => {
       <div className="container mx-auto max-w-[1440px] flex justify-between items-center">
         <Link href="/">
           <Image
-            src="/images/logo.png"
+            src={scrolled ? LOGO_COLOR : LOGO_WHITE}
             className="w-[250px] object-cover"
             alt="Logo"
             width={1037}
@@ -55,7 +67,7 @@ const FontendHeader = () => {
                 <Link href="/" passHref>
                   <NavigationMenuLink
                     className={cn(
-                      ' inline-flex h-9 rounded-xs w-max items-center justify-center bg-background px-2 py-2 font-medium transition-colors hover:bg-brand-orange-60  focus:bg-brand-orange-60 focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50',
+                      `inline-flex h-9 rounded-xs w-max items-center justify-center px-2 py-2 font-medium transition-colors focus:bg-brand-orange-60 focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 ${scrolled ? 'text-black hover:text-black' : 'text-white hover:text-white'}`,
                     )}
                     style={{ fontSize: '13px' }}
                   >
@@ -67,7 +79,7 @@ const FontendHeader = () => {
               {/* Programmes with dropdown */}
               <NavigationMenuItem className="">
                 <NavigationMenuTrigger
-                  className="font-medium rounded-xs "
+                  className="font-medium rounded-xs bg-transparent"
                   style={{ fontSize: '13px' }}
                 >
                   <span className="uppercase ">Programmes</span>
@@ -111,7 +123,7 @@ const FontendHeader = () => {
               {/* The Knowledge Centre with dropdown */}
               <NavigationMenuItem className="p-0 rounded-xs">
                 <NavigationMenuTrigger
-                  className="font-medium rounded-xs"
+                  className="font-medium rounded-xs bg-transparent"
                   style={{ fontSize: '13px' }}
                 >
                   <span className="uppercase">The Knowledge Centre</span>
@@ -157,7 +169,7 @@ const FontendHeader = () => {
                 <Link href="/news-events" passHref>
                   <NavigationMenuLink
                     className={cn(
-                      'group inline-flex h-9 w-max items-center justify-center rounded-xs bg-background px-2 py-2 font-medium transition-colors hover:bg-brand-orange-60 hover:text-white focus:bg-brand-orange-60 focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50',
+                      'group inline-flex h-9 w-max items-center justify-center rounded-xs bg-transparent px-2 py-2 font-medium transition-colors hover:bg-brand-orange-60 hover:text-white focus:bg-brand-orange-60 focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50',
                     )}
                     style={{ fontSize: '13px' }}
                   >
@@ -171,7 +183,7 @@ const FontendHeader = () => {
                 <Link href="/connect-collaborate" passHref>
                   <NavigationMenuLink
                     className={cn(
-                      'group inline-flex h-9 items-center justify-center rounded-xs bg-background px-2 py-2 font-medium transition-colors hover:bg-brand-orange-60 hover:text-white focus:bg-brand-orange-60 focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50',
+                      'group inline-flex h-9 items-center justify-center rounded-xs bg-transparent px-2 py-2 font-medium transition-colors hover:bg-brand-orange-60 hover:text-white focus:bg-brand-orange-60 focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50',
                     )}
                     style={{ fontSize: '13px' }}
                   >

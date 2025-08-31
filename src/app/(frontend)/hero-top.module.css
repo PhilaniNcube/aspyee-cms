@@ -1,0 +1,528 @@
+.knowledgeCentre {
+  	width: 100%;
+  	position: relative;
+  	background-color: #faf9f6;
+  	height: 801px;
+  	overflow: hidden;
+  	text-align: center;
+  	font-size: 52px;
+  	color: #fff;
+	font-family: 'Open Sans', sans-serif;
+}
+.hero {
+  	position: absolute;
+  	top: 0px;
+  	left: 0px;
+  	width: 1440px;
+  	height: 564px;
+  	text-align: left;
+}
+.wrapperAdobestock3110722661 {
+  	position: absolute;
+  	width: 100%;
+  	top: 0px;
+  	right: 0px;
+  	left: 0px;
+  	max-width: 100%;
+  	height: 564px;
+  	overflow: hidden;
+  	display: flex;
+  	align-items: center;
+  	justify-content: center;
+}
+.adobestock3110722661Icon {
+  	width: 100%;
+  	overflow: hidden;
+  	height: 100%;
+  	object-fit: cover;
+  	position: absolute;
+  	left: 0px;
+  	top: 5px;
+  	transform: scale(1.014);
+}
+.heroInner {
+  	position: absolute;
+  	top: 339px;
+  	left: 60px;
+  	box-shadow: 2px -5px 18px rgba(0, 0, 0, 0.35);
+  	background-color: rgba(159, 178, 63, 0.8);
+  	width: 498px;
+  	height: 225px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: center;
+  	padding: 27px 40px 48px;
+  	box-sizing: border-box;
+}
+.theKnowledgeCentreWrapper {
+  	width: 366px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: flex-start;
+}
+.theKnowledgeCentre {
+  	width: 418px;
+  	position: relative;
+  	line-height: 60px;
+  	font-weight: 800;
+  	display: inline-block;
+}
+.navBarLight {
+  	position: absolute;
+  	top: 0px;
+  	left: 0px;
+  	width: 1440px;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: flex-end;
+  	justify-content: space-between;
+  	padding: 21px 60px;
+  	box-sizing: border-box;
+  	gap: 0px;
+	font-size: 14px;
+	font-family: Roboto, sans-serif;
+}
+.logo21Icon {
+  	width: 250px;
+  	position: relative;
+  	max-height: 100%;
+  	object-fit: cover;
+}
+.navBarLightInner {
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-end;
+  	justify-content: flex-start;
+}
+.hyperlinkButtonDarkNavParent {
+  	width: 218px;
+  	overflow: hidden;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: flex-start;
+  	padding: 0px 12.7px;
+  	box-sizing: border-box;
+  	gap: 6px;
+}
+.hyperlinkButtonDarkNav {
+  	width: 55px;
+  	height: 42px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: flex-start;
+  	padding: 3px 0px;
+  	box-sizing: border-box;
+}
+.africaCriticalSkillsBankWrapper {
+  	align-self: stretch;
+  	border-radius: 16px;
+  	height: 36px;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: center;
+  	padding: 4px 12px;
+  	box-sizing: border-box;
+}
+.africaCriticalSkills {
+  	position: relative;
+  	line-height: 42px;
+}
+.knowledgeCentreHyperlinkButtonDarkNav {
+  	width: 5px;
+  	height: 42px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: flex-start;
+  	padding: 3px 0px;
+  	box-sizing: border-box;
+}
+.africaCriticalSkillsBankContainer {
+  	align-self: stretch;
+  	border-radius: 16px;
+  	height: 36px;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: center;
+  	padding: 4px 0px;
+  	box-sizing: border-box;
+}
+.hyperlinkButtonDarkNav2 {
+  	width: 65px;
+  	height: 42px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: flex-start;
+  	padding: 3px 0px;
+  	box-sizing: border-box;
+}
+.navButtonsParent {
+  	overflow: hidden;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: flex-end;
+  	padding: 12.7px;
+  	gap: 4px;
+  	text-align: left;
+  	font-size: 13px;
+}
+.navButtons {
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: center;
+  	padding: 10px;
+}
+.theInitiative {
+  	position: relative;
+}
+.buttonBlueNavParent {
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: flex-start;
+  	gap: 31px;
+  	text-align: center;
+  	font-size: 14px;
+}
+.buttonBlueNav {
+  	width: 239px;
+  	position: relative;
+  	height: 42px;
+  	cursor: pointer;
+}
+.frameDiv {
+  	position: absolute;
+  	width: 100%;
+  	top: 3px;
+  	right: 0%;
+  	left: 0%;
+  	border-radius: 16px;
+  	background-color: #00b6cc;
+  	height: 36px;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: center;
+  	padding: 4px 20px;
+  	box-sizing: border-box;
+}
+.frame {
+  	height: 27px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: center;
+  	justify-content: center;
+  	padding: 5px;
+  	box-sizing: border-box;
+}
+.frameChild {
+  	width: 100%;
+  	position: relative;
+  	height: 18px;
+}
+.component2Parent {
+  	position: absolute;
+  	top: 605px;
+  	left: calc(50% - 486.33px);
+  	width: 966.7px;
+  	height: 58px;
+}
+.component2 {
+  	position: absolute;
+  	top: 0px;
+  	left: calc(50% - 21.79px);
+  	border-radius: 29px;
+  	border: 1.5px solid #9a9a9a;
+  	box-sizing: border-box;
+  	width: 58px;
+  	height: 58px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: flex-start;
+  	padding: 22.3px 14.1px 17.8px;
+}
+.component2Child {
+  	width: 100%;
+  	position: relative;
+  	height: 18.6px;
+  	object-fit: contain;
+}
+.groupChild {
+  	position: absolute;
+  	top: 31.97px;
+  	left: 0px;
+  	width: 431.3px;
+  	height: 0px;
+}
+.groupItem {
+  	position: absolute;
+  	top: 31.97px;
+  	left: 535.38px;
+  	width: 431.3px;
+  	height: 0px;
+}
+.frameGroup {
+  	position: absolute;
+  	top: 564px;
+  	left: -15px;
+  	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.55);
+  	width: 1448px;
+  	height: 683px;
+  	font-size: 15.26px;
+}
+.summitWithAfricanYouthLeadParent {
+  	position: absolute;
+  	top: 0px;
+  	left: 0px;
+  	background-color: rgba(0, 182, 204, 0);
+  	width: 1482px;
+  	height: 683px;
+  	overflow: hidden;
+  	text-align: left;
+  	font-size: 48px;
+  	color: #595959;
+}
+.summitWithAfricanYouthLeadIcon {
+  	position: absolute;
+  	top: -98px;
+  	left: 0px;
+  	width: 1446px;
+  	height: 964px;
+  	object-fit: cover;
+  	mix-blend-mode: screen;
+}
+.rectangleParent {
+  	position: absolute;
+  	top: 104px;
+  	left: 161px;
+  	width: 466px;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: flex-start;
+  	gap: 26.3px;
+}
+.frameItem {
+  	align-self: stretch;
+  	width: 8.5px;
+  	position: relative;
+  	background-color: #fd680c;
+}
+.knowledgeCorners {
+  	position: relative;
+  	line-height: 56.4px;
+  	font-weight: 600;
+}
+.theseAreSets {
+  	position: absolute;
+  	top: 180px;
+  	left: 196px;
+  	font-size: 20px;
+  	line-height: 31px;
+  	font-weight: 600;
+  	color: #00b6cc;
+  	text-align: left;
+  	display: inline-block;
+  	width: 874px;
+}
+.knowledgeCornersImplemento {
+  	position: absolute;
+  	top: 301.9px;
+  	left: 196px;
+  	border-radius: 12.2px;
+  	background-color: #fd680c;
+  	width: 188.3px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: center;
+  	justify-content: center;
+  	padding: 22.9px 0px;
+  	box-sizing: border-box;
+  	gap: 8.4px;
+  	font-size: 15.24px;
+}
+.proiconssettings {
+  	width: 91.5px;
+  	position: relative;
+  	max-height: 100%;
+  	object-fit: cover;
+}
+.forEducatorsContainer {
+  	align-self: stretch;
+  	position: relative;
+  	line-height: 19.06px;
+}
+.forEducators {
+  	margin: 0;
+}
+.knowledgeCornersPolicymake {
+  	position: absolute;
+  	top: 302.14px;
+  	left: 420.58px;
+  	border-radius: 12.2px;
+  	background-color: #00b6cc;
+  	width: 188.3px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: center;
+  	justify-content: center;
+  	padding: 22.9px 0px;
+  	box-sizing: border-box;
+  	gap: 8.4px;
+  	min-height: 183.7px;
+  	font-size: 15.24px;
+}
+.knowledgeCentreProiconssettings {
+  	width: 91.5px;
+  	position: relative;
+  	height: 91.5px;
+  	overflow: hidden;
+  	flex-shrink: 0;
+}
+.vectorIcon {
+  	position: absolute;
+  	height: 74.97%;
+  	width: 71.69%;
+  	top: 12.49%;
+  	right: 14.14%;
+  	bottom: 12.54%;
+  	left: 14.16%;
+  	max-width: 100%;
+  	overflow: hidden;
+  	max-height: 100%;
+}
+.proiconssettingsChild {
+  	position: absolute;
+  	height: 100%;
+  	width: 100%;
+  	top: 0%;
+  	right: -0.42%;
+  	bottom: 0%;
+  	left: 0.42%;
+  	border-radius: 45.73px;
+  	max-width: 100%;
+  	overflow: hidden;
+  	max-height: 100%;
+  	object-fit: cover;
+}
+.knowledgeCornersResearcher {
+  	position: absolute;
+  	top: 302.07px;
+  	left: 645.17px;
+  	border-radius: 12.2px;
+  	background-color: rgba(0, 0, 0, 0.2);
+  	width: 188.4px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: center;
+  	justify-content: center;
+  	padding: 22.9px 0px;
+  	box-sizing: border-box;
+  	gap: 8.4px;
+  	min-height: 183.83px;
+}
+.knowledgeCentreVectorIcon {
+  	position: absolute;
+  	height: 75.08%;
+  	width: 71.69%;
+  	top: 12.5%;
+  	right: 14.13%;
+  	bottom: 12.42%;
+  	left: 14.17%;
+  	max-width: 100%;
+  	overflow: hidden;
+  	max-height: 100%;
+}
+.proiconssettingsItem {
+  	position: absolute;
+  	height: 100%;
+  	width: 100%;
+  	top: 0%;
+  	right: -0.42%;
+  	bottom: 0%;
+  	left: 0.42%;
+  	border-radius: 45.77px;
+  	max-width: 100%;
+  	overflow: hidden;
+  	max-height: 100%;
+  	object-fit: cover;
+}
+.forResearchers {
+  	align-self: stretch;
+  	position: relative;
+  	line-height: 19.07px;
+}
+.knowledgeCornersYouth {
+  	position: absolute;
+  	top: 302.07px;
+  	left: 869.88px;
+  	border-radius: 12.2px;
+  	background-color: #9fb23f;
+  	width: 188.4px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: center;
+  	justify-content: center;
+  	padding: 22.9px 0px;
+  	box-sizing: border-box;
+  	gap: 8.4px;
+  	min-height: 183.83px;
+}
+.knowledgeCornersOther {
+  	position: absolute;
+  	top: 301.85px;
+  	left: 1094.6px;
+  	border-radius: 12.2px;
+  	background-color: #cba95f;
+  	width: 188.4px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: center;
+  	justify-content: center;
+  	padding: 22.9px 0px;
+  	box-sizing: border-box;
+  	gap: 8.4px;
+}
+.button {
+  	position: absolute;
+  	width: calc(100% - 1153px);
+  	top: 586px;
+  	right: 959px;
+  	left: 194px;
+  	height: 50px;
+  	font-size: 16px;
+}
+.learnMoreWrapper {
+  	position: absolute;
+  	height: 100%;
+  	width: 100%;
+  	top: 0%;
+  	right: 0%;
+  	bottom: 0%;
+  	left: 0%;
+  	border-radius: 32px;
+  	background-color: #fd680c;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: center;
+  	padding: 4px 20px;
+  	box-sizing: border-box;
+}
+.learnMore {
+  	position: relative;
+  	line-height: 42px;
+  	text-transform: capitalize;
+  	font-weight: 600;
+}
+
