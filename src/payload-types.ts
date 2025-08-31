@@ -70,7 +70,6 @@ export interface Config {
     users: User;
     media: Media;
     resources: Resource;
-    countries: Country;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -80,7 +79,6 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     resources: ResourcesSelect<false> | ResourcesSelect<true>;
-    countries: CountriesSelect<false> | CountriesSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -310,21 +308,6 @@ export interface Resource {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "countries".
- */
-export interface Country {
-  id: number;
-  name: string;
-  value: string;
-  type: 'continental' | 'regional' | 'country';
-  region?:
-    | ('africa_wide' | 'north_africa' | 'west_africa' | 'central_africa' | 'east_africa' | 'southern_africa')
-    | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -341,10 +324,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'resources';
         value: number | Resource;
-      } | null)
-    | ({
-        relationTo: 'countries';
-        value: number | Country;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -448,18 +427,6 @@ export interface ResourcesSelect<T extends boolean = true> {
   featured_image?: T;
   description?: T;
   link?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "countries_select".
- */
-export interface CountriesSelect<T extends boolean = true> {
-  name?: T;
-  value?: T;
-  type?: T;
-  region?: T;
   updatedAt?: T;
   createdAt?: T;
 }
