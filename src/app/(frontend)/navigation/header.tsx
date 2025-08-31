@@ -95,18 +95,25 @@ const FontendHeader = () => {
   const [programmesOpen, setProgrammesOpen] = useState(false)
   const [knowledgeOpen, setKnowledgeOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
+
+  // Use logoState to track which logo is active
+  const [logoState, setLogoState] = useState(LOGO_WHITE)
 
   React.useEffect(() => {
     const onScroll = () => {
-      setScrolled(window.scrollY > 80)
+      if (window.scrollY > 80) {
+        setLogoState(LOGO_COLOR)
+      } else {
+        setLogoState(LOGO_WHITE)
+      }
     }
     window.addEventListener('scroll', onScroll)
+    // Set initial state
+    onScroll()
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   return (
-    <header className="bg-transparent fixed py-4 top-0 z-50 left-0 right-0 shadow-lg">
     <header className="bg-transparent fixed py-4 top-0 z-50 left-0 right-0 shadow-lg">
       <div className="container mx-auto max-w-[1440px] items-center flex justify-end">
         <Link href="/sign-in" className="text-sm font-medium text-brand hover:text-brand/80">
@@ -122,7 +129,7 @@ const FontendHeader = () => {
       <div className="container mx-auto max-w-[1440px] flex justify-between items-center">
         <Link href="/">
           <Image
-            src={scrolled ? LOGO_COLOR : LOGO_WHITE}
+            src={logoState}
             className="w-[250px] object-cover"
             alt="Logo"
             width={1037}
@@ -134,148 +141,6 @@ const FontendHeader = () => {
         <div className="hidden lg:block ">
           <NavigationMenu viewport={false}>
             <NavigationMenuList className="space-x-1">
-              {/* Home */}
-              <NavigationMenuItem>
-                <Link href="/" passHref>
-                  <NavigationMenuLink
-                    className={cn(
-                      `inline-flex h-9 rounded-xs w-max items-center justify-center px-2 py-2 font-medium transition-colors focus:bg-brand-orange-60 focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 ${scrolled ? 'text-black hover:text-black' : 'text-white hover:text-white'}`,
-                    )}
-                    style={{ fontSize: '13px' }}
-                  >
-                    <span className="hover:text-white">HOME</span>
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-
-              {/* Programmes with dropdown */}
-              <NavigationMenuItem className="">
-                <NavigationMenuTrigger
-                  className="font-medium rounded-xs bg-transparent"
-                  style={{ fontSize: '13px' }}
-                >
-                  <span className="uppercase ">Programmes</span>
-                </NavigationMenuTrigger>
-                <NavigationMenuContent className="p-0">
-                  <div className="p-4 w-64 rounded-md shadow-lg bg-brand-orange-60">
-                    <ul className="space-y-2">
-                      <li>
-                        <Link href="/programmes" passHref>
-                          <NavigationMenuLink className="block px-3 py-2 text-sm text-white hover:bg-white/10 rounded-md transition-colors">
-                            <span className="text-white">Programmes Home</span>
-                          </NavigationMenuLink>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href="/programmes/ctvet" passHref>
-                          <NavigationMenuLink className="block px-3 py-2 text-sm text-white hover:bg-white/10 rounded-md transition-colors">
-                            <span className="text-white">CTEVET</span>
-                          </NavigationMenuLink>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href="/programmes/energize-africa" passHref>
-                          <NavigationMenuLink className="block px-3 py-2 text-sm text-white hover:bg-white/10 rounded-md transition-colors">
-                            <span className="text-white">Energize Africa</span>
-                          </NavigationMenuLink>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href="/programmes/energize-africa-fellowship" passHref>
-                          <NavigationMenuLink className="block px-3 py-2 text-sm text-white hover:bg-white/10 rounded-md transition-colors">
-                            <span className="text-white">Energize Africa Fellowship</span>
-                          </NavigationMenuLink>
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-
-              {/* The Knowledge Centre with dropdown */}
-              <NavigationMenuItem className="p-0 rounded-xs">
-                <NavigationMenuTrigger
-                  className="font-medium rounded-xs bg-transparent"
-                  style={{ fontSize: '13px' }}
-                >
-                  <span className="uppercase">The Knowledge Centre</span>
-                </NavigationMenuTrigger>
-                <NavigationMenuContent className="p-0">
-                  <div className="p-4 w-64 rounded-md shadow-lg bg-brand-orange-60">
-                    <ul className="space-y-2">
-                      <li>
-                        <Link href="/knowledge-centre" passHref>
-                          <NavigationMenuLink className="block px-3 py-2 text-sm text-white hover:bg-white/10 rounded-md transition-colors">
-                            <span className="text-white">The Knowledge Centre Home</span>
-                          </NavigationMenuLink>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href="/knowledge-centre/policymakers-corner" passHref>
-                          <NavigationMenuLink className="block px-3 py-2 text-sm text-white hover:bg-white/10 rounded-md transition-colors">
-                            <span className="text-white">Policymakers Corner</span>
-                          </NavigationMenuLink>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href="/knowledge-centre/researchers-corner" passHref>
-                          <NavigationMenuLink className="block px-3 py-2 text-sm text-white hover:bg-white/10 rounded-md transition-colors">
-                            <span className="text-white">Researchers Corner</span>
-                          </NavigationMenuLink>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href="/knowledge-centre/youth-corner" passHref>
-                          <NavigationMenuLink className="block px-3 py-2 text-sm text-white hover:bg-white/10 rounded-md transition-colors">
-                            <span className="text-white">Youth Corner</span>
-                          </NavigationMenuLink>
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-
-              {/* News & Events */}
-              <NavigationMenuItem>
-                <Link href="/news-events" passHref>
-                  <NavigationMenuLink
-                    className={cn(
-                      'group inline-flex h-9 w-max items-center justify-center rounded-xs bg-transparent px-2 py-2 font-medium transition-colors hover:bg-brand-orange-60 hover:text-white focus:bg-brand-orange-60 focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50',
-                    )}
-                    style={{ fontSize: '13px' }}
-                  >
-                    <span className="uppercase hover:text-white">News & Events</span>
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-
-              {/* Connect & Collaborate */}
-              <NavigationMenuItem>
-                <Link href="/connect-collaborate" passHref>
-                  <NavigationMenuLink
-                    className={cn(
-                      'group inline-flex h-9 items-center justify-center rounded-xs bg-transparent px-2 py-2 font-medium transition-colors hover:bg-brand-orange-60 hover:text-white focus:bg-brand-orange-60 focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50',
-                    )}
-                    style={{ fontSize: '13px' }}
-                  >
-                    <span className="uppercase hover:text-white">Connect & Collaborate</span>
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-
-              <NavigationMenuItem>
-                <Link href="/about" passHref>
-                  <NavigationMenuLink
-                    className={cn('bg-brand hover:bg-brand/80 rounded-full')}
-                    style={{ fontSize: '13px' }}
-                  >
-                    <span className="uppercase text-white">
-                      <span className="text-xs">AFRICA CRITICAL SKILLS BANK</span>
-                    </span>
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
               {navigationRoutes.map((route, index) => (
                 <NavigationMenuItem
                   key={index}
@@ -284,10 +149,13 @@ const FontendHeader = () => {
                   {route.hasDropdown ? (
                     <>
                       <NavigationMenuTrigger
-                        className="font-medium rounded-xs bg-transparent border-none"
+                        className={cn(
+                          'font-medium rounded-xs bg-transparent border-none',
+                          logoState === LOGO_COLOR ? 'text-white' : 'text-black',
+                        )}
                         style={{ fontSize: '13px' }}
                       >
-                        <span className="uppercase">{route.label}</span>
+                        <span className={cn('uppercase text-white', logoState === LOGO_COLOR ? 'text-white' : 'text-black')}>{route.label}</span>
                       </NavigationMenuTrigger>
                       <NavigationMenuContent className="p-0 border-0 outline-0 border-none">
                         <div className="p-4 w-64 rounded-md border-0 border-none outline-none bg-brand-orange-60">
@@ -312,6 +180,7 @@ const FontendHeader = () => {
                           route.isSpecial
                             ? 'bg-brand hover:bg-brand/80 rounded-full'
                             : 'inline-flex h-9 w-max items-center bg-transparent justify-center rounded-xs px-2 py-2 font-medium transition-colors hover:bg-brand-orange-60 hover:text-white focus:bg-brand-orange-60 focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50',
+                          logoState === LOGO_COLOR ? 'text-black' : 'text-white',
                         )}
                         style={{ fontSize: '13px' }}
                       >

@@ -5,28 +5,32 @@ import styles from '../hero-top.module.css'
 
 const KnowledgeCentre: NextPage = () => {
   const onButtonBlueNavContainerClick = useCallback(() => {
-    // Add your code here
+    // Add your code heresrc="/images/adobe-stock-3110722661.png"
   }, [])
 
   return (
     <div className={styles.knowledgeCentre}>
-      <div className={styles.hero}>
-        <div className={styles.wrapperAdobestock3110722661}>
-          <Image
-            className={styles.adobestock3110722661Icon}
-            width={1440}
-            height={564}
-            sizes="100vw"
-            alt=""
-            src="/images/adobe-stock-3110722661.png"
-          />
-        </div>
-        <div className={styles.heroInner}>
-          <div className={styles.theKnowledgeCentreWrapper}>
-            <div className={styles.theKnowledgeCentre}>The Knowledge Centre</div>
+      <div className="min-h-[564px] relative overflow-hidden">
+            {/* Background Image */}
+            <Image
+              src="/images/adobe-stock-3110722661.png"
+              alt="Policymakers Background"
+              layout="fill"
+              objectFit="cover"
+              className="absolute inset-0 -z-10 pointer-events-none"
+            />
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/60 pointer-events-none"></div>
+            <div className="relative z-10 h-[564px] flex justify-center items-center p-4">
+              <div className="container mx-auto max-w-[1440px] ">
+                <h1 className="text-5xl font-extrabold text-white">Policy Makers</h1>
+                <p className="mt-2 text-[28px] leading-8 text-white max-w-[721px]">
+                  A collection of reports, case studies, frameworks and articles designed to support
+                  policymakers in shaping skills and employment.
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
       <div className={styles.component2Parent}>
         <div className={styles.component2}>
           <Image
