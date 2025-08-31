@@ -194,6 +194,7 @@ export interface Resource {
         | 'Policymakers'
         | 'Educators & Implementers'
         | 'Youth'
+        | 'Multimedia'
         | 'Private Sector / Employers'
         | 'Researchers'
         | 'TVET Managers / Principals'
@@ -203,9 +204,72 @@ export interface Resource {
     | null;
   language: 'English' | 'French' | 'Portuguese' | 'Arabic' | 'Other';
   /**
-   * Select the country or region this resource applies to
+   * Select one or more countries this resource applies to
    */
-  country_region: number | Country;
+  countries?:
+    | (
+        | 'Algeria'
+        | 'Egypt'
+        | 'Libya'
+        | 'Morocco'
+        | 'Sudan'
+        | 'Tunisia'
+        | 'Benin'
+        | 'Burkina_Faso'
+        | 'Cape_Verde'
+        | 'Cote_dIvoire'
+        | 'Gambia'
+        | 'Ghana'
+        | 'Guinea'
+        | 'Guinea_Bissau'
+        | 'Liberia'
+        | 'Mali'
+        | 'Mauritania'
+        | 'Niger'
+        | 'Nigeria'
+        | 'Senegal'
+        | 'Sierra_Leone'
+        | 'Togo'
+        | 'Cameroon'
+        | 'Central_African_Republic'
+        | 'Chad'
+        | 'Democratic_Republic_of_Congo'
+        | 'Equatorial_Guinea'
+        | 'Gabon'
+        | 'Republic_of_Congo'
+        | 'Sao_Tome_and_Principe'
+        | 'Burundi'
+        | 'Comoros'
+        | 'Djibouti'
+        | 'Eritrea'
+        | 'Ethiopia'
+        | 'Kenya'
+        | 'Madagascar'
+        | 'Mauritius'
+        | 'Rwanda'
+        | 'Seychelles'
+        | 'Somalia'
+        | 'South_Sudan'
+        | 'Tanzania'
+        | 'Uganda'
+        | 'Angola'
+        | 'Botswana'
+        | 'Eswatini'
+        | 'Lesotho'
+        | 'Malawi'
+        | 'Mozambique'
+        | 'Namibia'
+        | 'South_Africa'
+        | 'Zambia'
+        | 'Zimbabwe'
+      )[]
+    | null;
+  /**
+   * Select the regional scope this resource applies to
+   */
+  region?:
+    | ('Continental' | 'East_Africa' | 'West_Africa' | 'Central_Africa' | 'North_Africa' | 'Southern_Africa')
+    | null;
   /**
    * Enter the year the resource was published
    */
@@ -374,7 +438,8 @@ export interface ResourcesSelect<T extends boolean = true> {
   themes?: T;
   target_groups?: T;
   language?: T;
-  country_region?: T;
+  countries?: T;
+  region?: T;
   year_published?: T;
   publisher?: T;
   custom_publisher?: T;
