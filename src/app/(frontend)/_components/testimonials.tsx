@@ -7,6 +7,7 @@ import {
   CarouselNext,
 } from '@/components/ui/carousel'
 import { Heart, HeartIcon, LucideQuote, Quote, QuoteIcon } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 const testimonials = [
   {
@@ -59,7 +60,7 @@ const Testimonials = () => {
           className="max-w-[1440px] container mx-auto mt-6"
           opts={{ loop: true, align: 'start' }}
         >
-          <CarouselContent>
+          <CarouselContent className="py-4">
             {testimonials.map((t, idx) => (
               <CarouselItem key={idx} className="flex  basis-full sm:basis-1/2 lg:basis-1/3">
                 <div className="max-w-sm w-full bg-white rounded-lg shadow-md p-6 flex flex-col mx-auto">
@@ -106,6 +107,10 @@ const Testimonials = () => {
           <CarouselPrevious />
           <CarouselNext />
         </Carousel>
+
+        <Button className="rounded-full text-lg px-6 py-5 mt-6 text-white hover:bg-brand-orange-60 bg-brand-orange">
+          View All News & Events
+        </Button>
       </div>
     </div>
   )
