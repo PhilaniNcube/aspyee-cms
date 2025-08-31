@@ -2,6 +2,7 @@ import React from 'react'
 import './styles.css'
 import FontendHeader from './navigation/header'
 import { Open_Sans } from 'next/font/google'
+import { NuqsAdapter } from 'nuqs/adapters/next/app'
 
 const openSans = Open_Sans({ subsets: ['latin'] })
 
@@ -17,7 +18,9 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
     <html lang="en">
       <body className={openSans.className}>
         <FontendHeader />
-        <main>{children}</main>
+        <main>
+          <NuqsAdapter>{children}</NuqsAdapter>
+        </main>
       </body>
     </html>
   )
