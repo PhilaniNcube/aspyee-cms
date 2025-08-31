@@ -16,6 +16,7 @@ export const Resources: CollectionConfig = {
       type: 'text',
       required: true,
     },
+
     {
       name: 'type',
       label: 'Resource Type',
