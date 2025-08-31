@@ -167,7 +167,7 @@ export interface Media {
 export interface Resource {
   id: number;
   title: string;
-  type: 'framework' | 'report' | 'toolkit' | 'policy' | 'case_study' | 'evaluation' | 'academic';
+  type: 'academic' | 'case_study' | 'evaluation' | 'framework' | 'multimedia' | 'policy' | 'report' | 'toolkit';
   good_practice: 'yes' | 'no';
   /**
    * Select up to 3 themes
