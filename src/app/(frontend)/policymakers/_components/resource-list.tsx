@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useMemo } from 'react'
+import React, { useMemo, Suspense } from 'react'
 import { Resource } from '@/payload-types'
 import ResourceFilters from './resource-filters'
 import Image from 'next/image'
@@ -123,7 +123,11 @@ const ResourceList: React.FC<ResourceListProps> = ({ initialResources }) => {
         {/* Filters Sidebar */}
         <div className="lg:w-1/4">
           <div className="sticky top-4">
-            <ResourceFilters onFiltersChange={handleFiltersChange} />
+            <Suspense
+              fallback={<div className="p-4 text-center text-gray-500">Loading filters...</div>}
+            >
+              <ResourceFilters onFiltersChange={handleFiltersChange} />
+            </Suspense>
           </div>
         </div>
 

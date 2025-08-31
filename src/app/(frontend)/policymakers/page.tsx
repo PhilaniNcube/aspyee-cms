@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import React from 'react'
 import PolicymakersHero from './_components/policymakers-hero'
 import { getResourcesForPolicymakers } from '@/lib/queries/resources'
