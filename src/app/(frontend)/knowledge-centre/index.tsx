@@ -742,7 +742,7 @@ const KnowledgeCentreHome: NextPage = () => {
           </div>
         </div>
       </div>
-      {isProgrammesOpen && (
+      {/* {isProgrammesOpen && (
         <PortalPopup
           overlayColor="rgba(113, 113, 113, 0.3)"
           placement="Bottom left"
@@ -753,7 +753,7 @@ const KnowledgeCentreHome: NextPage = () => {
         >
           <Programmes onClose={closeProgrammes} />
         </PortalPopup>
-      )}
+      )} */}
     </>
   )
 }
