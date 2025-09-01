@@ -7,6 +7,8 @@ import PortalPopup from './components/portal-popup'
 import styles from './index.module.css'
 import ContentHome from './content-home'
 import HoverCards from './hover-cards'
+import KnowledgeBase from './_components/knowledge-base'
+import CuratedResources from './_components/curated-resources'
 
 const Page = () => {
   const navButtonsContainer1Ref = useRef<HTMLDivElement>(null)
@@ -25,6 +27,8 @@ const Page = () => {
       <Hero />
       <ContentHome />
       <HoverCards />
+      <KnowledgeBase />
+      <CuratedResources />
     </>
   )
 }
