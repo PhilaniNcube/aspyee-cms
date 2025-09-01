@@ -214,7 +214,7 @@ const Page = () => {
               height={24}
               sizes="100vw"
               alt=""
-              src="ic:baseline-facebook.svg"
+              src="/images/icon/ic_baseline-facebook.svg"
             />
             <Image
               className={styles.icbaselineFacebookIcon}
@@ -222,7 +222,7 @@ const Page = () => {
               height={24}
               sizes="100vw"
               alt=""
-              src="mdi:linkedin.svg"
+              src="/images/icon/mdi_linkedin.svg"
             />
             <Image
               className={styles.primetwitterIcon}
@@ -230,7 +230,7 @@ const Page = () => {
               height={14}
               sizes="100vw"
               alt=""
-              src="prime:twitter.png"
+              src="/images/icon/prime_twitter.svg"
             />
           </div>
         </div>
@@ -305,7 +305,7 @@ const Page = () => {
                   height={100.1}
                   sizes="100vw"
                   alt=""
-                  src="proicons:settings.png"
+                  src="public/images/icon/settings.svg"
                 />
                 <div className={styles.forPolicyMakers}>
                   <p className={styles.faq}>{`For educators & `}</p>
