@@ -14,7 +14,7 @@ import {
 import { cn } from '@/lib/utils'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
-import { Menu, ChevronDown, ChevronRight } from 'lucide-react'
+import { Menu, ChevronDown, ChevronRight, SearchIcon } from 'lucide-react'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 
 const LOGO_WHITE = '/images/logo-white.png'
@@ -116,14 +116,25 @@ const FontendHeader = () => {
     >
       <div className="container mx-auto max-w-[1440px] items-center flex justify-end">
         <Link href="/sign-in" className={cn(scrolled ? 'text-brand' : 'text-white')}>
-          <span className={cn(scrolled ? 'text-brand' : 'text-white')}>Sign In</span>
+          <span
+            className={cn(
+              'text-[14px] hover:text-teal-600',
+              scrolled ? 'text-brand' : 'text-white',
+            )}
+          >
+            Sign In
+          </span>
         </Link>
-        <span className={cn(scrolled ? 'text-brand' : 'text-white')}>|</span>
-        <Link
-          href="/register"
-          className={cn(' font-medium hover:opacity-80', scrolled ? 'text-brand' : 'text-white')}
-        >
-          <span className={cn(scrolled ? 'text-brand' : 'text-white')}>Register</span>
+        <span className={cn('text-[14px]', scrolled ? 'text-brand' : 'text-white')}>|</span>
+        <Link href="/register" className={cn('', scrolled ? 'text-brand' : 'text-white')}>
+          <span
+            className={cn(
+              'text-[14px] hover:text-teal-600',
+              scrolled ? 'text-brand' : 'text-white',
+            )}
+          >
+            Register
+          </span>
         </Link>
       </div>
 
@@ -140,7 +151,7 @@ const FontendHeader = () => {
         </Link>
 
         {/* Desktop Navigation Menu */}
-        <div className="hidden lg:block ">
+        <div className="hidden lg:flex items-center ">
           <NavigationMenu viewport={false}>
             <NavigationMenuList className="space-x-1">
               {navigationRoutes.map((route, index) => (
@@ -186,9 +197,9 @@ const FontendHeader = () => {
                         asChild
                         className={cn(
                           route.isSpecial
-                            ? 'bg-brand hover:bg-brand/80 rounded-full'
+                            ? 'bg-brand hover:bg-brand/80 rounded-full px-6'
                             : 'inline-flex h-9 w-max items-center bg-transparent justify-center rounded-xs px-2 py-2 font-medium transition-colors hover:bg-brand-orange-60 hover:text-white focus:bg-brand-orange-60 focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50',
-                          scrolled ? 'text-black' : 'text-white',
+                          scrolled ? '' : 'text-white',
                         )}
                         style={{ fontSize: '13px' }}
                       >
@@ -211,6 +222,8 @@ const FontendHeader = () => {
               ))}
             </NavigationMenuList>
           </NavigationMenu>
+
+          <SearchIcon className={cn('h-6 w-6 ml-3', scrolled ? 'text-black' : 'text-white')} />
         </div>
 
         {/* Mobile Menu */}

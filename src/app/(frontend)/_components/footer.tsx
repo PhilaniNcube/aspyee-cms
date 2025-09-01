@@ -99,33 +99,75 @@ const Footer = () => {
             <div className="space-y-4">
               <div>
                 <p className="text-sm font-medium mb-2">AUDA-NEPAD</p>
-                <div className="flex space-x-2">
+                <div className="flex space-x-4">
                   <Link href="#" className="text-gray-600 hover:text-blue-600">
-                    <Facebook size={20} />
+                    <Image
+                      src="/images/icon/facebook.svg"
+                      alt="Facebook"
+                      className="w-8 h-8"
+                      width={20}
+                      height={20}
+                    />
                   </Link>
                   <Link href="#" className="text-gray-600 hover:text-blue-600">
-                    <Linkedin size={20} />
+                    <Image
+                      src="/images/icon/linkedin.svg"
+                      alt="LinkedIn"
+                      className="w-8 h-8"
+                      width={20}
+                      height={20}
+                    />
                   </Link>
                   <Link href="#" className="text-gray-600 hover:text-blue-600">
-                    <Twitter size={20} />
+                    <Image
+                      src="/images/icon/twitter.svg"
+                      alt="Twitter"
+                      className="w-8 h-8"
+                      width={20}
+                      height={20}
+                    />
                   </Link>
-                  <Link href="#" className="text-gray-600 hover:text-red-600">
-                    <Youtube size={20} />
+                  <Link href="#" className="text-gray-600 hover:text-blue-600">
+                    <Image
+                      src="/images/icon/youtube.svg"
+                      alt="YouTube"
+                      className="w-8 h-8"
+                      width={20}
+                      height={20}
+                    />
                   </Link>
                 </div>
               </div>
 
               <div>
                 <p className="text-sm font-medium mb-2">African Union</p>
-                <div className="flex space-x-2">
+                <div className="flex space-x-4">
                   <Link href="#" className="text-gray-600 hover:text-blue-600">
-                    <Facebook size={20} />
+                    <Image
+                      src="/images/icon/facebook.svg"
+                      alt="Facebook"
+                      className="w-8 h-8"
+                      width={20}
+                      height={20}
+                    />
                   </Link>
                   <Link href="#" className="text-gray-600 hover:text-blue-600">
-                    <Linkedin size={20} />
+                    <Image
+                      src="/images/icon/linkedin.svg"
+                      alt="LinkedIn"
+                      className="w-8 h-8"
+                      width={20}
+                      height={20}
+                    />
                   </Link>
                   <Link href="#" className="text-gray-600 hover:text-blue-600">
-                    <Twitter size={20} />
+                    <Image
+                      src="/images/icon/twitter.svg"
+                      alt="Twitter"
+                      className="w-8 h-8"
+                      width={20}
+                      height={20}
+                    />
                   </Link>
                 </div>
               </div>

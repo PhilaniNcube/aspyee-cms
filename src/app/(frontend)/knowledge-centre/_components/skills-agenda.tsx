@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button'
 import React from 'react'
 
 const SkillsAgenda = () => {
@@ -21,9 +22,9 @@ const SkillsAgenda = () => {
           </p>
         </div>
         <div className="flex justify-center mt-8 md:mt-12">
-          <button className="bg-brand-orange text-xl rounded-full text-white py-2 px-4">
+          <Button className="bg-brand-orange hover:bg-brand-orange/80 text-xl rounded-full text-white py-2 px-4">
             Submit Your Contribution
-          </button>
+          </Button>
         </div>
       </div>
     </div>
