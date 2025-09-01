@@ -153,7 +153,7 @@ const FontendHeader = () => {
                       <NavigationMenuTrigger
                         className={cn(
                           'font-medium rounded-xs bg-transparent border-none',
-                          logoState === LOGO_COLOR ? 'text-white' : 'text-black',
+                          scrolled ? 'text-black' : 'text-white',
                         )}
                         style={{ fontSize: '13px' }}
                       >
@@ -188,7 +188,7 @@ const FontendHeader = () => {
                           route.isSpecial
                             ? 'bg-brand hover:bg-brand/80 rounded-full'
                             : 'inline-flex h-9 w-max items-center bg-transparent justify-center rounded-xs px-2 py-2 font-medium transition-colors hover:bg-brand-orange-60 hover:text-white focus:bg-brand-orange-60 focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50',
-                          logoState === LOGO_COLOR ? 'text-black' : 'text-white',
+                          scrolled ? 'text-black' : 'text-white',
                         )}
                         style={{ fontSize: '13px' }}
                       >
