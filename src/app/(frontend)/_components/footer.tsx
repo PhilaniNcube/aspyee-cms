@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { Facebook, Linkedin, Twitter, Youtube } from 'lucide-react'
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear()
+
   return (
     <footer className="bg-white py-12">
       <div className="container max-w-[1440px] mx-auto px-4">
@@ -141,7 +143,7 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-600">
             <div className="mb-4 md:mb-0 text-center w-full">
               <p>
-                © 2025 African Union. All rights reserved. |{' '}
+                © {currentYear} African Union. All rights reserved. |{' '}
                 <Link href="/terms" className="hover:text-blue-600">
                   Terms of Use
                 </Link>{' '}
@@ -151,7 +153,7 @@ const Footer = () => {
                 </Link>
               </p>
               <p className="mt-1">
-                © 2025 Designed and built with ❤️ by{' '}
+                © {currentYear} Designed and built with ❤️ by{' '}
                 <Link href="#" className="hover:text-blue-600">
                   Designer Africa
                 </Link>
