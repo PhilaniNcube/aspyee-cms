@@ -103,12 +103,7 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
                 Good Practice
               </span>
             </Badge>
-          ) : (
-            <Badge className="bg-red-100 text-red-800">
-              <CircleOffIcon className="w-3 h-3 mr-1" />
-              <span className="text-gray-500">Good Practice</span>
-            </Badge>
-          )}
+          ) : null}
         </div>
       </div>
     </div>

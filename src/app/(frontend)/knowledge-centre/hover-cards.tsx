@@ -52,7 +52,7 @@ export default function HoverCards() {
   ]
 
   return (
-    <div className="min-h-screen pt-4 pb-8">
+    <div className=" pt-4 pb-8">
       <div className="max-w-[1440px] container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {cards.map((card) => {
@@ -109,6 +109,10 @@ export default function HoverCards() {
             )
           })}
         </div>
+
+        <Button className="bg-brand-orange hover:bg-brand-orange/80 text-white px-12 text-lg rounded-full py-6 mt-24">
+          Explore All Resources
+        </Button>
       </div>
     </div>
   )
