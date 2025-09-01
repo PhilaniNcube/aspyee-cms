@@ -11,9 +11,6 @@ const ResourceHero = ({ image, title }: { image: string; title: string }) => {
       }}
     >
       <div className="absolute inset-0 bg-black/40" />
-      <h1 className="relative z-10 text-white text-3xl md:text-4xl font-bold text-center px-4">
-        {title}
-      </h1>
     </div>
   )
 }

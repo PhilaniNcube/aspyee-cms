@@ -1,4 +1,4 @@
-'use client';
+'use client'
 import React, { useState, useRef, useCallback } from 'react'
 import Hero from './_components/hero'
 import Image from 'next/image'
@@ -22,14 +22,6 @@ const Page = () => {
     <>
       <Hero />
       <div className={styles.knowledgeCentreHome}>
-        <Image
-          className={styles.knowledgeCentreHomeChild}
-          width={1446}
-          height={451}
-          sizes="100vw"
-          alt=""
-          src="/images/icon/hugeicons_book-04.svg"
-        />
         <div className={styles.haveAQuestionOrNeedHelpParent}>
           <div className={styles.haveAQuestion}>
             Have a question or need help? Find support here
@@ -116,17 +108,8 @@ const Page = () => {
             <div className={styles.supportQuestions}>{`Support & Questions`}</div>
           </div>
         </div>
-        <div className={styles.hero}>
-          <Image
-            className={styles.adobestock3110722661Icon}
-            width={1533}
-            height={524}
-            sizes="100vw"
-            alt=""
-            src="/images/AdobeStock_311072266 1.png"
-          />
-        </div>
-        <div className={styles.frameParent}>
+
+        {/* <div className={styles.frameParent}>
           <div className={styles.aboutAspyeeParent}>
             <b className={styles.aboutAspyee}>About ASPYEE</b>
             <div className={styles.africasSkillsPortal}>
@@ -251,10 +234,10 @@ const Page = () => {
               <span className={styles.knowledgeCentreHomeWwwnepadorg}>Concept Afrika</span>
             </a>
           </p>
-        </div>
-        <div className={styles.unsplashrlv5gjic5jiWrapper}>
+        </div> */}
+        {/* <div className={styles.unsplashrlv5gjic5jiWrapper}>
           <div className={styles.unsplashrlv5gjic5ji} />
-        </div>
+        </div> */}
         <div className={styles.frameGroup}>
           <div className={styles.frameContainer}>
             <div className={styles.summitWithAfricanYouthLeadParent}>
@@ -657,90 +640,6 @@ const Page = () => {
                 </span>
               </p>
             </div>
-          </div>
-        </div>
-        <div className={styles.navBarDefualt}>
-          <Image
-            className={styles.navBarDefualtChild}
-            width={250}
-            height={57}
-            sizes="100vw"
-            alt=""
-            src="/images/icon/hugeicons_book-04.svg"
-          />
-          <div className={styles.frameParent4}>
-            <div className={styles.hyperlinkButtonBlueNavParent}>
-              <div className={styles.hyperlinkButtonBlueNav}>
-                <div className={styles.africaCriticalSkillsBankWrapper}>
-                  <div className={styles.knowledgeCentreHomeAfricaCriticalSkills}>Sign in</div>
-                </div>
-              </div>
-              <div className={styles.hyperlinkButtonDarkNav}>
-                <div className={styles.africaCriticalSkillsBankContainer}>
-                  <div className={styles.knowledgeCentreHomeAfricaCriticalSkills}>|</div>
-                </div>
-              </div>
-              <div className={styles.knowledgeCentreHomeHyperlinkButtonBlueNav}>
-                <div className={styles.africaCriticalSkillsBankWrapper}>
-                  <div className={styles.knowledgeCentreHomeAfricaCriticalSkills}>Register</div>
-                </div>
-              </div>
-            </div>
-            <div className={styles.navButtonsParent}>
-              <div className={styles.navButtons}>
-                <div className={styles.theInitiative}>HOME</div>
-              </div>
-              <div
-                className={styles.knowledgeCentreHomeNavButtons}
-                ref={navButtonsContainer1Ref}
-                onClick={openProgrammes}
-              >
-                <div className={styles.theInitiative}>PROGRAMMES</div>
-              </div>
-              <div className={styles.navButtons}>
-                <div className={styles.theInitiative}>THE KNOWLEDGE CENTRE</div>
-              </div>
-              <div className={styles.navButtons}>
-                <div className={styles.theInitiative}>{`NEWS & EVENTS`}</div>
-              </div>
-              <div className={styles.navButtons}>
-                <div className={styles.theInitiative}>{`CONNECT & COLLABORATE`}</div>
-              </div>
-              <div className={styles.navButtons}>
-                <div className={styles.theInitiative}>ABOUT</div>
-              </div>
-              <div className={styles.buttonBlueNavParent}>
-                <div className={styles.buttonBlueNav}>
-                  <div className={styles.knowledgeCentreHomeAfricaCriticalSkillsBankWrapper}>
-                    <div className={styles.knowledgeCentreHomeAfricaCriticalSkills}>
-                      AFRICA CRITICAL SKILLS BANK
-                    </div>
-                  </div>
-                </div>
-                <div className={styles.frame}>
-                  <Image
-                    className={styles.groupIcon}
-                    width={18.3}
-                    height={18}
-                    sizes="100vw"
-                    alt=""
-                    src="/images/icon/Group 308.svg"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className={styles.component2Wrapper}>
-          <div className={styles.component2}>
-            <Image
-              className={styles.component2Child}
-              width={29.7}
-              height={18.6}
-              sizes="100vw"
-              alt=""
-              src="/images/icon/Polygon 2.svg"
-            />
           </div>
         </div>
       </div>
