@@ -119,72 +119,7 @@ export default function ContentHome() {
         <div className="w-[1821px] h-[524px] left-[-164px] top-[-390px] absolute">
           <div className="w-[1533px] h-[524px] left-[144px] top-0 absolute bg-gradient-to-b from-black/40 to-black/0" />
         </div>
-        <div className="left-[102px] top-[4867px] absolute inline-flex justify-start items-start gap-14">
-          <div className="w-52 inline-flex flex-col justify-start items-start gap-4">
-            <div className="self-stretch justify-start text-black text-base font-bold font-['Open_Sans'] leading-7">
-              About ASPYEE
-            </div>
-            <div className="self-stretch justify-start text-black text-xs font-normal font-['Open_Sans'] leading-none">
-              Africa&#39;s Skills Portal for Youth Employment and Entrepreneurship - Empowering
-              Africa&#39;s Youth through knowledge sharing and skills development.
-            </div>
-          </div>
-          <div className="w-48 inline-flex flex-col justify-start items-start gap-4">
-            <div className="self-stretch justify-start text-black text-base font-bold font-['Open_Sans'] leading-7">
-              Resources
-            </div>
-            <div className="self-stretch justify-start text-black text-xs font-normal font-['Open_Sans'] leading-none">
-              Knowledge Centre 
-              <br />
-              Africa Critical Skills Bank 
-            </div>
-          </div>
-          <div className="w-48 inline-flex flex-col justify-start items-start gap-4">
-            <div className="self-stretch justify-start text-black text-base font-bold font-['Open_Sans'] leading-7">
-              Community
-            </div>
-            <div className="self-stretch justify-start text-black text-xs font-normal font-['Open_Sans'] leading-none">
-              Connect & Collaborate 
-              <br />
-              News & Events
-            </div>
-          </div>
-          <div className="w-48 inline-flex flex-col justify-start items-start gap-4">
-            <div className="self-stretch justify-start text-black text-base font-bold font-['Open_Sans'] leading-7">
-              Contact Us
-            </div>
-            <div className="self-stretch justify-start">
-              <span className="text-black text-xs font-semibold font-['Open_Sans'] leading-none">
-                AUDA-NEPAD
-                <br />
-              </span>
-              <span className="text-black text-xs font-normal font-['Open_Sans'] leading-none">
-                Nqobile Zwane 
-                <br />
-                nqobilez@auda-nepad.org
-                <br />
-                <br />
-              </span>
-              <span className="text-black text-xs font-semibold font-['Open_Sans'] leading-none">
-                Skills Initiative for Africa
-              </span>
-              <span className="text-black text-xs font-normal font-['Open_Sans'] leading-none">
-                {' '}
-                Honore Tshitenge
-                <br />
-                honore.tshitenge@giz.de
-                <br />
-                <br />
-                aspyee@nepad.org
-              </span>
-            </div>
-          </div>
-          <div className="w-48 inline-flex flex-col justify-start items-start gap-4">
-            <div className="self-stretch justify-start text-black text-base font-bold font-['Open_Sans'] leading-7">
-              Socials
-            </div>
-          </div>
-        </div>
+        
         <div className="w-48 left-[1140px] top-[4911px] absolute inline-flex flex-col justify-start items-start gap-2">
           <div className="self-stretch justify-start text-black text-xs font-semibold font-['Open_Sans'] leading-none">
             AUDA-NEPAD
