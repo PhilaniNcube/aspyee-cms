@@ -1,6 +1,7 @@
 import React from 'react'
 import './styles.css'
 import FontendHeader from './navigation/header'
+import Footer from './_components/footer'
 import { Open_Sans } from 'next/font/google'
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
 
@@ -21,6 +22,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
         <main>
           <NuqsAdapter>{children}</NuqsAdapter>
         </main>
+        <Footer />
       </body>
     </html>
   )
