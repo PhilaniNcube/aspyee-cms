@@ -4,6 +4,7 @@ import React, { useMemo, Suspense } from 'react'
 import { Resource } from '@/payload-types'
 import ResourceFilters from './resource-filters'
 import ResourceCard from './resource-card'
+import Link from 'next/link'
 
 interface ResourceListProps {
   initialResources: Resource[]
@@ -147,12 +148,14 @@ const ResourceList: React.FC<ResourceListProps> = ({ initialResources }) => {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-6">
               {filteredResources.map((resource) => (
-                <ResourceCard
-                  key={resource.id}
-                  resource={resource}
-                  getResourceTypeLabel={getResourceTypeLabel}
-                  formatDate={formatDate}
-                />
+                <Link key={resource.id} href={`/knowledge-centre/${resource.id}`}>
+                  <ResourceCard
+                    key={resource.id}
+                    resource={resource}
+                    getResourceTypeLabel={getResourceTypeLabel}
+                    formatDate={formatDate}
+                  />
+                </Link>
               ))}
             </div>
           )}
