@@ -17,6 +17,9 @@ import { Button } from '@/components/ui/button'
 import { Menu, ChevronDown, ChevronRight } from 'lucide-react'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 
+const LOGO_WHITE = '/images/logo-white.png'
+const LOGO_COLOR = '/images/logo.png'
+
 // Navigation routes configuration
 const navigationRoutes = [
   {
@@ -148,7 +151,10 @@ const FontendHeader = () => {
                   {route.hasDropdown ? (
                     <>
                       <NavigationMenuTrigger
-                        className="font-medium rounded-xs bg-transparent border-none"
+                        className={cn(
+                          'font-medium rounded-xs bg-transparent border-none',
+                          scrolled ? 'text-black' : 'text-white',
+                        )}
                         style={{ fontSize: '13px' }}
                       >
                         <span className={cn('uppercase', scrolled ? 'text-black' : 'text-white')}>
@@ -182,6 +188,7 @@ const FontendHeader = () => {
                           route.isSpecial
                             ? 'bg-brand hover:bg-brand/80 rounded-full'
                             : 'inline-flex h-9 w-max items-center bg-transparent justify-center rounded-xs px-2 py-2 font-medium transition-colors hover:bg-brand-orange-60 hover:text-white focus:bg-brand-orange-60 focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50',
+                          scrolled ? 'text-black' : 'text-white',
                         )}
                         style={{ fontSize: '13px' }}
                       >

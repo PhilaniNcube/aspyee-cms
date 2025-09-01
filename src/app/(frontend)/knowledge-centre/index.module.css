@@ -1,0 +1,1206 @@
+.knowledgeCentreHome {
+  	width: 100%;
+  	position: relative;
+  	background-color: #faf9f6;
+  	height: 5346px;
+  	overflow: hidden;
+  	text-align: left;
+  	font-size: 12px;
+  	color: #000;
+  	font-family: 'Open Sans';
+}
+.knowledgeCentreHomeChild {
+  	position: absolute;
+  	top: 4344px;
+  	left: -2px;
+  	width: 1446px;
+  	height: 451px;
+  	object-fit: cover;
+}
+.haveAQuestionOrNeedHelpParent {
+  	position: absolute;
+  	top: 3840px;
+  	left: -2px;
+  	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.35);
+  	background-color: #fff;
+  	width: 1446px;
+  	height: 504px;
+  	font-size: 24px;
+  	color: #595959;
+}
+.haveAQuestion {
+  	position: absolute;
+  	top: 190px;
+  	left: calc(50% - 525px);
+  	line-height: 38px;
+  	font-weight: 600;
+  	display: inline-block;
+  	width: 569px;
+  	height: 55px;
+}
+.component23Parent {
+  	position: absolute;
+  	top: 273px;
+  	left: 162px;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: flex-start;
+  	gap: 21px;
+  	color: #fff;
+}
+.component23 {
+  	width: 360px;
+  	position: relative;
+  	border-radius: 8px;
+  	background-color: #9fb23f;
+  	height: 94px;
+  	overflow: hidden;
+  	flex-shrink: 0;
+}
+.letsIconsquestionLightParent {
+  	position: absolute;
+  	top: 13px;
+  	left: 27px;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: flex-start;
+  	gap: 18px;
+}
+.letsIconsquestionLight {
+  	width: 65px;
+  	position: relative;
+  	max-height: 100%;
+}
+.faqConnectWithContainer {
+  	width: 220px;
+  	position: relative;
+  	line-height: 92.6%;
+  	display: inline-block;
+  	flex-shrink: 0;
+}
+.faq {
+  	margin: 0;
+}
+.blankLine {
+  	margin: 0;
+  	font-size: 16px;
+  	color: #595959;
+}
+.connectWithExperts {
+  	margin: 0;
+  	font-size: 18px;
+}
+.iconoirwifiIssue {
+  	width: 64px;
+  	position: relative;
+  	max-height: 100%;
+}
+.rectangleParent {
+  	position: absolute;
+  	top: 101px;
+  	left: 162px;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: flex-start;
+  	gap: 26.3px;
+  	font-size: 48px;
+  	color: #00b6cc;
+}
+.frameChild {
+  	align-self: stretch;
+  	width: 8.5px;
+  	position: relative;
+  	background-color: #fd680c;
+}
+.supportQuestions {
+  	position: relative;
+  	line-height: 42.35px;
+  	font-weight: 600;
+}
+.hero {
+  	position: absolute;
+  	top: -390px;
+  	left: -164px;
+  	width: 1821px;
+  	height: 524px;
+}
+.adobestock3110722661Icon {
+  	position: absolute;
+  	width: 100%;
+  	top: 0px;
+  	right: 144px;
+  	left: 144px;
+  	max-width: 100%;
+  	overflow: hidden;
+  	height: 524px;
+  	object-fit: cover;
+}
+.frameParent {
+  	position: absolute;
+  	top: 4867px;
+  	left: 102px;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: flex-start;
+  	justify-content: flex-start;
+  	gap: 60px;
+  	font-size: 16px;
+}
+.aboutAspyeeParent {
+  	width: 212px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: flex-start;
+  	gap: 16px;
+}
+.aboutAspyee {
+  	align-self: stretch;
+  	position: relative;
+  	line-height: 28px;
+}
+.africasSkillsPortal {
+  	align-self: stretch;
+  	position: relative;
+  	font-size: 12px;
+  	line-height: 18px;
+}
+.resourcesParent {
+  	width: 192px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: flex-start;
+  	gap: 16px;
+}
+.communityParent {
+  	width: 195px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: flex-start;
+  	gap: 16px;
+}
+.contactUsParent {
+  	width: 199px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: flex-start;
+  	gap: 16px;
+}
+.audaNepad {
+  	margin: 0;
+  	font-weight: 600;
+}
+.skillsInitiativeFor {
+  	font-weight: 600;
+  	font-family: 'Open Sans';
+}
+.socialsWrapper {
+  	width: 199px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: flex-start;
+}
+.audaNepadParent {
+  	position: absolute;
+  	top: 4911px;
+  	left: 1140px;
+  	width: 199px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: flex-start;
+  	gap: 9px;
+}
+.knowledgeCentreHomeAudaNepad {
+  	align-self: stretch;
+  	position: relative;
+  	line-height: 18px;
+  	font-weight: 600;
+}
+.icbaselineFacebookParent {
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: flex-start;
+  	gap: 29px;
+}
+.icbaselineFacebookIcon {
+  	width: 24px;
+  	position: relative;
+  	max-height: 100%;
+}
+.primetwitterIcon {
+  	width: 14px;
+  	position: relative;
+  	max-height: 100%;
+  	object-fit: cover;
+}
+.africanUnionParent {
+  	position: absolute;
+  	top: 4987px;
+  	left: 1140px;
+  	width: 199px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: flex-start;
+  	gap: 9px;
+}
+.visitWwwnepadorgContainer {
+  	position: absolute;
+  	top: 5096px;
+  	left: 881px;
+  	line-height: 18px;
+  	font-weight: 600;
+}
+.wwwnepadorg {
+  	color: inherit;
+  	white-space: pre-wrap;
+}
+.knowledgeCentreHomeWwwnepadorg {
+  	text-decoration: underline;
+}
+.httpsauint {
+  	white-space: pre-wrap;
+}
+.africanUnionAllContainer {
+  	position: absolute;
+  	top: 5206px;
+  	left: 327px;
+  	line-height: 21px;
+  	font-weight: 600;
+  	text-align: center;
+  	display: inline-block;
+  	width: 704px;
+}
+.conceptAfrika {
+  	color: inherit;
+}
+.unsplashrlv5gjic5jiWrapper {
+  	position: absolute;
+  	top: 5175px;
+  	left: -2px;
+  	width: 1446px;
+  	height: 117px;
+}
+.unsplashrlv5gjic5ji {
+  	position: absolute;
+  	top: 0px;
+  	left: 0px;
+  	background-color: rgba(224, 228, 232, 0.5);
+  	width: 1446px;
+  	height: 451px;
+}
+.frameGroup {
+  	position: absolute;
+  	top: 151px;
+  	left: -2px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: flex-start;
+  	font-size: 48px;
+  	color: #fff;
+}
+.frameContainer {
+  	width: 1448px;
+  	position: relative;
+  	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.55);
+  	height: 683px;
+}
+.summitWithAfricanYouthLeadParent {
+  	position: absolute;
+  	top: 0px;
+  	left: 0px;
+  	background-color: rgba(0, 182, 204, 0);
+  	width: 1482px;
+  	height: 683px;
+  	overflow: hidden;
+  	color: #595959;
+}
+.summitWithAfricanYouthLeadIcon {
+  	position: absolute;
+  	top: -98px;
+  	left: 0px;
+  	width: 1446px;
+  	height: 964px;
+  	object-fit: cover;
+  	mix-blend-mode: screen;
+}
+.rectangleGroup {
+  	position: absolute;
+  	top: 64px;
+  	left: 161px;
+  	width: 466px;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: flex-start;
+  	gap: 26.3px;
+}
+.knowledgeCorners {
+  	position: relative;
+  	line-height: 56.4px;
+  	font-weight: 600;
+}
+.theseAreSets {
+  	position: absolute;
+  	top: 140px;
+  	left: 196px;
+  	font-size: 20px;
+  	line-height: 31px;
+  	font-weight: 600;
+  	color: #00b6cc;
+  	display: inline-block;
+  	width: 874px;
+}
+.knowledgeCornersPolicymakeParent {
+  	position: absolute;
+  	top: 243.15px;
+  	left: 196px;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: flex-start;
+  	justify-content: flex-start;
+  	gap: 4.4px;
+  	text-align: center;
+  	font-size: 16.69px;
+}
+.knowledgeCornersPolicymake {
+  	width: 206px;
+  	border-radius: 13.34px;
+  	background-color: #00b6cc;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: center;
+  	justify-content: center;
+  	padding: 25px 0px;
+  	box-sizing: border-box;
+  	gap: 9.2px;
+  	min-height: 201.01px;
+  	font-size: 16.68px;
+}
+.proiconssettings {
+  	width: 100.1px;
+  	position: relative;
+  	height: 100.1px;
+  	overflow: hidden;
+  	flex-shrink: 0;
+}
+.vectorIcon {
+  	position: absolute;
+  	height: 75.02%;
+  	width: 71.63%;
+  	top: 12.49%;
+  	right: 14.21%;
+  	bottom: 12.48%;
+  	left: 14.16%;
+  	max-width: 100%;
+  	overflow: hidden;
+  	max-height: 100%;
+}
+.proiconssettingsChild {
+  	position: absolute;
+  	height: 100%;
+  	width: 100%;
+  	top: 0%;
+  	right: -0.42%;
+  	bottom: 0%;
+  	left: 0.42%;
+  	border-radius: 50.04px;
+  	max-width: 100%;
+  	overflow: hidden;
+  	max-height: 100%;
+  	object-fit: cover;
+}
+.forPolicyMakers {
+  	align-self: stretch;
+  	position: relative;
+  	line-height: 20.85px;
+}
+.knowledgeCornersImplemento {
+  	width: 206px;
+  	border-radius: 13.34px;
+  	background-color: #fd680c;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: center;
+  	justify-content: center;
+  	padding: 25px 0px;
+  	box-sizing: border-box;
+  	gap: 9.2px;
+  	font-size: 16.68px;
+}
+.knowledgeCentreHomeProiconssettings {
+  	width: 100.1px;
+  	position: relative;
+  	max-height: 100%;
+  	object-fit: cover;
+}
+.knowledgeCornersYouth {
+  	width: 206.2px;
+  	border-radius: 13.35px;
+  	background-color: #9fb23f;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: center;
+  	justify-content: center;
+  	padding: 25px 0px;
+  	box-sizing: border-box;
+  	gap: 9.2px;
+  	min-height: 201.15px;
+}
+.proiconssettings2 {
+  	width: 100.2px;
+  	position: relative;
+  	height: 100.2px;
+  	overflow: hidden;
+  	flex-shrink: 0;
+}
+.knowledgeCentreHomeVectorIcon {
+  	position: absolute;
+  	height: 74.95%;
+  	width: 71.66%;
+  	top: 12.49%;
+  	right: 14.18%;
+  	bottom: 12.56%;
+  	left: 14.16%;
+  	max-width: 100%;
+  	overflow: hidden;
+  	max-height: 100%;
+}
+.proiconssettingsItem {
+  	position: absolute;
+  	height: 100%;
+  	width: 100%;
+  	top: 0%;
+  	right: -0.42%;
+  	bottom: 0%;
+  	left: 0.42%;
+  	border-radius: 50.08px;
+  	max-width: 100%;
+  	overflow: hidden;
+  	max-height: 100%;
+  	object-fit: cover;
+}
+.forYouth {
+  	align-self: stretch;
+  	position: relative;
+  	line-height: 20.87px;
+}
+.knowledgeCornersResearcher {
+  	width: 206.2px;
+  	border-radius: 13.35px;
+  	background-color: rgba(0, 0, 0, 0.2);
+  	display: flex;
+  	flex-direction: column;
+  	align-items: center;
+  	justify-content: center;
+  	padding: 25px 0px;
+  	box-sizing: border-box;
+  	gap: 9.2px;
+  	min-height: 201.15px;
+}
+.knowledgeCornersOther {
+  	width: 206.2px;
+  	border-radius: 13.35px;
+  	background-color: #cba95f;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: center;
+  	justify-content: center;
+  	padding: 25px 0px;
+  	box-sizing: border-box;
+  	gap: 9.2px;
+}
+.button {
+  	position: absolute;
+  	width: calc(100% - 1153px);
+  	top: 576px;
+  	right: 959px;
+  	left: 194px;
+  	height: 50px;
+  	text-align: center;
+  	font-size: 16px;
+}
+.learnMoreWrapper {
+  	position: absolute;
+  	height: 100%;
+  	width: 100%;
+  	top: 0%;
+  	right: 0%;
+  	bottom: 0%;
+  	left: 0%;
+  	border-radius: 32px;
+  	background-color: #fd680c;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: center;
+  	padding: 4px 20px;
+  	box-sizing: border-box;
+}
+.learnMore {
+  	position: relative;
+  	line-height: 42px;
+  	text-transform: capitalize;
+  	font-weight: 600;
+}
+.frameDiv {
+  	width: 1448px;
+  	position: relative;
+  	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.55);
+  	background-color: #efefef;
+  	height: 517px;
+  	color: #595959;
+}
+.frameWrapper {
+  	position: absolute;
+  	top: 0px;
+  	left: 0px;
+  	background-color: rgba(0, 182, 204, 0);
+  	width: 1394px;
+  	height: 430px;
+  	overflow: hidden;
+}
+.rectangleContainer {
+  	position: absolute;
+  	top: 65px;
+  	left: 161px;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: flex-start;
+  	gap: 26.3px;
+}
+.aLivingKnowledge {
+  	width: 1009px;
+  	position: relative;
+  	line-height: 56.4px;
+  	font-weight: 600;
+  	display: inline-block;
+  	flex-shrink: 0;
+}
+.knowledgeCentreHomeFrameParent {
+  	position: absolute;
+  	top: 170px;
+  	left: calc(50% - 534.91px);
+  	height: 260.1px;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: flex-start;
+  	flex-wrap: wrap;
+  	align-content: center;
+  	gap: 16.9px;
+  	font-size: 50.83px;
+  	color: #00a2b5;
+}
+.hugeiconsbook04Parent {
+  	width: 253px;
+  	border-radius: 15.25px;
+  	background-color: rgba(0, 182, 204, 0.1);
+  	height: 260px;
+  	overflow: hidden;
+  	flex-shrink: 0;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: center;
+  	padding: 12.7px 33.9px;
+  	box-sizing: border-box;
+  	gap: 16.9px;
+}
+.parent {
+  	align-self: stretch;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: flex-start;
+}
+.b {
+  	align-self: stretch;
+  	position: relative;
+  	line-height: 42.35px;
+}
+.knowledgeCentreHomeResources {
+  	width: 170.3px;
+  	position: relative;
+  	font-size: 18.64px;
+  	line-height: 42.35px;
+  	display: inline-block;
+}
+.frameIcon {
+  	width: 44px;
+  	height: 44px;
+}
+.streamlineUltimatecommonFilIcon {
+  	width: 42px;
+  	position: relative;
+  	max-height: 100%;
+}
+.scroll1 {
+  	width: 1440px;
+  	position: relative;
+  	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.35);
+  	background-color: #fff;
+  	height: 673px;
+  	font-size: 18px;
+  	color: #595959;
+}
+.knowledgeCentreHomeRectangleParent {
+  	position: absolute;
+  	width: calc(100% - 889px);
+  	top: 100px;
+  	right: 731px;
+  	left: 158px;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: flex-start;
+  	gap: 26.3px;
+  	font-size: 32.19px;
+  	color: #00b6cc;
+}
+.curatedResources {
+  	flex: 1;
+  	position: relative;
+  	line-height: 42.35px;
+  	font-weight: 600;
+}
+.exploreAfricasSkillsContainer {
+  	position: absolute;
+  	top: 177px;
+  	left: calc(50% - 527px);
+  	display: inline-block;
+  	width: 475px;
+}
+.knowledgeCentreHomeExploreAfricasSkillsTransf {
+  	line-height: 30px;
+}
+.from {
+  	line-height: 50px;
+}
+.stayAheadOfContainer {
+  	position: absolute;
+  	top: 365px;
+  	left: calc(50% - 527px);
+  	line-height: 30px;
+  	display: inline-block;
+  	width: 504px;
+}
+.stayAheadOfTrendsLearnFr {
+  	margin: 0;
+  	font-family: inherit;
+  	font-size: inherit;
+  	padding-left: 24px;
+}
+.stayAheadOf {
+  	margin-bottom: 0px;
+}
+.scroll1Child {
+  	position: absolute;
+  	top: 107px;
+  	left: 730px;
+  	border-radius: 20px;
+  	width: 550px;
+  	height: 477px;
+  	object-fit: cover;
+}
+.scroll1Item {
+  	position: absolute;
+  	top: 16px;
+  	left: 749px;
+  	width: 531px;
+  	height: 482px;
+  	object-fit: cover;
+}
+.knowledgeCentreHomeButton {
+  	position: absolute;
+  	width: calc(100% - 1145px);
+  	top: 504px;
+  	right: 951px;
+  	left: 194px;
+  	height: 50px;
+  	text-align: center;
+  	font-size: 16px;
+  	color: #fff;
+}
+.knowledgeCentreHomeLearnMore {
+  	position: relative;
+  	line-height: 42px;
+  	font-weight: 600;
+}
+.unsplashrlv5gjic5jiParent {
+  	width: 1448px;
+  	position: relative;
+  	height: 647px;
+}
+.knowledgeCentreHomeUnsplashrlv5gjic5ji {
+  	position: absolute;
+  	top: 0px;
+  	left: -2px;
+  	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.35);
+  	background-color: #00b6cc;
+  	width: 1446px;
+  	height: 647px;
+}
+.rectangleParent2 {
+  	position: absolute;
+  	top: 144px;
+  	left: 161px;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: flex-start;
+  	gap: 26.3px;
+}
+.howToUse {
+  	width: 452px;
+  	position: relative;
+  	line-height: 51.4px;
+  	font-weight: 600;
+  	display: inline-block;
+  	flex-shrink: 0;
+}
+.yourGuideToContainer {
+  	position: absolute;
+  	top: 301px;
+  	left: 196px;
+  	font-size: 18px;
+  	display: inline-block;
+  	width: 500px;
+  	height: 223px;
+}
+.findTheLatestToolsCaseSt {
+  	margin: 0;
+  	font-size: inherit;
+  	padding-left: 24px;
+}
+.logosyoutubeIconWrapper {
+  	position: absolute;
+  	width: calc(100% - 904px);
+  	top: 131px;
+  	right: 166px;
+  	left: 738px;
+  	border-radius: 20px;
+  	background-color: #e6e2e2;
+  	height: 385px;
+  	overflow: hidden;
+}
+.logosyoutubeIcon {
+  	position: absolute;
+  	width: 100%;
+  	top: 227px;
+  	right: 224px;
+  	left: 224px;
+  	max-width: 100%;
+  	overflow: hidden;
+  	height: 68px;
+}
+.knowledgeCentreHomeFrameWrapper {
+  	width: 1448px;
+  	position: relative;
+  	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.55);
+  	height: 702px;
+  	font-size: 20.01px;
+}
+.frameParent3 {
+  	position: absolute;
+  	top: 0px;
+  	left: 0px;
+  	background-color: rgba(0, 182, 204, 0);
+  	width: 1482px;
+  	height: 990px;
+  	overflow: hidden;
+}
+.rectangleParent3 {
+  	position: absolute;
+  	top: 104px;
+  	left: 161px;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: flex-start;
+  	gap: 26.3px;
+  	font-size: 48px;
+  	color: #595959;
+}
+.topReads {
+  	width: 497px;
+  	position: relative;
+  	line-height: 56.4px;
+  	text-transform: capitalize;
+  	font-weight: 600;
+  	display: inline-block;
+  	flex-shrink: 0;
+}
+.component4 {
+  	position: absolute;
+  	width: calc(100% - 1216px);
+  	top: 233px;
+  	right: 1051px;
+  	left: 165px;
+  	border-radius: 10px;
+  	background-color: #9b9b9b;
+  	height: 321px;
+  	overflow: hidden;
+}
+.maleEmployeeGettingUsedHisIcon {
+  	position: absolute;
+  	top: 0px;
+  	left: 0px;
+  	width: 453.6px;
+  	height: 321px;
+  	object-fit: cover;
+}
+.forPolicyMakersWrapper {
+  	position: absolute;
+  	bottom: 21.54px;
+  	left: 22.51px;
+  	width: 243.5px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: flex-start;
+}
+.knowledgeCentreHomeForPolicyMakers {
+  	align-self: stretch;
+  	position: relative;
+  	line-height: 20.01px;
+  	font-weight: 600;
+}
+.component5 {
+  	position: absolute;
+  	width: calc(100% - 1216px);
+  	top: 233px;
+  	right: 768px;
+  	left: 448px;
+  	border-radius: 10px;
+  	background-color: #9b9b9b;
+  	height: 321px;
+  	overflow: hidden;
+}
+.forEducatorsImplementorsWrapper {
+  	position: absolute;
+  	bottom: 23.87px;
+  	left: 22.51px;
+  	width: 243.5px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: flex-start;
+}
+.component6 {
+  	position: absolute;
+  	width: calc(100% - 1216px);
+  	top: 233px;
+  	right: 485.71px;
+  	left: 730.29px;
+  	border-radius: 10px;
+  	background-color: #9b9b9b;
+  	height: 321px;
+  	overflow: hidden;
+}
+.component7 {
+  	position: absolute;
+  	width: calc(100% - 1216px);
+  	top: 233px;
+  	right: 203.06px;
+  	left: 1012.94px;
+  	border-radius: 10px;
+  	background-color: #9b9b9b;
+  	height: 321px;
+  	overflow: hidden;
+}
+.unsplashrlv5gjic5jiGroup {
+  	width: 1448px;
+  	position: relative;
+  	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.55);
+  	height: 467px;
+  	text-align: center;
+}
+.unsplashrlv5gjic5ji2 {
+  	position: absolute;
+  	width: calc(100% + 6px);
+  	top: 0px;
+  	right: -4px;
+  	left: -2px;
+  	background-color: rgba(0, 182, 204, 0.8);
+  	height: 467px;
+}
+.frameChild3 {
+  	position: absolute;
+  	top: 121px;
+  	left: calc(50% + 73px);
+  	background-color: #fd680c;
+  	width: 9px;
+  	height: 144px;
+  	transform:  rotate(90deg);
+  	transform-origin: 0 0;
+}
+.contributeToAfricas {
+  	position: absolute;
+  	top: 42px;
+  	left: calc(50% - 405px);
+  	line-height: 42.35px;
+  	font-weight: 600;
+}
+.button2 {
+  	position: absolute;
+  	top: 289px;
+  	left: calc(50% - 208px);
+  	width: 417px;
+  	height: 70px;
+  	font-size: 22.4px;
+}
+.learnMoreFrame {
+  	position: absolute;
+  	height: 100.29%;
+  	width: 100%;
+  	top: -0.14%;
+  	right: 0%;
+  	bottom: -0.14%;
+  	left: 0%;
+  	border-radius: 44.8px;
+  	background-color: #fd680c;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: center;
+  	padding: 5.6px 28px;
+  	box-sizing: border-box;
+}
+.learnMore2 {
+  	position: relative;
+  	line-height: 58.8px;
+  	font-weight: 600;
+}
+.yourExperienceCanContainer {
+  	position: absolute;
+  	top: 147px;
+  	left: 335px;
+  	font-weight: 600;
+  	display: inline-block;
+  	width: 772px;
+  	font-size: 24px;
+}
+.knowledgeCentreHomeYourExperienceCanInspireCh {
+  	line-height: 38px;
+}
+.aspyeeGrowsThroughTheKnowl {
+  	margin: 0;
+  	font-size: 14px;
+}
+.orLessonsLearned {
+  	line-height: 24px;
+}
+.navBarDefualt {
+  	position: absolute;
+  	top: 0px;
+  	left: 0px;
+  	box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.15);
+  	background-color: #faf9f6;
+  	width: 1440px;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: flex-end;
+  	justify-content: space-between;
+  	padding: 21px 60px;
+  	box-sizing: border-box;
+  	gap: 0px;
+  	text-align: center;
+  	font-size: 14px;
+  	color: #00b6cc;
+  	font-family: Roboto;
+}
+.navBarDefualtChild {
+  	width: 250px;
+  	height: 57px;
+  	object-fit: cover;
+}
+.frameParent4 {
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-end;
+  	justify-content: center;
+}
+.hyperlinkButtonBlueNavParent {
+  	width: 218px;
+  	overflow: hidden;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: flex-start;
+  	padding: 0px 12.7px;
+  	box-sizing: border-box;
+  	gap: 6px;
+}
+.hyperlinkButtonBlueNav {
+  	width: 55px;
+  	height: 42px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: flex-start;
+  	padding: 3px 0px;
+  	box-sizing: border-box;
+}
+.africaCriticalSkillsBankWrapper {
+  	align-self: stretch;
+  	border-radius: 16px;
+  	height: 36px;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: center;
+  	padding: 4px 20px;
+  	box-sizing: border-box;
+}
+.knowledgeCentreHomeAfricaCriticalSkills {
+  	position: relative;
+  	line-height: 42px;
+}
+.hyperlinkButtonDarkNav {
+  	width: 5px;
+  	height: 42px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: flex-start;
+  	padding: 3px 0px;
+  	box-sizing: border-box;
+}
+.africaCriticalSkillsBankContainer {
+  	align-self: stretch;
+  	border-radius: 16px;
+  	height: 36px;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: center;
+  	padding: 4px 0px;
+  	box-sizing: border-box;
+}
+.knowledgeCentreHomeHyperlinkButtonBlueNav {
+  	width: 65px;
+  	height: 42px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: flex-start;
+  	padding: 3px 0px;
+  	box-sizing: border-box;
+}
+.navButtonsParent {
+  	overflow: hidden;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: flex-end;
+  	padding: 12.7px;
+  	gap: 8px;
+  	text-align: left;
+  	font-size: 13px;
+  	color: #595959;
+}
+.navButtons {
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: center;
+  	padding: 10px;
+}
+.theInitiative {
+  	position: relative;
+}
+.knowledgeCentreHomeNavButtons {
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: center;
+  	padding: 10px;
+  	cursor: pointer;
+}
+.buttonBlueNavParent {
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: flex-start;
+  	gap: 31px;
+  	text-align: center;
+  	font-size: 14px;
+  	color: #fff;
+}
+.buttonBlueNav {
+  	width: 239px;
+  	position: relative;
+  	height: 42px;
+}
+.knowledgeCentreHomeAfricaCriticalSkillsBankWrapper {
+  	position: absolute;
+  	width: 100%;
+  	top: 3px;
+  	right: 0%;
+  	left: 0%;
+  	border-radius: 16px;
+  	background-color: #00b6cc;
+  	height: 36px;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: center;
+  	padding: 4px 20px;
+  	box-sizing: border-box;
+}
+.frame {
+  	height: 27px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: center;
+  	justify-content: center;
+  	padding: 5px;
+  	box-sizing: border-box;
+}
+.groupIcon {
+  	width: 100%;
+  	position: relative;
+  	height: 18px;
+}
+.component2Wrapper {
+  	position: absolute;
+  	top: 643px;
+  	left: calc(50% + 602px);
+  	width: 58px;
+  	height: 58px;
+}
+.component2 {
+  	position: absolute;
+  	top: 0px;
+  	left: calc(50% - 29px);
+  	border-radius: 29px;
+  	background-color: #fff;
+  	border: 1.5px solid #9a9a9a;
+  	box-sizing: border-box;
+  	width: 58px;
+  	height: 58px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: flex-start;
+  	padding: 22.3px 14.1px 17.8px;
+}
+.component2Child {
+  	width: 100%;
+  	position: relative;
+  	height: 18.6px;
+  	object-fit: contain;
+}
+
