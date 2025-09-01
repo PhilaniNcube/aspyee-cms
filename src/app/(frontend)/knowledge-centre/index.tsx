@@ -262,7 +262,7 @@ const KnowledgeCentreHome: NextPage = () => {
                 height={964}
                 sizes="100vw"
                 alt=""
-                src="summit-with-African-youth-leaders 1.png"
+                src="/images/summit-with-African-youth-leaders 1.png"
               />
               <div className={styles.rectangleGroup}>
                 <div className={styles.frameChild} />
@@ -283,7 +283,7 @@ const KnowledgeCentreHome: NextPage = () => {
                     height={75.1}
                     sizes="100vw"
                     alt=""
-                    src="Vector.svg"
+                    src="/images/icon/Vector.svg"
                   />
                   <Image
                     className={styles.proiconssettingsChild}
@@ -291,7 +291,7 @@ const KnowledgeCentreHome: NextPage = () => {
                     height={100.1}
                     sizes="100vw"
                     alt=""
-                    src="Rectangle 57.png"
+                    src="/images/Rectangle 57.png"
                   />
                 </div>
                 <div className={styles.forPolicyMakers}>For policy makers</div>
@@ -318,7 +318,7 @@ const KnowledgeCentreHome: NextPage = () => {
                     height={75.1}
                     sizes="100vw"
                     alt=""
-                    src="Vector.svg"
+                    src="/images/icon/Vector.svg"
                   />
                   <Image
                     className={styles.proiconssettingsItem}
@@ -326,7 +326,7 @@ const KnowledgeCentreHome: NextPage = () => {
                     height={100.2}
                     sizes="100vw"
                     alt=""
-                    src="Rectangle 57.png"
+                    src="/images/Rectangle 57.png"
                   />
                 </div>
                 <div className={styles.forYouth}>For youth</div>
@@ -339,7 +339,7 @@ const KnowledgeCentreHome: NextPage = () => {
                     height={75.1}
                     sizes="100vw"
                     alt=""
-                    src="Vector.svg"
+                    src="/images/icon/Vector.svg"
                   />
                   <Image
                     className={styles.proiconssettingsItem}
@@ -347,7 +347,7 @@ const KnowledgeCentreHome: NextPage = () => {
                     height={100.2}
                     sizes="100vw"
                     alt=""
-                    src="Rectangle 57.png"
+                    src="/images/Rectangle 57.png"
                   />
                 </div>
                 <div className={styles.forYouth}>For researchers</div>
@@ -360,7 +360,7 @@ const KnowledgeCentreHome: NextPage = () => {
                     height={75.1}
                     sizes="100vw"
                     alt=""
-                    src="Vector.svg"
+                    src="/images/icon/Vector.svg"
                   />
                   <Image
                     className={styles.proiconssettingsItem}
@@ -368,7 +368,7 @@ const KnowledgeCentreHome: NextPage = () => {
                     height={100.2}
                     sizes="100vw"
                     alt=""
-                    src="Rectangle 57.png"
+                    src="/images/Rectangle 57.png"
                   />
                 </div>
                 <div className={styles.forYouth}>
@@ -398,7 +398,7 @@ const KnowledgeCentreHome: NextPage = () => {
                   height={42}
                   sizes="100vw"
                   alt=""
-                  src="hugeicons:book-04.svg"
+                  src="/images/icon/hugeicons_book-04.svg"
                 />
                 <div className={styles.parent}>
                   <b className={styles.b}>5,000+</b>
@@ -426,7 +426,7 @@ const KnowledgeCentreHome: NextPage = () => {
                   height={42}
                   sizes="100vw"
                   alt=""
-                  src="streamline-ultimate:common-file-give-hand-3.svg"
+                  src="/images/icon/streamline-ultimate_common-file-give-hand-3.svg"
                 />
                 <div className={styles.parent}>
                   <b className={styles.b}>2,500+</b>
@@ -440,7 +440,7 @@ const KnowledgeCentreHome: NextPage = () => {
                   height={42}
                   sizes="100vw"
                   alt=""
-                  src="hugeicons:download-04.svg"
+                  src="/images/icon/hugeicons_download-04.svg"
                 />
                 <div className={styles.parent}>
                   <b className={styles.b}>50K+</b>
@@ -485,7 +485,7 @@ const KnowledgeCentreHome: NextPage = () => {
               height={477}
               sizes="100vw"
               alt=""
-              src="Rectangle 66.png"
+              src="/images/Rectangle 66.png"
             />
             <Image
               className={styles.scroll1Item}
@@ -493,7 +493,7 @@ const KnowledgeCentreHome: NextPage = () => {
               height={482}
               sizes="100vw"
               alt=""
-              src="Rectangle 67.png"
+              src="/images/Rectangle 67.png"
             />
             <div className={styles.knowledgeCentreHomeButton}>
               <div className={styles.learnMoreWrapper}>
@@ -562,7 +562,7 @@ const KnowledgeCentreHome: NextPage = () => {
                 height={68}
                 sizes="100vw"
                 alt=""
-                src="logos:youtube-icon.svg"
+                src="/images/icon/logos_youtube-icon.svg"
               />
             </div>
           </div>
@@ -579,7 +579,7 @@ const KnowledgeCentreHome: NextPage = () => {
                   height={321}
                   sizes="100vw"
                   alt=""
-                  src="male-employee-getting-used-his-new-office-job-along-with-female-colleagues 1.png"
+                  src="/images/male-employee-getting-used-his-new-office-job-along-with-female-colleagues 1-1.png"
                 />
                 <div className={styles.forPolicyMakersWrapper}>
                   <div className={styles.knowledgeCentreHomeForPolicyMakers}>For Policy Makers</div>
@@ -592,7 +592,7 @@ const KnowledgeCentreHome: NextPage = () => {
                   height={321}
                   sizes="100vw"
                   alt=""
-                  src="male-employee-getting-used-his-new-office-job-along-with-female-colleagues 1.png"
+                  src="/images/male-employee-getting-used-his-new-office-job-along-with-female-colleagues 1-2.png"
                 />
                 <div className={styles.forEducatorsImplementorsWrapper}>
                   <div
@@ -607,7 +607,7 @@ const KnowledgeCentreHome: NextPage = () => {
                   height={321}
                   sizes="100vw"
                   alt=""
-                  src="male-employee-getting-used-his-new-office-job-along-with-female-colleagues 1.png"
+                  src="/images/male-employee-getting-used-his-new-office-job-along-with-female-colleagues 1-3.png"
                 />
                 <div className={styles.forPolicyMakersWrapper}>
                   <div className={styles.knowledgeCentreHomeForPolicyMakers}>For Researchers</div>
@@ -620,7 +620,7 @@ const KnowledgeCentreHome: NextPage = () => {
                   height={321}
                   sizes="100vw"
                   alt=""
-                  src="male-employee-getting-used-his-new-office-job-along-with-female-colleagues 1.png"
+                  src="/images/male-employee-getting-used-his-new-office-job-along-with-female-colleagues 1.png"
                 />
                 <div className={styles.forPolicyMakersWrapper}>
                   <div className={styles.knowledgeCentreHomeForPolicyMakers}>For Youth</div>
@@ -722,7 +722,7 @@ const KnowledgeCentreHome: NextPage = () => {
                     height={18}
                     sizes="100vw"
                     alt=""
-                    src="Group 308.svg"
+                    src="/images/icon/Group 308.svg"
                   />
                 </div>
               </div>
@@ -737,7 +737,7 @@ const KnowledgeCentreHome: NextPage = () => {
               height={18.6}
               sizes="100vw"
               alt=""
-              src="Polygon 2.svg"
+              src="/images/icon/Polygon 2.svg"
             />
           </div>
         </div>
