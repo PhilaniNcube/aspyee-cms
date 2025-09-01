@@ -139,7 +139,7 @@ const Footer = () => {
         {/* Bottom section */}
         <div className="border-t border-gray-300 pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-600">
-            <div className="mb-4 md:mb-0">
+            <div className="mb-4 md:mb-0 text-center w-full">
               <p>
                 © 2025 African Union. All rights reserved. |{' '}
                 <Link href="/terms" className="hover:text-blue-600">
