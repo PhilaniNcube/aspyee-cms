@@ -24,8 +24,8 @@ const Footer = () => {
           <div>
             <h3 className="font-bold text-gray-900 mb-4">About ASPYEE</h3>
             <p className="text-sm text-gray-700">
-              Africa's Skills Portal for Youth Employment and Entrepreneurship - Empowering Africa's
-              Youth through knowledge sharing and skills development.
+              Africa&apos;s Skills Portal for Youth Employment and Entrepreneurship - Empowering
+              Africa&apos;s Youth through knowledge sharing and skills development.
             </p>
           </div>
 
