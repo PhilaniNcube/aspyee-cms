@@ -76,8 +76,8 @@ const ResourcePage = async ({ params }: PageProps) => {
                 {resource.target_groups &&
                   resource.target_groups.map((group) => {
                     return (
-                      <Badge className="bg-blue-100 text-brand font-medium">
-                        <span key={group}>{group}</span>
+                      <Badge key={group} className="bg-blue-100 text-brand font-medium">
+                        <span>{group}</span>
                       </Badge>
                     )
                   })}
