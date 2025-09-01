@@ -63,9 +63,9 @@ export default function NewsEvents() {
           </div>
 
           <p className="text-gray-600 leading-relaxed max-w-4xl">
-            A dynamic evidence-based platform providing access to Africa's sectoral competency
+            A dynamic evidence-based platform providing access to Africa&apos;s sectoral competency
             forecasts, enabling alignment of training with labour market trends to guide investment,
-            curricula, and career choices for Africa's future workforce.
+            curricula, and career choices for Africa&apos;s future workforce.
           </p>
         </div>
 
