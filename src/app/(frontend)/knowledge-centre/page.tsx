@@ -11,6 +11,8 @@ import KnowledgeBase from './_components/knowledge-base'
 import CuratedResources from './_components/curated-resources'
 import HowToPortal from './_components/how-to-portal'
 import TopReads from './_components/top-reads'
+import SkillsAgenda from './_components/skills-agenda'
+import Support from './_components/support'
 
 const Page = () => {
   const navButtonsContainer1Ref = useRef<HTMLDivElement>(null)
@@ -33,6 +35,8 @@ const Page = () => {
       <CuratedResources />
       <HowToPortal />
       <TopReads />
+      <SkillsAgenda />
+      <Support />
     </>
   )
 }
