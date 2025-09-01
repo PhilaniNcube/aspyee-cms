@@ -1,7 +1,7 @@
 import React from 'react'
-import PolicymakersHero from './_components/policymakers-hero'
+import TargetGroupHero from '@/components/ui/target-group-hero'
+import TargetGroupTitleSection from '@/components/ui/target-group-title-section'
 import { getResourcesForPolicymakers } from '@/lib/queries/resources'
-import TitleSection from './_components/title-section'
 import ResourceList from './_components/resource-list'
 import Testimonials from '../_components/testimonials'
 import NewsEvents from './_components/news-and-events'
@@ -11,11 +11,17 @@ const PolicymakersPage = async () => {
 
   return (
     <div className="">
-      <PolicymakersHero />
-      <TitleSection />
-      <ResourceList initialResources={resources} />
+      <TargetGroupHero
+        title="Policy Makers"
+        description="A collection of reports, case studies, frameworks and articles designed to support policymakers in shaping skills and employment."
+      />
+      <TargetGroupTitleSection
+        mainTitle="80% OF AFRICAN COUNTRIES ARE REFORMING TVET AND SKILLS SYSTEMS."
+        subtitle="Use this momentum to drive coordinated, evidence-based change."
+      />
+      <ResourceList initialResources={resources} title="Resources for Policymakers" />
       <NewsEvents />
-      <Testimonials />
+      {/* <Testimonials /> */}
     </div>
   )
 }

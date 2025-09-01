@@ -72,9 +72,10 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
           </div>
         </div>
         {/* Title */}
-        <h3 className="text-lg font-semibold capitalize text-gray-900 mb-3 line-clamp-2">
+        <h3 className="text-lg font-semibold capitalize text-gray-900 mb-3 line-clamp-1">
           {resource.title}
         </h3>
+        <p className="text-foreground line-clamp-2 text-xs">{resource.description}</p>
 
         {/* Resource Type and Language */}
         <div className="text-sm text-gray-600 mb-4">
@@ -97,9 +98,9 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
             </div>
           </div>
           {resource.good_practice === 'yes' ? (
-            <Badge className="">
-              <span className="inline-flex items-center px-2 py-1 bg-yellow-400 text-yellow-900 text-xs font-medium rounded-full">
-                <Star className="w-3 h-3 mr-1" />
+            <Badge className=" bg-yellow-400 rounded-full">
+              <span className="inline-flex items-center px-2 py-1  text-yellow-900 text-xs font-medium rounded-full">
+                <Star className="w-3 h-3 mr-1 text-white fill-white" />
                 Good Practice
               </span>
             </Badge>

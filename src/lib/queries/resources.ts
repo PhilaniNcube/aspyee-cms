@@ -1,3 +1,6 @@
+import { Resource } from '@/payload-types'
+import { getPayload } from 'payload'
+import config from '@payload-config'
 /**
  * Fetches related resources based on shared target groups, type, or themes, excluding the current resource
  */
@@ -36,9 +39,6 @@ export async function getRelatedResources(
     return []
   }
 }
-import { Resource } from '@/payload-types'
-import { getPayload } from 'payload'
-import config from '@payload-config'
 
 /**
  * Fetches resources that have "Policymakers" in their target_groups
@@ -59,6 +59,167 @@ export async function getResourcesForPolicymakers(): Promise<Resource[]> {
     return result.docs as Resource[]
   } catch (error) {
     console.error('Error fetching policymaker resources:', error)
+    return []
+  }
+}
+
+/**
+ * Fetches resources that have "Researchers" in their target_groups
+ */
+export async function getResourcesForResearchers(): Promise<Resource[]> {
+  try {
+    const payload = await getPayload({ config })
+
+    const result = await payload.find({
+      collection: 'resources',
+      where: {
+        target_groups: {
+          contains: 'Researchers',
+        },
+      },
+    })
+
+    return result.docs as Resource[]
+  } catch (error) {
+    console.error('Error fetching researcher resources:', error)
+    return []
+  }
+}
+
+/**
+ * Fetches resources that have "Youth" in their target_groups
+ */
+export async function getResourcesForYouth(): Promise<Resource[]> {
+  try {
+    const payload = await getPayload({ config })
+
+    const result = await payload.find({
+      collection: 'resources',
+      where: {
+        target_groups: {
+          contains: 'Youth',
+        },
+      },
+    })
+
+    return result.docs as Resource[]
+  } catch (error) {
+    console.error('Error fetching youth resources:', error)
+    return []
+  }
+}
+
+/**
+ * Fetches resources that have "Educators & Implementers" in their target_groups
+ */
+export async function getResourcesForEducators(): Promise<Resource[]> {
+  try {
+    const payload = await getPayload({ config })
+
+    const result = await payload.find({
+      collection: 'resources',
+      where: {
+        target_groups: {
+          contains: 'Educators & Implementers',
+        },
+      },
+    })
+
+    return result.docs as Resource[]
+  } catch (error) {
+    console.error('Error fetching educator resources:', error)
+    return []
+  }
+}
+
+/**
+ * Fetches resources that have "Private Sector / Employers" in their target_groups
+ */
+export async function getResourcesForPrivateSector(): Promise<Resource[]> {
+  try {
+    const payload = await getPayload({ config })
+
+    const result = await payload.find({
+      collection: 'resources',
+      where: {
+        target_groups: {
+          contains: 'Private Sector / Employers',
+        },
+      },
+    })
+
+    return result.docs as Resource[]
+  } catch (error) {
+    console.error('Error fetching private sector resources:', error)
+    return []
+  }
+}
+
+/**
+ * Fetches resources that have "TVET Managers / Principals" in their target_groups
+ */
+export async function getResourcesForTVETManagers(): Promise<Resource[]> {
+  try {
+    const payload = await getPayload({ config })
+
+    const result = await payload.find({
+      collection: 'resources',
+      where: {
+        target_groups: {
+          contains: 'TVET Managers / Principals',
+        },
+      },
+    })
+
+    return result.docs as Resource[]
+  } catch (error) {
+    console.error('Error fetching TVET managers resources:', error)
+    return []
+  }
+}
+
+/**
+ * Fetches resources that have "HR / Labour Market Actors" in their target_groups
+ */
+export async function getResourcesForHRLabourMarket(): Promise<Resource[]> {
+  try {
+    const payload = await getPayload({ config })
+
+    const result = await payload.find({
+      collection: 'resources',
+      where: {
+        target_groups: {
+          contains: 'HR / Labour Market Actors',
+        },
+      },
+    })
+
+    return result.docs as Resource[]
+  } catch (error) {
+    console.error('Error fetching HR/Labour Market resources:', error)
+    return []
+  }
+}
+
+/**
+ * Fetches resources that have "Donors & Development Partners" in their target_groups
+ */
+export async function getResourcesForDonors(): Promise<Resource[]> {
+  try {
+    const payload = await getPayload({ config })
+
+    const result = await payload.find({
+      collection: 'resources',
+      where: {
+        target_groups: {
+          contains: 'Donors & Development Partners',
+        },
+      },
+    })
+
+    return result.docs as Resource[]
+  } catch (error) {
+    console.error('Error fetching donors resources:', error)
     return []
   }
 }

@@ -8,6 +8,7 @@ import Link from 'next/link'
 
 interface ResourceListProps {
   initialResources: Resource[]
+  title?: string
 }
 
 interface FilterState {
@@ -54,7 +55,7 @@ const formatDate = (dateString: string | number | null | undefined) => {
   }
 }
 
-const ResourceList: React.FC<ResourceListProps> = ({ initialResources }) => {
+const ResourceList: React.FC<ResourceListProps> = ({ initialResources, title = 'Resources' }) => {
   const [filters, setFilters] = React.useState<FilterState>({})
 
   // Filter resources based on active filters
@@ -132,7 +133,7 @@ const ResourceList: React.FC<ResourceListProps> = ({ initialResources }) => {
         {/* Resources Grid */}
         <div className="lg:w-3/4">
           <div className="mb-6">
-            <h2 className="text-2xl font-bold text-gray-900">Resources for Policymakers</h2>
+            <h2 className="text-2xl font-bold text-gray-900">{title}</h2>
             <p className="text-gray-600 mt-2">
               Showing {filteredResources.length} of {initialResources.length} resources
             </p>

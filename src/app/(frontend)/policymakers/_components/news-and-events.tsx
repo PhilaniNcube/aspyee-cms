@@ -51,23 +51,6 @@ export default function NewsEvents() {
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="max-w-[1440px] container mx-auto px-6">
         {/* Header Section */}
-        <div className="mb-8">
-          <div className="border-l-8 border-brand-orange pl-6 mb-6">
-            <h1 className="text-xl font-bold text-brand mb-2" style={{ marginBottom: '0.1rem' }}>
-              NEWS & EVENTS, PUBLICATIONS, TESTIMONIALS
-            </h1>
-            <p className="text-brand text-lg" style={{ marginTop: '0.1rem' }}>
-              Text here to introduce this section? Use this momentum to drive coordinated,
-              evidence-based change.
-            </p>
-          </div>
-
-          <p className="text-gray-600 leading-relaxed max-w-4xl">
-            A dynamic evidence-based platform providing access to Africa&apos;s sectoral competency
-            forecasts, enabling alignment of training with labour market trends to guide investment,
-            curricula, and career choices for Africa&apos;s future workforce.
-          </p>
-        </div>
 
         {/* News & Events Section */}
         <div className="border-l-8 border-brand-orange pl-6 mb-8">
@@ -77,7 +60,7 @@ export default function NewsEvents() {
         {/* News Grid */}
         <div className="overflow-x-auto mb-8 scrollbar-hide">
           <div className="flex gap-6 w-max">
-            {newsItems.map((item) => (
+            {/* {newsItems.map((item) => (
               <Card
                 key={item.id}
                 className="overflow-hidden bg-white shadow-sm p-0 w-80 flex-shrink-0"
@@ -131,16 +114,16 @@ export default function NewsEvents() {
                   </div>
                 </div>
               </Card>
-            ))}
+            ))} */}
           </div>
         </div>
 
         {/* View All Button */}
-        <div className="flex justify-start">
+        {/* <div className="flex justify-start">
           <Button className="bg-brand-orange hover:bg-brand-orange-60 text-white px-8 py-3 text-base rounded-full">
             View all News & Events
           </Button>
-        </div>
+        </div> */}
       </div>
     </div>
   )

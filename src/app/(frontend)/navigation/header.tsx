@@ -65,11 +65,19 @@ const navigationRoutes = [
       },
       {
         label: 'Researchers Corner',
-        href: '/researchers-corner',
+        href: '/researchers',
       },
       {
         label: 'Youth Corner',
-        href: '/youth-corner',
+        href: '/youth',
+      },
+      {
+        label: 'Educators & Implementers Corner',
+        href: '/educators',
+      },
+      {
+        label: 'Private Sector / Employers Corner',
+        href: '/private-sector',
       },
     ],
   },
@@ -164,7 +172,9 @@ const FontendHeader = () => {
                       <NavigationMenuTrigger
                         className={cn(
                           'font-medium rounded-xs bg-transparent border-none',
-                          scrolled ? 'text-black' : 'text-white',
+                          scrolled
+                            ? 'text-black data-[state=open]:text-white'
+                            : 'text-white data-[state=open]:text-white',
                         )}
                         style={{ fontSize: '13px' }}
                       >
@@ -173,14 +183,14 @@ const FontendHeader = () => {
                         </span>
                       </NavigationMenuTrigger>
                       <NavigationMenuContent className="p-0 border-0 outline-0 border-none">
-                        <div className="p-4 w-64 rounded-md border-0 border-none outline-none bg-brand-orange-60">
-                          <ul className="space-y-2">
+                        <div className="p-4 w-80 rounded-md border-0 border-none outline-none bg-brand-orange-60">
+                          <ul className="space-y-1">
                             {route.subRoutes?.map((subRoute, subIndex) => (
                               <li key={subIndex}>
                                 <Link href={subRoute.href} passHref>
                                   <NavigationMenuLink
                                     asChild
-                                    className="block px-3 py-2 text-sm text-white hover:bg-white/10 rounded-md transition-colors"
+                                    className="block px-3 py-1 text-sm text-white hover:bg-white/10 rounded-md transition-colors"
                                   >
                                     <span className="text-white">{subRoute.label}</span>
                                   </NavigationMenuLink>
