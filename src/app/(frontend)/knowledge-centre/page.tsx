@@ -9,6 +9,7 @@ import ContentHome from './content-home'
 import HoverCards from './hover-cards'
 import KnowledgeBase from './_components/knowledge-base'
 import CuratedResources from './_components/curated-resources'
+import HowToPortal from './_components/how-to-portal'
 
 const Page = () => {
   const navButtonsContainer1Ref = useRef<HTMLDivElement>(null)
@@ -29,6 +30,7 @@ const Page = () => {
       <HoverCards />
       <KnowledgeBase />
       <CuratedResources />
+      <HowToPortal />
     </>
   )
 }
