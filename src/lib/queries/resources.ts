@@ -1,3 +1,41 @@
+/**
+ * Fetches related resources based on shared target groups, type, or themes, excluding the current resource
+ */
+export async function getRelatedResources(
+  resource: Resource,
+  limit: number = 5,
+): Promise<Resource[]> {
+  try {
+    const payload = await getPayload({ config })
+
+    // Build a where clause to find resources with at least one matching target group, type, or theme, but not the same id
+    const where: any = {
+      id: { not_equals: resource.id },
+    }
+
+    // Prefer to match by target_groups, type, or themes if available
+    if (resource.target_groups && resource.target_groups.length > 0) {
+      where.target_groups = { in: resource.target_groups }
+    }
+    if (resource.type) {
+      where.type = { equals: resource.type }
+    }
+    if (resource.themes && resource.themes.length > 0) {
+      where.themes = { in: resource.themes }
+    }
+
+    const result = await payload.find({
+      collection: 'resources',
+      where,
+      limit,
+    })
+
+    return result.docs as Resource[]
+  } catch (error) {
+    console.error('Error fetching related resources:', error)
+    return []
+  }
+}
 import { Resource } from '@/payload-types'
 import { getPayload } from 'payload'
 import config from '@payload-config'
