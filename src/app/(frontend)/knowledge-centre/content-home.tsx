@@ -3,7 +3,7 @@ import Image from 'next/image'
 export default function ContentHome() {
   return (
     <div className="w-full flex justify-center items-center">
-      <div className="max-w-[1440px] container mx-auto pt-16">
+      <div className="max-w-[1440px] px-6 md:px-8 container mx-auto pt-16">
         <div className="max-w-4xl items-stretch flex ">
           {/* Orange accent bar */}
           <div className="w-[10px] h-10  bg-brand-orange mr-4"></div>

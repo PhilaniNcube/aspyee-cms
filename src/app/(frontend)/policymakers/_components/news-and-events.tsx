@@ -49,7 +49,7 @@ export default function NewsEvents() {
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
-      <div className="max-w-[1440px] container mx-auto px-6">
+      <div className="max-w-[1440px] px-6 md:px-8 container mx-auto px-6">
         {/* Header Section */}
 
         {/* News & Events Section */}

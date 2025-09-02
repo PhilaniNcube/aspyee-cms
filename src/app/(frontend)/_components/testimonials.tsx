@@ -51,13 +51,13 @@ const testimonials = [
 const Testimonials = () => {
   return (
     <div className="">
-      <div className="container max-w-[1440px] mx-auto py-8">
+      <div className="container max-w-[1440px] px-6 md:px-8 mx-auto py-8">
         <div className="flex items-center">
           <div className="w-[8px] bg-brand-orange h-[24px] lg:h-[30px] mr-3" />
           <h2 className="text-brand font-extrabold text-2xl md:text-3xl uppercase">Testimonials</h2>
         </div>
         <Carousel
-          className="max-w-[1440px] container mx-auto mt-6"
+          className="max-w-[1440px] px-6 md:px-8 container mx-auto mt-6"
           opts={{ loop: true, align: 'start' }}
         >
           <CarouselContent className="py-4">

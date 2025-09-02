@@ -8,7 +8,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-white py-12">
-      <div className="container max-w-[1440px] mx-auto px-4">
+      <div className="container max-w-[1440px] px-6 md:px-8 mx-auto px-4">
         {/* Top section with logos */}
         <div className="flex flex-wrap items-center justify-between mb-8 pb-8 border-b ">
           <div className="flex items-center justify-center space-x-8 mb-4 lg:mb-0 flex-1 w-full py-12">

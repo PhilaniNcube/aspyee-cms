@@ -40,7 +40,7 @@ const ResourcePage = async ({ params }: PageProps) => {
   return (
     <div>
       <ResourceHero image={heroImage} title={resource.title} />
-      <div className="container mx-auto max-w-[1440px] py-12">
+      <div className="container mx-auto max-w-[1440px] px-6 md:px-8 py-12">
         <Link href={`/policymakers`}>
           <ChevronLeft className="inline-block mr-2" />
           <span className=" hover:underline">Back to Resources</span>

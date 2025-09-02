@@ -3,7 +3,7 @@ import React from 'react'
 const TitleSection = () => {
   return (
     <section className="bg-white py-16">
-      <div className="container mx-auto max-w-[1440px] px-4">
+      <div className="container mx-auto max-w-[1440px] px-6 md:px-8 px-4">
         <div className="max-w-4xl items-stretch flex ">
           {/* Orange accent bar */}
           <div className="w-[10px] h-20 lg:h-[110px] bg-brand-orange mr-4"></div>
