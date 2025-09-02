@@ -1,5 +1,6 @@
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
+import { ResourceFilesSection } from '@/components/ui/resource-files-section'
 import { getResourceById } from '@/lib/queries'
 import { getRelatedResources } from '@/lib/queries/resources'
 import { cn } from '@/lib/utils'
@@ -136,26 +137,13 @@ const ResourcePage = async ({ params }: PageProps) => {
             <p>{resource.description}</p>
 
             <br />
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-              {resource.files && resource.files.length > 0 ? (
-                resource.files.map((file) => (
-                  <div key={file.id} className="p-2">
-                    <div className="text-blue-500 hover:underline">
-                      <File className="inline-block mr-2" />
-                      {file.description}
-
-                      {typeof file.file === 'object' && file.file.url && (
-                        <a href={file.file.url} target="_blank" rel="noopener noreferrer">
-                          Download
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <div className="text-gray-400">No files available.</div>
-              )}
-            </div>
+            <ResourceFilesSection
+              files={resource.files || []}
+              title="Resource Files"
+              showStats={true}
+              showFilter={true}
+              defaultView="grid"
+            />
           </div>
           <div className="flex-1 p-4 w-1/4 max-w-[350px]">
             <h2 className="text-lg font-semibold mb-4">Related Resources</h2>
