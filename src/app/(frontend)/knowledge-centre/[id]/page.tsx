@@ -3,7 +3,16 @@ import { Separator } from '@/components/ui/separator'
 import { getResourceById } from '@/lib/queries'
 import { getRelatedResources } from '@/lib/queries/resources'
 import { cn } from '@/lib/utils'
-import { Bookmark, Calendar, ChevronLeft, Download, Share, Share2Icon, Star } from 'lucide-react'
+import {
+  Bookmark,
+  Calendar,
+  ChevronLeft,
+  Download,
+  File,
+  Share,
+  Share2Icon,
+  Star,
+} from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -125,6 +134,28 @@ const ResourcePage = async ({ params }: PageProps) => {
             </div>
             <Separator orientation="horizontal" className=" bg-slate-400" />
             <p>{resource.description}</p>
+
+            <br />
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              {resource.files && resource.files.length > 0 ? (
+                resource.files.map((file) => (
+                  <div key={file.id} className="p-2">
+                    <div className="text-blue-500 hover:underline">
+                      <File className="inline-block mr-2" />
+                      {file.description}
+
+                      {typeof file.file === 'object' && file.file.url && (
+                        <a href={file.file.url} target="_blank" rel="noopener noreferrer">
+                          Download
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="text-gray-400">No files available.</div>
+              )}
+            </div>
           </div>
           <div className="flex-1 p-4 w-1/4 max-w-[350px]">
             <h2 className="text-lg font-semibold mb-4">Related Resources</h2>
@@ -140,8 +171,12 @@ const ResourcePage = async ({ params }: PageProps) => {
                     ? rel.featured_image.url
                     : 'https://4kav3digtb.ufs.sh/f/FBDFb9YX4geO2vwcZQrzOM7sxtk6jHilDYeuQU9LayhdfS3w'
                 return (
-                  <div key={rel.id} className="bg-white rounded-xl shadow p-3 flex flex-col gap-2">
-                    <div className="w-full h-32 rounded-lg overflow-hidden mb-2">
+                  <Link
+                    href={`/knowledge-centre/${rel.id}`}
+                    key={rel.id}
+                    className="bg-white shadow-md hover:shadow-lg rounded-xlflex flex-col gap-2"
+                  >
+                    <div className="w-full h-32 rounded-t-lg overflow-hidden mb-2">
                       <Image
                         src={relImage}
                         alt={
@@ -156,28 +191,24 @@ const ResourcePage = async ({ params }: PageProps) => {
                         className="object-cover w-full h-full"
                       />
                     </div>
-                    <div className="flex items-center text-gray-500 text-sm mb-1 gap-2">
-                      <Calendar className="inline-block mr-1 w-4 h-4" />
-                      {rel.year_published || ''}
+                    <div className="px-2">
+                      <div className="flex items-center text-gray-500 text-sm mb-1 gap-2">
+                        <Calendar className="inline-block mr-1 w-4 h-4" />
+                        {rel.year_published || ''}
+                      </div>
+                      {rel.target_groups && rel.target_groups.length > 0 && (
+                        <Badge className="bg-blue-100 text-brand font-medium mb-1">
+                          {rel.target_groups[0]}
+                        </Badge>
+                      )}
+                      <div className="font-semibold text-gray-800 text-base line-clamp-2 mb-1">
+                        {rel.title}
+                      </div>
+                      <div className="text-xs text-gray-500 mb-2">
+                        {rel.publisher ? rel.publisher : 'Author | Organisation'}
+                      </div>
                     </div>
-                    {rel.target_groups && rel.target_groups.length > 0 && (
-                      <Badge className="bg-blue-100 text-brand font-medium mb-1">
-                        {rel.target_groups[0]}
-                      </Badge>
-                    )}
-                    <div className="font-semibold text-gray-800 text-base line-clamp-2 mb-1">
-                      {rel.title}
-                    </div>
-                    <div className="text-xs text-gray-500 mb-2">
-                      {rel.publisher ? rel.publisher : 'Author | Organisation'}
-                    </div>
-                    <Link
-                      href={`/knowledge-centre/${rel.id}`}
-                      className="bg-orange-500 hover:bg-orange-600 text-white rounded-full px-6 py-2 text-center font-semibold transition-colors"
-                    >
-                      View resource
-                    </Link>
-                  </div>
+                  </Link>
                 )
               })}
             </div>
