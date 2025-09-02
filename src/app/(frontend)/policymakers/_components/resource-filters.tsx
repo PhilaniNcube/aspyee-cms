@@ -2,10 +2,15 @@
 
 import React from 'react'
 import { useQueryStates, parseAsArrayOf, parseAsString } from 'nuqs'
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
-import { ChevronDown, ChevronRight } from 'lucide-react'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion'
+import { Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Checkbox } from '@/components/ui/checkbox'
+import { Input } from '@/components/ui/input'
 import { cn } from '@/lib/utils'
 
 // Define the filter options based on your Resources collection
@@ -118,6 +123,30 @@ const COUNTRIES = [
 // Year range for Year Published filter
 const YEAR_RANGE = Array.from({ length: 25 }, (_, i) => new Date().getFullYear() - i)
 
+interface FilterItemProps {
+  id: string
+  label: string
+  checked: boolean
+  onToggle: () => void
+}
+
+const FilterItem: React.FC<FilterItemProps> = ({ id, label, checked, onToggle }) => {
+  return (
+    <div
+      id={id}
+      onClick={onToggle}
+      className={cn(
+        'flex items-center w-full px-3 py-2 text-left text-sm font-medium rounded-md transition-all duration-200 ease-in-out',
+        checked
+          ? 'bg-orange-500 text-white '
+          : 'text-gray-700 hover:bg-orange-50 hover:text-orange-900 ',
+      )}
+    >
+      {label}
+    </div>
+  )
+}
+
 interface ResourceFiltersProps {
   onFiltersChange?: (filters: any) => void
 }
@@ -125,34 +154,23 @@ interface ResourceFiltersProps {
 interface FilterSectionProps {
   title: string
   children: React.ReactNode
-  className?: string
+  value: string
 }
 
-const FilterSection: React.FC<FilterSectionProps> = ({ title, children, className }) => {
-  const [isOpen, setIsOpen] = React.useState(false)
-
+const FilterSection: React.FC<FilterSectionProps> = ({ title, children, value }) => {
   return (
-    <Collapsible
-      open={isOpen}
-      onOpenChange={setIsOpen}
-      className={cn('border-b border-gray-200', className)}
-    >
-      <CollapsibleTrigger asChild>
-        <Button
-          variant="ghost"
-          className="flex w-full items-center justify-between p-4 text-left font-medium hover:bg-gray-50"
-        >
-          {title}
-          {isOpen ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
-        </Button>
-      </CollapsibleTrigger>
-      <CollapsibleContent className="px-4 pb-4">{children}</CollapsibleContent>
-    </Collapsible>
+    <AccordionItem value={value} className="border-none cursor-pointer shadow">
+      <AccordionTrigger className="px-4 py-3 text-left  font-semibold text-gray-900 hover:bg-brand-orange-60 rounded-none transition-colors duration-200 hover:no-underline">
+        {title}
+      </AccordionTrigger>
+      <AccordionContent className="px-4 pb-4 bg-white">{children}</AccordionContent>
+    </AccordionItem>
   )
 }
 
 const ResourceFilters: React.FC<ResourceFiltersProps> = ({ onFiltersChange }) => {
   const [filters, setFilters] = useQueryStates({
+    search: parseAsString,
     yearPublished: parseAsArrayOf(parseAsString),
     country: parseAsArrayOf(parseAsString),
     resourceType: parseAsArrayOf(parseAsString),
@@ -173,7 +191,15 @@ const ResourceFilters: React.FC<ResourceFiltersProps> = ({ onFiltersChange }) =>
     value: string,
     checked: boolean,
   ) => {
-    const currentValues = filters[filterType] || []
+    if (filterType === 'search') {
+      setFilters({
+        ...filters,
+        search: checked ? value : null,
+      })
+      return
+    }
+
+    const currentValues = (filters[filterType] as string[]) || []
     let newValues: string[]
 
     if (checked) {
@@ -188,8 +214,16 @@ const ResourceFilters: React.FC<ResourceFiltersProps> = ({ onFiltersChange }) =>
     })
   }
 
+  const handleSearchChange = (value: string) => {
+    setFilters({
+      ...filters,
+      search: value || null,
+    })
+  }
+
   const clearAllFilters = () => {
     setFilters({
+      search: null,
       yearPublished: null,
       country: null,
       resourceType: null,
@@ -199,153 +233,169 @@ const ResourceFilters: React.FC<ResourceFiltersProps> = ({ onFiltersChange }) =>
     })
   }
 
-  const hasActiveFilters = Object.values(filters).some((filter) => filter && filter.length > 0)
+  const hasActiveFilters = Object.values(filters).some(
+    (filter) => filter && (Array.isArray(filter) ? filter.length > 0 : filter.length > 0),
+  )
 
   return (
-    <div className="w-full max-w-md bg-white border border-gray-200 rounded-lg shadow-sm">
-      <div className="p-4 border-b border-gray-200">
+    <div className="w-full max-w-md bg-white">
+      <div className="p-4 ">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold text-gray-900">Filter Resources</h2>
           {hasActiveFilters && (
-            <Button variant="outline" size="sm" onClick={clearAllFilters} className="text-sm">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={clearAllFilters}
+              className="text-sm transition-all bg-transparent duration-200 hover:scale-105 animate-in fade-in-0 slide-in-from-right-2"
+            >
               Clear All
             </Button>
           )}
         </div>
       </div>
 
-      <div className="divide-y divide-gray-200">
-        {/* Year Published Filter */}
-        <FilterSection title="Year Published">
-          <div className="space-y-2 max-h-48 overflow-y-auto">
-            {YEAR_RANGE.map((year) => (
-              <div key={year} className="flex items-center space-x-2">
-                <Checkbox
+      <div>
+        {/* Search Filter */}
+        <div className="p-4 ">
+          <div className="relative group">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4 transition-colors duration-200 group-focus-within:text-primary" />
+            <Input
+              placeholder="Search resources..."
+              value={filters.search || ''}
+              onChange={(e) => handleSearchChange(e.target.value)}
+              className="pl-10 transition-all duration-200 focus:ring-2 focus:ring-primary/20"
+            />
+          </div>
+        </div>
+
+        <Accordion type="multiple" className="w-full grid grid-cols-1 gap-4">
+          {/* Year Published Filter */}
+          <FilterSection title="Year Published" value="year-published">
+            <div className="space-y-1 max-h-48 overflow-y-auto px-0">
+              {YEAR_RANGE.map((year) => (
+                <FilterItem
+                  key={year}
                   id={`year-${year}`}
-                  checked={filters.yearPublished?.includes(year.toString()) || false}
-                  onCheckedChange={(checked) =>
-                    handleFilterChange('yearPublished', year.toString(), !!checked)
+                  label={year.toString()}
+                  checked={((filters.yearPublished as string[]) || []).includes(year.toString())}
+                  onToggle={() =>
+                    handleFilterChange(
+                      'yearPublished',
+                      year.toString(),
+                      !((filters.yearPublished as string[]) || []).includes(year.toString()),
+                    )
                   }
                 />
-                <label
-                  htmlFor={`year-${year}`}
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  {year}
-                </label>
-              </div>
-            ))}
-          </div>
-        </FilterSection>
+              ))}
+            </div>
+          </FilterSection>
 
-        {/* Country Filter */}
-        <FilterSection title="Country">
-          <div className="space-y-2 max-h-48 overflow-y-auto">
-            {COUNTRIES.map((country) => (
-              <div key={country} className="flex items-center space-x-2">
-                <Checkbox
+          {/* Country Filter */}
+          <FilterSection title="Country" value="country">
+            <div className="space-y-1 max-h-48 overflow-y-auto">
+              {COUNTRIES.map((country) => (
+                <FilterItem
+                  key={country}
                   id={`country-${country}`}
-                  checked={filters.country?.includes(country) || false}
-                  onCheckedChange={(checked) => handleFilterChange('country', country, !!checked)}
+                  label={country}
+                  checked={((filters.country as string[]) || []).includes(country)}
+                  onToggle={() =>
+                    handleFilterChange(
+                      'country',
+                      country,
+                      !((filters.country as string[]) || []).includes(country),
+                    )
+                  }
                 />
-                <label
-                  htmlFor={`country-${country}`}
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  {country}
-                </label>
-              </div>
-            ))}
-          </div>
-        </FilterSection>
+              ))}
+            </div>
+          </FilterSection>
 
-        {/* Resource Type Filter */}
-        <FilterSection title="Resource Type">
-          <div className="space-y-2">
-            {RESOURCE_TYPES.map((type) => (
-              <div key={type.value} className="flex items-center space-x-2">
-                <Checkbox
+          {/* Resource Type Filter */}
+          <FilterSection title="Resource Type" value="resource-type">
+            <div className="space-y-1">
+              {RESOURCE_TYPES.map((type) => (
+                <FilterItem
+                  key={type.value}
                   id={`type-${type.value}`}
-                  checked={filters.resourceType?.includes(type.value) || false}
-                  onCheckedChange={(checked) =>
-                    handleFilterChange('resourceType', type.value, !!checked)
+                  label={type.label}
+                  checked={((filters.resourceType as string[]) || []).includes(type.value)}
+                  onToggle={() =>
+                    handleFilterChange(
+                      'resourceType',
+                      type.value,
+                      !((filters.resourceType as string[]) || []).includes(type.value),
+                    )
                   }
                 />
-                <label
-                  htmlFor={`type-${type.value}`}
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  {type.label}
-                </label>
-              </div>
-            ))}
-          </div>
-        </FilterSection>
+              ))}
+            </div>
+          </FilterSection>
 
-        {/* Target Group Filter */}
-        <FilterSection title="Target Group">
-          <div className="space-y-2">
-            {TARGET_GROUPS.map((group) => (
-              <div key={group} className="flex items-center space-x-2">
-                <Checkbox
+          {/* Target Group Filter */}
+          <FilterSection title="Target Group" value="target-group">
+            <div className="space-y-1">
+              {TARGET_GROUPS.map((group) => (
+                <FilterItem
+                  key={group}
                   id={`target-${group}`}
-                  checked={filters.targetGroup?.includes(group) || false}
-                  onCheckedChange={(checked) => handleFilterChange('targetGroup', group, !!checked)}
-                />
-                <label
-                  htmlFor={`target-${group}`}
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  {group}
-                </label>
-              </div>
-            ))}
-          </div>
-        </FilterSection>
-
-        {/* Theme Filter */}
-        <FilterSection title="Theme">
-          <div className="space-y-2 max-h-48 overflow-y-auto">
-            {THEMES.map((theme) => (
-              <div key={theme} className="flex items-center space-x-2">
-                <Checkbox
-                  id={`theme-${theme}`}
-                  checked={filters.theme?.includes(theme) || false}
-                  onCheckedChange={(checked) => handleFilterChange('theme', theme, !!checked)}
-                />
-                <label
-                  htmlFor={`theme-${theme}`}
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  {theme}
-                </label>
-              </div>
-            ))}
-          </div>
-        </FilterSection>
-
-        {/* Language Filter */}
-        <FilterSection title="Language">
-          <div className="space-y-2">
-            {LANGUAGES.map((language) => (
-              <div key={language.value} className="flex items-center space-x-2">
-                <Checkbox
-                  id={`language-${language.value}`}
-                  checked={filters.language?.includes(language.value) || false}
-                  onCheckedChange={(checked) =>
-                    handleFilterChange('language', language.value, !!checked)
+                  label={group}
+                  checked={((filters.targetGroup as string[]) || []).includes(group)}
+                  onToggle={() =>
+                    handleFilterChange(
+                      'targetGroup',
+                      group,
+                      !((filters.targetGroup as string[]) || []).includes(group),
+                    )
                   }
                 />
-                <label
-                  htmlFor={`language-${language.value}`}
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  {language.label}
-                </label>
-              </div>
-            ))}
-          </div>
-        </FilterSection>
+              ))}
+            </div>
+          </FilterSection>
+
+          {/* Theme Filter */}
+          <FilterSection title="Theme" value="theme">
+            <div className="space-y-1 max-h-48 overflow-y-auto">
+              {THEMES.map((theme) => (
+                <FilterItem
+                  key={theme}
+                  id={`theme-${theme}`}
+                  label={theme}
+                  checked={((filters.theme as string[]) || []).includes(theme)}
+                  onToggle={() =>
+                    handleFilterChange(
+                      'theme',
+                      theme,
+                      !((filters.theme as string[]) || []).includes(theme),
+                    )
+                  }
+                />
+              ))}
+            </div>
+          </FilterSection>
+
+          {/* Language Filter */}
+          <FilterSection title="Language" value="language">
+            <div className="space-y-1">
+              {LANGUAGES.map((language) => (
+                <FilterItem
+                  key={language.value}
+                  id={`language-${language.value}`}
+                  label={language.label}
+                  checked={((filters.language as string[]) || []).includes(language.value)}
+                  onToggle={() =>
+                    handleFilterChange(
+                      'language',
+                      language.value,
+                      !((filters.language as string[]) || []).includes(language.value),
+                    )
+                  }
+                />
+              ))}
+            </div>
+          </FilterSection>
+        </Accordion>
       </div>
     </div>
   )

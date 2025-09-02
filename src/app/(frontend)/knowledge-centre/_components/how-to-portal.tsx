@@ -5,7 +5,7 @@ import React from 'react'
 const HowToPortal = () => {
   return (
     <div className="bg-brand shadow-lg">
-      <div className="max-w-[1440px] px-6 md:px-8 mx-auto container py-24">
+      <div className="max-w-[1440px] px-6 md:px-8 lg:px-2 mx-auto container py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           <div className="text-white">
             <div className="text-3xl lg:text-5xl font-semibold border-l-8 pl-4 py-1 border-brand-orange">

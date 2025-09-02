@@ -4,6 +4,7 @@ import { Calendar, Share2, Bookmark, Download, Star, CircleOffIcon } from 'lucid
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Resource } from '@/payload-types'
+import { cn } from '@/lib/utils'
 
 interface ResourceCardProps {
   resource: Resource
@@ -11,16 +12,27 @@ interface ResourceCardProps {
   formatDate: (date: string | number | null | undefined) => string
 }
 
-// Map target group to badge color classes
-const targetGroupColors: Record<string, string> = {
-  Policymakers: 'bg-blue-600 text-white',
-  'Educators & Implementers': 'bg-green-600 text-white',
-  Youth: 'bg-yellow-500 text-white',
-  'Private Sector / Employers': 'bg-purple-600 text-white',
-  Researchers: 'bg-pink-600 text-white',
-  'TVET Managers / Principals': 'bg-indigo-600 text-white',
-  'HR / Labour Market Actors': 'bg-orange-600 text-white',
-  'Donors & Development Partners': 'bg-teal-600 text-white',
+// use a switch statement to determine the badge color based on the theme
+const themeColors: Record<string, string> = {
+  'Industrial, technical and vocational training': '!bg-blue-600 !text-white',
+  'Gender and Transformation': '!bg-pink-600 !text-white',
+  'Entrepreneurship and informal sector formalisation': '!bg-purple-600 !text-white',
+  'Human Capital Development': '!bg-green-600 !text-white',
+  'Agribusiness and agricultural skills': '!bg-emerald-600 !text-white',
+  'Labour migration & mobility': '!bg-orange-600 !text-white',
+  'Digital skills & future of work': '!bg-cyan-600 !text-white',
+  'Education systems & policy': '!bg-indigo-600 !text-white',
+  'Financing & investment in skills': '!bg-yellow-500 !text-black',
+  'Informal sector & livelihoods': '!bg-red-600 !text-white',
+  'Green skills / sustainability': '!bg-lime-600 !text-white',
+  'Innovation & partnerships': '!bg-violet-600 !text-white',
+  Governance: '!bg-slate-600 !text-white',
+}
+
+const getBadgeColor = (theme: string) => {
+  // Normalize theme string for matching
+  const normalizedTheme = theme.trim()
+  return themeColors[normalizedTheme] || '!bg-gray-400 !text-white'
 }
 
 const ResourceCard: React.FC<ResourceCardProps> = ({
@@ -28,44 +40,48 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
   getResourceTypeLabel,
   formatDate,
 }) => {
-  // Pick the first target group for badge color
-  const targetGroup =
-    resource.target_groups && resource.target_groups.length > 0
-      ? (resource.target_groups as string[])[0]
-      : undefined
-  const badgeClass = targetGroup
-    ? `${targetGroupColors[targetGroup] || 'bg-gray-400 text-white'} px-3 py-1 text-xs font-medium rounded-full`
-    : ''
   return (
     <div className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200">
       {/* Featured Image */}
-      <div className="relative h-48 bg-gradient-to-br from-blue-50 to-blue-100">
+      <div className="relative w-full aspect-video bg-gradient-to-br from-blue-50 to-blue-100">
         {resource.featured_image &&
         typeof resource.featured_image === 'object' &&
         'url' in resource.featured_image ? (
           <Image
             src={resource.featured_image.url || ''}
             alt={resource.title}
-            fill
-            className="object-cover"
+            width={1920}
+            height={1080}
+            className="object-cover aspect-video"
           />
         ) : (
           <Image
             src="https://4kav3digtb.ufs.sh/f/FBDFb9YX4geO2vwcZQrzOM7sxtk6jHilDYeuQU9LayhdfS3w"
             alt={resource.title}
-            fill
-            className="object-cover"
+            width={1920}
+            height={1080}
+            className="object-cover aspect-video"
           />
         )}
+
+        {/* Theme badges positioned over the image */}
+        <div className="absolute bottom-3 left-3 flex gap-2 flex-wrap max-w-[calc(100%-1.5rem)]">
+          {resource.themes && resource.themes.length > 0
+            ? (resource.themes as string[]).map((group) => (
+                <Badge
+                  key={group}
+                  variant="outline"
+                  className={cn('rounded-full border-0 shadow-sm', getBadgeColor(group))}
+                >
+                  {group}
+                </Badge>
+              ))
+            : null}
+        </div>
       </div>
 
       <div className="p-6">
         <div className="flex items-center justify-between p-0 mb-3">
-          {targetGroup && (
-            <div>
-              <Badge className={badgeClass}>{targetGroup}</Badge>
-            </div>
-          )}
           <div className="flex items-center text-gray-500 text-sm">
             <Calendar className="w-4 h-4 mr-1" />
             {formatDate(resource.year_published)}

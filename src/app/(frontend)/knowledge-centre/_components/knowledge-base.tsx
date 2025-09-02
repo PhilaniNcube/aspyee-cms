@@ -32,7 +32,7 @@ const KnowledgeBase = () => {
 
   return (
     <div className="bg-[#EFEFEF] py-16 mt-8">
-      <div className="max-w-[1440px] px-6 md:px-8 container mx-auto">
+      <div className="max-w-[1440px] px-6 md:px-8 lg:px-2 container mx-auto">
         <h2 className="text-3xl lg:text-5xl text-[#595959] font-semibold pl-2 mb-8 border-l-8 border-brand-orange">
           Knowledge Base
         </h2>

@@ -4,7 +4,7 @@ import React from 'react'
 const SkillsAgenda = () => {
   return (
     <div className="bg-brand text-white py-16 md:py-24">
-      <div className="max-w-[1440px] px-6 md:px-8 mx-auto container">
+      <div className="max-w-[1440px] px-6 md:px-8 lg:px-2 mx-auto container">
         <h2 className="text-3xl lg:text-5xl text-center font-semibold ">
           Contribute to Africa&apos;s Skills Agenda
         </h2>
