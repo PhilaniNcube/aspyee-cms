@@ -317,6 +317,19 @@ export interface Resource {
     description?: string | null;
     id?: string | null;
   }[];
+  /**
+   * Upload additional files related to this resource
+   */
+  additional_files?:
+    | {
+        file: number | Media;
+        /**
+         * Enter a description for this file
+         */
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -442,6 +455,13 @@ export interface ResourcesSelect<T extends boolean = true> {
   description?: T;
   link?: T;
   files?:
+    | T
+    | {
+        file?: T;
+        description?: T;
+        id?: T;
+      };
+  additional_files?:
     | T
     | {
         file?: T;

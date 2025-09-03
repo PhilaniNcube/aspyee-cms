@@ -307,5 +307,27 @@ export const Resources: CollectionConfig = {
         },
       ],
     },
+    {
+      name: 'additional_files',
+      type: 'array',
+      admin: {
+        description: 'Upload additional files related to this resource',
+      },
+      fields: [
+        {
+          name: 'file',
+          type: 'upload',
+          relationTo: 'media',
+          required: true,
+        },
+        {
+          name: 'description',
+          type: 'text',
+          admin: {
+            description: 'Enter a description for this file',
+          },
+        },
+      ],
+    },
   ],
 }
