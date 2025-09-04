@@ -12,6 +12,7 @@ import { uploadthingStorage } from '@payloadcms/storage-uploadthing'
 // Import adjusted to match actual path to fix module resolution during Payload type generation.
 import { Users } from './collections/users/config'
 import { Media } from './collections/Media'
+import { Countries } from './collections/Countries'
 import { Resources } from './collections/Resources'
 import { Bookmarks } from './collections/Bookmarks'
 import { Downloads } from './collections/Downloads'
@@ -26,7 +27,8 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Resources, Bookmarks, Downloads],
+  // Add Countries so the seed script can populate it
+  collections: [Users, Countries, Media, Resources, Bookmarks, Downloads],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
