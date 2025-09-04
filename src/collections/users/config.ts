@@ -6,6 +6,7 @@ import admin from './access/admin'
 import { checkRole } from './access/checkRole'
 import { User } from '@/payload-types'
 import { anyone } from './access/anyone'
+import { select } from 'node_modules/payload/dist/fields/validations'
 
 export const Users: CollectionConfig = {
   slug: 'users',
@@ -68,6 +69,7 @@ export const Users: CollectionConfig = {
       type: 'text',
       label: 'Phone Number',
     },
+
     {
       name: 'social_links',
       type: 'array',

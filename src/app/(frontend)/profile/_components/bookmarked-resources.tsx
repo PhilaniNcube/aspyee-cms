@@ -62,9 +62,9 @@ export async function BookmarkedResourcesSection() {
                   return (
                     <li
                       key={b.id}
-                      className="p-4 flex flex-col gap-2 md:items-start md:justify-between"
+                      className="p-4 flex flex-col gap-2 md:items-start md:justify-between md:flex-row"
                     >
-                      <div className="space-y-1 md:max-w-3xl">
+                      <div className="space-y-1 md:max-w-2xl min-w-xl">
                         <h3 className="font-medium leading-snug text-base">
                           {resource.title || 'Untitled Resource'}
                         </h3>
@@ -77,7 +77,7 @@ export async function BookmarkedResourcesSection() {
                           {resource.publisher && <span>{resource.publisher}</span>}
                         </p>
                         {resource.description && (
-                          <p className="text-sm line-clamp-3 text-muted-foreground">
+                          <p className="text-sm line-clamp-5 text-muted-foreground">
                             {resource.description}
                           </p>
                         )}
