@@ -43,6 +43,8 @@ export default buildConfig({
       collections: {
         media: true,
       },
+      clientUploads: true,
+
       options: {
         token: process.env.UPLOADTHING_TOKEN,
       },
