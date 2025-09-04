@@ -8,7 +8,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-white py-12">
-      <div className="container max-w-[1440px] px-6 md:px-8 lg:px-2 mx-auto px-4">
+      <div className="container max-w-[1440px] px-6 md:px-8 lg:px-2 mx-auto ">
         {/* Top section with logos */}
         <div className="flex flex-wrap items-center justify-between mb-8 pb-8 border-b ">
           <div className="flex items-center justify-center space-x-8 mb-4 lg:mb-0 flex-1 w-full py-12">
@@ -39,7 +39,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/skills" className="hover:text-blue-600">
+                <Link href="#" className="hover:text-blue-600">
                   Africa Critical Skills Bank
                 </Link>
               </li>
@@ -51,12 +51,15 @@ const Footer = () => {
             <h3 className="font-bold text-gray-900 mb-4">Community</h3>
             <ul className="space-y-2 text-sm text-gray-700">
               <li>
-                <Link href="/community" className="hover:text-blue-600">
+                <Link
+                  href="https://dev01.afstaging.co.za/connect-and-collaborate/"
+                  className="hover:text-blue-600"
+                >
                   Connecting Collaborators
                 </Link>
               </li>
               <li>
-                <Link href="/news" className="hover:text-blue-600">
+                <Link href="#" className="hover:text-blue-600">
                   News & Events
                 </Link>
               </li>
@@ -186,11 +189,11 @@ const Footer = () => {
             <div className="mb-4 md:mb-0 text-center w-full">
               <p>
                 © {currentYear} African Union. All rights reserved. |{' '}
-                <Link href="/terms" className="hover:text-blue-600">
+                <Link href="#" className="hover:text-blue-600">
                   Terms of Use
                 </Link>{' '}
                 |{' '}
-                <Link href="/privacy" className="hover:text-blue-600">
+                <Link href="#" className="hover:text-blue-600">
                   Privacy Policy
                 </Link>
               </p>

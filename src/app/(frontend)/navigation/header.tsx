@@ -24,29 +24,61 @@ const LOGO_COLOR = '/images/logo.png'
 const navigationRoutes = [
   {
     label: 'Home',
-    href: '/',
+    href: 'https://dev01.afstaging.co.za/',
     hasDropdown: false,
   },
   {
     label: 'Programmes',
-    href: '/programmes',
+    href: '/#',
     hasDropdown: true,
     subRoutes: [
       {
         label: 'Programmes Home',
-        href: '/programmes',
+        href: '#',
       },
       {
-        label: 'CTVET',
-        href: '/programmes/ctvet',
+        label: 'CTVET Strategy',
+        href: '#',
       },
       {
         label: 'Energize Africa',
-        href: '/programmes/energize-africa',
+        href: '#',
       },
       {
         label: 'Energize Africa Fellowship',
-        href: '/programmes/energize-africa-fellowship',
+        href: '#',
+      },
+      {
+        label: 'WorldSkills Africa',
+        href: '#',
+      },
+      {
+        label: "I-STEM Education Program for 'Circular' Practice",
+        href: '#',
+      },
+      {
+        label: 'Artificial Intelligence (AI) for Development',
+        href: '#',
+      },
+      {
+        label: 'African Continental Qualifications Framework (ACQF)',
+        href: '#',
+      },
+      {
+        label: 'African Occupational Standards Development Framework (AOSF)',
+        href: '#',
+      },
+      {
+        label: 'Skills Initiative for Africa – Finance Component (SIFA FC)',
+        href: '#',
+      },
+      {
+        label: 'Skills Initiative for Africa – Technical Cooperation (SIFA TC)',
+        href: '#',
+      },
+      {
+        label: 'Africa Critical Skills Bank (ACSB)',
+        href: '#',
       },
     ],
   },
@@ -83,17 +115,17 @@ const navigationRoutes = [
   },
   {
     label: 'News & Events',
-    href: '/news-events',
+    href: '#',
     hasDropdown: false,
   },
   {
     label: 'Connect & Collaborate',
-    href: '/connect-collaborate',
+    href: 'https://dev01.afstaging.co.za/connect-and-collaborate/',
     hasDropdown: false,
   },
   {
     label: 'Africa Critical Skills Bank',
-    href: '/about',
+    href: 'https://dev01.afstaging.co.za/about/',
     hasDropdown: false,
     isSpecial: true, // This can be used to apply special styling
   },
@@ -148,7 +180,7 @@ const FontendHeader = () => {
 
       {/* Desktop Header */}
       <div className="container mx-auto max-w-[1440px] px-6 md:px-8 lg:px-2 flex justify-between items-center">
-        <Link href="/">
+        <Link href="https://dev01.afstaging.co.za/">
           <Image
             src={scrolled ? '/images/logo.png' : '/images/logo-white.png'}
             className="w-[250px] object-cover"
