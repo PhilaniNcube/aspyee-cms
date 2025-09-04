@@ -2,6 +2,13 @@ import { withPayload } from '@payloadcms/next/withPayload'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Increase maximum allowed payload/body size for API routes (file uploads, JSON, etc.)
+  // Adjust as needed (supports values like '100mb', '1gb').
+  api: {
+    bodyParser: {
+      sizeLimit: '20mb',
+    },
+  },
   images: {
     remotePatterns: [
       {
