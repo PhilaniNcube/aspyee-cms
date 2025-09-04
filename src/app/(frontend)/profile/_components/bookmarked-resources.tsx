@@ -28,6 +28,8 @@ export async function BookmarkedResourcesSection() {
     limit: 100,
   })
 
+  console.log('Fetched bookmarks:', bookmarksRes)
+
   const bookmarks: Bookmark[] = (bookmarksRes as any).docs || []
 
   return (
