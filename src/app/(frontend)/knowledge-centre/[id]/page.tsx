@@ -158,6 +158,7 @@ const ResourcePage = async ({ params }: PageProps) => {
               showStats={true}
               showFilter={true}
               defaultView="grid"
+              resourceId={resource.id}
             />
           </div>
           <div className="flex-1 p-4 w-1/4 max-w-[350px]">

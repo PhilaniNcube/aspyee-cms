@@ -9,6 +9,7 @@ import { recordDownload } from '@/lib/actions/downloads'
 import { redirect } from 'next/navigation'
 import type { User, Bookmark, Resource } from '@/payload-types'
 import { DownloadCloud } from 'lucide-react'
+import { DownloadResourceButton } from '@/components/ui/download-resource-button'
 
 // Server component that fetches the current user's bookmarked resources.
 // Wrapped in Suspense at usage site for streaming.
@@ -82,24 +83,11 @@ export async function BookmarkedResourcesSection() {
                       </div>
                       <div className="flex gap-3 pt-2 md:pt-0">
                         {resource.link && (
-                          <form
-                            action={async () => {
-                              'use server'
-                              await recordDownload(resource.id as any)
-                              // After recording, redirect to the external link
-                              // (If external, next/navigation redirect still works)
-                              redirect(resource.link as string)
-                            }}
-                          >
-                            <Button
-                              type="submit"
-                              className="rounded-sm cursor-pointer hover:bg-slate-700"
-                              size="sm"
-                            >
-                              <DownloadCloud className="inline-block mr-2" />
-                              Download
-                            </Button>
-                          </form>
+                          <DownloadResourceButton
+                            resourceId={resource.id}
+                            href={resource.link}
+                            fileId={resource.files?.[0]?.id!}
+                          />
                         )}
                         {/* Future: add remove bookmark action */}
                       </div>

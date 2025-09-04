@@ -3,6 +3,7 @@ import { Download, Eye, ExternalLink, Calendar, FileCheck } from 'lucide-react'
 import { FileIcon, getFileTypeLabel, getFileSizeFormatted } from '@/components/ui/file-icon'
 import { cn } from '@/lib/utils'
 import { Media } from '@/payload-types'
+import DownloadResourceButton from '@/components/ui/download-resource-button'
 
 interface FileDisplayProps {
   file: {
@@ -13,6 +14,7 @@ interface FileDisplayProps {
   className?: string
   variant?: 'card' | 'list' | 'grid'
   showPreview?: boolean
+  resourceId?: number | string
 }
 
 export const FileDisplay: React.FC<FileDisplayProps> = ({
@@ -20,6 +22,7 @@ export const FileDisplay: React.FC<FileDisplayProps> = ({
   className,
   variant = 'card',
   showPreview = true,
+  resourceId,
 }) => {
   const [imageError, setImageError] = useState(false)
 
@@ -101,13 +104,24 @@ export const FileDisplay: React.FC<FileDisplayProps> = ({
               <Eye className="w-4 h-4" />
             </button>
           )}
-          <button
-            onClick={handleDownload}
-            className="p-2 text-gray-500 hover:text-green-600 hover:bg-green-50 rounded-full transition-colors"
-            title="Download"
-          >
-            <Download className="w-4 h-4" />
-          </button>
+          {url && resourceId ? (
+            <DownloadResourceButton
+              resourceId={resourceId}
+              href={url}
+              fileId={typeof media.id !== 'undefined' ? String(media.id) : undefined}
+              label=""
+              variant="ghost"
+              size="icon"
+            />
+          ) : (
+            <button
+              onClick={handleDownload}
+              className="p-2 text-gray-500 hover:text-green-600 hover:bg-green-50 rounded-full transition-colors"
+              title="Download"
+            >
+              <Download className="w-4 h-4" />
+            </button>
+          )}
         </div>
       </div>
     )
@@ -150,13 +164,24 @@ export const FileDisplay: React.FC<FileDisplayProps> = ({
                   <Eye className="w-4 h-4" />
                 </button>
               )}
-              <button
-                onClick={handleDownload}
-                className="p-2 bg-white rounded-full text-gray-700 hover:bg-gray-100 transition-colors"
-                title="Download"
-              >
-                <Download className="w-4 h-4" />
-              </button>
+              {url && resourceId ? (
+                <DownloadResourceButton
+                  resourceId={resourceId}
+                  href={url}
+                  fileId={typeof media.id !== 'undefined' ? String(media.id) : undefined}
+                  label=""
+                  variant="secondary"
+                  size="icon"
+                />
+              ) : (
+                <button
+                  onClick={handleDownload}
+                  className="p-2 bg-white rounded-full text-gray-700 hover:bg-gray-100 transition-colors"
+                  title="Download"
+                >
+                  <Download className="w-4 h-4" />
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -240,13 +265,24 @@ export const FileDisplay: React.FC<FileDisplayProps> = ({
               <Eye className="w-4 h-4" />
             </button>
           )}
-          <button
-            onClick={handleDownload}
-            className="p-2 text-gray-500 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors"
-            title="Download file"
-          >
-            <Download className="w-4 h-4" />
-          </button>
+          {url && resourceId ? (
+            <DownloadResourceButton
+              resourceId={resourceId}
+              href={url}
+              fileId={typeof media.id !== 'undefined' ? String(media.id) : undefined}
+              label=""
+              variant="ghost"
+              size="icon"
+            />
+          ) : (
+            <button
+              onClick={handleDownload}
+              className="p-2 text-gray-500 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors"
+              title="Download file"
+            >
+              <Download className="w-4 h-4" />
+            </button>
+          )}
           <button
             onClick={handlePreview}
             className="p-2 text-gray-500 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
@@ -271,6 +307,7 @@ interface FileListProps {
   className?: string
   emptyMessage?: string
   title?: string
+  resourceId?: number | string
 }
 
 export const FileList: React.FC<FileListProps> = ({
@@ -280,6 +317,7 @@ export const FileList: React.FC<FileListProps> = ({
   className,
   emptyMessage = 'No files available.',
   title = 'Files',
+  resourceId,
 }) => {
   if (!files || files.length === 0) {
     return <div className={cn('text-gray-400 text-center py-8', className)}>{emptyMessage}</div>
@@ -309,6 +347,7 @@ export const FileList: React.FC<FileListProps> = ({
             file={file}
             variant={variant}
             showPreview={showPreview}
+            resourceId={resourceId}
           />
         ))}
       </div>

@@ -19,6 +19,7 @@ interface ResourceFilesSectionProps {
   showStats?: boolean
   showFilter?: boolean
   title?: string
+  resourceId?: number | string
 }
 
 export const ResourceFilesSection: React.FC<ResourceFilesSectionProps> = ({
@@ -28,6 +29,7 @@ export const ResourceFilesSection: React.FC<ResourceFilesSectionProps> = ({
   showStats = true,
   showFilter = true,
   title = 'Resource Files',
+  resourceId,
 }) => {
   const [filteredFiles, setFilteredFiles] = useState(files)
   const [currentView, setCurrentView] = useState<'grid' | 'list' | 'stats'>(defaultView)
@@ -136,6 +138,7 @@ export const ResourceFilesSection: React.FC<ResourceFilesSectionProps> = ({
           variant={currentView}
           showPreview={true}
           emptyMessage="No files match the current filters."
+          resourceId={resourceId}
         />
       )}
 
