@@ -8,6 +8,7 @@ import Link from 'next/link'
 import { recordDownload } from '@/lib/actions/downloads'
 import { redirect } from 'next/navigation'
 import type { User, Bookmark, Resource } from '@/payload-types'
+import { DownloadCloud } from 'lucide-react'
 
 // Server component that fetches the current user's bookmarked resources.
 // Wrapped in Suspense at usage site for streaming.
@@ -90,7 +91,12 @@ export async function BookmarkedResourcesSection() {
                               redirect(resource.link as string)
                             }}
                           >
-                            <Button type="submit" variant="secondary" size="sm">
+                            <Button
+                              type="submit"
+                              className="rounded-sm cursor-pointer hover:bg-slate-700"
+                              size="sm"
+                            >
+                              <DownloadCloud className="inline-block mr-2" />
                               Download
                             </Button>
                           </form>
