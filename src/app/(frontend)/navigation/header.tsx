@@ -154,7 +154,7 @@ const FontendHeader = () => {
         'fixed top-0 z-50 left-0 right-0 transition-all duration-300',
       )}
     >
-      <div className="container mx-auto max-w-[1440px] px-6 md:px-8 lg:px-2 items-center flex justify-end">
+      <div className="container mx-auto max-w-[1440px] px-6 md:px-10 lg:px-16 items-center flex justify-end">
         <Link href="/sign-in" className={cn(scrolled ? 'text-brand' : 'text-white')}>
           <span
             className={cn(
@@ -179,7 +179,7 @@ const FontendHeader = () => {
       </div>
 
       {/* Desktop Header */}
-      <div className="container mx-auto max-w-[1440px] px-6 md:px-8 lg:px-2 flex justify-between items-center">
+      <div className="container mx-auto max-w-[1440px] px-6 md:px-10 lg:px-16 flex justify-between items-center">
         <Link href="https://dev01.afstaging.co.za/">
           <Image
             src={scrolled ? '/images/logo.png' : '/images/logo-white.png'}

@@ -15,7 +15,7 @@ const PolicymakersHero = () => {
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/60 pointer-events-none"></div>
       <div className="relative z-10 h-[564px] flex justify-center items-center p-4">
-        <div className="container mx-auto max-w-[1440px] px-6 md:px-8 lg:px-2 ">
+        <div className="container mx-auto max-w-[1440px] px-6 md:px-10 lg:px-16 ">
           <h1 className="text-5xl font-extrabold text-white">Policy Makers</h1>
           <p className="mt-2 text-[28px] leading-8 text-white max-w-[721px]">
             A collection of reports, case studies, frameworks and articles designed to support

@@ -53,7 +53,7 @@ export default function HoverCards() {
 
   return (
     <div className=" pt-4 pb-8">
-      <div className="max-w-[1440px] px-6 md:px-8 lg:px-2 container mx-auto">
+      <div className="max-w-[1440px] px-6 md:px-10 lg:px-16 container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {cards.map((card) => {
             const IconComponent = card.icon
