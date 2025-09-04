@@ -124,6 +124,17 @@ export interface UserAuthOperations {
 export interface User {
   id: number;
   roles?: ('admin' | 'editor' | 'user')[] | null;
+  firstName?: string | null;
+  lastName?: string | null;
+  bio?: string | null;
+  phoneNumber?: string | null;
+  social_links?:
+    | {
+        platform?: string | null;
+        url?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -420,6 +431,17 @@ export interface PayloadMigration {
  */
 export interface UsersSelect<T extends boolean = true> {
   roles?: T;
+  firstName?: T;
+  lastName?: T;
+  bio?: T;
+  phoneNumber?: T;
+  social_links?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   email?: T;

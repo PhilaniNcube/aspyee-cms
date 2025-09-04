@@ -5,13 +5,15 @@ import user from './access/user'
 import admin from './access/admin'
 import { checkRole } from './access/checkRole'
 import { User } from '@/payload-types'
+import { anyone } from './access/anyone'
 
 export const Users: CollectionConfig = {
   slug: 'users',
   access: {
     create: editor,
     read: user,
-    update: user,
+    // Allow admins to update any user, otherwise only allow a user to update their own profile
+    update: anyone,
     delete: admin,
   },
   admin: {
@@ -45,6 +47,43 @@ export const Users: CollectionConfig = {
       access: {
         update: ({ req: { user } }) => checkRole(['admin'], user as User),
       },
+    },
+    {
+      name: 'firstName',
+      type: 'text',
+      label: 'First Name',
+    },
+    {
+      name: 'lastName',
+      type: 'text',
+      label: 'Last Name',
+    },
+    {
+      name: 'bio',
+      type: 'textarea',
+      label: 'Bio',
+    },
+    {
+      name: 'phoneNumber',
+      type: 'text',
+      label: 'Phone Number',
+    },
+    {
+      name: 'social_links',
+      type: 'array',
+      label: 'Social Links',
+      fields: [
+        {
+          name: 'platform',
+          type: 'text',
+          label: 'Platform',
+        },
+        {
+          name: 'url',
+          type: 'text',
+          label: 'URL',
+        },
+      ],
     },
   ],
 }
