@@ -2,5 +2,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400&display=swap');
 
 body {
-  	margin: 0; line-height: normal;
+  margin: 0;
+  line-height: normal;
+}
+
+/* Brand color variables */
+:root {
+  --color-teal: #00b6cc;
+  --color-teal-dark: #0090a3;
+  --color-green: #9fb23f;
+  --color-orange: #fd680c;
+  --color-gray: #595959;
+  --color-neutral: #9a9a9a;
+  --color-bg-soft: #f5f9fa;
+}
+
+/* Utility classes (minimal) */
+.visually-hidden {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
