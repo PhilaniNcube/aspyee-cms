@@ -10,6 +10,7 @@ import { redirect } from 'next/navigation'
 import type { User, Bookmark, Resource } from '@/payload-types'
 import { DownloadCloud } from 'lucide-react'
 import { DownloadResourceButton } from '@/components/ui/download-resource-button'
+import { FileDisplay } from '@/components/ui/file-display'
 
 // Server component that fetches the current user's bookmarked resources.
 // Wrapped in Suspense at usage site for streaming.
@@ -82,14 +83,10 @@ export async function BookmarkedResourcesSection() {
                         )}
                       </div>
                       <div className="flex gap-3 pt-2 md:pt-0">
-                        {resource.link && (
-                          <DownloadResourceButton
-                            resourceId={resource.id}
-                            href={resource.link}
-                            fileId={resource.files?.[0]?.id!}
-                          />
-                        )}
-                        {/* Future: add remove bookmark action */}
+                        {/* Import the file Display component */}
+                        {resource.files?.map((fileItem, index) => (
+                          <FileDisplay key={index} file={fileItem} resourceId={resource.id} />
+                        ))}
                       </div>
                     </li>
                   )
