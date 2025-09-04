@@ -26,6 +26,17 @@ export const Resources: CollectionConfig = {
       type: 'text',
       required: true,
     },
+    {
+      name: 'download_count',
+      label: 'Download Count',
+      type: 'number',
+      required: false,
+      admin: {
+        description: 'Auto-incremented total number of downloads for this resource',
+        readOnly: true,
+      },
+      defaultValue: 0,
+    },
 
     {
       name: 'type',

@@ -14,6 +14,7 @@ import { Users } from './collections/users/config'
 import { Media } from './collections/Media'
 import { Resources } from './collections/Resources'
 import { Bookmarks } from './collections/Bookmarks'
+import { Downloads } from './collections/Downloads'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -25,7 +26,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Resources, Bookmarks],
+  collections: [Users, Media, Resources, Bookmarks, Downloads],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

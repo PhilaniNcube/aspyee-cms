@@ -8,6 +8,8 @@ import { Button } from '@/components/ui/button'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { cn } from '@/lib/utils'
 import AccountSection from './_components/account-section'
+import { Suspense } from 'react'
+import BookmarkedResourcesSection from './_components/bookmarked-resources'
 
 export const dynamic = 'force-dynamic'
 
@@ -52,6 +54,22 @@ export default async function ProfilePage() {
 
       {/* Content */}
       <AccountSection user={user} />
+      <Suspense
+        fallback={
+          <div className="py-10 border-t">
+            <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16">
+              <div className="animate-pulse space-y-4">
+                <div className="h-6 w-64 bg-muted rounded" />
+                <div className="h-4 w-96 bg-muted rounded" />
+                <div className="h-32 w-full bg-muted rounded" />
+              </div>
+            </div>
+          </div>
+        }
+      >
+        {/* Bookmarked resources list (data fetched inside component) */}
+        <BookmarkedResourcesSection />
+      </Suspense>
     </main>
   )
 }

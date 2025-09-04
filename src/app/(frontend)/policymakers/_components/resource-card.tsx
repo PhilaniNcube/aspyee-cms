@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { startTransition } from 'react'
 import Image from 'next/image'
 import { Calendar, Share2, Bookmark, Download, Star, CircleOffIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Resource } from '@/payload-types'
 import { cn } from '@/lib/utils'
+import { addBookmark } from '@/lib/actions/bookmarks'
 
 interface ResourceCardProps {
   resource: Resource
@@ -108,12 +109,22 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
             <Button variant="ghost" className="p-2 h-auto">
               <Share2 className="w-8 h-8" />
             </Button>
-            <Button variant="ghost" className="p-2 h-auto">
-              <Bookmark className="w-8 h-8" />
-            </Button>
+            <form
+              action={async () => {
+                if (resource.id) {
+                  startTransition(() => {
+                    addBookmark(resource.id as number)
+                  })
+                }
+              }}
+            >
+              <Button variant="ghost" className="p-2 h-auto" type="submit">
+                <Bookmark className="w-8 h-8" />
+              </Button>
+            </form>
             <div className="flex items-center text-sm">
               <Download className="w-4 h-4 mr-1" />
-              254
+              {resource.download_count || 0}
             </div>
           </div>
           {resource.good_practice === 'yes' ? (

@@ -71,6 +71,7 @@ export interface Config {
     media: Media;
     resources: Resource;
     bookmarks: Bookmark;
+    downloads: Download;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -81,6 +82,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     resources: ResourcesSelect<false> | ResourcesSelect<true>;
     bookmarks: BookmarksSelect<false> | BookmarksSelect<true>;
+    downloads: DownloadsSelect<false> | DownloadsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -180,6 +182,10 @@ export interface Media {
 export interface Resource {
   id: number;
   title: string;
+  /**
+   * Auto-incremented total number of downloads for this resource
+   */
+  download_count?: number | null;
   type: 'academic' | 'case_study' | 'evaluation' | 'framework' | 'multimedia' | 'policy' | 'report' | 'toolkit';
   good_practice: 'yes' | 'no';
   /**
@@ -361,6 +367,25 @@ export interface Bookmark {
   createdAt: string;
 }
 /**
+ * Audit log of resource downloads
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "downloads".
+ */
+export interface Download {
+  id: number;
+  resource: number | Resource;
+  user?: (number | null) | User;
+  /**
+   * ID of the specific media file downloaded (if applicable)
+   */
+  file_id?: string | null;
+  ip?: string | null;
+  userAgent?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
@@ -382,6 +407,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'bookmarks';
         value: number | Bookmark;
+      } | null)
+    | ({
+        relationTo: 'downloads';
+        value: number | Download;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -484,6 +513,7 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface ResourcesSelect<T extends boolean = true> {
   title?: T;
+  download_count?: T;
   type?: T;
   good_practice?: T;
   themes?: T;
@@ -521,6 +551,19 @@ export interface ResourcesSelect<T extends boolean = true> {
 export interface BookmarksSelect<T extends boolean = true> {
   user?: T;
   resource?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "downloads_select".
+ */
+export interface DownloadsSelect<T extends boolean = true> {
+  resource?: T;
+  user?: T;
+  file_id?: T;
+  ip?: T;
+  userAgent?: T;
   updatedAt?: T;
   createdAt?: T;
 }
