@@ -71,7 +71,10 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
                 <Badge
                   key={group}
                   variant="outline"
-                  className={cn('rounded-full border-0 shadow-sm', getBadgeColor(group))}
+                  className={cn(
+                    'rounded-full border-0 shadow-sm opacity-70 text-[10px] leading-3 my-0 py-1 px-3 hover:opacity-100',
+                    getBadgeColor(group),
+                  )}
                 >
                   {group}
                 </Badge>

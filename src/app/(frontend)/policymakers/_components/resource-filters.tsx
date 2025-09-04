@@ -159,11 +159,11 @@ interface FilterSectionProps {
 
 const FilterSection: React.FC<FilterSectionProps> = ({ title, children, value }) => {
   return (
-    <AccordionItem value={value} className="border-none cursor-pointer shadow">
+    <AccordionItem value={value} className="border-none cursor-pointer bg-brand-orange-60 shadow">
       <AccordionTrigger className="px-4 py-3 text-left  font-semibold text-gray-900 hover:bg-brand-orange-60 rounded-none transition-colors duration-200 hover:no-underline">
         {title}
       </AccordionTrigger>
-      <AccordionContent className="px-4 pb-4 bg-white">{children}</AccordionContent>
+      <AccordionContent className="px-4 pb-4 bg-amber-300">{children}</AccordionContent>
     </AccordionItem>
   )
 }
@@ -272,7 +272,7 @@ const ResourceFilters: React.FC<ResourceFiltersProps> = ({ onFiltersChange }) =>
         <Accordion type="multiple" className="w-full grid grid-cols-1 gap-4">
           {/* Year Published Filter */}
           <FilterSection title="Year Published" value="year-published">
-            <div className="space-y-1 max-h-48 overflow-y-auto px-0">
+            <div className="space-y-1 max-h-48 bg-amber-300 overflow-y-auto scrollbar-hide px-0">
               {YEAR_RANGE.map((year) => (
                 <FilterItem
                   key={year}
@@ -293,7 +293,7 @@ const ResourceFilters: React.FC<ResourceFiltersProps> = ({ onFiltersChange }) =>
 
           {/* Country Filter */}
           <FilterSection title="Country" value="country">
-            <div className="space-y-1 max-h-48 overflow-y-auto">
+            <div className="space-y-1 max-h-48 overflow-y-auto scrollbar-hide">
               {COUNTRIES.map((country) => (
                 <FilterItem
                   key={country}
@@ -356,7 +356,7 @@ const ResourceFilters: React.FC<ResourceFiltersProps> = ({ onFiltersChange }) =>
 
           {/* Theme Filter */}
           <FilterSection title="Theme" value="theme">
-            <div className="space-y-1 max-h-48 overflow-y-auto">
+            <div className="space-y-1 max-h-48 overflow-y-auto scrollbar-hide">
               {THEMES.map((theme) => (
                 <FilterItem
                   key={theme}
