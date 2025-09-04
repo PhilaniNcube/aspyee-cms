@@ -19,6 +19,8 @@ import Link from 'next/link'
 import React from 'react'
 import Hero from '../_components/hero'
 import ResourceHero from './resource-hero'
+import { Button } from '@/components/ui/button'
+import { addBookmark } from '@/lib/actions/bookmarks'
 
 type PageProps = {
   params: Promise<{
@@ -46,6 +48,17 @@ const ResourcePage = async ({ params }: PageProps) => {
 
   // Fetch 2 related resources
   const relatedResources = await getRelatedResources(resource, 2)
+
+  // Server action wrapper to add a bookmark for this resource.
+  // We accept FormData so it can be bound directly to the <form action>.
+  async function bookmarkAction(formData: FormData) {
+    'use server'
+    const resourceIdRaw = formData.get('resourceId')
+    const resourceId = typeof resourceIdRaw === 'string' ? Number(resourceIdRaw) : id
+    if (!Number.isNaN(resourceId)) {
+      await addBookmark(resourceId)
+    }
+  }
 
   return (
     <div>
@@ -104,9 +117,12 @@ const ResourcePage = async ({ params }: PageProps) => {
                 <Link href={resource.link}>
                   <Download className="inline-block  h-8 w-8" />
                 </Link>
-                <Link href={resource.link}>
-                  <Bookmark className="inline-block  h-8 w-8" />
-                </Link>
+                <form action={bookmarkAction}>
+                  <input type="hidden" name="resourceId" value={resource.id} />
+                  <Button type="submit" variant="ghost">
+                    <Bookmark className="inline-block  h-8 w-8" />
+                  </Button>
+                </form>
                 <Link href={resource.link}>
                   <Share2Icon className="inline-block  h-8 w-8" />
                 </Link>

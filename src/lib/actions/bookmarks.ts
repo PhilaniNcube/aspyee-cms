@@ -21,6 +21,8 @@ export async function addBookmark(resourceId: number) {
     },
   })
 
+  console.log('Created bookmark:', bookmark)
+
   return bookmark
 }
 
