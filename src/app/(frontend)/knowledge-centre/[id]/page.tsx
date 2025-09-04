@@ -110,21 +110,20 @@ const ResourcePage = async ({ params }: PageProps) => {
                 </span>
                 <span className="flex items-center text-gray-400">
                   <Download className="inline-block mr-1" />
-                  254
+                  {resource.download_count || 0}
                 </span>
               </div>
               <div className="flex items-center space-x-2 text-gray-800">
-                <Link href={resource.link}>
-                  <Download className="inline-block  h-8 w-8" />
-                </Link>
                 <form action={bookmarkAction}>
                   <input type="hidden" name="resourceId" value={resource.id} />
-                  <Button type="submit" variant="ghost">
+                  <Button type="submit" variant="ghost" className="bg-slate-100 hover:bg-slate-200">
                     <Bookmark className="inline-block  h-8 w-8" />
                   </Button>
                 </form>
                 <Link href={resource.link}>
-                  <Share2Icon className="inline-block  h-8 w-8" />
+                  <Button variant="ghost" className="bg-slate-100 hover:bg-slate-200">
+                    <Share2Icon className="inline-block  h-8 w-8" />
+                  </Button>
                 </Link>
               </div>
             </div>
