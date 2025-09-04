@@ -4,7 +4,6 @@ import FontendHeader from './navigation/header'
 import Footer from './_components/footer'
 import { Open_Sans } from 'next/font/google'
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
-import './global.css';
 
 const openSans = Open_Sans({ subsets: ['latin'] })
 
