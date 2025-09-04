@@ -117,7 +117,7 @@ const ResourceList: React.FC<ResourceListProps> = ({ initialResources, title = '
   }
 
   return (
-    <div className="container max-w-[1440px] px-6 md:px-10 lg:px-16 mx-auto px-4 py-8">
+    <div className="container max-w-[1440px] px-6 md:px-10 lg:px-16 mx-auto py-8">
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Filters Sidebar */}
         <div className="lg:w-1/4">
