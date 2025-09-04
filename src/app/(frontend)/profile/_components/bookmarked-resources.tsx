@@ -5,6 +5,8 @@ import config from '@payload-config'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import { recordDownload } from '@/lib/actions/downloads'
+import { redirect } from 'next/navigation'
 import type { User, Bookmark, Resource } from '@/payload-types'
 
 // Server component that fetches the current user's bookmarked resources.
@@ -79,11 +81,19 @@ export async function BookmarkedResourcesSection() {
                       </div>
                       <div className="flex gap-3 pt-2 md:pt-0">
                         {resource.link && (
-                          <Button asChild variant="secondary" size="sm">
-                            <Link href={resource.link} target="_blank" rel="noopener noreferrer">
-                              View
-                            </Link>
-                          </Button>
+                          <form
+                            action={async () => {
+                              'use server'
+                              await recordDownload(resource.id as any)
+                              // After recording, redirect to the external link
+                              // (If external, next/navigation redirect still works)
+                              redirect(resource.link as string)
+                            }}
+                          >
+                            <Button type="submit" variant="secondary" size="sm">
+                              Download
+                            </Button>
+                          </form>
                         )}
                         {/* Future: add remove bookmark action */}
                       </div>
