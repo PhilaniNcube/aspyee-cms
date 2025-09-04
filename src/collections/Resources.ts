@@ -1,7 +1,17 @@
 import type { CollectionConfig } from 'payload'
+import editor from './users/access/editor'
+import user from './users/access/user'
+import admin from './users/access/admin'
+import { anyone } from './users/access/anyone'
 
 export const Resources: CollectionConfig = {
   slug: 'resources',
+  access: {
+    create: editor,
+    read: user,
+    update: editor,
+    delete: editor,
+  },
   labels: {
     singular: 'Resource',
     plural: 'Resources',

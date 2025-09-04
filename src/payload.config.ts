@@ -8,7 +8,9 @@ import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 import { uploadthingStorage } from '@payloadcms/storage-uploadthing'
 
-import { Users } from './collections/Users'
+// NOTE: Users collection resides in a nested folder with lowercase `users` and a `config.ts` file.
+// Import adjusted to match actual path to fix module resolution during Payload type generation.
+import { Users } from './collections/users/config'
 import { Media } from './collections/Media'
 import { Resources } from './collections/Resources'
 
