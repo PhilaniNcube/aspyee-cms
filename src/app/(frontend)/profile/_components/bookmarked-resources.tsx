@@ -62,7 +62,7 @@ export async function BookmarkedResourcesSection() {
                   return (
                     <li
                       key={b.id}
-                      className="p-4 flex flex-col gap-2 md:flex-row md:items-start md:justify-between"
+                      className="p-4 flex flex-col gap-2 md:items-start md:justify-between"
                     >
                       <div className="space-y-1 md:max-w-3xl">
                         <h3 className="font-medium leading-snug text-base">

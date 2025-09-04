@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react'
 import { Download, Eye, ExternalLink, Calendar, FileCheck } from 'lucide-react'
 import { FileIcon, getFileTypeLabel, getFileSizeFormatted } from '@/components/ui/file-icon'
@@ -69,14 +71,14 @@ export const FileDisplay: React.FC<FileDisplayProps> = ({
     return (
       <div
         className={cn(
-          'flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors',
+          'flex items-center max-w-3xl justify-between p-3 border  border-gray-200 rounded-lg hover:bg-gray-50 transition-colors',
           className,
         )}
       >
-        <div className="flex items-center space-x-3 flex-1 min-w-0">
+        <div className="flex items-center space-x-3 flex-1 min-w-0 max-w-3xl">
           <FileIcon mimeType={mimeType || ''} fileName={filename || ''} size="md" />
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-gray-900 truncate">
+            <p className="text-sm font-medium text-gray-900 truncate max-w-lg">
               {file.description || filename || 'Untitled file'}
             </p>
             <div className="flex items-center space-x-2 text-xs text-gray-500">
@@ -131,7 +133,7 @@ export const FileDisplay: React.FC<FileDisplayProps> = ({
     return (
       <div
         className={cn(
-          'group relative bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow',
+          'group relative bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md max-w-2xl transition-shadow',
           className,
         )}
       >
@@ -209,7 +211,7 @@ export const FileDisplay: React.FC<FileDisplayProps> = ({
   return (
     <div
       className={cn(
-        'bg-white border border-gray-200 rounded-lg p-4 hover:shadow-lg transition-shadow group',
+        'bg-white border border-gray-200 rounded-lg p-4 hover:shadow-lg transition-shadow group max-w-xl',
         className,
       )}
     >

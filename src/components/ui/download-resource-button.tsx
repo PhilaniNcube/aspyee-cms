@@ -1,8 +1,9 @@
 'use client'
-import React, { useTransition } from 'react'
+import React, { useActionState, useTransition } from 'react'
 import { Button } from './button'
 import { Loader2, Download } from 'lucide-react'
 import { recordDownload } from '@/lib/actions/downloads'
+import { start } from 'repl'
 
 // We use a <form action={serverFn}> pattern so the server action can run even without JS.
 // Props: resourceId (required), href (destination URL), optional fileId for granular download tracking.
@@ -21,25 +22,30 @@ export function DownloadResourceButton({
   variant?: React.ComponentProps<typeof Button>['variant']
   size?: React.ComponentProps<typeof Button>['size']
 }) {
-  const [pending] = useTransition()
-  // Fallback if JS disabled: normal form POST triggers server action then redirect server-side.
-  return (
-    <form
-      action={async (formData: FormData) => {
-        'use server'
+  const [state, formAction, isPending] = useActionState(recordDownload, null)
 
-        const rid = formData.get('resourceId') as string
-        const fid = formData.get('fileId') as string | null
-        await recordDownload(rid, fid || undefined)
-        // Redirect after server action (server redirect keeps non-JS working)
-        const { redirect } = await import('next/navigation')
-        redirect(formData.get('href') as string)
-      }}
-    >
+  const [pending, startTransition] = useTransition()
+  // Fallback if JS disabled: normal form POST triggers server action then redirect server-side.
+
+  const clientAction = async () => {
+    const data = new FormData()
+    data.append('resourceId', resourceId.toString())
+    data.append('fileId', fileId || '')
+    data.append('href', href)
+
+    startTransition(() => {
+      console.log('Recorded download:', data)
+      formAction(data)
+    })
+  }
+
+  return (
+    <form action={clientAction}>
       <input type="hidden" name="resourceId" value={resourceId} />
       <input type="hidden" name="href" value={href} />
+      <input type="hidden" name="fileId" value={fileId || ''} />
       {fileId && <input type="hidden" name="fileId" value={fileId} />}
-      <ClientButton label={label} variant={variant} size={size} submitting={pending} />
+      <ClientButton label={label} variant={variant} size={size} submitting={isPending} />
     </form>
   )
 }
