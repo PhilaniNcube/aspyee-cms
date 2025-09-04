@@ -70,6 +70,7 @@ export interface Config {
     users: User;
     media: Media;
     resources: Resource;
+    bookmarks: Bookmark;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -79,6 +80,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     resources: ResourcesSelect<false> | ResourcesSelect<true>;
+    bookmarks: BookmarksSelect<false> | BookmarksSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -335,6 +337,19 @@ export interface Resource {
   createdAt: string;
 }
 /**
+ * User favourites for quick access to resources
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "bookmarks".
+ */
+export interface Bookmark {
+  id: number;
+  user: number | User;
+  resource: number | Resource;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
@@ -352,6 +367,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'resources';
         value: number | Resource;
+      } | null)
+    | ({
+        relationTo: 'bookmarks';
+        value: number | Bookmark;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -470,6 +489,16 @@ export interface ResourcesSelect<T extends boolean = true> {
         description?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "bookmarks_select".
+ */
+export interface BookmarksSelect<T extends boolean = true> {
+  user?: T;
+  resource?: T;
   updatedAt?: T;
   createdAt?: T;
 }

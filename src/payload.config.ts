@@ -13,6 +13,7 @@ import { uploadthingStorage } from '@payloadcms/storage-uploadthing'
 import { Users } from './collections/users/config'
 import { Media } from './collections/Media'
 import { Resources } from './collections/Resources'
+import { Bookmarks } from './collections/Bookmarks'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -24,7 +25,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Resources],
+  collections: [Users, Media, Resources, Bookmarks],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
