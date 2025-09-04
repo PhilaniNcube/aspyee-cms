@@ -183,7 +183,7 @@ const FontendHeader = () => {
         <Link href="https://dev01.afstaging.co.za/">
           <Image
             src={scrolled ? '/images/logo.png' : '/images/logo-white.png'}
-            className="w-[250px] object-cover"
+            className="w-[190px] object-cover"
             alt="Logo"
             width={1037}
             height={240}
