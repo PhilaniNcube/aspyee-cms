@@ -7,6 +7,7 @@ import { checkRole } from './access/checkRole'
 import { User } from '@/payload-types'
 import { anyone } from './access/anyone'
 import { select } from 'node_modules/payload/dist/fields/validations'
+import { COUNTRIES } from '@/migrations/20250831_countries_seed'
 
 export const Users: CollectionConfig = {
   slug: 'users',
@@ -69,7 +70,15 @@ export const Users: CollectionConfig = {
       type: 'text',
       label: 'Phone Number',
     },
-
+    {
+      name: 'country',
+      type: 'select',
+      label: 'Country',
+      options: COUNTRIES.map((country) => ({
+        label: country.name,
+        value: country.code,
+      })),
+    },
     {
       name: 'social_links',
       type: 'array',

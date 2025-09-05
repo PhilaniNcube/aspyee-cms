@@ -6,7 +6,7 @@ const COUNTRIES_SLUG = 'countries' as any
 // Comprehensive ISO 3166-1 alpha-2 list of sovereign states and commonly used territories
 // Source basis: ISO 3166 / UN member + widely used territory codes (e.g. XK)
 // Fields match the `countries` collection: name, code
-const COUNTRIES: { name: string; code: string }[] = [
+export const COUNTRIES = [
   { name: 'Afghanistan', code: 'AF' },
   { name: 'Åland Islands', code: 'AX' },
   { name: 'Albania', code: 'AL' },
@@ -258,7 +258,7 @@ const COUNTRIES: { name: string; code: string }[] = [
   { name: 'Zimbabwe', code: 'ZW' },
   // Non-ISO official but widely used code for Kosovo
   { name: 'Kosovo', code: 'XK' },
-]
+] as const
 
 /**
  * Idempotent seeding helper you can call manually (e.g. from a script or dev startup hook)

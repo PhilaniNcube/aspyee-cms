@@ -1,4 +1,5 @@
 import { User } from '@/payload-types'
+import { password } from 'node_modules/payload/dist/fields/validations'
 import z from 'zod'
 
 export type CurrentUserResult =
@@ -13,6 +14,34 @@ export const SocialLinkSchema = z.object({
     .max(50, 'Platform too long')
     .optional(),
   url: z.string().trim().url('Invalid URL').optional(),
+})
+
+export const CreateProfileSchema = z.object({
+  email: z.email(),
+  password: z
+    .string()
+    .min(8, 'Password must be at least 8 characters long')
+    .max(100, 'Password too long'),
+  firstName: z.string().trim().max(120, 'First name too long'),
+  lastName: z.string().trim().max(120, 'Last name too long'),
+  bio: z.string().trim().max(1000, 'Bio too long'),
+  phoneNumber: z
+    .string()
+    .trim()
+    .regex(/^[+()\d\-\s]*$/, 'Invalid phone number')
+    .max(40, 'Phone number too long'),
+  social_links: z
+    .array(
+      SocialLinkSchema.refine(
+        (v) =>
+          (typeof v.platform === 'string' && v.platform.trim().length > 0) ||
+          (typeof v.url === 'string' && v.url.trim().length > 0),
+        'Incomplete social link',
+      ),
+    )
+    .max(10, 'Too many social links')
+    .optional(),
+  country: z.string().length(2, 'Invalid country code').optional(),
 })
 
 export const UpdateProfileSchema = z.object({
