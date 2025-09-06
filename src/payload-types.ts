@@ -578,6 +578,8 @@ export interface Resource {
         | 'UNDP'
         | 'GIZ'
         | 'British Council'
+        | 'SIFA'
+        | 'BUSA'
         | 'European Union'
         | 'USAID'
         | 'Other'

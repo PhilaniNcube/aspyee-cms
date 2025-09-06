@@ -15,13 +15,13 @@ import { cn } from '@/lib/utils'
 
 // Define the filter options based on your Resources collection
 const RESOURCE_TYPES = [
-  { label: 'Academic / Research Paper', value: 'academic' },
-  { label: 'Case Study / Good Practice', value: 'case_study' },
+  { label: 'Research Paper', value: 'academic' },
+  { label: 'Case Study', value: 'case_study' },
   { label: 'Evaluation Review', value: 'evaluation' },
   { label: 'Framework/Standard', value: 'framework' },
-  { label: 'Multimedia', value: 'multimedia' },
-  { label: 'Policy/Strategy', value: 'policy' },
-  { label: 'Report/Data', value: 'report' },
+  { label: 'Multimedia/Video', value: 'multimedia' },
+  { label: 'Policy Brief', value: 'policy' },
+  { label: 'Report', value: 'report' },
   { label: 'Toolkit/Guide', value: 'toolkit' },
 ]
 
@@ -30,6 +30,7 @@ const THEMES = [
   'Gender and Transformation',
   'Entrepreneurship and informal sector formalisation',
   'Human Capital Development',
+  'Agribusiness and agricultural skills',
   'Labour migration & mobility',
   'Digital skills & future of work',
   'Education systems & policy',
@@ -37,6 +38,7 @@ const THEMES = [
   'Informal sector & livelihoods',
   'Green skills / sustainability',
   'Innovation & partnerships',
+  'Governance',
 ]
 
 const TARGET_GROUPS = [
