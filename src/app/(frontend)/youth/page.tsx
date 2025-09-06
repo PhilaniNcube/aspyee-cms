@@ -3,10 +3,10 @@ import TargetGroupHero from '@/components/ui/target-group-hero'
 import TargetGroupTitleSection from '@/components/ui/target-group-title-section'
 import ResourceList from '../policymakers/_components/resource-list'
 import NewsEvents from '../policymakers/_components/news-and-events'
-import { getResourcesForYouth } from '@/lib/queries'
+import { getResourcesForYouthWithPagination } from '@/lib/queries'
 
 const YouthCorner = async () => {
-  const resources = await getResourcesForYouth()
+  const resources = await getResourcesForYouthWithPagination()
 
   return (
     <div className="">
@@ -20,7 +20,11 @@ const YouthCorner = async () => {
         mainTitle="YOUTH ARE THE DRIVING FORCE OF AFRICA'S SKILLS TRANSFORMATION."
         subtitle="Access resources that help you build the skills, networks and opportunities needed for tomorrow's economy."
       />
-      <ResourceList initialResources={resources} title="Resources for Youth" />
+      <ResourceList
+        initialResources={resources.docs}
+        title="Resources for Youth"
+        targetGroup="Youth"
+      />
       <NewsEvents />
     </div>
   )

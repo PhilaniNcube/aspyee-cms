@@ -1,6 +1,157 @@
 import { Resource } from '@/payload-types'
 import { getPayload } from 'payload'
 import config from '@payload-config'
+
+// Pagination interfaces
+export interface PaginationParams {
+  page?: number
+  limit?: number
+}
+
+export interface PaginatedResult<T> {
+  docs: T[]
+  totalDocs: number
+  totalPages: number
+  page: number
+  limit: number
+  hasNextPage: boolean
+  hasPrevPage: boolean
+  nextPage: number | null
+  prevPage: number | null
+}
+
+// Filter interfaces
+export interface ResourceFilters {
+  search?: string
+  type?: string | string[]
+  theme?: string | string[]
+  language?: string | string[]
+  country?: string | string[]
+  targetGroup?: string | string[]
+  yearPublished?: number | number[]
+  goodPractice?: 'yes' | 'no'
+}
+
+/**
+ * Fetches resources with pagination and filtering support
+ */
+export async function getResourcesPaginated(
+  filters: ResourceFilters = {},
+  pagination: PaginationParams = {},
+): Promise<PaginatedResult<Resource>> {
+  try {
+    const payload = await getPayload({ config })
+    const { page = 1, limit = 12 } = pagination
+
+    // Build the where clause dynamically
+    const where: any = {}
+
+    // Search across multiple fields
+    if (filters.search && filters.search.trim()) {
+      const searchTerm = filters.search.trim()
+      where.or = [
+        { title: { contains: searchTerm } },
+        { description: { contains: searchTerm } },
+        { themes: { contains: searchTerm } },
+        { target_groups: { contains: searchTerm } },
+        { countries: { contains: searchTerm } },
+      ]
+    }
+
+    // Type filter
+    if (filters.type) {
+      if (Array.isArray(filters.type)) {
+        where.type = { in: filters.type }
+      } else {
+        where.type = { equals: filters.type }
+      }
+    }
+
+    // Theme filter
+    if (filters.theme) {
+      if (Array.isArray(filters.theme)) {
+        where.themes = { in: filters.theme }
+      } else {
+        where.themes = { contains: filters.theme }
+      }
+    }
+
+    // Language filter
+    if (filters.language) {
+      if (Array.isArray(filters.language)) {
+        where.language = { in: filters.language }
+      } else {
+        where.language = { equals: filters.language }
+      }
+    }
+
+    // Country filter
+    if (filters.country) {
+      if (Array.isArray(filters.country)) {
+        where.countries = { in: filters.country }
+      } else {
+        where.countries = { contains: filters.country }
+      }
+    }
+
+    // Target group filter
+    if (filters.targetGroup) {
+      if (Array.isArray(filters.targetGroup)) {
+        where.target_groups = { in: filters.targetGroup }
+      } else {
+        where.target_groups = { contains: filters.targetGroup }
+      }
+    }
+
+    // Year published filter
+    if (filters.yearPublished) {
+      if (Array.isArray(filters.yearPublished)) {
+        where.year_published = { in: filters.yearPublished }
+      } else {
+        where.year_published = { equals: filters.yearPublished }
+      }
+    }
+
+    // Good practice filter
+    if (filters.goodPractice) {
+      where.good_practice = { equals: filters.goodPractice }
+    }
+
+    const result = await payload.find({
+      collection: 'resources',
+      where,
+      page,
+      limit,
+      sort: '-createdAt', // Sort by newest first
+    })
+
+    return {
+      docs: result.docs as Resource[],
+      totalDocs: result.totalDocs,
+      totalPages: result.totalPages,
+      page: result.page || page,
+      limit: result.limit,
+      hasNextPage: result.hasNextPage || false,
+      hasPrevPage: result.hasPrevPage || false,
+      nextPage: result.nextPage || null,
+      prevPage: result.prevPage || null,
+    }
+  } catch (error) {
+    console.error('Error fetching paginated resources:', error)
+    return {
+      docs: [],
+      totalDocs: 0,
+      totalPages: 0,
+      page: 1,
+      limit: pagination.limit || 12,
+      hasNextPage: false,
+      hasPrevPage: false,
+      nextPage: null,
+      prevPage: null,
+    }
+  }
+}
+
 /**
  * Fetches related resources based on shared target groups, type, or themes, excluding the current resource
  */
@@ -41,258 +192,95 @@ export async function getRelatedResources(
 }
 
 /**
- * Fetches resources that have "Policymakers" in their target_groups
+ * Fetches resources that have "Policymakers" in their target_groups with pagination
  */
-export async function getResourcesForPolicymakers(): Promise<Resource[]> {
-  try {
-    const payload = await getPayload({ config })
-
-    const result = await payload.find({
-      collection: 'resources',
-      where: {
-        target_groups: {
-          contains: 'Policymakers',
-        },
-      },
-    })
-
-    return result.docs as Resource[]
-  } catch (error) {
-    console.error('Error fetching policymaker resources:', error)
-    return []
-  }
+export async function getResourcesForPolicymakersWithPagination(
+  pagination: PaginationParams = {},
+): Promise<PaginatedResult<Resource>> {
+  return getResourcesPaginated({ targetGroup: 'Policymakers' }, pagination)
 }
 
 /**
- * Fetches resources that have "Researchers" in their target_groups
+ * Fetches resources that have "Researchers" in their target_groups with pagination
  */
-export async function getResourcesForResearchers(): Promise<Resource[]> {
-  try {
-    const payload = await getPayload({ config })
-
-    const result = await payload.find({
-      collection: 'resources',
-      where: {
-        target_groups: {
-          contains: 'Researchers',
-        },
-      },
-    })
-
-    return result.docs as Resource[]
-  } catch (error) {
-    console.error('Error fetching researcher resources:', error)
-    return []
-  }
+export async function getResourcesForResearchersWithPagination(
+  pagination: PaginationParams = {},
+): Promise<PaginatedResult<Resource>> {
+  return getResourcesPaginated({ targetGroup: 'Researchers' }, pagination)
 }
 
 /**
- * Fetches resources that have "Youth" in their target_groups
+ * Fetches resources that have "Youth" in their target_groups with pagination
  */
-export async function getResourcesForYouth(): Promise<Resource[]> {
-  try {
-    const payload = await getPayload({ config })
-
-    const result = await payload.find({
-      collection: 'resources',
-      where: {
-        target_groups: {
-          contains: 'Youth',
-        },
-      },
-    })
-
-    return result.docs as Resource[]
-  } catch (error) {
-    console.error('Error fetching youth resources:', error)
-    return []
-  }
+export async function getResourcesForYouthWithPagination(
+  pagination: PaginationParams = {},
+): Promise<PaginatedResult<Resource>> {
+  return getResourcesPaginated({ targetGroup: 'Youth' }, pagination)
 }
 
 /**
- * Fetches resources that have "Educators & Implementers" in their target_groups
+ * Fetches resources that have "Educators & Implementers" in their target_groups with pagination
  */
-export async function getResourcesForEducators(): Promise<Resource[]> {
-  try {
-    const payload = await getPayload({ config })
-
-    const result = await payload.find({
-      collection: 'resources',
-      where: {
-        target_groups: {
-          contains: 'Educators & Implementers',
-        },
-      },
-    })
-
-    return result.docs as Resource[]
-  } catch (error) {
-    console.error('Error fetching educator resources:', error)
-    return []
-  }
+export async function getResourcesForEducatorsWithPagination(
+  pagination: PaginationParams = {},
+): Promise<PaginatedResult<Resource>> {
+  return getResourcesPaginated({ targetGroup: 'Educators & Implementers' }, pagination)
 }
 
 /**
- * Fetches resources that have "Private Sector / Employers" in their target_groups
+ * Fetches resources that have "Private Sector / Employers" in their target_groups with pagination
  */
-export async function getResourcesForPrivateSector(): Promise<Resource[]> {
-  try {
-    const payload = await getPayload({ config })
-
-    const result = await payload.find({
-      collection: 'resources',
-      where: {
-        target_groups: {
-          contains: 'Private Sector / Employers',
-        },
-      },
-    })
-
-    return result.docs as Resource[]
-  } catch (error) {
-    console.error('Error fetching private sector resources:', error)
-    return []
-  }
+export async function getResourcesForPrivateSectorWithPagination(
+  pagination: PaginationParams = {},
+): Promise<PaginatedResult<Resource>> {
+  return getResourcesPaginated({ targetGroup: 'Private Sector / Employers' }, pagination)
 }
 
 /**
- * Fetches resources that have "TVET Managers / Principals" in their target_groups
+ * Fetches resources that have "TVET Managers / Principals" in their target_groups with pagination
  */
-export async function getResourcesForTVETManagers(): Promise<Resource[]> {
-  try {
-    const payload = await getPayload({ config })
-
-    const result = await payload.find({
-      collection: 'resources',
-      where: {
-        target_groups: {
-          contains: 'TVET Managers / Principals',
-        },
-      },
-    })
-
-    return result.docs as Resource[]
-  } catch (error) {
-    console.error('Error fetching TVET managers resources:', error)
-    return []
-  }
+export async function getResourcesForTVETManagersWithPagination(
+  pagination: PaginationParams = {},
+): Promise<PaginatedResult<Resource>> {
+  return getResourcesPaginated({ targetGroup: 'TVET Managers / Principals' }, pagination)
 }
 
 /**
- * Fetches resources that have "HR / Labour Market Actors" in their target_groups
+ * Fetches resources that have "HR / Labour Market Actors" in their target_groups with pagination
  */
-export async function getResourcesForHRLabourMarket(): Promise<Resource[]> {
-  try {
-    const payload = await getPayload({ config })
-
-    const result = await payload.find({
-      collection: 'resources',
-      where: {
-        target_groups: {
-          contains: 'HR / Labour Market Actors',
-        },
-      },
-    })
-
-    return result.docs as Resource[]
-  } catch (error) {
-    console.error('Error fetching HR/Labour Market resources:', error)
-    return []
-  }
+export async function getResourcesForHRLabourMarketWithPagination(
+  pagination: PaginationParams = {},
+): Promise<PaginatedResult<Resource>> {
+  return getResourcesPaginated({ targetGroup: 'HR / Labour Market Actors' }, pagination)
 }
 
 /**
- * Fetches resources that have "Donors & Development Partners" in their target_groups
+ * Fetches resources that have "Donors & Development Partners" in their target_groups with pagination
  */
-export async function getResourcesForDonors(): Promise<Resource[]> {
-  try {
-    const payload = await getPayload({ config })
-
-    const result = await payload.find({
-      collection: 'resources',
-      where: {
-        target_groups: {
-          contains: 'Donors & Development Partners',
-        },
-      },
-    })
-
-    return result.docs as Resource[]
-  } catch (error) {
-    console.error('Error fetching donors resources:', error)
-    return []
-  }
+export async function getResourcesForDonorsWithPagination(
+  pagination: PaginationParams = {},
+): Promise<PaginatedResult<Resource>> {
+  return getResourcesPaginated({ targetGroup: 'Donors & Development Partners' }, pagination)
 }
 
 /**
- * Fetches resources by target group
+ * Fetches resources by target group with pagination
  */
-export async function getResourcesByTargetGroup(targetGroup: string): Promise<Resource[]> {
-  try {
-    const payload = await getPayload({ config })
-
-    const result = await payload.find({
-      collection: 'resources',
-      where: {
-        target_groups: {
-          contains: targetGroup,
-        },
-      },
-    })
-
-    return result.docs as Resource[]
-  } catch (error) {
-    console.error(`Error fetching resources for target group ${targetGroup}:`, error)
-    return []
-  }
+export async function getResourcesByTargetGroupWithPagination(
+  targetGroup: string,
+  pagination: PaginationParams = {},
+): Promise<PaginatedResult<Resource>> {
+  return getResourcesPaginated({ targetGroup }, pagination)
 }
 
 /**
- * Fetches all resources with optional filters
+ * Fetches all resources with optional filters and pagination
  */
-export async function getAllResources(
-  options: {
-    type?: string
-    theme?: string
-    language?: string
-    country?: string
-    goodPractice?: 'yes' | 'no'
-    limit?: number
-  } = {},
-): Promise<Resource[]> {
-  try {
-    const payload = await getPayload({ config })
-
-    // Build the where clause dynamically
-    const where: any = {}
-
-    if (options.type) {
-      where.type = { equals: options.type }
-    }
-    if (options.theme) {
-      where.themes = { contains: options.theme }
-    }
-    if (options.language) {
-      where.language = { equals: options.language }
-    }
-    if (options.country) {
-      where.countries = { contains: options.country }
-    }
-    if (options.goodPractice) {
-      where.good_practice = { equals: options.goodPractice }
-    }
-
-    const result = await payload.find({
-      collection: 'resources',
-      where,
-      limit: options.limit || 50, // Default limit if not specified
-    })
-
-    return result.docs as Resource[]
-  } catch (error) {
-    console.error('Error fetching resources:', error)
-    return []
-  }
+export async function getAllResourcesWithPagination(
+  filters: ResourceFilters = {},
+  pagination: PaginationParams = {},
+): Promise<PaginatedResult<Resource>> {
+  return getResourcesPaginated(filters, pagination)
 }
 
 /**
@@ -312,4 +300,120 @@ export async function getResourceById(id: number): Promise<Resource | null> {
     console.error(`Error fetching resource with ID ${id}:`, error)
     return null
   }
+}
+
+// Legacy compatibility functions - return only the docs array for backward compatibility
+// These should be gradually migrated to use the new paginated functions
+
+/**
+ * @deprecated Use getResourcesForPolicymakersWithPagination instead
+ */
+export async function getResourcesForPolicymakersLegacy(): Promise<Resource[]> {
+  const result = await getResourcesForPolicymakersWithPagination({ limit: 100 })
+  return result.docs
+}
+
+/**
+ * @deprecated Use getResourcesForResearchersWithPagination instead
+ */
+export async function getResourcesForResearchersLegacy(): Promise<Resource[]> {
+  const result = await getResourcesForResearchersWithPagination({ limit: 100 })
+  return result.docs
+}
+
+/**
+ * @deprecated Use getResourcesForYouthWithPagination instead
+ */
+export async function getResourcesForYouthLegacy(): Promise<Resource[]> {
+  const result = await getResourcesForYouthWithPagination({ limit: 100 })
+  return result.docs
+}
+
+/**
+ * @deprecated Use getResourcesForEducatorsWithPagination instead
+ */
+export async function getResourcesForEducatorsLegacy(): Promise<Resource[]> {
+  const result = await getResourcesForEducatorsWithPagination({ limit: 100 })
+  return result.docs
+}
+
+/**
+ * @deprecated Use getResourcesForPrivateSectorWithPagination instead
+ */
+export async function getResourcesForPrivateSectorLegacy(): Promise<Resource[]> {
+  const result = await getResourcesForPrivateSectorWithPagination({ limit: 100 })
+  return result.docs
+}
+
+/**
+ * @deprecated Use getResourcesForTVETManagersWithPagination instead
+ */
+export async function getResourcesForTVETManagersLegacy(): Promise<Resource[]> {
+  const result = await getResourcesForTVETManagersWithPagination({ limit: 100 })
+  return result.docs
+}
+
+/**
+ * @deprecated Use getResourcesForHRLabourMarketWithPagination instead
+ */
+export async function getResourcesForHRLabourMarketLegacy(): Promise<Resource[]> {
+  const result = await getResourcesForHRLabourMarketWithPagination({ limit: 100 })
+  return result.docs
+}
+
+/**
+ * @deprecated Use getResourcesForDonorsWithPagination instead
+ */
+export async function getResourcesForDonorsLegacy(): Promise<Resource[]> {
+  const result = await getResourcesForDonorsWithPagination({ limit: 100 })
+  return result.docs
+}
+
+/**
+ * @deprecated Use getResourcesByTargetGroupWithPagination instead
+ */
+export async function getResourcesByTargetGroupLegacy(targetGroup: string): Promise<Resource[]> {
+  const result = await getResourcesByTargetGroupWithPagination(targetGroup, { limit: 100 })
+  return result.docs
+}
+
+// Backward compatibility exports - these maintain the original function names
+// but call the legacy versions that return Resource[] instead of PaginatedResult<Resource>
+
+export { getResourcesForPolicymakersLegacy as getResourcesForPolicymakers }
+export { getResourcesForResearchersLegacy as getResourcesForResearchers }
+export { getResourcesForYouthLegacy as getResourcesForYouth }
+export { getResourcesForEducatorsLegacy as getResourcesForEducators }
+export { getResourcesForPrivateSectorLegacy as getResourcesForPrivateSector }
+export { getResourcesForTVETManagersLegacy as getResourcesForTVETManagers }
+export { getResourcesForHRLabourMarketLegacy as getResourcesForHRLabourMarket }
+export { getResourcesForDonorsLegacy as getResourcesForDonors }
+export { getResourcesByTargetGroupLegacy as getResourcesByTargetGroup }
+export { getAllResourcesLegacy as getAllResources }
+
+/**
+ * @deprecated Use getAllResourcesWithPagination instead
+ */
+export async function getAllResourcesLegacy(
+  options: {
+    type?: string
+    theme?: string
+    language?: string
+    country?: string
+    goodPractice?: 'yes' | 'no'
+    limit?: number
+  } = {},
+): Promise<Resource[]> {
+  const filters: ResourceFilters = {
+    type: options.type,
+    theme: options.theme,
+    language: options.language,
+    country: options.country,
+    goodPractice: options.goodPractice,
+  }
+  const pagination: PaginationParams = {
+    limit: options.limit || 50,
+  }
+  const result = await getAllResourcesWithPagination(filters, pagination)
+  return result.docs
 }

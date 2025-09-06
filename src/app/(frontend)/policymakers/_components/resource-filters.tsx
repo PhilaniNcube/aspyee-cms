@@ -148,7 +148,7 @@ const FilterItem: React.FC<FilterItemProps> = ({ id, label, checked, onToggle })
 }
 
 interface ResourceFiltersProps {
-  onFiltersChange?: (filters: any) => void
+  // Removed onFiltersChange since both components use the same URL state
 }
 
 interface FilterSectionProps {
@@ -168,7 +168,7 @@ const FilterSection: React.FC<FilterSectionProps> = ({ title, children, value })
   )
 }
 
-const ResourceFilters: React.FC<ResourceFiltersProps> = ({ onFiltersChange }) => {
+const ResourceFilters: React.FC<ResourceFiltersProps> = () => {
   const [filters, setFilters] = useQueryStates({
     search: parseAsString,
     yearPublished: parseAsArrayOf(parseAsString),
@@ -178,13 +178,6 @@ const ResourceFilters: React.FC<ResourceFiltersProps> = ({ onFiltersChange }) =>
     theme: parseAsArrayOf(parseAsString),
     language: parseAsArrayOf(parseAsString),
   })
-
-  // Notify parent component when filters change
-  React.useEffect(() => {
-    if (onFiltersChange) {
-      onFiltersChange(filters)
-    }
-  }, [filters, onFiltersChange])
 
   const handleFilterChange = (
     filterType: keyof typeof filters,

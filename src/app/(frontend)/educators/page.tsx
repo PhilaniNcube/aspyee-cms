@@ -3,10 +3,10 @@ import TargetGroupHero from '@/components/ui/target-group-hero'
 import TargetGroupTitleSection from '@/components/ui/target-group-title-section'
 import ResourceList from '../policymakers/_components/resource-list'
 import NewsEvents from '../policymakers/_components/news-and-events'
-import { getResourcesForEducators } from '@/lib/queries'
+import { getResourcesForEducatorsWithPagination } from '@/lib/queries'
 
 const EducatorsCorner = async () => {
-  const resources = await getResourcesForEducators()
+  const resources = await getResourcesForEducatorsWithPagination()
 
   return (
     <div className="">
@@ -20,7 +20,11 @@ const EducatorsCorner = async () => {
         mainTitle="QUALITY EDUCATION AND TRAINING TRANSFORMS COMMUNITIES."
         subtitle="Discover tools, methodologies and insights to enhance your teaching and implementation practices."
       />
-      <ResourceList initialResources={resources} title="Resources for Educators & Implementers" />
+      <ResourceList
+        initialResources={resources.docs}
+        title="Resources for Educators & Implementers"
+        targetGroup="Educators & Implementers"
+      />
       <NewsEvents />
     </div>
   )

@@ -3,10 +3,10 @@ import TargetGroupHero from '@/components/ui/target-group-hero'
 import TargetGroupTitleSection from '@/components/ui/target-group-title-section'
 import ResourceList from '../policymakers/_components/resource-list'
 import NewsEvents from '../policymakers/_components/news-and-events'
-import { getResourcesForPrivateSector } from '@/lib/queries'
+import { getResourcesForPrivateSectorWithPagination } from '@/lib/queries'
 
 const PrivateSectorCorner = async () => {
-  const resources = await getResourcesForPrivateSector()
+  const resources = await getResourcesForPrivateSectorWithPagination()
 
   return (
     <div className="">
@@ -20,7 +20,11 @@ const PrivateSectorCorner = async () => {
         mainTitle="PRIVATE SECTOR PARTNERSHIPS DRIVE SUSTAINABLE SKILLS ECOSYSTEMS."
         subtitle="Explore opportunities to invest in talent development and create meaningful employment pathways."
       />
-      <ResourceList initialResources={resources} title="Resources for Private Sector / Employers" />
+      <ResourceList
+        initialResources={resources.docs}
+        title="Resources for Private Sector / Employers"
+        targetGroup="Private Sector / Employers"
+      />
       <NewsEvents />
     </div>
   )

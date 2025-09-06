@@ -4,6 +4,7 @@ import FontendHeader from './navigation/header'
 import Footer from './_components/footer'
 import { Open_Sans } from 'next/font/google'
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
+import ReactQueryProvider from './providers/react-query-provider'
 
 const openSans = Open_Sans({ subsets: ['latin'] })
 
@@ -23,11 +24,13 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={openSans.className}>
-        <FontendHeader />
-        <main>
-          <NuqsAdapter>{children}</NuqsAdapter>
-        </main>
-        <Footer />
+        <ReactQueryProvider>
+          <FontendHeader />
+          <main>
+            <NuqsAdapter>{children}</NuqsAdapter>
+          </main>
+          <Footer />
+        </ReactQueryProvider>
       </body>
     </html>
   )

@@ -2,13 +2,6 @@ import { withPayload } from '@payloadcms/next/withPayload'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Increase maximum allowed payload/body size for API routes (file uploads, JSON, etc.)
-  // Adjust as needed (supports values like '100mb', '1gb').
-  api: {
-    bodyParser: {
-      sizeLimit: '20mb',
-    },
-  },
   images: {
     remotePatterns: [
       {
@@ -20,11 +13,25 @@ const nextConfig = {
     ],
   },
   // Your Next.js config here
-  webpack: (webpackConfig) => {
+  webpack: (webpackConfig, { isServer }) => {
     webpackConfig.resolve.extensionAlias = {
       '.cjs': ['.cts', '.cjs'],
       '.js': ['.ts', '.tsx', '.js', '.jsx'],
       '.mjs': ['.mts', '.mjs'],
+    }
+
+    // Exclude Node.js modules from client-side bundles
+    if (!isServer) {
+      webpackConfig.resolve.fallback = {
+        ...webpackConfig.resolve.fallback,
+        fs: false,
+        path: false,
+        crypto: false,
+        stream: false,
+        util: false,
+        querystring: false,
+        url: false,
+      }
     }
 
     return webpackConfig

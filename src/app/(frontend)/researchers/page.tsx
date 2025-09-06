@@ -3,10 +3,10 @@ import TargetGroupHero from '@/components/ui/target-group-hero'
 import TargetGroupTitleSection from '@/components/ui/target-group-title-section'
 import ResourceList from '../policymakers/_components/resource-list'
 import NewsEvents from '../policymakers/_components/news-and-events'
-import { getResourcesForResearchers } from '@/lib/queries'
+import { getResourcesForResearchersWithPagination } from '@/lib/queries'
 
 const ResearchersCorner = async () => {
-  const resources = await getResourcesForResearchers()
+  const resources = await getResourcesForResearchersWithPagination()
 
   return (
     <div className="">
@@ -20,7 +20,11 @@ const ResearchersCorner = async () => {
         mainTitle="EVIDENCE-BASED RESEARCH DRIVES INNOVATION IN SKILLS DEVELOPMENT."
         subtitle="Access the latest research and contribute to the knowledge base that shapes Africa's skills transformation."
       />
-      <ResourceList initialResources={resources} title="Resources for Researchers" />
+      <ResourceList
+        initialResources={resources.docs}
+        title="Resources for Researchers"
+        targetGroup="Researchers"
+      />
       <NewsEvents />
       {/* <Testimonials /> */}
     </div>
