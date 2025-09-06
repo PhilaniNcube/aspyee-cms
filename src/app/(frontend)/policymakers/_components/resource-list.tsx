@@ -227,7 +227,10 @@ const ResourceList: React.FC<ResourceListProps> = ({
       setFilters((current) => ({ ...current, page }))
 
       // Scroll to top of resources section
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      const listElement = document.getElementById('list')
+      if (listElement) {
+        listElement.scrollIntoView({ behavior: 'smooth' })
+      }
 
       // Reset loading state after a brief delay
       setTimeout(() => setIsChangingPage(false), 300)
@@ -429,7 +432,7 @@ const ResourceList: React.FC<ResourceListProps> = ({
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-6" id="list">
                 {isChangingPage
                   ? // Loading state during page changes
                     Array.from({ length: itemsPerPage }).map((_, index) => (
