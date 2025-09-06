@@ -8,8 +8,13 @@ import { NuqsAdapter } from 'nuqs/adapters/next/app'
 const openSans = Open_Sans({ subsets: ['latin'] })
 
 export const metadata = {
-  description: 'A blank template using Payload in a Next.js app.',
-  title: 'Payload Blank Template',
+  description:
+    'Learn about innovative youth employment and entrepreneurship initiatives from across the African continent at the ASPYEE portal.',
+  title: 'ASPYEE Portal',
+  icons: {
+    icon: '/images/favicon.ico',
+  },
+  metadataBase: new URL('https://centre.aspyee.org'),
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
