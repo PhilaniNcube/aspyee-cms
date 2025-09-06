@@ -13,6 +13,8 @@ const YouthCorner = async () => {
       <TargetGroupHero
         title="Youth Corner"
         description="Empowering young people with resources, opportunities and insights to build the skills needed for Africa's future economy and workforce transformation."
+        backgroundImage="https://4kav3digtb.ufs.sh/f/FBDFb9YX4geOKQT11qgCALFeP1D0qJGINsyX96z4n38uOmRr"
+        bgColor="bg-[#9FB23F]"
       />
       <TargetGroupTitleSection
         mainTitle="YOUTH ARE THE DRIVING FORCE OF AFRICA'S SKILLS TRANSFORMATION."

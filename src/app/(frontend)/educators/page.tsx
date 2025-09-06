@@ -13,6 +13,8 @@ const EducatorsCorner = async () => {
       <TargetGroupHero
         title="Educators & Implementers Corner"
         description="Supporting educators, trainers and implementers with practical resources, best practices and innovative approaches to skills development and TVET delivery."
+        backgroundImage="https://4kav3digtb.ufs.sh/f/FBDFb9YX4geO2PRx2rzOM7sxtk6jHilDYeuQU9LayhdfS3wX"
+        bgColor="bg-brand-orange"
       />
       <TargetGroupTitleSection
         mainTitle="QUALITY EDUCATION AND TRAINING TRANSFORMS COMMUNITIES."
