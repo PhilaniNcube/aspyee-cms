@@ -177,23 +177,22 @@ const ResourceList: React.FC<ResourceListProps> = ({
     }
 
     return resources
-  }, [initialResources, filters])
+  }, [initialResources, filters, propPaginationData])
 
   const [currentPage, setCurrentPage] = React.useState(filters.page || 1)
   const [isChangingPage, setIsChangingPage] = React.useState(false)
-  const itemsPerPage = propPaginationData?.limit || 12
-  const totalPages = Math.ceil(filteredResources.length / itemsPerPage) || 1
+  const itemsPerPage = 12 // Fixed number for client-side pagination
 
-  // Calculate pagination data based on filtered resources
+  // Calculate pagination data based on filtered resources (client-side)
   const paginationData = React.useMemo(() => {
-    const totalDocs = filteredResources.length
+    const totalPages = Math.ceil(filteredResources.length / itemsPerPage) || 1
     const hasNextPage = currentPage < totalPages
     const hasPrevPage = currentPage > 1
     const nextPage = hasNextPage ? currentPage + 1 : null
     const prevPage = hasPrevPage ? currentPage - 1 : null
 
     return {
-      totalDocs,
+      totalDocs: filteredResources.length,
       totalPages,
       hasNextPage,
       hasPrevPage,
@@ -202,10 +201,9 @@ const ResourceList: React.FC<ResourceListProps> = ({
       prevPage,
       limit: itemsPerPage,
     }
-  }, [filteredResources.length, currentPage, totalPages, itemsPerPage])
-
-  // Get current page resources
+  }, [filteredResources.length, currentPage, itemsPerPage]) // Get current page resources
   const currentPageResources = React.useMemo(() => {
+    // Client-side pagination: slice the filtered resources
     const startIndex = (currentPage - 1) * itemsPerPage
     const endIndex = startIndex + itemsPerPage
     return filteredResources.slice(startIndex, endIndex)
@@ -213,21 +211,20 @@ const ResourceList: React.FC<ResourceListProps> = ({
 
   // Reset to page 1 when filters change
   React.useEffect(() => {
-    if (currentPage > totalPages && totalPages > 0) {
+    if (currentPage > paginationData.totalPages && paginationData.totalPages > 0) {
       setCurrentPage(1)
       setFilters((current) => ({ ...current, page: 1 }))
     }
-  }, [totalPages, currentPage, setFilters])
+  }, [paginationData.totalPages, currentPage, setFilters])
 
   // Handler for page changes
   const handlePageChange = React.useCallback(
     (page: number) => {
       setIsChangingPage(true)
-      setFilters((current) => ({
-        ...current,
-        page,
-      }))
       setCurrentPage(page)
+
+      // Update URL state with the new page
+      setFilters((current) => ({ ...current, page }))
 
       // Scroll to top of resources section
       window.scrollTo({ top: 0, behavior: 'smooth' })

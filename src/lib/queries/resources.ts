@@ -194,46 +194,57 @@ export async function getRelatedResources(
 /**
  * Fetches resources that have "Policymakers" in their target_groups with pagination
  */
+/**
+ * Fetches resources that have "Policymakers" in their target_groups with pagination and filtering
+ */
 export async function getResourcesForPolicymakersWithPagination(
-  pagination: PaginationParams = {},
+  params: { filters?: ResourceFilters } & PaginationParams = {},
 ): Promise<PaginatedResult<Resource>> {
-  return getResourcesPaginated({ targetGroup: 'Policymakers' }, pagination)
+  const { filters = {}, ...pagination } = params
+  return getResourcesPaginated({ ...filters, targetGroup: 'Policymakers' }, pagination)
 }
 
 /**
- * Fetches resources that have "Researchers" in their target_groups with pagination
+ * Fetches resources that have "Researchers" in their target_groups with pagination and filtering
  */
 export async function getResourcesForResearchersWithPagination(
-  pagination: PaginationParams = {},
+  params: { filters?: ResourceFilters } & PaginationParams = {},
 ): Promise<PaginatedResult<Resource>> {
-  return getResourcesPaginated({ targetGroup: 'Researchers' }, pagination)
+  const { filters = {}, ...pagination } = params
+  return getResourcesPaginated({ ...filters, targetGroup: 'Researchers' }, pagination)
 }
 
 /**
- * Fetches resources that have "Youth" in their target_groups with pagination
+ * Fetches resources that have "Youth" in their target_groups with pagination and filtering
  */
 export async function getResourcesForYouthWithPagination(
-  pagination: PaginationParams = {},
+  params: { filters?: ResourceFilters } & PaginationParams = {},
 ): Promise<PaginatedResult<Resource>> {
-  return getResourcesPaginated({ targetGroup: 'Youth' }, pagination)
+  const { filters = {}, ...pagination } = params
+  return getResourcesPaginated({ ...filters, targetGroup: 'Youth' }, pagination)
 }
 
 /**
- * Fetches resources that have "Educators & Implementers" in their target_groups with pagination
+ * Fetches resources that have "Educators & Implementers" in their target_groups with pagination and filtering
  */
 export async function getResourcesForEducatorsWithPagination(
-  pagination: PaginationParams = {},
+  params: { filters?: ResourceFilters } & PaginationParams = {},
 ): Promise<PaginatedResult<Resource>> {
-  return getResourcesPaginated({ targetGroup: 'Educators & Implementers' }, pagination)
+  const { filters = {}, ...pagination } = params
+  return getResourcesPaginated({ ...filters, targetGroup: 'Educators & Implementers' }, pagination)
 }
 
 /**
- * Fetches resources that have "Private Sector / Employers" in their target_groups with pagination
+ * Fetches resources that have "Private Sector / Employers" in their target_groups with pagination and filtering
  */
 export async function getResourcesForPrivateSectorWithPagination(
-  pagination: PaginationParams = {},
+  params: { filters?: ResourceFilters } & PaginationParams = {},
 ): Promise<PaginatedResult<Resource>> {
-  return getResourcesPaginated({ targetGroup: 'Private Sector / Employers' }, pagination)
+  const { filters = {}, ...pagination } = params
+  return getResourcesPaginated(
+    { ...filters, targetGroup: 'Private Sector / Employers' },
+    pagination,
+  )
 }
 
 /**
