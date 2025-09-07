@@ -197,7 +197,7 @@ export default function HeaderClient({ auth }: { auth: React.ReactNode }) {
 
       {/* Desktop Header */}
       <div className="container mx-auto max-w-[1520px] px-6 md:px-10 lg:px-16 flex justify-between items-center">
-        <Link href="https://dev01.afstaging.co.za/">
+        <Link href={`${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/`}>
           <Image
             src={scrolled ? '/images/logo.png' : '/images/logo-white.png'}
             className="w-[190px] md:w-[250px] lg:w-[300px] object-cover"
