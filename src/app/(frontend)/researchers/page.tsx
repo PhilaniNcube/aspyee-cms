@@ -59,7 +59,7 @@ const ResearchersCorner = async ({ searchParams }: ResearchersPageProps) => {
   return (
     <div className="">
       <TargetGroupHero
-        title="Researchers"
+        title="Researchers Corner"
         description="A collection of academic papers, research reports, case studies and analytical frameworks designed to support researchers in advancing skills development knowledge."
         backgroundImage="https://4kav3digtb.ufs.sh/f/FBDFb9YX4geOAE8qVmcQsnyRDjEh4OY83wBUgpK1LGdkzVxm"
         bgColor="bg-[#00000073]"
@@ -71,7 +71,7 @@ const ResearchersCorner = async ({ searchParams }: ResearchersPageProps) => {
       <ResourceList
         initialResources={resources.docs}
         title="Resources for Researchers"
-        targetGroup="Researchers"
+        targetGroup="Researchers "
       />
       <NewsEvents />
       {/* <Testimonials /> */}

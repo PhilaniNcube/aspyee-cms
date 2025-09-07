@@ -59,7 +59,7 @@ const PolicymakersPage = async ({ searchParams }: PolicymakersPageProps) => {
   return (
     <div className="">
       <TargetGroupHero
-        title="Policy Makers"
+        title="Policymakers Corner"
         description="A collection of reports, case studies, frameworks and articles designed to support policymakers in shaping skills and employment."
         backgroundImage="https://4kav3digtb.ufs.sh/f/FBDFb9YX4geOKXc2i2gCALFeP1D0qJGINsyX96z4n38uOmRr"
         bgColor="bg-brand"

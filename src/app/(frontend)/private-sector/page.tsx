@@ -59,7 +59,7 @@ const PrivateSectorCorner = async ({ searchParams }: PrivateSectorPageProps) => 
   return (
     <div className="">
       <TargetGroupHero
-        title="Private Sector / Employers Corner"
+        title="Private Sector/Employers Corner"
         description="Enabling private sector engagement in skills development through partnerships, investment opportunities and workforce development strategies."
         backgroundImage="https://4kav3digtb.ufs.sh/f/FBDFb9YX4geODxN6VBxbIGrKLd3XnBj2iNtZ71gzJvHo6uc4"
         bgColor="bg-[#CBA95F]"
