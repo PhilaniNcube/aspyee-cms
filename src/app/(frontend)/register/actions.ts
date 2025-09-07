@@ -100,12 +100,20 @@ export async function registerProfile(
     // Normalize input to a plain object
     const raw: any = form instanceof FormData ? Object.fromEntries(form.entries()) : form
 
-    // Handle social_links if it's a JSON string
+    // Handle arrays that might be stringified
     if (typeof raw.social_links === 'string') {
       try {
         raw.social_links = JSON.parse(raw.social_links)
       } catch {
         raw.social_links = []
+      }
+    }
+
+    if (typeof raw.areas_of_interest === 'string') {
+      try {
+        raw.areas_of_interest = JSON.parse(raw.areas_of_interest)
+      } catch {
+        raw.areas_of_interest = []
       }
     }
 
@@ -119,8 +127,21 @@ export async function registerProfile(
       return { success: false, message: 'Invalid input', fieldErrors }
     }
 
-    const { email, password, firstName, lastName, bio, phoneNumber, social_links, country } =
-      parsed.data
+    const {
+      email,
+      password,
+      firstName,
+      lastName,
+      bio,
+      phoneNumber,
+      social_links,
+      country,
+      language,
+      gender,
+      organisation,
+      organisation_type,
+      areas_of_interest,
+    } = parsed.data
 
     const payload = await getPayload({ config })
 
@@ -149,6 +170,11 @@ export async function registerProfile(
         phoneNumber,
         social_links,
         country: country as any, // Cast to avoid type issues with strict country codes
+        language,
+        gender,
+        organisation,
+        organisation_type,
+        areas_of_interest,
         roles: ['user'],
       },
       overrideAccess: true,

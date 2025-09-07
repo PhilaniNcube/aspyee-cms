@@ -12,7 +12,27 @@ export async function registerProfile(prevState: unknown, formData: FormData) {
   const headers = await getHeaders()
   const payload = await getPayload({ config })
 
-  const validatedFields = CreateProfileSchema.safeParse(formData)
+  // Convert FormData to plain object
+  const raw: any = Object.fromEntries(formData.entries())
+
+  // Handle arrays that might be stringified
+  if (typeof raw.social_links === 'string') {
+    try {
+      raw.social_links = JSON.parse(raw.social_links)
+    } catch {
+      raw.social_links = []
+    }
+  }
+
+  if (typeof raw.areas_of_interest === 'string') {
+    try {
+      raw.areas_of_interest = JSON.parse(raw.areas_of_interest)
+    } catch {
+      raw.areas_of_interest = []
+    }
+  }
+
+  const validatedFields = CreateProfileSchema.safeParse(raw)
 
   if (!validatedFields.success) {
     console.error('[registerUser] Validation failed', validatedFields.error)
@@ -23,7 +43,21 @@ export async function registerProfile(prevState: unknown, formData: FormData) {
     }
   }
 
-  const { email, password, firstName, lastName, bio, phoneNumber, country } = validatedFields.data
+  const {
+    email,
+    password,
+    firstName,
+    lastName,
+    bio,
+    phoneNumber,
+    country,
+    language,
+    gender,
+    organisation,
+    organisation_type,
+    areas_of_interest,
+    social_links,
+  } = validatedFields.data
 
   const existing = await payload.find({
     collection: 'users',
@@ -55,6 +89,13 @@ export async function registerProfile(prevState: unknown, formData: FormData) {
         bio,
         phoneNumber,
         country: selectedCountry,
+        language,
+        gender,
+        organisation,
+        organisation_type,
+        areas_of_interest,
+        social_links,
+        roles: ['user'],
       },
       overrideAccess: true, // Allow public registration despite collection create access restrictions
       depth: 0,

@@ -17,19 +17,50 @@ export const SocialLinkSchema = z.object({
 })
 
 export const CreateProfileSchema = z.object({
-  email: z.email(),
+  email: z.string().email('Invalid email'),
   password: z
     .string()
     .min(8, 'Password must be at least 8 characters long')
     .max(100, 'Password too long'),
-  firstName: z.string().trim().max(120, 'First name too long'),
-  lastName: z.string().trim().max(120, 'Last name too long'),
-  bio: z.string().trim().max(1000, 'Bio too long'),
+  firstName: z.string().trim().max(120, 'First name too long').optional(),
+  lastName: z.string().trim().max(120, 'Last name too long').optional(),
+  bio: z.string().trim().max(1000, 'Bio too long').optional(),
   phoneNumber: z
     .string()
     .trim()
     .regex(/^[+()\d\-\s]*$/, 'Invalid phone number')
-    .max(40, 'Phone number too long'),
+    .max(40, 'Phone number too long')
+    .optional(),
+  country: z.string().length(2, 'Invalid country code').optional(),
+  language: z.enum(['en', 'fr'], { message: 'Invalid language' }).optional(),
+  gender: z.enum(['male', 'female', 'other'], { message: 'Invalid gender' }).optional(),
+  organisation: z.string().trim().max(200, 'Organisation name too long').optional(),
+  organisation_type: z
+    .enum(
+      ['academic', 'cso', 'cbo', 'government', 'ngo', 'npo', 'private', 'tvet', 'youth', 'other'],
+      { message: 'Invalid organisation type' },
+    )
+    .optional(),
+  areas_of_interest: z
+    .array(
+      z.enum([
+        'Industrial, technical and vocational training',
+        'Gender and Transformation',
+        'Entrepreneurship and informal sector formalisation',
+        'Human Capital Development',
+        'Agribusiness and agricultural skills',
+        'Labour migration & mobility',
+        'Digital skills & future of work',
+        'Education systems & policy',
+        'Financing & investment in skills',
+        'Informal sector & livelihoods',
+        'Green skills / sustainability',
+        'Innovation & partnerships',
+        'Governance',
+      ]),
+    )
+    .max(13, 'Too many areas of interest')
+    .optional(),
   social_links: z
     .array(
       SocialLinkSchema.refine(
@@ -41,7 +72,6 @@ export const CreateProfileSchema = z.object({
     )
     .max(10, 'Too many social links')
     .optional(),
-  country: z.string().length(2, 'Invalid country code').optional(),
 })
 
 export const UpdateProfileSchema = z.object({
@@ -54,6 +84,36 @@ export const UpdateProfileSchema = z.object({
     .trim()
     .regex(/^[+()\d\-\s]*$/, 'Invalid phone number')
     .max(40, 'Phone number too long')
+    .optional(),
+  country: z.string().length(2, 'Invalid country code').optional(),
+  language: z.enum(['en', 'fr'], { message: 'Invalid language' }).optional(),
+  gender: z.enum(['male', 'female', 'other'], { message: 'Invalid gender' }).optional(),
+  organisation: z.string().trim().max(200, 'Organisation name too long').optional(),
+  organisation_type: z
+    .enum(
+      ['academic', 'cso', 'cbo', 'government', 'ngo', 'npo', 'private', 'tvet', 'youth', 'other'],
+      { message: 'Invalid organisation type' },
+    )
+    .optional(),
+  areas_of_interest: z
+    .array(
+      z.enum([
+        'Industrial, technical and vocational training',
+        'Gender and Transformation',
+        'Entrepreneurship and informal sector formalisation',
+        'Human Capital Development',
+        'Agribusiness and agricultural skills',
+        'Labour migration & mobility',
+        'Digital skills & future of work',
+        'Education systems & policy',
+        'Financing & investment in skills',
+        'Informal sector & livelihoods',
+        'Green skills / sustainability',
+        'Innovation & partnerships',
+        'Governance',
+      ]),
+    )
+    .max(13, 'Too many areas of interest')
     .optional(),
   social_links: z
     .array(

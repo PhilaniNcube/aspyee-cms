@@ -386,6 +386,29 @@ export interface User {
         | 'XK'
       )
     | null;
+  language?: ('en' | 'fr') | null;
+  gender?: ('male' | 'female' | 'other') | null;
+  organisation?: string | null;
+  organisation_type?:
+    | ('academic' | 'cso' | 'cbo' | 'government' | 'ngo' | 'npo' | 'private' | 'tvet' | 'youth' | 'other')
+    | null;
+  areas_of_interest?:
+    | (
+        | 'Industrial, technical and vocational training'
+        | 'Gender and Transformation'
+        | 'Entrepreneurship and informal sector formalisation'
+        | 'Human Capital Development'
+        | 'Agribusiness and agricultural skills'
+        | 'Labour migration & mobility'
+        | 'Digital skills & future of work'
+        | 'Education systems & policy'
+        | 'Financing & investment in skills'
+        | 'Informal sector & livelihoods'
+        | 'Green skills / sustainability'
+        | 'Innovation & partnerships'
+        | 'Governance'
+      )[]
+    | null;
   social_links?:
     | {
         platform?: string | null;
@@ -738,6 +761,11 @@ export interface UsersSelect<T extends boolean = true> {
   bio?: T;
   phoneNumber?: T;
   country?: T;
+  language?: T;
+  gender?: T;
+  organisation?: T;
+  organisation_type?: T;
+  areas_of_interest?: T;
   social_links?:
     | T
     | {

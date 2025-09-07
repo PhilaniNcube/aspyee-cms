@@ -25,6 +25,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { Checkbox } from '@/components/ui/checkbox'
 import { PlusIcon, XIcon, EyeIcon, EyeOffIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { COUNTRIES } from '@/migrations/20250831_countries_seed'
@@ -70,6 +71,11 @@ export function CreateProfile({ onSuccess }: CreateProfileProps) {
       phoneNumber: '',
       social_links: [],
       country: undefined,
+      language: undefined,
+      gender: undefined,
+      organisation: '',
+      organisation_type: undefined,
+      areas_of_interest: [],
     },
   })
 
@@ -125,6 +131,12 @@ export function CreateProfile({ onSuccess }: CreateProfileProps) {
           const socialLinksData = form.getValues('social_links')
           if (socialLinksData && socialLinksData.length > 0) {
             formData.set('social_links', JSON.stringify(socialLinksData))
+          }
+
+          // Add areas_of_interest as JSON string
+          const areasOfInterestData = form.getValues('areas_of_interest')
+          if (areasOfInterestData && areasOfInterestData.length > 0) {
+            formData.set('areas_of_interest', JSON.stringify(areasOfInterestData))
           }
 
           startTransition(() => {
@@ -310,6 +322,174 @@ export function CreateProfile({ onSuccess }: CreateProfileProps) {
                     ))}
                   </SelectContent>
                 </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* Language */}
+          <FormField
+            control={form.control}
+            name="language"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="uppercase text-xs font-semibold tracking-wide text-foreground/80">
+                  Language
+                </FormLabel>
+                <Select onValueChange={field.onChange} value={field.value}>
+                  <FormControl>
+                    <SelectTrigger className="h-11 w-full">
+                      <SelectValue placeholder="Select your language" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="en">English</SelectItem>
+                    <SelectItem value="fr">French</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* Gender */}
+          <FormField
+            control={form.control}
+            name="gender"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="uppercase text-xs font-semibold tracking-wide text-foreground/80">
+                  Gender
+                </FormLabel>
+                <Select onValueChange={field.onChange} value={field.value}>
+                  <FormControl>
+                    <SelectTrigger className="h-11 w-full">
+                      <SelectValue placeholder="Select your gender" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="male">Male</SelectItem>
+                    <SelectItem value="female">Female</SelectItem>
+                    <SelectItem value="other">Other</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* Organisation */}
+          <FormField
+            control={form.control}
+            name="organisation"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="uppercase text-xs font-semibold tracking-wide text-foreground/80">
+                  Organisation
+                </FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    placeholder="Your organisation name"
+                    className="h-11 text-base px-4"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* Organisation Type */}
+          <FormField
+            control={form.control}
+            name="organisation_type"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="uppercase text-xs font-semibold tracking-wide text-foreground/80">
+                  Organisation Type
+                </FormLabel>
+                <Select onValueChange={field.onChange} value={field.value}>
+                  <FormControl>
+                    <SelectTrigger className="h-11 w-full">
+                      <SelectValue placeholder="Select organisation type" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="academic">Academic/Research Institution</SelectItem>
+                    <SelectItem value="cso">Civil Society Organisation</SelectItem>
+                    <SelectItem value="cbo">Community-Based Organisation</SelectItem>
+                    <SelectItem value="government">Government/Public Sector</SelectItem>
+                    <SelectItem value="ngo">Non-Governmental Organisation</SelectItem>
+                    <SelectItem value="npo">Non-Profit Organisation</SelectItem>
+                    <SelectItem value="private">Private Sector</SelectItem>
+                    <SelectItem value="tvet">TVET Institution</SelectItem>
+                    <SelectItem value="youth">Youth/Student Organisation</SelectItem>
+                    <SelectItem value="other">Other</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+
+        {/* Areas of Interest */}
+        <div className="space-y-4">
+          <FormLabel className="uppercase text-xs font-semibold tracking-wide text-foreground/80">
+            Areas of Interest
+          </FormLabel>
+          <FormField
+            control={form.control}
+            name="areas_of_interest"
+            render={() => (
+              <FormItem>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {(
+                    [
+                      'Industrial, technical and vocational training',
+                      'Gender and Transformation',
+                      'Entrepreneurship and informal sector formalisation',
+                      'Human Capital Development',
+                      'Agribusiness and agricultural skills',
+                      'Labour migration & mobility',
+                      'Digital skills & future of work',
+                      'Education systems & policy',
+                      'Financing & investment in skills',
+                      'Informal sector & livelihoods',
+                      'Green skills / sustainability',
+                      'Innovation & partnerships',
+                      'Governance',
+                    ] as const
+                  ).map((item) => (
+                    <FormField
+                      key={item}
+                      control={form.control}
+                      name="areas_of_interest"
+                      render={({ field }) => {
+                        return (
+                          <FormItem
+                            key={item}
+                            className="flex flex-row items-start space-x-3 space-y-0"
+                          >
+                            <FormControl>
+                              <Checkbox
+                                checked={field.value?.includes(item)}
+                                onCheckedChange={(checked) => {
+                                  return checked
+                                    ? field.onChange([...(field.value || []), item])
+                                    : field.onChange(field.value?.filter((value) => value !== item))
+                                }}
+                              />
+                            </FormControl>
+                            <FormLabel className="text-sm font-normal cursor-pointer">
+                              {item}
+                            </FormLabel>
+                          </FormItem>
+                        )
+                      }}
+                    />
+                  ))}
+                </div>
                 <FormMessage />
               </FormItem>
             )}
