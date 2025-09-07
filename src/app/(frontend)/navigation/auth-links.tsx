@@ -9,7 +9,7 @@ export default async function AuthLinks() {
 
   if (!result.authenticated) {
     return (
-      <>
+      <div className="flex items-center">
         <Link href="/sign-in" className="hover:text-teal-600 text-[14px] auth-link">
           Sign In
         </Link>
@@ -17,7 +17,7 @@ export default async function AuthLinks() {
         <Link href="/register" className="hover:text-teal-600 text-[14px] auth-link">
           Register
         </Link>
-      </>
+      </div>
     )
   }
 
