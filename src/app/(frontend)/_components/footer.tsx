@@ -229,8 +229,8 @@ const Footer = () => {
               </p>
               <p className="mt-1" style={{ margin: 0 }}>
                 © {currentYear} Designed and built with ❤️ by{' '}
-                <Link href="#" className="hover:text-blue-600">
-                  Designer Africa
+                <Link href="http://www.conceptafrika.com" className="hover:text-blue-600">
+                  Concept Africa
                 </Link>
               </p>
             </div>
