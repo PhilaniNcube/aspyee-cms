@@ -183,7 +183,6 @@ export default function HeaderClient({ auth }: { auth: React.ReactNode }) {
             AFRICA CRITICAL SKILLS BANK
           </Button>
         </Link>
-        {/* <div className="flex items-center gap-1 pl-8">{auth}</div> */}
       </div>
 
       {/* Desktop Header */}
@@ -230,22 +229,51 @@ export default function HeaderClient({ auth }: { auth: React.ReactNode }) {
                           </span>
                         </Link>
                       </NavigationMenuTrigger>
-                      <NavigationMenuContent className="p-0 border-0 outline-0 border-none">
-                        <div className="p-4 w-80 rounded-md border-0 border-none outline-none bg-brand-orange-60">
-                          <ul className="space-y-1">
-                            {route.subRoutes?.map((subRoute, subIndex) => (
-                              <li key={subIndex}>
-                                <Link href={subRoute.href} passHref>
+                      <NavigationMenuContent
+                        className={cn(
+                          'p-0 border-0 outline-0 border-none',
+                          route.label === 'Programmes' ? 'left-[-300%]' : '',
+                        )}
+                      >
+                        <div
+                          className={cn(
+                            'p-4 rounded-md border-0 border-none outline-none bg-brand-orange',
+                            route.label === 'Programmes' ? 'w-[650px]' : 'w-[300px]',
+                          )}
+                        >
+                          {route.label === 'Programmes' ? (
+                            <div className="grid grid-cols-3 gap-2 w-full">
+                              {route.subRoutes?.map((subRoute, subIndex) => (
+                                <Link key={subIndex} href={subRoute.href} passHref>
                                   <NavigationMenuLink
                                     asChild
-                                    className="block px-3 py-1 text-sm text-white hover:bg-white/10 rounded-md transition-colors"
+                                    className="block px-0 py-1 rounded-none text-xs text-white hover:bg-brand-orange-60 transition-colors"
                                   >
-                                    <span className="text-white">{subRoute.label}</span>
+                                    <span className="text-white font-medium uppercase hover:text-white border-b-2 border-brand-orange hover:border-amber-300">
+                                      {subRoute.label}
+                                    </span>
                                   </NavigationMenuLink>
                                 </Link>
-                              </li>
-                            ))}
-                          </ul>
+                              ))}
+                            </div>
+                          ) : (
+                            <ul className="space-y-1">
+                              {route.subRoutes?.map((subRoute, subIndex) => (
+                                <li key={subIndex}>
+                                  <Link href={subRoute.href} passHref>
+                                    <NavigationMenuLink
+                                      asChild
+                                      className="block px-0 py-1 text-sm rounded-none text-white hover:bg-brand-orange-60 transition-colors"
+                                    >
+                                      <span className="text-white font-medium hover:text-white border-b-2 border-brand-orange hover:border-amber-300">
+                                        {subRoute.label}
+                                      </span>
+                                    </NavigationMenuLink>
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
                         </div>
                       </NavigationMenuContent>
                     </>
