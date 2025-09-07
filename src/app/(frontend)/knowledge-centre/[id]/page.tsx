@@ -1,6 +1,7 @@
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { ResourceFilesSection } from '@/components/ui/resource-files-section'
+import { AdditionalFilesSection } from '@/components/ui/additional-files-section'
 import { getResourceById } from '@/lib/queries'
 import { getRelatedResources } from '@/lib/queries/resources'
 import { cn } from '@/lib/utils'
@@ -33,6 +34,8 @@ const ResourcePage = async ({ params }: PageProps) => {
 
   // Fetch resource data using the id
   const resource = await getResourceById(id)
+
+  console.log('Resource data:', resource)
 
   if (!resource) {
     return <div>Resource not found</div>
@@ -160,6 +163,22 @@ const ResourcePage = async ({ params }: PageProps) => {
               defaultView="grid"
               resourceId={resource.id}
             />
+
+            {/* Additional Files Section */}
+            {resource.additional_files && resource.additional_files.length > 0 && (
+              <div className="mt-8">
+                <AdditionalFilesSection
+                  additionalFiles={resource.additional_files}
+                  title="Additional Files"
+                  showStats={true}
+                  showFilter={true}
+                  defaultView="grid"
+                  resourceId={resource.id}
+                  collapsible={true}
+                  defaultOpen={false}
+                />
+              </div>
+            )}
           </div>
           <div className="flex-1 p-4 w-1/4 max-w-[350px]">
             <h2 className="text-lg font-semibold mb-4">Related Resources</h2>

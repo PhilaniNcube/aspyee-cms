@@ -3,7 +3,7 @@ import React, { useActionState, useTransition } from 'react'
 import { Button } from './button'
 import { Loader2, Download } from 'lucide-react'
 import { recordDownload } from '@/lib/actions/downloads'
-import { start } from 'repl'
+import { toast } from 'sonner'
 
 // We use a <form action={serverFn}> pattern so the server action can run even without JS.
 // Props: resourceId (required), href (destination URL), optional fileId for granular download tracking.
@@ -33,9 +33,27 @@ export function DownloadResourceButton({
     data.append('fileId', fileId || '')
     data.append('href', href)
 
+    // Show toast notification
+    const toastId = toast.loading('Please wait while the download is initiated...', {
+      duration: 5000,
+    })
+
+    // Start the actual download
+
+    // Record the download
     startTransition(() => {
+      const link = document.createElement('a')
+      link.href = href
+      link.download = '' // Let the browser determine the filename from the URL
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
       console.log('Recorded download:', data)
       formAction(data)
+
+      // Dismiss the loading toast and show success
+      toast.dismiss(toastId)
+      toast.success('Download started successfully!')
     })
   }
 

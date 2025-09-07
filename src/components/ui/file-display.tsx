@@ -1,11 +1,12 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useTransition } from 'react'
 import { Download, Eye, ExternalLink, Calendar, FileCheck } from 'lucide-react'
 import { FileIcon, getFileTypeLabel, getFileSizeFormatted } from '@/components/ui/file-icon'
 import { cn } from '@/lib/utils'
 import { Media } from '@/payload-types'
 import DownloadResourceButton from '@/components/ui/download-resource-button'
+import { recordDownload } from '@/lib/actions/downloads'
 
 interface FileDisplayProps {
   file: {
@@ -27,6 +28,7 @@ export const FileDisplay: React.FC<FileDisplayProps> = ({
   resourceId,
 }) => {
   const [imageError, setImageError] = useState(false)
+  const [isPending, startTransition] = useTransition()
 
   // Extract media object
   const media = typeof file.file === 'object' ? file.file : null
@@ -52,12 +54,27 @@ export const FileDisplay: React.FC<FileDisplayProps> = ({
 
   const handleDownload = () => {
     if (url) {
+      // Start the download
       const link = document.createElement('a')
       link.href = url
       link.download = filename || 'download'
       document.body.appendChild(link)
       link.click()
       document.body.removeChild(link)
+
+      // Record the download in a transition if we have resourceId
+      if (resourceId) {
+        startTransition(async () => {
+          try {
+            const formData = new FormData()
+            formData.append('resourceId', resourceId.toString())
+            formData.append('fileId', typeof media.id !== 'undefined' ? String(media.id) : '')
+            await recordDownload(null, formData)
+          } catch (error) {
+            console.error('Failed to record download:', error)
+          }
+        })
+      }
     }
   }
 

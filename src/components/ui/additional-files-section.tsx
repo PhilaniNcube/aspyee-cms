@@ -3,13 +3,14 @@ import React, { useState } from 'react'
 import { FileList } from '@/components/ui/file-display'
 import { FileStats } from '@/components/ui/file-stats'
 import { FileFilter } from '@/components/ui/file-filter'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { LayoutGrid, List, BarChart3, Settings } from 'lucide-react'
+import { LayoutGrid, List, BarChart3, Plus, FileText } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Media } from '@/payload-types'
+import { Button } from '@/components/ui/button'
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 
-interface ResourceFilesSectionProps {
-  files: Array<{
+interface AdditionalFilesSectionProps {
+  additionalFiles: Array<{
     file: number | Media
     description?: string | null
     id?: string | null
@@ -20,43 +21,43 @@ interface ResourceFilesSectionProps {
   showFilter?: boolean
   title?: string
   resourceId?: number | string
+  collapsible?: boolean
+  defaultOpen?: boolean
 }
 
-export const ResourceFilesSection: React.FC<ResourceFilesSectionProps> = ({
-  files,
+export const AdditionalFilesSection: React.FC<AdditionalFilesSectionProps> = ({
+  additionalFiles,
   className,
   defaultView = 'grid',
   showStats = true,
   showFilter = true,
-  title = 'Resource Files',
+  title = 'Additional Files',
   resourceId,
+  collapsible = true,
+  defaultOpen = false,
 }) => {
-  const [filteredFiles, setFilteredFiles] = useState(files)
+  const [filteredFiles, setFilteredFiles] = useState(additionalFiles)
   const [currentView, setCurrentView] = useState<'grid' | 'list' | 'stats'>(defaultView)
+  const [isOpen, setIsOpen] = useState(defaultOpen)
 
-  console.log('ResourceFilesSection files:', files)
-
-  const handleFilterChange = (newFilteredFiles: typeof files) => {
+  const handleFilterChange = (newFilteredFiles: typeof additionalFiles) => {
     setFilteredFiles(newFilteredFiles)
   }
 
-  if (!files || files.length === 0) {
-    return (
-      <div className={cn('bg-white border border-gray-200 rounded-lg p-8 text-center', className)}>
-        <div className="text-gray-400 mb-2">
-          <LayoutGrid className="w-12 h-12 mx-auto mb-4 opacity-50" />
-        </div>
-        <h3 className="text-lg font-medium text-gray-900 mb-2">No Files Available</h3>
-        <p className="text-gray-500">This resource doesn't have any files attached yet.</p>
-      </div>
-    )
+  if (!additionalFiles || additionalFiles.length === 0) {
+    return null // Don't render anything if no additional files
   }
 
-  return (
+  const content = (
     <div className={cn('space-y-6', className)}>
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-semibold text-gray-900">{title}</h2>
+        <div className="flex items-center space-x-3">
+          <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
+          <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded-full">
+            {additionalFiles.length} {additionalFiles.length === 1 ? 'file' : 'files'}
+          </span>
+        </div>
 
         {/* View switcher */}
         <div className="flex items-center space-x-2">
@@ -104,8 +105,8 @@ export const ResourceFilesSection: React.FC<ResourceFilesSectionProps> = ({
       </div>
 
       {/* Filter section */}
-      {showFilter && files.length > 1 && (
-        <FileFilter files={files} onFilterChange={handleFilterChange} />
+      {showFilter && additionalFiles.length > 1 && (
+        <FileFilter files={additionalFiles} onFilterChange={handleFilterChange} />
       )}
 
       {/* Content based on current view */}
@@ -116,20 +117,20 @@ export const ResourceFilesSection: React.FC<ResourceFilesSectionProps> = ({
 
           {/* Mini file list */}
           <div className="bg-white border border-gray-200 rounded-lg p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Recent Files</h3>
+            <h4 className="text-lg font-semibold text-gray-900 mb-4">Recent Additional Files</h4>
             <FileList
               files={filteredFiles.slice(0, 5)}
               variant="list"
               showPreview={false}
               className="space-y-2"
-              emptyMessage="No files match the current filters."
+              emptyMessage="No additional files match the current filters."
             />
             {filteredFiles.length > 5 && (
               <button
                 onClick={() => setCurrentView('list')}
                 className="mt-4 text-sm text-blue-600 hover:text-blue-800 underline"
               >
-                View all {filteredFiles.length} files
+                View all {filteredFiles.length} additional files
               </button>
             )}
           </div>
@@ -139,26 +140,58 @@ export const ResourceFilesSection: React.FC<ResourceFilesSectionProps> = ({
           files={filteredFiles}
           variant={currentView}
           showPreview={true}
-          emptyMessage="No files match the current filters."
+          emptyMessage="No additional files match the current filters."
           resourceId={resourceId}
         />
       )}
 
       {/* Summary info */}
-      {filteredFiles.length !== files.length && (
+      {filteredFiles.length !== additionalFiles.length && (
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
           <p className="text-sm text-blue-800">
             <span className="font-medium">Filtered results:</span> Showing {filteredFiles.length} of{' '}
-            {files.length} files.
+            {additionalFiles.length} additional files.
             <button
-              onClick={() => handleFilterChange(files)}
+              onClick={() => handleFilterChange(additionalFiles)}
               className="ml-2 underline hover:no-underline"
             >
-              Show all files
+              Show all additional files
             </button>
           </p>
         </div>
       )}
     </div>
   )
+
+  if (collapsible) {
+    return (
+      <div className={cn('border border-gray-200 rounded-lg bg-white', className)}>
+        <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+          <CollapsibleTrigger asChild>
+            <Button
+              variant="ghost"
+              className="w-full flex items-center justify-between p-4 hover:bg-gray-50"
+            >
+              <div className="flex items-center space-x-3">
+                <div className="flex items-center justify-center w-8 h-8 bg-blue-100 rounded-lg">
+                  <FileText className="w-4 h-4 text-blue-600" />
+                </div>
+                <div className="text-left">
+                  <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
+                  <p className="text-sm text-gray-500">
+                    {additionalFiles.length} additional{' '}
+                    {additionalFiles.length === 1 ? 'file' : 'files'} available
+                  </p>
+                </div>
+              </div>
+              <Plus className={cn('w-4 h-4 transition-transform', isOpen && 'rotate-45')} />
+            </Button>
+          </CollapsibleTrigger>
+          <CollapsibleContent className="p-4 pt-0">{content}</CollapsibleContent>
+        </Collapsible>
+      </div>
+    )
+  }
+
+  return content
 }
