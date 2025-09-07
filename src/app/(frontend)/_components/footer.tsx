@@ -230,7 +230,7 @@ const Footer = () => {
               <p className="mt-1" style={{ margin: 0 }}>
                 © {currentYear} Designed and built with ❤️ by{' '}
                 <Link href="http://www.conceptafrika.com" className="hover:text-blue-600">
-                  Concept Africa
+                  Concept Afrika
                 </Link>
               </p>
             </div>
