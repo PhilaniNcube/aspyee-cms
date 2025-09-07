@@ -128,7 +128,7 @@ export default function HeaderClient({ auth }: { auth: React.ReactNode }) {
   return (
     <header
       className={cn(
-        'py-3',
+        'pt-2 pb-3',
         scrolled ? 'bg-white shadow-md ' : 'bg-transparent border-b-2 border-white',
         'fixed top-0 z-50 left-0 right-0 transition-all duration-300',
       )}
@@ -136,7 +136,7 @@ export default function HeaderClient({ auth }: { auth: React.ReactNode }) {
       {/* Auth links top bar (server-rendered content passed via props) */}
       <div
         className={cn(
-          'container mx-auto max-w-[1440px] px-6 md:px-10 lg:px-16 flex space-x-3 items-center justify-end text-[14px]',
+          'container mx-auto max-w-[1520px] px-6 md:px-10 lg:px-16 flex space-x-3 items-center justify-end text-[14px]',
           scrolled ? 'text-brand' : 'text-white',
         )}
       >
@@ -165,7 +165,7 @@ export default function HeaderClient({ auth }: { auth: React.ReactNode }) {
         <Link href={`${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/faq/`}>
           <span
             className={cn(
-              'uppercase font-semibold text-[14.39px] hover:text-brand-orange',
+              'uppercase font-semibold text-[14px] hover:text-brand-orange',
               scrolled ? 'text-black' : 'text-white',
               pathname === '/faq' ? 'text-brand' : '',
             )}
@@ -176,7 +176,7 @@ export default function HeaderClient({ auth }: { auth: React.ReactNode }) {
         <Link href="#">
           <Button
             className={cn(
-              'rounded-full uppercase bg-brand py-3 px-8 text-white hover:bg-brand-orange',
+              'rounded-full uppercase bg-brand py-1 tracking-wide px-8 font-extrabold text-[14px] text-white hover:bg-brand-orange',
               scrolled ? '' : '',
             )}
           >
@@ -186,7 +186,7 @@ export default function HeaderClient({ auth }: { auth: React.ReactNode }) {
       </div>
 
       {/* Desktop Header */}
-      <div className="container mx-auto max-w-[1440px] px-6 md:px-10 lg:px-16 flex justify-between items-center">
+      <div className="container mx-auto max-w-[1520px] px-6 md:px-10 lg:px-16 flex justify-between items-center">
         <Link href="https://dev01.afstaging.co.za/">
           <Image
             src={scrolled ? '/images/logo.png' : '/images/logo-white.png'}
@@ -198,7 +198,7 @@ export default function HeaderClient({ auth }: { auth: React.ReactNode }) {
         </Link>
 
         {/* Desktop Navigation Menu */}
-        <div className="hidden lg:flex items-center pt-2">
+        <div className="hidden lg:flex items-center pt-0 text-[14px]" style={{ marginTop: '-4px' }}>
           <NavigationMenu viewport={false}>
             <NavigationMenuList className="space-x-1">
               {navigationRoutes.map((route, index) => (
@@ -242,7 +242,7 @@ export default function HeaderClient({ auth }: { auth: React.ReactNode }) {
                           )}
                         >
                           {route.label === 'Programmes' ? (
-                            <div className="grid grid-cols-3 gap-2 w-full">
+                            <div className="grid grid-cols-3 gap-4 w-full">
                               {route.subRoutes?.map((subRoute, subIndex) => (
                                 <Link key={subIndex} href={subRoute.href} passHref>
                                   <NavigationMenuLink
@@ -305,7 +305,7 @@ export default function HeaderClient({ auth }: { auth: React.ReactNode }) {
 
           <SearchIcon
             className={cn(
-              'h-6 w-6 ml-3 cursor-pointer hover:text-brand-orange transition-colors',
+              'h-4 w-4 ml-3 cursor-pointer hover:text-brand-orange transition-colors',
               scrolled ? 'text-black' : 'text-white',
             )}
             onClick={() => setSearchOpen(true)}

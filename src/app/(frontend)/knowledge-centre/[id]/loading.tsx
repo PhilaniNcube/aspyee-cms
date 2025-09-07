@@ -8,7 +8,7 @@ const ResourceLoading = () => {
       {/* Hero Section Skeleton */}
       <Skeleton className="w-full h-64 mb-8 rounded-none" />
 
-      <div className="container mx-auto max-w-[1440px] px-6 md:px-10 lg:px-16 py-12">
+      <div className="container mx-auto max-w-[1520px] px-6 md:px-10 lg:px-16 py-12">
         {/* Back Button */}
         <div className="flex items-center mb-8">
           <ChevronLeft className="inline-block mr-2 text-gray-300" />

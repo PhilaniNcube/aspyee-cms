@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 const AccountSection = ({ user }: { user: User }) => {
   return (
     <div className="py-10">
-      <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16">
+      <div className="max-w-[1520px] mx-auto px-6 md:px-10 lg:px-16">
         <h2 className="text-2xl font-semibold mb-6">My Account</h2>
         <p className="text-gray-600 max-w-3xl">
           Change your account information and find all you account settings here.

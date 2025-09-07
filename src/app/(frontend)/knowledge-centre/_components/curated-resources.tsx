@@ -5,7 +5,7 @@ import React from 'react'
 const CuratedResources = () => {
   return (
     <div className="py-28">
-      <div className="max-w-[1440px] px-6 md:px-10 lg:px-16 container mx-auto">
+      <div className="max-w-[1520px] px-6 md:px-10 lg:px-16 container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 ">
           <div>
             <h2 className="text-3xl lg:text-5xl text-brand font-semibold pl-2 mb-8 border-l-8 border-brand-orange">

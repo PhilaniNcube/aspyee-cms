@@ -39,7 +39,7 @@ export async function BookmarkedResourcesSection() {
 
   return (
     <div className="py-10 border-t">
-      <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16">
+      <div className="max-w-[1520px] mx-auto px-6 md:px-10 lg:px-16">
         <Card>
           <CardHeader>
             <CardTitle>My Bookmarked Resources</CardTitle>

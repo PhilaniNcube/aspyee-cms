@@ -17,14 +17,14 @@ const YouthLoading = () => {
 
       {/* Title Section Skeleton */}
       <div className="bg-white py-16">
-        <div className="container mx-auto max-w-[1440px] px-6 md:px-10 lg:px-16 text-center">
+        <div className="container mx-auto max-w-[1520px] px-6 md:px-10 lg:px-16 text-center">
           <Skeleton className="h-10 w-full max-w-4xl mx-auto mb-4" />
           <Skeleton className="h-6 w-full max-w-2xl mx-auto" />
         </div>
       </div>
 
       {/* Resource List Section Skeleton */}
-      <div className="container mx-auto max-w-[1440px] px-6 md:px-10 lg:px-16 py-16">
+      <div className="container mx-auto max-w-[1520px] px-6 md:px-10 lg:px-16 py-16">
         {/* Section Title */}
         <div className="mb-8">
           <Skeleton className="h-8 w-80 mb-4" />
@@ -72,7 +72,7 @@ const YouthLoading = () => {
 
       {/* News & Events Section Skeleton */}
       <div className="bg-gray-50 py-16">
-        <div className="container mx-auto max-w-[1440px] px-6 md:px-10 lg:px-16">
+        <div className="container mx-auto max-w-[1520px] px-6 md:px-10 lg:px-16">
           <Skeleton className="h-8 w-64 mb-8" />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[...Array(3)].map((_, i) => (

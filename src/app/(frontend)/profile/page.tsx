@@ -39,7 +39,7 @@ export default async function ProfilePage() {
         )}
       >
         <div className="absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(circle_at_30%_40%,white,transparent_60%)]" />
-        <div className="max-w-[1440px] mx-auto px-6  md:px-10 lg:px-16 pt-24 pb-20 flex flex-col gap-6 md:gap-8">
+        <div className="max-w-[1520px] mx-auto px-6  md:px-10 lg:px-16 pt-24 pb-20 flex flex-col gap-6 md:gap-8">
           <div className="flex items-center gap-5">
             <div className="space-y-1">
               <div className="">
@@ -57,7 +57,7 @@ export default async function ProfilePage() {
       <Suspense
         fallback={
           <div className="py-10 border-t">
-            <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16">
+            <div className="max-w-[1520px] mx-auto px-6 md:px-10 lg:px-16">
               <div className="animate-pulse space-y-4">
                 <div className="h-6 w-64 bg-muted rounded" />
                 <div className="h-4 w-96 bg-muted rounded" />

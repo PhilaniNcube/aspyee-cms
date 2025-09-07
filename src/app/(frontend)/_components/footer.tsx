@@ -19,7 +19,7 @@ const Footer = () => {
     <footer className="bg-white pt-12">
       <div className="">
         {/* Top section with logos */}
-        <div className="flex flex-wrap items-center justify-between mb-8 pb-8 px-6 md:px-10 lg:px-16 mx-auto max-w-[1440px] ">
+        <div className="flex flex-wrap items-center justify-between mb-8 pb-8 px-6 md:px-10 lg:px-16 mx-auto max-w-[1520px] ">
           <div className="flex items-center justify-between lg:space-x-16 mb-4 lg:mb-0 flex-1 w-full py-12">
             <Link href="https://skillsafrica.org/">
               <Image src="/images/sifa.png" alt="SIFA Logo" width={500} height={261} />
@@ -33,7 +33,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="bg-[#f2f2f2] w-full text-[14px]">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 py-8 px-6 md:px-10 lg:px-16 mx-auto max-w-[1440px] ">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 py-8 px-6 md:px-10 lg:px-16 mx-auto max-w-[1520px] ">
             {/* About ASPYEE */}
             <div className="">
               <h3 className="font-bold text-gray-900 mb-4">About ASPYEE</h3>
