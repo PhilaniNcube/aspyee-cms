@@ -71,9 +71,13 @@ export const ProfileUpdateForm: React.FC<ProfileUpdateFormProps> = ({ user }) =>
       const val = values[k]
       if (k === 'social_links' && Array.isArray(val)) {
         val.forEach((l, i) => {
-          if (l?.platform) fd.append(`social_links[${i}][platform]`, l.platform)
-          if (l?.url) fd.append(`social_links[${i}][url]`, l.url)
+          if (l && typeof l === 'object' && 'platform' in l && 'url' in l) {
+            if (l.platform) fd.append(`social_links[${i}][platform]`, l.platform)
+            if (l.url) fd.append(`social_links[${i}][url]`, l.url)
+          }
         })
+      } else if (k === 'areas_of_interest' && Array.isArray(val)) {
+        fd.append(k, JSON.stringify(val))
       } else if (typeof val === 'string' && val.trim() !== '') {
         fd.append(k, val)
       }

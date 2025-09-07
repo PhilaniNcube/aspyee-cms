@@ -334,7 +334,7 @@ export function CreateProfile({ onSuccess }: CreateProfileProps) {
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="uppercase text-xs font-semibold tracking-wide text-foreground/80">
-                  Language
+                  Preferred Language
                 </FormLabel>
                 <Select onValueChange={field.onChange} value={field.value}>
                   <FormControl>

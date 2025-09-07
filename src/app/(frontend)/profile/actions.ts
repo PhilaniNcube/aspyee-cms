@@ -98,13 +98,13 @@ export async function updateProfile(
 
     console.log('Updating user profile', { id: authUser.id, data: parsed.data })
 
-    const updated = (await payload.update({
+    const updated = await payload.update({
       collection: 'users',
       id: authUser.id,
-      data: parsed.data,
+      data: parsed.data as any, // Cast to avoid type issues with strict country codes
       depth: 0,
       overrideAccess: false,
-    })) as User
+    })
 
     console.log('Updated user', updated)
 
