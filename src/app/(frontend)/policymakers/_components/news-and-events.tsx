@@ -58,10 +58,12 @@ export default function NewsEvents() {
           height={933}
           className="mb-8 w-full  object-cover rounded-lg shadow-lg max-h-[60vh] object-left-center"
         />
-        <div className="absolute inset-0 flex justify-start items-end px-10 py-7 bg-from-black/0 via-black/20 to-black/60 bg-gradient-to-t rounded-lg">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white drop-shadow-lg">
-            EVENTS FOR YOU
-          </h2>
+        <div className="absolute inset-0 max-w-[1440px] px-6 md:px-10 lg:px-16 container mx-auto flex justify-start items-end py-7 rounded-lg">
+          <div className="p-6 h-full flex items-end-safe lg:p-10 rounded-lg w-full">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white drop-shadow-lg">
+              EVENTS FOR YOU
+            </h2>
+          </div>
         </div>
       </div>
     </div>
