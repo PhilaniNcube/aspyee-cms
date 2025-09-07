@@ -24,7 +24,7 @@ const navigationRoutes = [
   { label: 'Home', href: 'https://dev01.afstaging.co.za/', hasDropdown: false },
   {
     label: 'Programmes',
-    href: '/#',
+    href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/programmes/`,
     hasDropdown: true,
     subRoutes: [
       { label: 'Programmes Home', href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/#` },
