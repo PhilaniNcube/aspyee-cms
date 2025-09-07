@@ -100,7 +100,7 @@ const Footer = () => {
               <ul className="space-y-2 text-sm text-gray-700">
                 <li>
                   <Link
-                    href="https://dev01.afstaging.co.za/connect-and-collaborate/"
+                    href={`${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/connect-and-collaborate/`}
                     className="hover:text-blue-600"
                   >
                     Connect Collaborate
