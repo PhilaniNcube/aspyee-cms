@@ -103,7 +103,7 @@ const Footer = () => {
                     href="https://dev01.afstaging.co.za/connect-and-collaborate/"
                     className="hover:text-blue-600"
                   >
-                    Connecting Collaborators
+                    Connect Collaborate
                   </Link>
                 </li>
                 <li>
