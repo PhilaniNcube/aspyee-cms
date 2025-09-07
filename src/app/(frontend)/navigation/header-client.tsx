@@ -176,7 +176,7 @@ export default function HeaderClient({ auth }: { auth: React.ReactNode }) {
         <Link href="#">
           <Button
             className={cn(
-              'rounded-full uppercase bg-brand py-1 tracking-wide px-8 font-extrabold text-[14px] text-white hover:bg-brand-orange',
+              'rounded-full uppercase bg-brand border-2 border-brand hover:bg-teal-800 py-1 tracking-widest px-8 font-extrabold text-[14px] text-white',
               scrolled ? '' : '',
             )}
           >
