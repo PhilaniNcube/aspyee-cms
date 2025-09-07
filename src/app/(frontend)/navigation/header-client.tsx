@@ -259,7 +259,7 @@ export default function HeaderClient({ auth }: { auth: React.ReactNode }) {
                                     asChild
                                     className="block px-0 py-1 rounded-none text-xs text-white hover:bg-brand-orange-60 transition-colors"
                                   >
-                                    <span className="text-white font-medium uppercase hover:text-white border-b-2 border-brand-orange hover:border-amber-300">
+                                    <span className="text-white font-semibold uppercase hover:text-white border-b-2 border-brand-orange hover:border-amber-300">
                                       {subRoute.label}
                                     </span>
                                   </NavigationMenuLink>
@@ -275,7 +275,7 @@ export default function HeaderClient({ auth }: { auth: React.ReactNode }) {
                                       asChild
                                       className="block px-0 py-1 text-sm rounded-none text-white hover:bg-brand-orange-60 transition-colors"
                                     >
-                                      <span className="text-white font-medium hover:text-white border-b-2 border-brand-orange hover:border-amber-300">
+                                      <span className="text-white uppercase font-semibold hover:text-white border-b-2 border-brand-orange hover:border-amber-300">
                                         {subRoute.label}
                                       </span>
                                     </NavigationMenuLink>
