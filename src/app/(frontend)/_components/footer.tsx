@@ -20,15 +20,33 @@ const Footer = () => {
       <div className="">
         {/* Top section with logos */}
         <div className="flex flex-wrap items-center justify-between mb-8 pb-8 px-6 md:px-10 lg:px-16 mx-auto max-w-[1520px] ">
-          <div className="flex items-center justify-between lg:space-x-16 mb-4 lg:mb-0 flex-1 w-full py-12">
+          <div className="flex items-center justify-center lg:space-x-56 mb-4 lg:mb-0 w-full py-12 lg:px-12">
             <Link href="https://skillsafrica.org/">
-              <Image src="/images/sifa.png" alt="SIFA Logo" width={500} height={261} />
+              <Image
+                src="/images/sifa.png"
+                alt="SIFA Logo"
+                width={500}
+                height={261}
+                className="max-w-[280px] object-cover"
+              />
             </Link>
             <Link href="https://humana.org/">
-              <Image src="/images/humana.png" alt="HUMANA Logo" width={500} height={261} />
+              <Image
+                src="/images/humana.png"
+                alt="HUMANA Logo"
+                width={500}
+                height={261}
+                className="max-w-[280px] object-cover"
+              />
             </Link>
             <Link href="https://giz.de/">
-              <Image src="/images/giz.png" alt="GIZ Logo" width={500} height={261} />
+              <Image
+                src="/images/giz.png"
+                alt="GIZ Logo"
+                width={500}
+                height={261}
+                className="max-w-[280px] object-cover"
+              />
             </Link>
           </div>
         </div>

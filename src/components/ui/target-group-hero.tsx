@@ -44,12 +44,15 @@ const TargetGroupHero: React.FC<TargetGroupHeroProps> = ({
       <div className="hidden lg:flex min-h-[564px] relative">
         {/* Left Side - Text Content with container constraint */}
         <div className="flex-1 min-w-[1000px] flex items-center relative z-10 bg-transparent">
-          <div className="container mx-auto max-w-[1520px] pl-6 md:pl-10 lg:pl-16">
+          <div className="container h-full flex items-end lg:pb-16 mx-auto max-w-[1520px] pl-6 md:pl-10 lg:pl-16">
             <div className="pr-8">
-              <h1 className="text-5xl font-extrabold max-w-[1000px] leading-4 text-white mb-6">
+              <h1
+                className="text-5xl font-extrabold max-w-[1000px]  text-white"
+                style={{ lineHeight: 1.1, marginBottom: 0 }}
+              >
                 {title}
               </h1>
-              <p className="text-[28px] leading-8 text-white max-w-[721px]">{description}</p>
+              <p className="text-base text-white max-w-[721px]">{description}</p>
             </div>
           </div>
         </div>
