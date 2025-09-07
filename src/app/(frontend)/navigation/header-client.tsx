@@ -77,10 +77,10 @@ const navigationRoutes = [
     href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/knowledge-centre/`,
     hasDropdown: true,
     subRoutes: [
-      {
-        label: 'The Knowledge Centre Home',
-        href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/knowledge-centre/`,
-      },
+      // {
+      //   label: 'The Knowledge Centre Home',
+      //   href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/knowledge-centre/`,
+      // },
       { label: 'Policymakers Corner', href: '/policymakers' },
       { label: 'Researchers Corner', href: '/researchers' },
       { label: 'Youth Corner', href: '/youth' },
