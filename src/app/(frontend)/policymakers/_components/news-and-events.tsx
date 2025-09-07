@@ -50,7 +50,10 @@ export default function NewsEvents() {
 
   return (
     <div className=" bg-gray-50 py-12">
-      <div className="max-w-[1520px] px-6 md:px-10 lg:px-16 container mx-auto flex items-center justify-center relative">
+      <div className="max-w-[1520px] px-6 md:px-10 lg:px-16 container mx-auto ">
+        <h2 className="text-3xl md:text-4xl font-bold text-brand border-l-8 border-brand-orange pl-4 mb-8 py-0">
+          Events For You
+        </h2>
         <Image
           src="https://4kav3digtb.ufs.sh/f/FBDFb9YX4geOoDag490r6Jgl0qAyzZvwDEbQ3WopUuCPcOkY"
           alt="Logo"
@@ -58,13 +61,6 @@ export default function NewsEvents() {
           height={933}
           className="mb-8 w-full  object-cover rounded-lg shadow-lg max-h-[60vh] object-left-center"
         />
-        <div className="absolute inset-0 max-w-[1520px] px-6 md:px-10 lg:px-16 container mx-auto flex justify-start items-end py-7 rounded-lg">
-          <div className="p-6 h-full flex items-end-safe lg:p-10 rounded-lg w-full">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white drop-shadow-lg">
-              EVENTS FOR YOU
-            </h2>
-          </div>
-        </div>
       </div>
     </div>
   )
