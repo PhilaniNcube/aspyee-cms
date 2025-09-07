@@ -28,37 +28,47 @@ const navigationRoutes = [
     hasDropdown: true,
     subRoutes: [
       { label: 'Programmes Home', href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/#` },
-      { label: 'CTVET Strategy', href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/#` },
-      { label: 'Energize Africa', href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/#` },
-      { label: 'Energize Africa Fellowship', href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/#` },
-      { label: 'WorldSkills Africa', href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/#` },
+      { label: 'CTVET Strategy', href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/ctvet-strategy` },
+      { label: 'Energize Africa', href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/energize-africa/` },
+      {
+        label: 'Energize Africa Fellowship',
+        href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/energize-africa-fellowship/`,
+      },
+      {
+        label: 'WorldSkills Africa',
+        href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/worldskills-africa/`,
+      },
       {
         label: "I-STEM Education Program for 'Circular' Practice",
-        href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/#`,
+        href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/i-stem-education-program-for-circular-practice/`,
       },
       {
         label: 'Artificial Intelligence (AI) for Development',
-        href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/#`,
+        href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/artificial-intelligence-ai-for-development/`,
       },
       {
         label: 'African Continental Qualifications Framework (ACQF)',
-        href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/#`,
+        href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/african-continental-qualifications-framework-acqf/`,
       },
       {
         label: 'African Occupational Standards Development Framework (AOSF)',
-        href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/#`,
+        href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/african-occupational-standards-development-framework-aosdf/`,
       },
       {
         label: 'Skills Initiative for Africa – Finance Component (SIFA FC)',
-        href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/#`,
+        href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/skills-initiative-for-africa-finance-component-sifa-fc/`,
       },
       {
         label: 'Skills Initiative for Africa – Technical Cooperation (SIFA TC)',
-        href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/#`,
+        href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/skills-initiative-for-africa-technical-cooperation-sifa-tc/`,
       },
       {
         label: 'Africa Critical Skills Bank (ACSB)',
-        href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/#`,
+        href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/africa-critical-skills-bank/`,
+      },
+      {
+        label: 'Africa Critical Skills Bank Dashboard',
+        href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/dashboard/`,
       },
     ],
   },
