@@ -8,6 +8,7 @@ import Link from 'next/link'
 import { useQueryStates, parseAsArrayOf, parseAsString, parseAsInteger, parseAsBoolean } from 'nuqs'
 import { Button } from '@/components/ui/button'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { FILTER_MAPPINGS } from '@/lib/filter-options'
 
 // Simple types for this component
 interface PaginatedResult<T> {
@@ -50,17 +51,8 @@ interface FilterState {
 
 // Helper function to get resource type label
 const getResourceTypeLabel = (type: string) => {
-  const typeMap: Record<string, string> = {
-    academic: 'Academic / Research Paper',
-    case_study: 'Case Study / Good Practice',
-    evaluation: 'Evaluation Review',
-    framework: 'Framework/Standard',
-    multimedia: 'Multimedia',
-    policy: 'Policy/Strategy',
-    report: 'Report/Data',
-    toolkit: 'Toolkit/Guide',
-  }
-  return typeMap[type] || type
+  // Use the mapping from the collection schema
+  return FILTER_MAPPINGS.resourceType.valueToLabel[type] || type
 }
 
 // Helper function to format date

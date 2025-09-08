@@ -13,118 +13,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { cn } from '@/lib/utils'
 import { Switch } from '@/components/ui/switch'
-
-// Define the filter options based on your Resources collection
-const RESOURCE_TYPES = [
-  { label: 'Research Paper', value: 'academic' },
-  { label: 'Case Study', value: 'case_study' },
-  { label: 'Evaluation Review', value: 'evaluation' },
-  { label: 'Framework/Standard', value: 'framework' },
-  { label: 'Multimedia/Video', value: 'multimedia' },
-  { label: 'Policy Brief', value: 'policy' },
-  { label: 'Report', value: 'report' },
-  { label: 'Toolkit/Guide', value: 'toolkit' },
-]
-
-const THEMES = [
-  'Industrial, technical and vocational training',
-  'Gender and Transformation',
-  'Entrepreneurship and informal sector formalisation',
-  'Human Capital Development',
-  'Agribusiness and agricultural skills',
-  'Labour migration & mobility',
-  'Digital skills & future of work',
-  'Education systems & policy',
-  'Financing & investment in skills',
-  'Informal sector & livelihoods',
-  'Green skills / sustainability',
-  'Innovation & partnerships',
-  'Governance',
-]
-
-const TARGET_GROUPS = [
-  'Policymakers',
-  'Educators & Implementers',
-  'Youth',
-  'Private Sector / Employers',
-  'Researchers',
-  'TVET Managers / Principals',
-  'HR / Labour Market Actors',
-  'Donors & Development Partners',
-]
-
-const LANGUAGES = [
-  { label: 'English', value: 'English' },
-  { label: 'French', value: 'French' },
-  { label: 'Portuguese', value: 'Portuguese' },
-  { label: 'Arabic', value: 'Arabic' },
-  { label: 'Other (if multilingual or unspecified)', value: 'Other' },
-]
-
-const COUNTRIES = [
-  // North Africa
-  'Algeria',
-  'Egypt',
-  'Libya',
-  'Morocco',
-  'Sudan',
-  'Tunisia',
-  // West Africa
-  'Benin',
-  'Burkina Faso',
-  'Cape Verde',
-  "Côte d'Ivoire",
-  'Gambia',
-  'Ghana',
-  'Guinea',
-  'Guinea-Bissau',
-  'Liberia',
-  'Mali',
-  'Mauritania',
-  'Niger',
-  'Nigeria',
-  'Senegal',
-  'Sierra Leone',
-  'Togo',
-  // Central Africa
-  'Cameroon',
-  'Central African Republic',
-  'Chad',
-  'Democratic Republic of Congo',
-  'Equatorial Guinea',
-  'Gabon',
-  'Republic of Congo',
-  'São Tomé and Príncipe',
-  // East Africa
-  'Burundi',
-  'Comoros',
-  'Djibouti',
-  'Eritrea',
-  'Ethiopia',
-  'Kenya',
-  'Madagascar',
-  'Mauritius',
-  'Rwanda',
-  'Seychelles',
-  'Somalia',
-  'South Sudan',
-  'Tanzania',
-  'Uganda',
-  // Southern Africa
-  'Angola',
-  'Botswana',
-  'Eswatini',
-  'Lesotho',
-  'Malawi',
-  'Mozambique',
-  'Namibia',
-  'South Africa',
-  'Zambia',
-  'Zimbabwe',
-]
-
-// Year range for Year Published filter
-const YEAR_RANGE = Array.from({ length: 25 }, (_, i) => new Date().getFullYear() - i)
+import { FILTER_OPTIONS, FILTER_MAPPINGS } from '@/lib/filter-options'
 
 interface FilterItemProps {
   id: string
@@ -183,26 +72,77 @@ const ResourceFilters: React.FC<ResourceFiltersProps> = () => {
     goodPractice: parseAsBoolean,
   })
 
+  // Helper function to convert label to value for filtering
+  const getLabelToValueConverter = (filterType: string) => {
+    switch (filterType) {
+      case 'resourceType':
+        return FILTER_MAPPINGS.resourceType.labelToValue
+      case 'theme':
+        return FILTER_MAPPINGS.theme.labelToValue
+      case 'targetGroup':
+        return FILTER_MAPPINGS.targetGroup.labelToValue
+      case 'language':
+        return FILTER_MAPPINGS.language.labelToValue
+      case 'country':
+        return FILTER_MAPPINGS.country.labelToValue
+      case 'yearPublished':
+        return FILTER_MAPPINGS.yearPublished.labelToValue
+      default:
+        return {}
+    }
+  }
+
+  // Helper function to convert value to label for display
+  const getValueToLabelConverter = (filterType: string) => {
+    switch (filterType) {
+      case 'resourceType':
+        return FILTER_MAPPINGS.resourceType.valueToLabel
+      case 'theme':
+        return FILTER_MAPPINGS.theme.valueToLabel
+      case 'targetGroup':
+        return FILTER_MAPPINGS.targetGroup.valueToLabel
+      case 'language':
+        return FILTER_MAPPINGS.language.valueToLabel
+      case 'country':
+        return FILTER_MAPPINGS.country.valueToLabel
+      case 'yearPublished':
+        return FILTER_MAPPINGS.yearPublished.valueToLabel
+      default:
+        return {}
+    }
+  }
+
+  // Check if a value is selected based on the actual stored values
+  const isValueSelected = (filterType: keyof typeof filters, label: string): boolean => {
+    const currentValues = (filters[filterType] as string[]) || []
+    const labelToValue = getLabelToValueConverter(filterType as string)
+    const actualValue = labelToValue[label] || label
+    return currentValues.includes(actualValue)
+  }
+
   const handleFilterChange = (
     filterType: keyof typeof filters,
-    value: string,
+    label: string,
     checked: boolean,
   ) => {
     if (filterType === 'search') {
       setFilters({
         ...filters,
-        search: checked ? value : null,
+        search: checked ? label : null,
       })
       return
     }
 
     const currentValues = (filters[filterType] as string[]) || []
+    const labelToValue = getLabelToValueConverter(filterType as string)
+    const actualValue = labelToValue[label] || label // Fallback to label if no mapping exists
+
     let newValues: string[]
 
     if (checked) {
-      newValues = [...currentValues, value]
+      newValues = [...currentValues, actualValue]
     } else {
-      newValues = currentValues.filter((v) => v !== value)
+      newValues = currentValues.filter((v) => v !== actualValue)
     }
 
     setFilters({
@@ -297,17 +237,17 @@ const ResourceFilters: React.FC<ResourceFiltersProps> = () => {
           {/* Year Published Filter */}
           <FilterSection title="Year Published" value="year-published">
             <div className="space-y-1 max-h-48 bg-amber-300 overflow-y-auto scrollbar-hide px-0">
-              {YEAR_RANGE.map((year) => (
+              {FILTER_OPTIONS.yearRange.map((year) => (
                 <FilterItem
-                  key={year}
-                  id={`year-${year}`}
-                  label={year.toString()}
-                  checked={((filters.yearPublished as string[]) || []).includes(year.toString())}
+                  key={year.value}
+                  id={`year-${year.value}`}
+                  label={year.label}
+                  checked={isValueSelected('yearPublished', year.label)}
                   onToggle={() =>
                     handleFilterChange(
                       'yearPublished',
-                      year.toString(),
-                      !((filters.yearPublished as string[]) || []).includes(year.toString()),
+                      year.label,
+                      !isValueSelected('yearPublished', year.label),
                     )
                   }
                 />
@@ -318,17 +258,17 @@ const ResourceFilters: React.FC<ResourceFiltersProps> = () => {
           {/* Country Filter */}
           <FilterSection title="Country" value="country">
             <div className="space-y-1 max-h-48 overflow-y-auto scrollbar-hide">
-              {COUNTRIES.map((country) => (
+              {FILTER_OPTIONS.countries.map((country) => (
                 <FilterItem
-                  key={country}
-                  id={`country-${country}`}
-                  label={country}
-                  checked={((filters.country as string[]) || []).includes(country)}
+                  key={country.value}
+                  id={`country-${country.value}`}
+                  label={country.label}
+                  checked={isValueSelected('country', country.label)}
                   onToggle={() =>
                     handleFilterChange(
                       'country',
-                      country,
-                      !((filters.country as string[]) || []).includes(country),
+                      country.label,
+                      !isValueSelected('country', country.label),
                     )
                   }
                 />
@@ -339,17 +279,17 @@ const ResourceFilters: React.FC<ResourceFiltersProps> = () => {
           {/* Resource Type Filter */}
           <FilterSection title="Resource Type" value="resource-type">
             <div className="space-y-1">
-              {RESOURCE_TYPES.map((type) => (
+              {FILTER_OPTIONS.resourceTypes.map((type) => (
                 <FilterItem
                   key={type.value}
                   id={`type-${type.value}`}
                   label={type.label}
-                  checked={((filters.resourceType as string[]) || []).includes(type.value)}
+                  checked={isValueSelected('resourceType', type.label)}
                   onToggle={() =>
                     handleFilterChange(
                       'resourceType',
-                      type.value,
-                      !((filters.resourceType as string[]) || []).includes(type.value),
+                      type.label,
+                      !isValueSelected('resourceType', type.label),
                     )
                   }
                 />
@@ -360,17 +300,17 @@ const ResourceFilters: React.FC<ResourceFiltersProps> = () => {
           {/* Target Group Filter */}
           <FilterSection title="Target Group" value="target-group">
             <div className="space-y-1">
-              {TARGET_GROUPS.map((group) => (
+              {FILTER_OPTIONS.targetGroups.map((group) => (
                 <FilterItem
-                  key={group}
-                  id={`target-${group}`}
-                  label={group}
-                  checked={((filters.targetGroup as string[]) || []).includes(group)}
+                  key={group.value}
+                  id={`target-${group.value}`}
+                  label={group.label}
+                  checked={isValueSelected('targetGroup', group.label)}
                   onToggle={() =>
                     handleFilterChange(
                       'targetGroup',
-                      group,
-                      !((filters.targetGroup as string[]) || []).includes(group),
+                      group.label,
+                      !isValueSelected('targetGroup', group.label),
                     )
                   }
                 />
@@ -381,18 +321,14 @@ const ResourceFilters: React.FC<ResourceFiltersProps> = () => {
           {/* Theme Filter */}
           <FilterSection title="Theme" value="theme">
             <div className="space-y-1 max-h-48 overflow-y-auto scrollbar-hide">
-              {THEMES.map((theme) => (
+              {FILTER_OPTIONS.themes.map((theme) => (
                 <FilterItem
-                  key={theme}
-                  id={`theme-${theme}`}
-                  label={theme}
-                  checked={((filters.theme as string[]) || []).includes(theme)}
+                  key={theme.value}
+                  id={`theme-${theme.value}`}
+                  label={theme.label}
+                  checked={isValueSelected('theme', theme.label)}
                   onToggle={() =>
-                    handleFilterChange(
-                      'theme',
-                      theme,
-                      !((filters.theme as string[]) || []).includes(theme),
-                    )
+                    handleFilterChange('theme', theme.label, !isValueSelected('theme', theme.label))
                   }
                 />
               ))}
@@ -402,17 +338,17 @@ const ResourceFilters: React.FC<ResourceFiltersProps> = () => {
           {/* Language Filter */}
           <FilterSection title="Language" value="language">
             <div className="space-y-1">
-              {LANGUAGES.map((language) => (
+              {FILTER_OPTIONS.languages.map((language) => (
                 <FilterItem
                   key={language.value}
                   id={`language-${language.value}`}
                   label={language.label}
-                  checked={((filters.language as string[]) || []).includes(language.value)}
+                  checked={isValueSelected('language', language.label)}
                   onToggle={() =>
                     handleFilterChange(
                       'language',
-                      language.value,
-                      !((filters.language as string[]) || []).includes(language.value),
+                      language.label,
+                      !isValueSelected('language', language.label),
                     )
                   }
                 />

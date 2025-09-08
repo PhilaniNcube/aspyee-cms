@@ -476,7 +476,7 @@ export interface Resource {
    * Auto-incremented total number of downloads for this resource
    */
   download_count?: number | null;
-  type: 'academic' | 'case_study' | 'evaluation' | 'framework' | 'multimedia' | 'policy' | 'report' | 'toolkit';
+  type: 'case_study' | 'framework' | 'multimedia' | 'policy' | 'report' | 'academic' | 'toolkit';
   good_practice: 'yes' | 'no';
   /**
    * Select up to 3 themes
@@ -502,16 +502,7 @@ export interface Resource {
    * Select up to 3 target groups
    */
   target_groups?:
-    | (
-        | 'Policymakers'
-        | 'Educators & Implementers'
-        | 'Youth'
-        | 'Private Sector / Employers'
-        | 'Researchers'
-        | 'TVET Managers / Principals'
-        | 'HR / Labour Market Actors'
-        | 'Donors & Development Partners'
-      )[]
+    | ('Policymakers' | 'Educators & Implementers' | 'Youth' | 'Private Sector / Employers' | 'Researchers')[]
     | null;
   language: 'English' | 'French' | 'Portuguese' | 'Arabic' | 'Other';
   /**
