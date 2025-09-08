@@ -150,12 +150,12 @@ export default function HeaderClient({ auth }: { auth: React.ReactNode }) {
           scrolled ? 'text-brand' : 'text-white',
         )}
       >
-        <Link href={`${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/news-and-events/`}>
+        <Link href={`${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/news-events/`}>
           <span
             className={cn(
               'uppercase font-semibold text-[14.39px] hover:text-brand-orange',
               scrolled ? 'text-black' : 'text-white',
-              pathname === '/news-and-events' ? 'text-brand' : '',
+              pathname === '/news-events' ? 'text-brand' : '',
             )}
           >
             News & Events
