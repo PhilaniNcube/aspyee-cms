@@ -21,13 +21,13 @@ import { usePathname } from 'next/navigation'
 
 // Navigation routes configuration (kept client-side for interactivity only)
 const navigationRoutes = [
-  { label: 'Home', href: 'https://dev01.afstaging.co.za/', hasDropdown: false },
+  { label: 'Home', href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/`, hasDropdown: false },
   {
     label: 'Programmes',
     href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/programmes/`,
     hasDropdown: true,
     subRoutes: [
-      { label: 'Programmes Home', href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/#` },
+      { label: 'Programmes Home', href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/programmes/` },
       { label: 'CTVET Strategy', href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/ctvet-strategy` },
       { label: 'Energize Africa', href: `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/energize-africa/` },
       {
