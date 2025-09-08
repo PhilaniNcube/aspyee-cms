@@ -5,7 +5,7 @@ import { Resource } from '@/payload-types'
 import ResourceFilters from './resource-filters'
 import ResourceCard from './resource-card'
 import Link from 'next/link'
-import { useQueryStates, parseAsArrayOf, parseAsString, parseAsInteger } from 'nuqs'
+import { useQueryStates, parseAsArrayOf, parseAsString, parseAsInteger, parseAsBoolean } from 'nuqs'
 import { Button } from '@/components/ui/button'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
@@ -44,6 +44,7 @@ interface FilterState {
   targetGroup?: string[] | null
   theme?: string[] | null
   language?: string[] | null
+  goodPractice?: boolean | null
   page?: number | null
 }
 
@@ -107,6 +108,7 @@ const ResourceList: React.FC<ResourceListProps> = ({
     targetGroup: parseAsArrayOf(parseAsString),
     theme: parseAsArrayOf(parseAsString),
     language: parseAsArrayOf(parseAsString),
+    goodPractice: parseAsBoolean,
     page: parseAsInteger.withDefault(1),
   })
 
@@ -174,6 +176,11 @@ const ResourceList: React.FC<ResourceListProps> = ({
       resources = resources.filter(
         (resource) => resource.language && filters.language!.includes(resource.language),
       )
+    }
+
+    // Good practice filter
+    if (filters.goodPractice === true) {
+      resources = resources.filter((resource) => resource.good_practice === 'yes')
     }
 
     return resources

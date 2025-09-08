@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { useQueryStates, parseAsArrayOf, parseAsString } from 'nuqs'
+import { useQueryStates, parseAsArrayOf, parseAsString, parseAsBoolean } from 'nuqs'
 import {
   Accordion,
   AccordionContent,
@@ -12,6 +12,7 @@ import { Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { cn } from '@/lib/utils'
+import { Switch } from '@/components/ui/switch'
 
 // Define the filter options based on your Resources collection
 const RESOURCE_TYPES = [
@@ -179,6 +180,7 @@ const ResourceFilters: React.FC<ResourceFiltersProps> = () => {
     targetGroup: parseAsArrayOf(parseAsString),
     theme: parseAsArrayOf(parseAsString),
     language: parseAsArrayOf(parseAsString),
+    goodPractice: parseAsBoolean,
   })
 
   const handleFilterChange = (
@@ -225,12 +227,19 @@ const ResourceFilters: React.FC<ResourceFiltersProps> = () => {
       targetGroup: null,
       theme: null,
       language: null,
+      goodPractice: null,
     })
   }
 
-  const hasActiveFilters = Object.values(filters).some(
-    (filter) => filter && (Array.isArray(filter) ? filter.length > 0 : filter.length > 0),
-  )
+  const hasActiveFilters = Object.entries(filters).some(([key, filter]) => {
+    if (key === 'goodPractice') {
+      return filter === true
+    }
+    return (
+      filter &&
+      (Array.isArray(filter) ? filter.length > 0 : typeof filter === 'string' && filter.length > 0)
+    )
+  })
 
   return (
     <div className="w-full max-w-md bg-white">
@@ -262,6 +271,26 @@ const ResourceFilters: React.FC<ResourceFiltersProps> = () => {
               className="pl-10 transition-all duration-200 focus:ring-2 focus:ring-primary/20"
             />
           </div>
+        </div>
+
+        {/* Good Practice Toggle */}
+        <div className="p-4 border-b border-gray-100">
+          <div className="flex items-center justify-between">
+            <label htmlFor="good-practice-toggle" className="text-sm font-medium text-gray-900">
+              Good Practice Only
+            </label>
+            <Switch
+              id="good-practice-toggle"
+              checked={filters.goodPractice === true}
+              onCheckedChange={(checked) =>
+                setFilters({
+                  ...filters,
+                  goodPractice: checked ? true : null,
+                })
+              }
+            />
+          </div>
+          <p className="text-xs text-gray-500 mt-1">Show only resources marked as good practices</p>
         </div>
 
         <Accordion type="multiple" className="w-full grid grid-cols-1 gap-4">
