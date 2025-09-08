@@ -395,8 +395,8 @@ const ResourceList: React.FC<ResourceListProps> = ({
   }
 
   return (
-    <div className="container max-w-[1520px] px-6 md:px-10 lg:px-16 mx-auto py-8">
-      <div className="flex flex-col lg:flex-row gap-8">
+    <div className="!shadow-xl">
+      <div className="flex container max-w-[1520px] px-6 md:px-10 lg:px-16 mx-auto py-8 flex-col lg:flex-row gap-8">
         {/* Filters Sidebar */}
         <div className="lg:w-1/4">
           <div className="sticky top-4">

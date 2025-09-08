@@ -17,7 +17,7 @@ const TargetGroupHero: React.FC<TargetGroupHeroProps> = ({
   bgColor = 'bg-black',
 }) => {
   return (
-    <div className={`min-h-[564px] relative overflow-hidden ${bgColor}`}>
+    <div className={`min-h-[564px] relative overflow-hidden shadow-xl ${bgColor}`}>
       {/* Mobile Layout - Image on top */}
       <div className="lg:hidden">
         <div className="relative h-[300px]">
@@ -32,8 +32,8 @@ const TargetGroupHero: React.FC<TargetGroupHeroProps> = ({
         </div>
         <div className="px-6 md:px-10 py-8">
           <div className="container mx-auto max-w-[1520px]">
-            <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-4">{title}</h1>
-            <p className="text-lg md:text-xl leading-relaxed text-white max-w-[721px]">
+            <h1 className="text-3xl font-extrabold text-white mb-4">{title}</h1>
+            <p className="text-lg md:text-xl leading-relaxed text-white max-w-[500px]">
               {description}
             </p>
           </div>
@@ -47,12 +47,12 @@ const TargetGroupHero: React.FC<TargetGroupHeroProps> = ({
           <div className="container h-full flex items-end lg:pb-16 mx-auto max-w-[1520px] pl-6 md:pl-10 lg:pl-16">
             <div className="pr-8">
               <h1
-                className="text-5xl font-extrabold max-w-[1000px]  text-white"
+                className="font-extrabold max-w-[1000px] text-white !text-4xl"
                 style={{ lineHeight: 1.1, marginBottom: 0 }}
               >
                 {title}
               </h1>
-              <p className="text-base text-white max-w-[721px]">{description}</p>
+              <p className="text-base text-white max-w-[600px]">{description}</p>
             </div>
           </div>
         </div>

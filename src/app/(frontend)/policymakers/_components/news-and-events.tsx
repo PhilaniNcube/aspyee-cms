@@ -49,7 +49,7 @@ export default function NewsEvents() {
   ]
 
   return (
-    <div className=" bg-gray-50 py-12">
+    <div className=" bg-gray-50 py-12 shadow-xl">
       <div className="max-w-[1520px] px-6 md:px-10 lg:px-16 container mx-auto ">
         <h2 className="text-3xl md:text-4xl font-bold text-brand border-l-8 border-brand-orange pl-4 mb-8 py-0">
           Events For You

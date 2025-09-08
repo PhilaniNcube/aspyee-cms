@@ -161,8 +161,8 @@ interface FilterSectionProps {
 
 const FilterSection: React.FC<FilterSectionProps> = ({ title, children, value }) => {
   return (
-    <AccordionItem value={value} className="border-none cursor-pointer bg-brand-orange-60 shadow">
-      <AccordionTrigger className="px-4 py-3 text-left  font-semibold text-gray-900 hover:bg-brand-orange-60 rounded-none transition-colors duration-200 hover:no-underline">
+    <AccordionItem value={value} className="border-none cursor-pointer  shadow">
+      <AccordionTrigger className="px-4 py-3 text-left  font-semibold text-gray-900 hover:bg-brand-orange rounded-none transition-colors duration-200 hover:no-underline">
         {title}
       </AccordionTrigger>
       <AccordionContent className="px-4 pb-4 bg-amber-300">{children}</AccordionContent>
