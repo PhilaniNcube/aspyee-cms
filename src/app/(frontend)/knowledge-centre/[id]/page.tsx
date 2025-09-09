@@ -134,11 +134,10 @@ const ResourcePage = async ({ params }: PageProps) => {
               {resource.title}
             </h2>
             <div className="flex items-center space-x-4 text-gray-600 my-4">
-              {resource.good_practice && (
+              {resource.good_practice === 'yes' && (
                 <Badge
                   className={cn(' text-white font-thin rounded-full px-4', {
                     'bg-amber-500': resource.good_practice === 'yes',
-                    'bg-gray-300': resource.good_practice === 'no',
                   })}
                 >
                   <Star className="inline-block mr-1 fill-white text-white" />
