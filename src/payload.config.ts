@@ -16,6 +16,8 @@ import { Countries } from './collections/Countries'
 import { Resources } from './collections/Resources'
 import { Bookmarks } from './collections/Bookmarks'
 import { Downloads } from './collections/Downloads'
+import { Categories } from './collections/Categories'
+import { Blogs } from './collections/Blogs'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -31,7 +33,7 @@ export default buildConfig({
     },
   },
   // Add Countries so the seed script can populate it
-  collections: [Users, Countries, Media, Resources, Bookmarks, Downloads],
+  collections: [Users, Countries, Media, Resources, Bookmarks, Downloads, Categories, Blogs],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
