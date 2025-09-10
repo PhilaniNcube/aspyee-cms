@@ -2,6 +2,8 @@ import type { CollectionConfig } from 'payload'
 import { checkRole } from './users/access/checkRole'
 import type { User } from '@/payload-types'
 import { FixedToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
+import { anyone } from './users/access/anyone'
+import editor from './users/access/editor'
 
 export const Blogs: CollectionConfig = {
   slug: 'blogs',
@@ -11,10 +13,10 @@ export const Blogs: CollectionConfig = {
   },
   access: {
     // Only admins & editors can create, read, update, delete blogs
-    create: ({ req: { user } }) => checkRole(['admin', 'editor'], user as User),
-    read: ({ req: { user } }) => checkRole(['admin', 'editor', 'user'], user as User),
-    update: ({ req: { user } }) => checkRole(['admin', 'editor'], user as User),
-    delete: ({ req: { user } }) => checkRole(['admin', 'editor'], user as User),
+    create: editor,
+    read: anyone,
+    update: editor,
+    delete: editor,
   },
   admin: {
     useAsTitle: 'title',
@@ -89,6 +91,21 @@ export const Blogs: CollectionConfig = {
       type: 'upload',
       relationTo: 'media',
       required: true,
+    },
+    {
+      name: 'tags',
+      type: 'array',
+      label: 'Event Tags',
+      minRows: 1,
+      maxRows: 5,
+      fields: [
+        {
+          name: 'tag',
+          type: 'text',
+          label: 'Tag',
+          required: true,
+        },
+      ],
     },
   ],
   timestamps: true,
