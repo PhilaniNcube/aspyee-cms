@@ -31,6 +31,30 @@ export const Blogs: CollectionConfig = {
       type: 'text',
       required: true,
       unique: true,
+      //   automatically generate slug from title and make it read-only in the admin
+      admin: {
+        // position: 'sidebar',
+        readOnly: true,
+        hidden: true,
+      },
+      hooks: {
+        beforeChange: [
+          ({ data, originalDoc }) => {
+            if (
+              data &&
+              !data.slug &&
+              data.title &&
+              (!originalDoc || data.title !== originalDoc.title)
+            ) {
+              data.slug = data.title
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/^-+|-+$/g, '')
+                .substring(0, 200) // limit slug length
+            }
+          },
+        ],
+      },
     },
     {
       name: 'author',
