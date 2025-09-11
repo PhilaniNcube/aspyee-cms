@@ -30,7 +30,6 @@ export default function RelatedBlogs({ blogs }: RelatedBlogsProps) {
 
 function RelatedBlogCard({ blog }: { blog: Blog }) {
   const featuredImage = typeof blog.featuredImage === 'object' ? blog.featuredImage : null
-  const author = typeof blog.author === 'object' ? blog.author : null
 
   return (
     <article className="bg-white rounded-lg shadow-sm border overflow-hidden hover:shadow-md transition-shadow">
@@ -59,13 +58,6 @@ function RelatedBlogCard({ blog }: { blog: Blog }) {
 
         {/* Meta Information */}
         <div className="flex items-center justify-between text-xs text-gray-500">
-          {author && (
-            <span>
-              {author.firstName && author.lastName
-                ? `${author.firstName} ${author.lastName}`
-                : author.email}
-            </span>
-          )}
           <time dateTime={blog.createdAt}>{format(new Date(blog.createdAt), 'MMM dd')}</time>
         </div>
       </div>
