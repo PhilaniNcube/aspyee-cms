@@ -19,6 +19,7 @@ import { Downloads } from './collections/Downloads'
 import { Categories } from './collections/Categories'
 import { Blogs } from './collections/Blogs'
 import { Events } from './collections/Events'
+import { NewsAndEventsPage } from './collections/NewsAndEventsPage'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -44,6 +45,7 @@ export default buildConfig({
     Categories,
     Blogs,
     Events,
+    NewsAndEventsPage,
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

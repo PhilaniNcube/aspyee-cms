@@ -1,4 +1,4 @@
-import { Blog, Event } from '@/payload-types'
+import { Blog, Event, NewsAndEventsPage } from '@/payload-types'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 
@@ -319,5 +319,25 @@ export async function getEventTags() {
   } catch (error) {
     console.error('Error fetching event tags:', error)
     return []
+  }
+}
+
+/**
+ * Fetches the first NewsAndEventsPage configuration
+ */
+export async function getNewsAndEventsPage(): Promise<NewsAndEventsPage | null> {
+  try {
+    const payload = await getPayload({ config })
+
+    const result = await payload.find({
+      collection: 'news-and-events-page',
+      limit: 1,
+      depth: 2, // Include related media
+    })
+
+    return result.docs[0] || null
+  } catch (error) {
+    console.error('Error fetching news and events page:', error)
+    return null
   }
 }

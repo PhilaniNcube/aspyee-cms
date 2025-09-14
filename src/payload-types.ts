@@ -76,6 +76,7 @@ export interface Config {
     categories: Category;
     blogs: Blog;
     events: Event;
+    'news-and-events-page': NewsAndEventsPage;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -91,6 +92,7 @@ export interface Config {
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     blogs: BlogsSelect<false> | BlogsSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
+    'news-and-events-page': NewsAndEventsPageSelect<false> | NewsAndEventsPageSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -750,6 +752,48 @@ export interface Event {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "news-and-events-page".
+ */
+export interface NewsAndEventsPage {
+  id: number;
+  heroSection: {
+    heroTitle: string;
+    heroSubtitle: string;
+    heroImage: number | Media;
+  };
+  latestNewsSection: {
+    sectionTitle: string;
+    fullWidthSection?: {
+      image?: (number | null) | Media;
+      title?: string | null;
+      description?: string | null;
+      link?: string | null;
+      badgeText?: string | null;
+    };
+    newsItems?:
+      | {
+          title: string;
+          description: string;
+          image: number | Media;
+          link: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  twitterFeed?:
+    | {
+        tweet: string;
+        author: string;
+        date: string;
+        avatar?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -790,6 +834,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'events';
         value: number | Event;
+      } | null)
+    | ({
+        relationTo: 'news-and-events-page';
+        value: number | NewsAndEventsPage;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -1008,6 +1056,53 @@ export interface EventsSelect<T extends boolean = true> {
     | T
     | {
         tag?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "news-and-events-page_select".
+ */
+export interface NewsAndEventsPageSelect<T extends boolean = true> {
+  heroSection?:
+    | T
+    | {
+        heroTitle?: T;
+        heroSubtitle?: T;
+        heroImage?: T;
+      };
+  latestNewsSection?:
+    | T
+    | {
+        sectionTitle?: T;
+        fullWidthSection?:
+          | T
+          | {
+              image?: T;
+              title?: T;
+              description?: T;
+              link?: T;
+              badgeText?: T;
+            };
+        newsItems?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              image?: T;
+              link?: T;
+              id?: T;
+            };
+      };
+  twitterFeed?:
+    | T
+    | {
+        tweet?: T;
+        author?: T;
+        date?: T;
+        avatar?: T;
         id?: T;
       };
   updatedAt?: T;

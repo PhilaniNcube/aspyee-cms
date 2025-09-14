@@ -1,0 +1,34 @@
+import React from 'react'
+import { getNewsAndEventsPage } from '@/lib/queries/blogs-events'
+import NewsAndEventsHero from './_components/news-and-events-hero'
+import EventsGrid from './_components/events-grid'
+
+const page = async () => {
+  const newsAndEventsData = await getNewsAndEventsPage()
+
+  if (!newsAndEventsData) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <h1>News and Events</h1>
+        <p>No news and events page data found.</p>
+      </div>
+    )
+  }
+
+  const heroSection = newsAndEventsData.heroSection
+
+  const eventsGrid = newsAndEventsData.latestNewsSection
+
+  return (
+    <div className="">
+      <NewsAndEventsHero
+        title={heroSection.heroTitle}
+        subtitle={heroSection.heroSubtitle}
+        backgroundImage={typeof heroSection.heroImage === 'object' ? heroSection.heroImage : null}
+      />
+      <EventsGrid eventsData={eventsGrid} />
+    </div>
+  )
+}
+
+export default page
