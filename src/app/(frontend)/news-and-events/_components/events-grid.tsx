@@ -73,7 +73,7 @@ const EventsGrid = ({ eventsData }: EventsGridProps) => {
                   {fullWidthSection.badgeText && (
                     <Badge
                       variant="secondary"
-                      className="mb-3 bg-blue-500 hover:bg-blue-600 text-white border-0"
+                      className="mb-3 text-md rounded-full px-6 bg-blue-100 text-blue-600 border-0"
                     >
                       {fullWidthSection.badgeText}
                     </Badge>
