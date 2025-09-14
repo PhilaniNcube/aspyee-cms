@@ -265,7 +265,7 @@ const EventsGrid = ({ eventsData }: EventsGridProps) => {
 
           {/* Item 5 - Column 2, Row 3 */}
           {newsItems[4] && (
-            <Card className="gap-0 overflow-hidden hover:shadow-lg transition-all hover:bg-brand-orange duration-300 lg:col-span-1 lg:row-span-1 lg:col-start-2 lg:row-start-3 p-0">
+            <Card className="group gap-0 overflow-hidden hover:shadow-lg transition-all hover:bg-brand-orange duration-300 lg:col-span-1 lg:row-span-1 lg:col-start-2 lg:row-start-3 p-0">
               <div className="relative w-full min-h-36 h-36 max-h-48 aspect-video overflow-hidden">
                 <Image
                   src={getImageUrl(newsItems[4].image)}
@@ -291,12 +291,12 @@ const EventsGrid = ({ eventsData }: EventsGridProps) => {
                 <h4 className="font-bold line-clamp-1 text-center text-md mb-2 group-hover:text-white overflow-hidden">
                   {newsItems[4].title}
                 </h4>
-                <p className="text-gray-600  text-xs line-clamp-2 overflow-hidden group-hover:text-white">
+                <p className="text-gray-600 text-xs line-clamp-2 overflow-hidden group-hover:text-white">
                   {newsItems[4].description}
                 </p>
                 {newsItems[4].link && (
                   <Link
-                    className="text-brand-orange !group-hover:text-white capitalize font-medium"
+                    className="!group-hover:!text-white capitalize font-medium"
                     href={newsItems[4].link}
                   >
                     Read more

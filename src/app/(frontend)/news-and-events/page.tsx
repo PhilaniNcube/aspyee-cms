@@ -2,6 +2,7 @@ import React from 'react'
 import { getNewsAndEventsPage } from '@/lib/queries/blogs-events'
 import NewsAndEventsHero from './_components/news-and-events-hero'
 import EventsGrid from './_components/events-grid'
+import TweetGrid from './_components/tweet-grid'
 
 const page = async () => {
   const newsAndEventsData = await getNewsAndEventsPage()
@@ -27,6 +28,9 @@ const page = async () => {
         backgroundImage={typeof heroSection.heroImage === 'object' ? heroSection.heroImage : null}
       />
       <EventsGrid eventsData={eventsGrid} />
+      {newsAndEventsData.twitterFeed && newsAndEventsData.twitterFeed.length > 0 && (
+        <TweetGrid twitterFeed={newsAndEventsData.twitterFeed} />
+      )}
     </div>
   )
 }
