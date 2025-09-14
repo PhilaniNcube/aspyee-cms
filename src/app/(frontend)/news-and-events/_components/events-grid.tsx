@@ -170,7 +170,7 @@ const EventsGrid = ({ eventsData }: EventsGridProps) => {
                     className="text-brand-orange !group-hover:text-white group-hover:text-white capitalize font-medium"
                     href={newsItems[1].link}
                   >
-                    Read more
+                    <span className="text-brand-orange group-hover:text-white">Read more</span>
                   </Link>
                 )}
               </CardContent>
@@ -213,7 +213,7 @@ const EventsGrid = ({ eventsData }: EventsGridProps) => {
                     className="text-brand-orange !group-hover:text-white capitalize font-medium"
                     href={newsItems[2].link}
                   >
-                    Read more
+                    <span className="text-brand-orange group-hover:text-white">Read more</span>
                   </Link>
                 )}
               </CardContent>
@@ -256,7 +256,7 @@ const EventsGrid = ({ eventsData }: EventsGridProps) => {
                     className="text-brand-orange !group-hover:text-white capitalize font-medium"
                     href={newsItems[3].link}
                   >
-                    Read more
+                    <span className="text-brand-orange group-hover:text-white">Read more</span>
                   </Link>
                 )}
               </CardContent>
@@ -295,11 +295,8 @@ const EventsGrid = ({ eventsData }: EventsGridProps) => {
                   {newsItems[4].description}
                 </p>
                 {newsItems[4].link && (
-                  <Link
-                    className="!group-hover:!text-white capitalize font-medium"
-                    href={newsItems[4].link}
-                  >
-                    Read more
+                  <Link className=" capitalize font-medium" href={newsItems[4].link}>
+                    <span className="text-brand-orange group-hover:text-white">Read more</span>
                   </Link>
                 )}
               </CardContent>
