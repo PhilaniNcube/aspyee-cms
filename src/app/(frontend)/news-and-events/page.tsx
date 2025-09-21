@@ -4,6 +4,7 @@ import NewsAndEventsHero from './_components/news-and-events-hero'
 import EventsGrid from './_components/events-grid'
 import TweetGrid from './_components/tweet-grid'
 import MasonryGrid from './_components/masonry-grid'
+import Community from './_components/community'
 
 const page = async () => {
   const newsAndEventsData = await getNewsAndEventsPage()
@@ -33,6 +34,7 @@ const page = async () => {
         <TweetGrid twitterFeed={newsAndEventsData.twitterFeed} />
       )}
       <MasonryGrid />
+      <Community />
     </div>
   )
 }
