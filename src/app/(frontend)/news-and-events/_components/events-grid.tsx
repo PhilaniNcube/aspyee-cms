@@ -1,6 +1,6 @@
 import { Media } from '@/payload-types'
 import React from 'react'
-import { Card, CardContent } from '@/components/ui/card'
+import { Card, CardContent, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
@@ -101,7 +101,7 @@ const EventsGrid = ({ eventsData }: EventsGridProps) => {
           {/* Item 1 - Spans 2 columns, 1 row */}
           {newsItems[0] && (
             <Card className="@container overflow-hidden hover:shadow-lg transition-shadow duration-300 lg:col-span-2 lg:row-span-1 lg:col-start-1 lg:row-start-1 p-0 flex flex-col md:flex-row">
-              <div className="flex flex-col @md:flex-row">
+              <div className="grid @md:grid-cols-2 h-full w-full">
                 <div className="relative h-full w-full @md:w-1/2 @lg:w-full">
                   <Image
                     src={getImageUrl(newsItems[0].image)}
@@ -115,10 +115,10 @@ const EventsGrid = ({ eventsData }: EventsGridProps) => {
                   />
                 </div>
                 <CardContent className="p-6">
-                  <h4 className="font-bold text-lg @md:text-2xl mb-3 text-gray-900 overflow-hidden">
-                    <span className="block truncate">{newsItems[0].title}</span>
-                  </h4>
-                  <p className="text-gray-600 @md:text-xl font-medium text-sm mb-4 overflow-hidden">
+                  <CardTitle className="font-semibold text-md mb-3 text-gray-900 overflow-hidden">
+                    <span className="block ">{newsItems[0].title}</span>
+                  </CardTitle>
+                  <p className="text-gray-600 font-medium text-sm mb-4 overflow-hidden">
                     {newsItems[0].description}
                   </p>
                   {newsItems[0].link && (
@@ -158,10 +158,10 @@ const EventsGrid = ({ eventsData }: EventsGridProps) => {
                   className="object-cover w-full h-full"
                 />
               </div>
-              <CardContent className="group px-6 py-4 h-full text-center group-hover:bg-brand-orange !group-hover:text-white transition-colors duration-300">
-                <h4 className="font-bold line-clamp-1 text-center text-md mb-2 group-hover:text-white overflow-hidden">
+              <CardContent className="group px-6 py-4 h-full  group-hover:bg-brand-orange !group-hover:text-white transition-colors duration-300">
+                <CardTitle className="font-bold text-md mb-2 group-hover:text-white overflow-hidden">
                   {newsItems[1].title}
-                </h4>
+                </CardTitle>
                 <p className="text-gray-600 text-xs line-clamp-2 overflow-hidden group-hover:text-white">
                   {newsItems[1].description}
                 </p>
@@ -201,10 +201,10 @@ const EventsGrid = ({ eventsData }: EventsGridProps) => {
                   className="object-cover w-full h-full"
                 />
               </div>
-              <CardContent className="group px-6 py-4 h-full text-center !group-hover:bg-brand-orange !group-hover:text-white transition-colors duration-300">
-                <h4 className="font-bold line-clamp-1 text-center text-md mb-2 group-hover:text-white overflow-hidden">
+              <CardContent className="group px-6 py-4 h-full  !group-hover:bg-brand-orange !group-hover:text-white transition-colors duration-300">
+                <CardTitle className="font-bold  text-md mb-2 group-hover:text-white overflow-hidden">
                   {newsItems[2].title}
-                </h4>
+                </CardTitle>
                 <p className="text-gray-600 text-xs line-clamp-2 overflow-hidden group-hover:text-white">
                   {newsItems[2].description}
                 </p>
@@ -244,10 +244,10 @@ const EventsGrid = ({ eventsData }: EventsGridProps) => {
                   className="object-cover w-full h-full"
                 />
               </div>
-              <CardContent className="group px-6 py-4 h-full text-center !group-hover:bg-brand-orange !group-hover:text-white transition-colors duration-300">
-                <h4 className="font-bold line-clamp-1 text-center text-md mb-2 group-hover:text-white overflow-hidden">
+              <CardContent className="group px-6 py-4 h-full  !group-hover:bg-brand-orange !group-hover:text-white transition-colors duration-300">
+                <CardTitle className="font-bold text-md mb-2 group-hover:text-white overflow-hidden">
                   {newsItems[3].title}
-                </h4>
+                </CardTitle>
                 <p className="text-gray-600 text-xs line-clamp-2 overflow-hidden group-hover:text-white">
                   {newsItems[3].description}
                 </p>
@@ -287,10 +287,10 @@ const EventsGrid = ({ eventsData }: EventsGridProps) => {
                   className="object-cover w-full h-full"
                 />
               </div>
-              <CardContent className="group px-6 py-4 h-full text-center !group-hover:bg-brand-orange !group-hover:text-white transition-colors duration-300">
-                <h4 className="font-bold line-clamp-1 text-center text-md mb-2 group-hover:text-white overflow-hidden">
+              <CardContent className="group px-6 py-4 h-full  !group-hover:bg-brand-orange !group-hover:text-white transition-colors duration-300">
+                <CardTitle className="font-bold  text-md mb-2 group-hover:text-white overflow-hidden">
                   {newsItems[4].title}
-                </h4>
+                </CardTitle>
                 <p className="text-gray-600 text-xs line-clamp-2 overflow-hidden group-hover:text-white">
                   {newsItems[4].description}
                 </p>
@@ -328,11 +328,11 @@ const EventsGrid = ({ eventsData }: EventsGridProps) => {
                 />
               </div>
               <CardContent className="group px-6 py-4 h-full text-white row-span-2 bg-green-600 transition-colors duration-300">
-                <h4 className="font-bold text-lg mb-3 group-hover:text-white overflow-hidden">
+                <CardTitle className="font-bold text-lg mb-3 group-hover:text-white overflow-hidden">
                   {newsItems[5].title}
-                </h4>
+                </CardTitle>
                 <p
-                  className="text-lg group-hover:text-white mb-4 overflow-hidden"
+                  className="text-sm group-hover:text-white mb-4 overflow-hidden"
                   style={{
                     display: '-webkit-box',
                     WebkitBoxOrient: 'vertical' as const,
