@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import './styles.css'
 import FontendHeader from './navigation/header'
 import Footer from './_components/footer'
@@ -25,7 +25,9 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
     <html lang="en">
       <body className={openSans.className}>
         <ReactQueryProvider>
-          <FontendHeader />
+          <Suspense fallback={<div className="h-20" />}>
+            <FontendHeader />
+          </Suspense>
           <main>
             <NuqsAdapter>{children}</NuqsAdapter>
           </main>

@@ -2,6 +2,7 @@ import { withPayload } from '@payloadcms/next/withPayload'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  cacheComponents: true,
   images: {
     remotePatterns: [
       {
@@ -12,30 +13,9 @@ const nextConfig = {
       },
     ],
   },
-  // Your Next.js config here
-  webpack: (webpackConfig, { isServer }) => {
-    webpackConfig.resolve.extensionAlias = {
-      '.cjs': ['.cts', '.cjs'],
-      '.js': ['.ts', '.tsx', '.js', '.jsx'],
-      '.mjs': ['.mts', '.mjs'],
-    }
-
-    // Exclude Node.js modules from client-side bundles
-    if (!isServer) {
-      webpackConfig.resolve.fallback = {
-        ...webpackConfig.resolve.fallback,
-        fs: false,
-        path: false,
-        crypto: false,
-        stream: false,
-        util: false,
-        querystring: false,
-        url: false,
-      }
-    }
-
-    return webpackConfig
-  },
+  // Acknowledge Turbopack as default bundler in Next.js 16
+  // PayloadCMS may add webpack config internally - this suppresses the warning
+  turbopack: {},
 }
 
 export default withPayload(nextConfig, { devBundleServerPackages: false })

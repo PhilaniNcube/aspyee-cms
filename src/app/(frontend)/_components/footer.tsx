@@ -12,7 +12,8 @@ import {
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
-const Footer = () => {
+const Footer = async () => {
+  'use cache'
   const currentYear = new Date().getFullYear()
 
   return (

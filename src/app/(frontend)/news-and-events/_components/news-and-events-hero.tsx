@@ -2,23 +2,15 @@ import { Media } from '@/payload-types'
 import Image from 'next/image'
 import React from 'react'
 
-const NewsAndEventsHero = ({
-  title = 'News and Events',
-  subtitle = 'Stay updated with the latest news and events',
-  backgroundImage,
-}: {
-  title: string
-  subtitle: string
-  backgroundImage: Media | null
-}) => {
+const NewsAndEventsHero = () => {
   return (
     <div className="min-h-[644px] relative overflow-hidden">
       {/* Background Image */}
       <Image
-        src={backgroundImage?.url || '/default-hero.jpg'}
+        src="https://4kav3digtb.ufs.sh/f/FBDFb9YX4geOLq7jpsyfE8sWmyqn61lUQSjHgVRhpBL3bGew"
         alt="Policymakers Background"
-        width={backgroundImage?.width || 1920}
-        height={backgroundImage?.height || 1080}
+        width={4096}
+        height={2725}
         className="absolute inset-0 -z-10 pointer-events-none rotate-y-180 object-left object-cover w-full h-full"
       />
       {/* Gradient Overlay */}
@@ -30,10 +22,10 @@ const NewsAndEventsHero = ({
               className="text-3xl md:text-2xl lg:text-3xl font-extrabold text-white px-4 "
               style={{ lineHeight: '1.2', marginBottom: 0 }}
             >
-              {title}
+              News &amp; Events
             </h1>
             <p className="text-white px-4" style={{ marginTop: 0 }}>
-              {subtitle}
+              Empowering Africa's Youth through knowledge sharing and skills development
             </p>
           </div>
         </div>

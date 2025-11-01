@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ResourceHero = ({ image, title }: { image: string; title: string }) => {
+const ResourceHero = ({ image }: { image: string }) => {
   return (
     <div
       className="w-full h-64 flex items-center justify-center mb-8 shadow relative overflow-hidden"

@@ -3,6 +3,7 @@ import React from 'react'
 import { Card, CardContent } from '@/components/ui/card'
 import Image from 'next/image'
 import { format } from 'date-fns/format'
+import { getNewsAndEventsPage } from '@/lib/queries/blogs-events'
 
 type TweetGridProps = {
   twitterFeed: {
@@ -14,7 +15,15 @@ type TweetGridProps = {
   }[]
 }
 
-const TweetGrid = ({ twitterFeed }: TweetGridProps) => {
+const TweetGrid = async () => {
+  const newsAndEventsData = await getNewsAndEventsPage()
+
+  if (!newsAndEventsData) {
+    return null
+  }
+
+  const { twitterFeed } = newsAndEventsData
+
   // Helper function to get image URL
   const getImageUrl = (image: number | Media | null | undefined): string => {
     if (!image) return ''
@@ -24,8 +33,12 @@ const TweetGrid = ({ twitterFeed }: TweetGridProps) => {
     return ''
   }
 
+  if (!twitterFeed || twitterFeed.length === 0) {
+    return null
+  }
+
   // Get first 3 tweets
-  const firstThreeTweets = twitterFeed.slice(0, 3)
+  const firstThreeTweets = twitterFeed?.slice(0, 3)
 
   return (
     <section className="pt-36 pb-16 px-4 max-w-7xl mx-auto">

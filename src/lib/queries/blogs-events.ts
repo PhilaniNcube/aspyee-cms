@@ -1,6 +1,7 @@
 import { Blog, Event, NewsAndEventsPage } from '@/payload-types'
 import { getPayload } from 'payload'
 import config from '@payload-config'
+import { cacheLife, cacheTag } from 'next/cache'
 
 // Pagination interfaces
 export interface PaginationParams {
@@ -326,6 +327,11 @@ export async function getEventTags() {
  * Fetches the first NewsAndEventsPage configuration
  */
 export async function getNewsAndEventsPage(): Promise<NewsAndEventsPage | null> {
+  'use cache'
+
+  cacheLife('days')
+  cacheTag('news-and-events-page')
+
   try {
     const payload = await getPayload({ config })
 

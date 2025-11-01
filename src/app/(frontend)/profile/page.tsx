@@ -1,75 +1,36 @@
-import { redirect } from 'next/navigation'
-import { headers as getHeaders } from 'next/headers'
-import { getPayload } from 'payload'
-import type { User } from '@/payload-types'
-import config from '@payload-config'
-import { getCurrentUser } from './actions'
-import { Button } from '@/components/ui/button'
-import { Avatar, AvatarFallback } from '@/components/ui/avatar'
-import { cn } from '@/lib/utils'
-import AccountSection from './_components/account-section'
 import { Suspense } from 'react'
-import BookmarkedResourcesSection from './_components/bookmarked-resources'
-
-export const dynamic = 'force-dynamic'
+import ProfileContent from './profile-content'
 
 export default async function ProfilePage() {
-  const headers = await getHeaders()
-  const payload = await getPayload({ config })
-
-  const { user } = await payload.auth({ headers })
-
-  if (!user) {
-    redirect('/sign-in')
-  }
-
-  const initials = user.email?.[0]?.toUpperCase() || 'U'
-
-  if (!user) {
-    redirect('/sign-in')
-  }
-
   return (
-    <main className="min-h-[calc(100vh-80px)]">
-      {/* Hero Header */}
-      <section
-        className={cn(
-          'relative overflow-hidden',
-          'bg-[linear-gradient(135deg,var(--brand),var(--brand-orange-60))] text-white',
-        )}
-      >
-        <div className="absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(circle_at_30%_40%,white,transparent_60%)]" />
-        <div className="max-w-[1520px] mx-auto px-6  md:px-10 lg:px-16 pt-24 pb-20 flex flex-col gap-6 md:gap-8">
-          <div className="flex items-center gap-5">
-            <div className="space-y-1">
-              <div className="">
-                <p className="text-3xl md:text-4xl font-semibold tracking-tight leading-tight">
-                  Hello {user.email} · {user.roles?.length ? user.roles.join(', ') : 'user'}
-                </p>
+    <Suspense
+      fallback={
+        <main className="min-h-[calc(100vh-80px)]">
+          {/* Hero Header Skeleton */}
+          <section className="relative overflow-hidden bg-gradient-to-br from-blue-600 to-orange-500 text-white">
+            <div className="max-w-[1520px] mx-auto px-6 md:px-10 lg:px-16 pt-24 pb-20">
+              <div className="animate-pulse space-y-4">
+                <div className="h-10 w-96 bg-white/20 rounded" />
               </div>
             </div>
-          </div>
-        </div>
-      </section>
+          </section>
 
-      {/* Content */}
-      <AccountSection user={user} />
-      <Suspense
-        fallback={
+          {/* Content Skeleton */}
           <div className="py-10 border-t">
             <div className="max-w-[1520px] mx-auto px-6 md:px-10 lg:px-16">
-              <div className="animate-pulse space-y-4">
-                <div className="h-6 w-64 bg-muted rounded" />
-                <div className="h-4 w-96 bg-muted rounded" />
-                <div className="h-32 w-full bg-muted rounded" />
+              <div className="animate-pulse space-y-6">
+                <div className="h-8 w-48 bg-muted rounded" />
+                <div className="space-y-4">
+                  <div className="h-20 w-full bg-muted rounded" />
+                  <div className="h-20 w-full bg-muted rounded" />
+                </div>
               </div>
             </div>
           </div>
-        }
-      >
-        {/* Bookmarked resources list (data fetched inside component) */}
-        <BookmarkedResourcesSection />
-      </Suspense>
-    </main>
+        </main>
+      }
+    >
+      <ProfileContent />
+    </Suspense>
   )
 }

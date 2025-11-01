@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
+import { getNewsAndEventsPage } from '@/lib/queries/blogs-events'
 
 type EventsGridProps = {
   eventsData: {
@@ -31,8 +32,16 @@ type EventsGridProps = {
   }
 }
 
-const EventsGrid = ({ eventsData }: EventsGridProps) => {
-  const { sectionTitle, fullWidthSection, newsItems } = eventsData
+const EventsGrid = async () => {
+  const newsAndEventsData = await getNewsAndEventsPage()
+
+  if (!newsAndEventsData) {
+    return null
+  }
+
+  const eventsGrid = newsAndEventsData.latestNewsSection
+
+  const { sectionTitle, fullWidthSection, newsItems } = eventsGrid
 
   // Helper function to get image URL
   const getImageUrl = (image: number | Media | null | undefined): string => {

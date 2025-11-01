@@ -98,7 +98,7 @@ const navigationRoutes = [
   // },
 ]
 
-export default function HeaderClient({ auth }: { auth: React.ReactNode }) {
+export default function HeaderClient() {
   const [programmesOpen, setProgrammesOpen] = useState(false)
   const [knowledgeOpen, setKnowledgeOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
