@@ -13,23 +13,19 @@ const nextConfig = {
       },
     ],
   },
+  // Exclude problematic node_modules from Turbopack processing
+  transpilePackages: [],
+  serverExternalPackages: ['@esbuild/linux-x64', 'esbuild', 'drizzle-kit', 'esbuild-register'],
   // Acknowledge Turbopack as default bundler in Next.js 16
-  // PayloadCMS may add webpack config internally - this suppresses the warning
-  turbopack: {
-    rules: {
-      // Ignore README.md files in node_modules
-      '*.md': {
-        loaders: ['ignore-loader'],
-        as: '*.js',
-      },
-    },
-  },
-  webpack: (config) => {
-    // Fallback for webpack mode
-    config.module.rules.push({
-      test: /\.md$/,
-      type: 'asset/source',
-    })
+  turbopack: {},
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      // Mark esbuild and platform-specific packages as external
+      config.externals = config.externals || []
+      if (Array.isArray(config.externals)) {
+        config.externals.push('esbuild', '@esbuild/linux-x64', 'drizzle-kit')
+      }
+    }
     return config
   },
 }
