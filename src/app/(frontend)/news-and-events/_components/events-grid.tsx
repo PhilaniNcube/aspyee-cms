@@ -1,12 +1,13 @@
 import { Media } from '@/payload-types'
 import React from 'react'
-import { Card, CardContent, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { getNewsAndEventsPage } from '@/lib/queries/blogs-events'
+import { format } from 'date-fns/format'
 
 type EventsGridProps = {
   eventsData: {
@@ -55,9 +56,7 @@ const EventsGrid = async () => {
   return (
     <section className="py-16 px-4 max-w-7xl mx-auto">
       {/* Section Title */}
-      <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">
-        {sectionTitle}
-      </h2>
+      <h2 className="text-3xl md:text-4xl font-bold mb-12 text-gray-900">{sectionTitle}</h2>
 
       {/* Full Width Featured Section */}
       {fullWidthSection && (
@@ -77,21 +76,22 @@ const EventsGrid = async () => {
                 />
               )}
               {/* Overlay Content */}
-              <div className="absolute inset-0 bg-black/40 flex items-end">
+              <div className="absolute inset-0 flex items-end ">
                 <div className="p-6 md:p-8 text-white max-w-2xl">
                   {fullWidthSection.badgeText && (
-                    <Badge
-                      variant="secondary"
-                      className="mb-3 text-md rounded-full px-6 bg-blue-100 text-blue-600 border-0"
-                    >
+                    <small className="mb-3 text-sm text-white">
+                      {format(newsAndEventsData.createdAt, 'MMMM dd')} |{' '}
                       {fullWidthSection.badgeText}
-                    </Badge>
+                    </small>
                   )}
                   <h3 className="text-2xl md:text-3xl font-bold mb-3">{fullWidthSection.title}</h3>
-                  <p className="text-lg mb-4 opacity-90">{fullWidthSection.description}</p>
+                  <p className="text-sm mb-4 opacity-90">{fullWidthSection.description}</p>
                   {fullWidthSection.link && (
-                    <Button asChild className="bg-blue-500 hover:bg-blue-600 text-white">
-                      <Link href={fullWidthSection.link}>Event Details</Link>
+                    <Button
+                      asChild
+                      className="bg-blue-500 hover:bg-blue-600 text-white rounded-full"
+                    >
+                      <Link href={fullWidthSection.link}>Download Brochure</Link>
                     </Button>
                   )}
                 </div>
@@ -104,8 +104,8 @@ const EventsGrid = async () => {
       {/* News Items Grid */}
       {newsItems && newsItems.length > 0 && (
         <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:grid-rows-3 lg:max-h-[1050px]"
-          style={{ gridTemplateRows: 'repeat(3, minmax(0, 370px))' }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:grid-rows-3"
+          style={{ gridTemplateRows: 'repeat(3, auto)', gridTemplateColumns: '1fr 1fr 0.7fr' }}
         >
           {/* Item 1 - Spans 2 columns, 1 row */}
           {newsItems[0] && (
@@ -127,7 +127,7 @@ const EventsGrid = async () => {
                   <CardTitle className="font-semibold text-md mb-3 text-gray-900 overflow-hidden">
                     <span className="block ">{newsItems[0].title}</span>
                   </CardTitle>
-                  <p className="text-gray-600 font-medium text-sm mb-4 overflow-hidden">
+                  <p className="text-gray-600 font-medium text-xs mb-4 overflow-hidden">
                     {newsItems[0].description}
                   </p>
                   {newsItems[0].link && (
@@ -145,41 +145,46 @@ const EventsGrid = async () => {
 
           {/* Item 2 - Column 1, Row 2 */}
           {newsItems[1] && (
-            <Card className="group gap-0 overflow-hidden hover:shadow-lg transition-shadow duration-300 lg:col-span-1 lg:row-span-1 lg:col-start-1 lg:row-start-2 p-0">
-              <div className="relative w-full aspect-video min-h-36 h-36 max-h-48 overflow-hidden">
-                <Image
-                  src={getImageUrl(newsItems[1].image)}
-                  alt={
-                    typeof newsItems[1].image === 'object' && newsItems[1].image?.alt
-                      ? newsItems[1].image.alt
-                      : newsItems[1].title
-                  }
-                  width={
-                    typeof newsItems[1].image === 'object' && newsItems[1].image?.width
-                      ? newsItems[1].image.width
-                      : 400
-                  }
-                  height={
-                    typeof newsItems[1].image === 'object' && newsItems[1].image?.height
-                      ? newsItems[1].image.height
-                      : 300
-                  }
-                  className="object-cover w-full h-full"
-                />
-              </div>
-              <CardContent className="group px-6 py-4 h-full  group-hover:bg-brand-orange !group-hover:text-white transition-colors duration-300">
-                <CardTitle className="font-bold text-md mb-2 group-hover:text-white overflow-hidden">
+            <Card className="group bg-brand-orange gap-0 overflow-hidden hover:shadow-lg transition-shadow duration-300 lg:col-span-1 lg:row-span-1 lg:col-start-1 lg:row-start-2 p-0">
+              <CardHeader className="p-0 m-0">
+                <div className="relative w-full aspect-video overflow-hidden">
+                  <Image
+                    src={getImageUrl(newsItems[1].image)}
+                    alt={
+                      typeof newsItems[1].image === 'object' && newsItems[1].image?.alt
+                        ? newsItems[1].image.alt
+                        : newsItems[1].title
+                    }
+                    width={
+                      typeof newsItems[1].image === 'object' && newsItems[1].image?.width
+                        ? newsItems[1].image.width
+                        : 500
+                    }
+                    height={
+                      typeof newsItems[1].image === 'object' && newsItems[1].image?.height
+                        ? newsItems[1].image.height
+                        : 300
+                    }
+                    className="object-cover w-full aspect-video"
+                  />
+                </div>
+              </CardHeader>
+              <CardContent className="group px-6 py-2 h-full bg-brand-orange text-white transition-colors duration-300">
+                <CardTitle className="font-bold text-md leading-5 group-hover:text-white overflow-hidden">
                   {newsItems[1].title}
                 </CardTitle>
-                <p className="text-gray-600 text-xs line-clamp-2 overflow-hidden group-hover:text-white">
+                <p
+                  // style={{ margin: 0 }}
+                  className="text-white font-thin text-xs py-1 my-0 overflow-hidden group-hover:text-white"
+                >
                   {newsItems[1].description}
                 </p>
                 {newsItems[1].link && (
                   <Link
-                    className="text-brand-orange !group-hover:text-white group-hover:text-white capitalize font-medium"
+                    className="text-white !group-hover:text-white group-hover:text-white capitalize font-medium"
                     href={newsItems[1].link}
                   >
-                    <span className="text-brand-orange group-hover:text-white">Read more</span>
+                    <span className="text-white group-hover:text-white">Read more</span>
                   </Link>
                 )}
               </CardContent>
@@ -188,33 +193,35 @@ const EventsGrid = async () => {
 
           {/* Item 3 - Column 2, Row 2 */}
           {newsItems[2] && (
-            <Card className="group overflow-hidden gap-0 hover:bg-brand-orange hover:shadow-lg transition-all duration-300 lg:col-span-1 lg:row-span-1 lg:col-start-2 lg:row-start-2 p-0">
-              <div className="relative w-full aspect-video min-h-36 h-36 max-h-48 overflow-hidden">
-                <Image
-                  src={getImageUrl(newsItems[2].image)}
-                  alt={
-                    typeof newsItems[2].image === 'object' && newsItems[2].image?.alt
-                      ? newsItems[2].image.alt
-                      : newsItems[2].title
-                  }
-                  width={
-                    typeof newsItems[2].image === 'object' && newsItems[2].image?.width
-                      ? newsItems[2].image.width
-                      : 400
-                  }
-                  height={
-                    typeof newsItems[2].image === 'object' && newsItems[2].image?.height
-                      ? newsItems[2].image.height
-                      : 300
-                  }
-                  className="object-cover w-full h-full"
-                />
-              </div>
-              <CardContent className="group px-6 py-4 h-full  !group-hover:bg-brand-orange !group-hover:text-white transition-colors duration-300">
-                <CardTitle className="font-bold  text-md mb-2 group-hover:text-white overflow-hidden">
+            <Card className="group overflow-hidden gap-0 hover:bg-brand-orange hover:shadow-lg transition-all duration-300 lg:col-span-1 lg:row-span-1 bg-brand-orange lg:col-start-2 lg:row-start-2 p-0">
+              <CardHeader className="p-0 m-0">
+                <div className="relative w-full aspect-video overflow-hidden">
+                  <Image
+                    src={getImageUrl(newsItems[2].image)}
+                    alt={
+                      typeof newsItems[2].image === 'object' && newsItems[2].image?.alt
+                        ? newsItems[2].image.alt
+                        : newsItems[2].title
+                    }
+                    width={
+                      typeof newsItems[2].image === 'object' && newsItems[2].image?.width
+                        ? newsItems[2].image.width
+                        : 400
+                    }
+                    height={
+                      typeof newsItems[2].image === 'object' && newsItems[2].image?.height
+                        ? newsItems[2].image.height
+                        : 300
+                    }
+                    className="object-cover w-full h-full aspect-video"
+                  />
+                </div>
+              </CardHeader>
+              <CardContent className="group px-6 py-2 h-full  !group-hover:bg-brand-orange !group-hover:text-white transition-colors duration-300">
+                <CardTitle className="font-bold  text-md leading-5 text-white overflow-hidden">
                   {newsItems[2].title}
                 </CardTitle>
-                <p className="text-gray-600 text-xs line-clamp-2 overflow-hidden group-hover:text-white">
+                <p className="text-xs font-thin overflow-hidden text-white">
                   {newsItems[2].description}
                 </p>
                 {newsItems[2].link && (
@@ -222,7 +229,7 @@ const EventsGrid = async () => {
                     className="text-brand-orange !group-hover:text-white capitalize font-medium"
                     href={newsItems[2].link}
                   >
-                    <span className="text-brand-orange group-hover:text-white">Read more</span>
+                    <span className="text-white">Read more</span>
                   </Link>
                 )}
               </CardContent>
@@ -231,41 +238,41 @@ const EventsGrid = async () => {
 
           {/* Item 4 - Column 1, Row 3 */}
           {newsItems[3] && (
-            <Card className="group gap-0 overflow-hidden hover:shadow-lg transition-all hover:text-white hover:bg-brand-orange duration-300 lg:col-span-1 lg:row-span-1 lg:col-start-1 lg:row-start-3 p-0">
-              <div className="relative min-h-36 h-36 max-h-48 w-full aspect-video overflow-hidden">
-                <Image
-                  src={getImageUrl(newsItems[3].image)}
-                  alt={
-                    typeof newsItems[3].image === 'object' && newsItems[3].image?.alt
-                      ? newsItems[3].image.alt
-                      : newsItems[3].title
-                  }
-                  width={
-                    typeof newsItems[3].image === 'object' && newsItems[3].image?.width
-                      ? newsItems[3].image.width
-                      : 400
-                  }
-                  height={
-                    typeof newsItems[3].image === 'object' && newsItems[3].image?.height
-                      ? newsItems[3].image.height
-                      : 300
-                  }
-                  className="object-cover w-full h-full"
-                />
-              </div>
-              <CardContent className="group px-6 py-4 h-full  !group-hover:bg-brand-orange !group-hover:text-white transition-colors duration-300">
-                <CardTitle className="font-bold text-md mb-2 group-hover:text-white overflow-hidden">
+            <Card className="group gap-0 overflow-hidden hover:shadow-lg transition-all hover:text-white hover:bg-brand-orange duration-300 lg:col-span-1 lg:row-span-1 lg:col-start-1 lg:row-start-3 p-0 bg-brand-orange">
+              <CardHeader className="p-0 m-0">
+                <div className="relative w-full aspect-video overflow-hidden">
+                  <Image
+                    src={getImageUrl(newsItems[3].image)}
+                    alt={
+                      typeof newsItems[3].image === 'object' && newsItems[3].image?.alt
+                        ? newsItems[3].image.alt
+                        : newsItems[3].title
+                    }
+                    width={
+                      typeof newsItems[3].image === 'object' && newsItems[3].image?.width
+                        ? newsItems[3].image.width
+                        : 400
+                    }
+                    height={
+                      typeof newsItems[3].image === 'object' && newsItems[3].image?.height
+                        ? newsItems[3].image.height
+                        : 300
+                    }
+                    className="object-cover aspect-video w-full h-full"
+                  />
+                </div>
+              </CardHeader>
+              <CardContent className="group px-6 py-2 h-full  !group-hover:bg-brand-orange !group-hover:text-white transition-colors duration-300">
+                <CardTitle className="font-bold text-md mb-2 leading-5 text-white overflow-hidden">
                   {newsItems[3].title}
                 </CardTitle>
-                <p className="text-gray-600 text-xs line-clamp-2 overflow-hidden group-hover:text-white">
-                  {newsItems[3].description}
-                </p>
+                <p className="text-xs overflow-hidden text-white">{newsItems[3].description}</p>
                 {newsItems[3].link && (
                   <Link
                     className="text-brand-orange !group-hover:text-white capitalize font-medium"
                     href={newsItems[3].link}
                   >
-                    <span className="text-brand-orange group-hover:text-white">Read more</span>
+                    <span className="text-white">Read more</span>
                   </Link>
                 )}
               </CardContent>
@@ -275,93 +282,149 @@ const EventsGrid = async () => {
           {/* Item 5 - Column 2, Row 3 */}
           {newsItems[4] && (
             <Card className="group gap-0 overflow-hidden hover:shadow-lg transition-all hover:bg-brand-orange duration-300 lg:col-span-1 lg:row-span-1 lg:col-start-2 lg:row-start-3 p-0">
-              <div className="relative w-full min-h-36 h-36 max-h-48 aspect-video overflow-hidden">
-                <Image
-                  src={getImageUrl(newsItems[4].image)}
-                  alt={
-                    typeof newsItems[4].image === 'object' && newsItems[4].image?.alt
-                      ? newsItems[4].image.alt
-                      : newsItems[4].title
-                  }
-                  width={
-                    typeof newsItems[4].image === 'object' && newsItems[4].image?.width
-                      ? newsItems[4].image.width
-                      : 400
-                  }
-                  height={
-                    typeof newsItems[4].image === 'object' && newsItems[4].image?.height
-                      ? newsItems[4].image.height
-                      : 300
-                  }
-                  className="object-cover w-full h-full"
-                />
-              </div>
-              <CardContent className="group px-6 py-4 h-full  !group-hover:bg-brand-orange !group-hover:text-white transition-colors duration-300">
-                <CardTitle className="font-bold  text-md mb-2 group-hover:text-white overflow-hidden">
+              <CardHeader className="p-0 m-0">
+                <div className="relative w-full overflow-hidden">
+                  <Image
+                    src={getImageUrl(newsItems[4].image)}
+                    alt={
+                      typeof newsItems[4].image === 'object' && newsItems[4].image?.alt
+                        ? newsItems[4].image.alt
+                        : newsItems[4].title
+                    }
+                    width={
+                      typeof newsItems[4].image === 'object' && newsItems[4].image?.width
+                        ? newsItems[4].image.width
+                        : 400
+                    }
+                    height={
+                      typeof newsItems[4].image === 'object' && newsItems[4].image?.height
+                        ? newsItems[4].image.height
+                        : 300
+                    }
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+              </CardHeader>
+              <CardContent className="group px-6 py-2 h-full  !group-hover:bg-brand-orange !group-hover:text-white transition-colors duration-300">
+                <CardTitle className="font-bold  text-md mb-2 text-gray-600 group-hover:text-white overflow-hidden">
                   {newsItems[4].title}
                 </CardTitle>
-                <p className="text-gray-600 text-xs line-clamp-2 overflow-hidden group-hover:text-white">
+                <p className="text-xs overflow-hidden text-gray-600 group-hover:text-white">
                   {newsItems[4].description}
                 </p>
                 {newsItems[4].link && (
                   <Link className=" capitalize font-medium" href={newsItems[4].link}>
-                    <span className="text-brand-orange group-hover:text-white">Read more</span>
+                    <span className=" text-gray-600 group-hover:text-white">Read more</span>
                   </Link>
                 )}
               </CardContent>
             </Card>
           )}
 
-          {/* Item 6 - Column 3, Spans 3 rows with internal grid */}
-          {newsItems[5] && (
-            <Card className="gap-0 overflow-hidden hover:shadow-lg transition-shadow duration-300 lg:col-span-1 lg:row-span-3 lg:col-start-3 lg:row-start-1 p-0 ">
-              <div className="relative row-span-1">
-                <Image
-                  src={getImageUrl(newsItems[5].image)}
-                  alt={
-                    typeof newsItems[5].image === 'object' && newsItems[5].image?.alt
-                      ? newsItems[5].image.alt
-                      : newsItems[5].title
-                  }
-                  width={
-                    typeof newsItems[5].image === 'object' && newsItems[5].image?.width
-                      ? newsItems[5].image.width
-                      : 400
-                  }
-                  height={
-                    typeof newsItems[5].image === 'object' && newsItems[5].image?.height
-                      ? newsItems[5].image.height
-                      : 300
-                  }
-                  className="object-cover"
-                />
-              </div>
-              <CardContent className="group px-6 py-4 h-full text-white row-span-2 bg-green-600 transition-colors duration-300">
-                <CardTitle className="font-bold text-lg mb-3 group-hover:text-white overflow-hidden">
-                  {newsItems[5].title}
-                </CardTitle>
-                <p
-                  className="text-sm group-hover:text-white mb-4 overflow-hidden"
-                  style={{
-                    display: '-webkit-box',
-                    WebkitBoxOrient: 'vertical' as const,
-                  }}
-                >
-                  {newsItems[5].description}
-                </p>
-                {newsItems[5].link && (
-                  <Link
-                    className="text-brand-orange !group-hover:text-white capitalize font-medium"
-                    href={newsItems[5].link}
+          <div className="flex flex-col gap-3 overflow-hidden transition-shadow duration-300 lg:col-span-1 lg:row-span-3 lg:col-start-3 lg:row-start-1 p-0 ">
+            {newsItems[5] && (
+              <Card className="p-0 rounded-2xl overflow-hidden hover:shadow-lg">
+                <CardHeader className="p-0 m-0">
+                  <div className="relative row-span-1">
+                    <Image
+                      src={getImageUrl(newsItems[5].image)}
+                      alt={
+                        typeof newsItems[5].image === 'object' && newsItems[5].image?.alt
+                          ? newsItems[5].image.alt
+                          : newsItems[5].title
+                      }
+                      width={
+                        typeof newsItems[5].image === 'object' && newsItems[5].image?.width
+                          ? newsItems[5].image.width
+                          : 400
+                      }
+                      height={
+                        typeof newsItems[5].image === 'object' && newsItems[5].image?.height
+                          ? newsItems[5].image.height
+                          : 300
+                      }
+                      className="w-full object-cover"
+                    />
+                  </div>
+                </CardHeader>
+                <CardContent className="group px-6 pb-5 h-full row-span-2 transition-colors duration-300">
+                  <CardTitle className="font-bold leading-5 text-md text-gray-600 overflow-hidden">
+                    {newsItems[5].title}
+                  </CardTitle>
+                  <p
+                    className="text-sm text-gray-600 overflow-hidden"
+                    style={{
+                      display: '-webkit-box',
+                      WebkitBoxOrient: 'vertical' as const,
+                      marginBottom: '1rem',
+                    }}
                   >
-                    <Button className="bg-white text-2xl px-9 text-green-600 hover:bg-gray-100 rounded-full capitalize font-medium">
+                    {newsItems[5].description}
+                  </p>
+                  {newsItems[5].link && (
+                    <Link
+                      className="text-brand-orange font-medium text-sm"
+                      href={newsItems[5].link}
+                    >
                       Read more
-                    </Button>
-                  </Link>
-                )}
-              </CardContent>
-            </Card>
-          )}
+                    </Link>
+                  )}
+                </CardContent>
+              </Card>
+            )}
+            {newsItems[6] && (
+              <Card className="p-0 rounded-2xl overflow-hidden hover:shadow-lg">
+                <CardHeader className="p-0 m-0">
+                  <div className="relative row-span-1">
+                    <Image
+                      src={getImageUrl(newsItems[6].image)}
+                      alt={
+                        typeof newsItems[6].image === 'object' && newsItems[6].image?.alt
+                          ? newsItems[6].image.alt
+                          : newsItems[6].title
+                      }
+                      width={
+                        typeof newsItems[6].image === 'object' && newsItems[6].image?.width
+                          ? newsItems[6].image.width
+                          : 400
+                      }
+                      height={
+                        typeof newsItems[6].image === 'object' && newsItems[6].image?.height
+                          ? newsItems[6].image.height
+                          : 300
+                      }
+                      className="w-full object-cover"
+                    />
+                  </div>
+                </CardHeader>
+                <CardContent className="group px-6 pb-5 h-full row-span-2 transition-colors duration-300">
+                  <CardTitle className="font-bold leading-5 text-md text-gray-600 overflow-hidden">
+                    {newsItems[6].title}
+                  </CardTitle>
+                  <p
+                    className="text-sm text-gray-600 overflow-hidden"
+                    style={{
+                      display: '-webkit-box',
+                      WebkitBoxOrient: 'vertical' as const,
+                      marginBottom: '1rem',
+                    }}
+                  >
+                    {newsItems[6].description}
+                  </p>
+                  {newsItems[6].link && (
+                    <Link
+                      className="text-brand-orange font-medium text-sm"
+                      href={newsItems[6].link}
+                    >
+                      Read more
+                    </Link>
+                  )}
+                </CardContent>
+              </Card>
+            )}
+          </div>
+
+          {/* Item 6 - Column 3, Spans 3 rows with internal grid */}
         </div>
       )}
     </section>

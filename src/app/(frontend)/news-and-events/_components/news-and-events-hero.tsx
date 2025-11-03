@@ -15,18 +15,18 @@ const NewsAndEventsHero = () => {
       />
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/60 pointer-events-none"></div>
-      <div className="relative z-10 lg:h-[600px] flex justify-center items-center">
-        <div className="container flex items-end h-full  mx-auto max-w-[1520px] px-6 md:px-10 lg:px-16 ">
-          <div className="lg:w-[550px] p-0 lg:h-[250px]">
+      <div className="relative z-10 lg:h-[644px] flex justify-center items-center ">
+        <div className="container flex items-end h-full  mx-auto max-w-[1520px] px-6 md:px-10 lg:px-16  relative">
+          <div className="lg:w-[550px] flex items-center p-0 lg:h-[250px] bg-brand-green/70 absolute bottom-0 left-[50px]">
             <h1
               className="text-3xl md:text-2xl lg:text-3xl font-extrabold text-white px-4 "
               style={{ lineHeight: '1.2', marginBottom: 0 }}
             >
               News &amp; Events
             </h1>
-            <p className="text-white px-4" style={{ marginTop: 0 }}>
+            {/* <p className="text-white px-4" style={{ marginTop: 0 }}>
               Empowering Africa's Youth through knowledge sharing and skills development
-            </p>
+            </p> */}
           </div>
         </div>
       </div>
