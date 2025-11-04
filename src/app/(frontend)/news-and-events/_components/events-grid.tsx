@@ -252,10 +252,10 @@ const EventsGrid = async () => {
                 </h3>
                 {newsItems[3].link && (
                   <Link
-                    className="text-brand-orange !group-hover:text-white capitalize font-medium"
-                    href={newsItems[3].link}
+                    className="text-gray-800 capitalize font-medium"
+                    href="https://aspyee.org/africa-critical-skills-bank/"
                   >
-                    <span className="text-white">Read more</span>
+                    <span className="text-gray-800">Read more</span>
                   </Link>
                 )}
               </div>
