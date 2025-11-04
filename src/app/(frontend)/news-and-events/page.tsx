@@ -5,6 +5,7 @@ import EventsGrid from './_components/events-grid'
 import TweetGrid from './_components/tweet-grid'
 import MasonryGrid from './_components/masonry-grid'
 import Community from './_components/community'
+import Support from '../knowledge-centre/_components/support'
 
 const page = async () => {
   return (
@@ -13,7 +14,9 @@ const page = async () => {
       <EventsGrid />
 
       <TweetGrid />
-      <MasonryGrid />
+      {/* <MasonryGrid /> */}
+
+      <Support />
 
       <Community />
     </div>
