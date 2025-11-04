@@ -238,35 +238,18 @@ const EventsGrid = async () => {
 
           {/* Item 4 - Column 1, Row 3 */}
           {newsItems[3] && (
-            <Card className="group gap-0 overflow-hidden hover:shadow-lg transition-all hover:text-white hover:bg-brand-orange duration-300 lg:col-span-1 lg:row-span-1 lg:col-start-1 lg:row-start-3 p-0 bg-brand-orange">
-              <CardHeader className="p-0 m-0">
-                <div className="relative w-full aspect-video overflow-hidden">
-                  <Image
-                    src={getImageUrl(newsItems[3].image)}
-                    alt={
-                      typeof newsItems[3].image === 'object' && newsItems[3].image?.alt
-                        ? newsItems[3].image.alt
-                        : newsItems[3].title
-                    }
-                    width={
-                      typeof newsItems[3].image === 'object' && newsItems[3].image?.width
-                        ? newsItems[3].image.width
-                        : 400
-                    }
-                    height={
-                      typeof newsItems[3].image === 'object' && newsItems[3].image?.height
-                        ? newsItems[3].image.height
-                        : 300
-                    }
-                    className="object-cover aspect-video w-full h-full"
-                  />
-                </div>
-              </CardHeader>
-              <CardContent className="group px-6 py-2 h-full  !group-hover:bg-brand-orange !group-hover:text-white transition-colors duration-300">
-                <CardTitle className="font-bold text-md mb-2 leading-5 text-white overflow-hidden">
+            <div className="group gap-0 shadow rounded-2xl overflow-hidden hover:shadow-lg transition-all hover:text-white duration-300 lg:col-span-1 lg:row-span-1 lg:col-start-1 lg:row-start-3 p-0">
+              <div className="relative w-full aspect-video overflow-hidden">
+                <video
+                  src={newsItems[3].link}
+                  controls
+                  className="object-cover aspect-video w-full h-full"
+                />
+              </div>
+              <div className="group px-2 py-2 h-full transition-colors duration-300">
+                <h3 className="font-bold text-md mb-2 leading-5 text-gray-600 overflow-hidden">
                   {newsItems[3].title}
-                </CardTitle>
-                <p className="text-xs overflow-hidden text-white">{newsItems[3].description}</p>
+                </h3>
                 {newsItems[3].link && (
                   <Link
                     className="text-brand-orange !group-hover:text-white capitalize font-medium"
@@ -275,8 +258,8 @@ const EventsGrid = async () => {
                     <span className="text-white">Read more</span>
                   </Link>
                 )}
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           )}
 
           {/* Item 5 - Column 2, Row 3 */}
