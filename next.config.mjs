@@ -11,6 +11,12 @@ const nextConfig = {
         port: '',
         pathname: '/f/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'ernn9x55red.exactdn.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
   // Exclude problematic node_modules from Turbopack processing

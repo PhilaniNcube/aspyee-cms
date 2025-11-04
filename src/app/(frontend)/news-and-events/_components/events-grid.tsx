@@ -410,6 +410,33 @@ const EventsGrid = async () => {
           {/* Item 6 - Column 3, Spans 3 rows with internal grid */}
         </div>
       )}
+
+      <div className="mt-8 relative rounded-2xl overflow-hidden">
+        <Image
+          src="https://ernn9x55red.exactdn.com/wp-content/uploads/2025/09/African-youth-hailed-as-continents-tech-future.jpg?strip=all&lossy=1&ssl=1"
+          alt="Decorative Bottom"
+          width={1920}
+          height={1080}
+          className="w-full aspect-[8/3] object-cover h-auto"
+        />
+        <div className="absolute inset-0 p-6 flex flex-col justify-end items-start bg-slate-600/50">
+          <small className="text-sm text-white">September 14 | Claire Wanja</small>
+          <h3 className="text-2xl md:text-3xl font-bold text-white max-w-2xl my-4">
+            African youth hailed as continent&apos;s tech future
+          </h3>
+          <p className="text-white text-md leading-5 mt-2 max-w-xl">
+            Education CS Julius Ogamba underlined that the initiative complements Kenya&apos;s
+            Bottom-Up Economic Transformation Agenda (BETA) by equipping young people with practical
+            skills to drive manufacturing and job creation
+          </p>
+          <Link
+            className="text-white px-6 py-2 font-medium text-sm bg-blue-600 rounded-full my-5"
+            href="https://www.kbc.co.ke/african-youth-hailed-as-continents-tech-future/"
+          >
+            <span className="text-white">Read More</span>
+          </Link>
+        </div>
+      </div>
     </section>
   )
 }

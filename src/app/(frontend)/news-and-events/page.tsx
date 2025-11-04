@@ -13,8 +13,8 @@ const page = async () => {
       <EventsGrid />
 
       <TweetGrid />
-
       <MasonryGrid />
+
       <Community />
     </div>
   )
