@@ -38,6 +38,7 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
   --brand: oklch(0.7 0.15 200);
+  --brand-dark: oklch(0.6 0.15 200);
   --brand-orange: oklch(0.7 0.2 45);
   --brand-orange-60: oklch(0.7 0.2 45 / 0.6);
   --brand-green: oklch(74.2% 0.135 126.4);
@@ -208,6 +209,7 @@ svg {
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
   --color-brand: var(--brand);
+  --color-brand-dark: var(--brand-dark);
   --color-brand-orange: var(--brand-orange);
   --color-brand-orange-60: var(--brand-orange-60);
   --color-background: var(--background);

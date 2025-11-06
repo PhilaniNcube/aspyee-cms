@@ -37,7 +37,7 @@ const ResourceDetail = async ({ params }: { params: Promise<{ id: number }> }) =
   const relatedResources = await getRelatedResources(resource, 2)
 
   return (
-    <div className="container mx-auto max-w-[1520px] px-6 md:px-10 lg:px-16">
+    <div className="container mx-auto max-w-[1520px] w-[80%] ">
       {/* Featured Image or Fallback */}
 
       <div className="border-t-2 w-full border-gray-200 my-8 flex flex-col md:flex-row">

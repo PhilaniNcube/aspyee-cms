@@ -43,10 +43,8 @@ const TweetGrid = async () => {
   const fifthTweet = tweets?.[4]
 
   return (
-    <section className=" py-5 px-4 max-w-7xl mx-auto">
-      <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
-        Voices from the community
-      </h2>
+    <section className="py-5 max-w-[1520px] w-[80%] lg:py-10 px-6 lg:px-16 rounded-4xl border-2 bg-gray-100 border-brand mx-auto mb-16">
+      <h2 className="text-3xl font-medium mb-10 text-gray-900">Voices from the community</h2>
       {/* Twitter Feed Grid - 3 columns, 2 rows */}
       {tweets.length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
@@ -84,16 +82,12 @@ const TweetGrid = async () => {
                     {/* Author and Date */}
                     <div className="flex items-center gap-2 mb-2">
                       <h4 className="font-bold text-gray-900 truncate">{tweet.author}</h4>
-                      <span className="text-gray-500">·</span>
-                      <p className="text-sm text-gray-500 whitespace-nowrap">
-                        {format(new Date(tweet.date), 'MMMM dd, yyyy')}
-                      </p>
                     </div>
 
                     {/* Tweet Text */}
-                    <p className="text-gray-700 leading-relaxed break-words">{tweet.tweet}</p>
                   </div>
                 </div>
+                <p className="text-gray-700 leading-relaxed break-words">{tweet.tweet}</p>
               </CardContent>
             </Card>
           ))}
@@ -157,7 +151,8 @@ const TweetGrid = async () => {
                         <Image
                           src={getImageUrl(tweet.avatar)}
                           alt={`${tweet.author} avatar`}
-                          fill
+                          width={300}
+                          height={300}
                           className="object-cover"
                         />
                       </div>
@@ -175,16 +170,12 @@ const TweetGrid = async () => {
                     {/* Author and Date */}
                     <div className="flex items-center gap-2 mb-2">
                       <h4 className="font-bold text-gray-900 truncate">{tweet.author}</h4>
-                      <span className="text-gray-500">·</span>
-                      <p className="text-sm text-gray-500 whitespace-nowrap">
-                        {format(new Date(tweet.date), 'MMMM dd, yyyy')}
-                      </p>
                     </div>
 
                     {/* Tweet Text */}
-                    <p className="text-gray-700 leading-relaxed break-words">{tweet.tweet}</p>
                   </div>
                 </div>
+                <p className="text-gray-700 leading-relaxed break-words">{tweet.tweet}</p>
               </CardContent>
             </Card>
           ))}

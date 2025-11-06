@@ -18,7 +18,7 @@ const page = async () => {
 
       <Support />
 
-      <Community />
+      {/* <Community /> */}
     </div>
   )
 }

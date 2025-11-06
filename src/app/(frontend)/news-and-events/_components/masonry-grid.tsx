@@ -7,7 +7,7 @@ import React from 'react'
 const MasonryGrid = () => {
   return (
     <div className="py-10">
-      <div className="max-w-[1520px] px-6 md:px-12 mx-auto">
+      <div className="max-w-[1520px] w-[80%] px-6 md:px-12 mx-auto">
         <div className="columns-1 md:columns-2 gap-4 lg:columns-3 lg:gap-4 space-y-4">
           <div className="relative">
             <Image

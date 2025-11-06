@@ -6,8 +6,8 @@ import { MessageCircle, HelpCircle, AlertTriangle, Search } from 'lucide-react'
 
 const Support = () => {
   return (
-    <section className="w-full bg-gray-50 py-16">
-      <div className="mx-auto max-w-[1520px] px-6 md:px-10 lg:px-16  container">
+    <section className="w-full bg-gray-50 py-16 shadow-inner drop-shadow-2xl shadow-black/30">
+      <div className="mx-auto max-w-[1520px] w-[80%]   container">
         {/* Orange accent bar */}
         <div className="mb-8">
           <div className="border-l-8 pl-4  mb-6 border-brand-orange">

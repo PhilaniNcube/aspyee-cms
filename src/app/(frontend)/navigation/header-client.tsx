@@ -146,7 +146,7 @@ export default function HeaderClient() {
       {/* Auth links top bar (server-rendered content passed via props) */}
       <div
         className={cn(
-          'container mx-auto max-w-[1520px] px-6 md:px-10 lg:px-16 flex space-x-3 items-center justify-end text-[14px]',
+          'container mx-auto max-w-[1520px] w-[80%]  flex space-x-3 items-center justify-end text-[14px]',
           scrolled ? 'text-brand' : 'text-white',
         )}
       >
@@ -196,7 +196,7 @@ export default function HeaderClient() {
       </div>
 
       {/* Desktop Header */}
-      <div className="container mx-auto max-w-[1520px] px-6 md:px-10 lg:px-16 flex justify-between items-center">
+      <div className="container mx-auto max-w-[1520px] w-[80%]  flex justify-between items-center">
         <Link href={`${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/`}>
           <Image
             src={scrolled ? '/images/logo.png' : '/images/logo-white.png'}
