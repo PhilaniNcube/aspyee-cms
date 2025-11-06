@@ -34,6 +34,8 @@ type EventsGridProps = {
 }
 
 const EventsGrid = async () => {
+  'use cache'
+
   const newsAndEventsData = await getNewsAndEventsPage()
 
   if (!newsAndEventsData) {
