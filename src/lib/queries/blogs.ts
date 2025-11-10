@@ -71,3 +71,32 @@ export const fetchArchivedBlogs = async (): Promise<Blog[]> => {
     throw error
   }
 }
+
+// add a function to return blogs based on a filter/search query that searches title and excerpt
+export const fetchBlogsBySearchQuery = async (query: string): Promise<Blog[]> => {
+  const payload = await getPayload({ config })
+  try {
+    const blogs = await payload.find({
+      collection: 'blogs',
+      where: {
+        or: [
+          {
+            title: {
+              contains: query,
+            },
+          },
+          {
+            excerpt: {
+              contains: query,
+            },
+          },
+        ],
+      },
+      sort: '-createdAt',
+    })
+    return blogs.docs as Blog[]
+  } catch (error) {
+    console.error('Error fetching blogs by search query:', error)
+    throw error
+  }
+}

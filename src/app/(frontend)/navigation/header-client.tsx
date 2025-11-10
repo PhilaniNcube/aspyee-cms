@@ -126,8 +126,8 @@ export default function HeaderClient() {
     e.preventDefault()
     if (!searchQuery.trim()) return
 
-    // Navigate to search URL with query parameter
-    const searchUrl = `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}?s=${encodeURIComponent(searchQuery)}`
+    // Navigate to blogs search page with query parameter
+    const searchUrl = `/blogs/search?q=${encodeURIComponent(searchQuery)}`
     window.location.href = searchUrl
 
     // Close the search form after submission

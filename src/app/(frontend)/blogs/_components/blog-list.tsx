@@ -83,9 +83,7 @@ function BlogCard({ blog }: { blog: Blog }) {
 
         {/* Title */}
         <h2 className="text-xl font-semibold text-gray-900 mb-3 line-clamp-2">
-          <Link href={`/blogs/${blog.slug}`} className="hover:text-blue-600 transition-colors">
-            {blog.title}
-          </Link>
+          <div className="hover:text-blue-600 transition-colors">{blog.title}</div>
         </h2>
 
         {/* Excerpt */}
@@ -103,7 +101,15 @@ function BlogCard({ blog }: { blog: Blog }) {
               </span>
             )}
           </div> */}
-          <time dateTime={blog.createdAt}>{format(new Date(blog.createdAt), 'MMM dd, yyyy')}</time>
+          {blog.publishedDate ? (
+            <time dateTime={blog.publishedDate}>
+              {format(new Date(blog.publishedDate), 'MMM dd, yyyy')}
+            </time>
+          ) : (
+            <time dateTime={blog.createdAt}>
+              {format(new Date(blog.createdAt), 'MMM dd, yyyy')}
+            </time>
+          )}
         </div>
 
         {/* Tags */}
