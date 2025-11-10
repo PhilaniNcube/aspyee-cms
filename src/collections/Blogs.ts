@@ -7,6 +7,7 @@ import editor from './users/access/editor'
 
 export const Blogs: CollectionConfig = {
   slug: 'blogs',
+
   labels: {
     singular: 'Blog',
     plural: 'Blogs',
@@ -21,6 +22,7 @@ export const Blogs: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     description: 'Blog posts and articles',
+    defaultColumns: ['title', 'author', 'published', 'publishedDate', 'archived', 'categories'],
   },
   fields: [
     {
