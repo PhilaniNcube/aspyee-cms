@@ -77,6 +77,63 @@ export const Blogs: CollectionConfig = {
       hasMany: true,
     },
     {
+      name: 'publishedDate',
+      label: 'Published Date',
+      type: 'date',
+      // required: true,
+    },
+    {
+      name: 'topic',
+      type: 'select',
+      label: 'Topic',
+      options: [
+        'Labour Market Information',
+        'Private sector engagement and collaboration',
+        'Digitalization of TVET',
+        'Employment promotion',
+        'TVET Delivery and Structures',
+        'Inclusiveness',
+      ],
+    },
+    {
+      name: 'focusArea',
+      type: 'select',
+      label: 'Focus Area',
+      options: [
+        'ACQF',
+        'ATVET4Women',
+        'Private sector engagement',
+        'Skill and Labour migration',
+        'Skills Anticipation',
+        'SIFA',
+        'N/A',
+      ],
+    },
+    {
+      name: 'contentType',
+      type: 'select',
+      label: 'Content Type',
+      options: [
+        'Article',
+        'Knowledge Brief',
+        'Infographic',
+        'Toolkit',
+        'Report',
+        'Publication',
+        'Policy Brief',
+        'Podcast',
+        'Newsletter',
+        'Learning Tool',
+        'Guidline',
+        'Factsheet',
+        'Case Study',
+        'Brochure',
+        'Projects',
+        'Content',
+        'Video',
+      ],
+    },
+    {
       name: 'content',
       label: 'Content',
       type: 'richText',
@@ -91,6 +148,31 @@ export const Blogs: CollectionConfig = {
       type: 'upload',
       relationTo: 'media',
       required: true,
+    },
+    {
+      name: 'sourceLink',
+      type: 'text',
+      label: 'Source Link',
+      required: false,
+      admin: { description: 'Link to the original source if applicable' },
+      // make sure it's a valid URL
+      validate: (value: string | null | undefined) => {
+        if (value) {
+          try {
+            new URL(value)
+            return true
+          } catch {
+            return 'Please enter a valid URL'
+          }
+        }
+        return true
+      },
+    },
+    {
+      name: 'published',
+      type: 'checkbox',
+      label: 'Published',
+      defaultValue: false,
     },
     {
       name: 'tags',

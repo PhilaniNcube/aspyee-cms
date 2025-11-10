@@ -702,6 +702,49 @@ export interface Blog {
   author: number | User;
   excerpt: string;
   categories?: (number | Category)[] | null;
+  publishedDate?: string | null;
+  topic?:
+    | (
+        | 'Labour Market Information'
+        | 'Private sector engagement and collaboration'
+        | 'Digitalization of TVET'
+        | 'Employment promotion'
+        | 'TVET Delivery and Structures'
+        | 'Inclusiveness'
+      )
+    | null;
+  focusArea?:
+    | (
+        | 'ACQF'
+        | 'ATVET4Women'
+        | 'Private sector engagement'
+        | 'Skill and Labour migration'
+        | 'Skills Anticipation'
+        | 'SIFA'
+        | 'N/A'
+      )
+    | null;
+  contentType?:
+    | (
+        | 'Article'
+        | 'Knowledge Brief'
+        | 'Infographic'
+        | 'Toolkit'
+        | 'Report'
+        | 'Publication'
+        | 'Policy Brief'
+        | 'Podcast'
+        | 'Newsletter'
+        | 'Learning Tool'
+        | 'Guidline'
+        | 'Factsheet'
+        | 'Case Study'
+        | 'Brochure'
+        | 'Projects'
+        | 'Content'
+        | 'Video'
+      )
+    | null;
   content: {
     root: {
       type: string;
@@ -718,6 +761,11 @@ export interface Blog {
     [k: string]: unknown;
   };
   featuredImage: number | Media;
+  /**
+   * Link to the original source if applicable
+   */
+  sourceLink?: string | null;
+  published?: boolean | null;
   tags?:
     | {
         tag: string;
@@ -1030,8 +1078,14 @@ export interface BlogsSelect<T extends boolean = true> {
   author?: T;
   excerpt?: T;
   categories?: T;
+  publishedDate?: T;
+  topic?: T;
+  focusArea?: T;
+  contentType?: T;
   content?: T;
   featuredImage?: T;
+  sourceLink?: T;
+  published?: T;
   tags?:
     | T
     | {
