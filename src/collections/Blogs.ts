@@ -175,6 +175,12 @@ export const Blogs: CollectionConfig = {
       defaultValue: false,
     },
     {
+      name: 'archived',
+      type: 'checkbox',
+      label: 'Archived',
+      defaultValue: false,
+    },
+    {
       name: 'tags',
       type: 'array',
       label: 'Event Tags',

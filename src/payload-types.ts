@@ -766,6 +766,7 @@ export interface Blog {
    */
   sourceLink?: string | null;
   published?: boolean | null;
+  archived?: boolean | null;
   tags?:
     | {
         tag: string;
@@ -1086,6 +1087,7 @@ export interface BlogsSelect<T extends boolean = true> {
   featuredImage?: T;
   sourceLink?: T;
   published?: T;
+  archived?: T;
   tags?:
     | T
     | {
