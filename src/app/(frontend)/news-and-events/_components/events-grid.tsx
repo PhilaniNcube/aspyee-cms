@@ -8,6 +8,7 @@ import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { getNewsAndEventsPage } from '@/lib/queries/blogs-events'
 import { format } from 'date-fns/format'
+import ArchivedBlogs from './archived-blogs'
 
 type EventsGridProps = {
   eventsData: {
@@ -365,11 +366,12 @@ const EventsGrid = async () => {
                 </CardContent>
               </Card>
             )}
-          </div>
 
-          {/* Item 6 - Column 3, Spans 3 rows with internal grid */}
+            {/* Add a component for the archived blogs */}
+          </div>
         </div>
       )}
+      <ArchivedBlogs />
 
       <div className="mt-8 relative rounded-2xl overflow-hidden">
         <Image

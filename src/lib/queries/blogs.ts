@@ -1,0 +1,73 @@
+import { getPayload } from 'payload'
+import config from '@payload-config'
+import type { Blog } from '@/payload-types'
+
+// Fetch all published blogs
+export const fetchPublishedBlogs = async (): Promise<Blog[]> => {
+  const payload = await getPayload({ config })
+  try {
+    const blogs = await payload.find({
+      collection: 'blogs',
+      where: {
+        published: {
+          equals: true,
+        },
+      },
+    })
+    return blogs.docs as Blog[]
+  } catch (error) {
+    console.error('Error fetching published blogs:', error)
+    throw error
+  }
+}
+
+// Fetch a single blog by its slug
+export const fetchBlogBySlug = async (slug: string): Promise<Blog | null> => {
+  const payload = await getPayload({ config })
+  try {
+    const blog = await payload.find({
+      collection: 'blogs',
+      where: {
+        slug: {
+          equals: slug,
+        },
+      },
+    })
+    return blog.docs[0] || null
+  } catch (error) {
+    console.error('Error fetching blog by slug:', error)
+    throw error
+  }
+}
+
+// fetch all archived blogs from the last 3 months and return the paginated result
+export const fetchArchivedBlogs = async (): Promise<Blog[]> => {
+  const payload = await getPayload({ config })
+  try {
+    // Calculate the date 3 months ago from today
+    const threeMonthsAgo = new Date()
+    threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3)
+
+    const blogs = await payload.find({
+      collection: 'blogs',
+      where: {
+        and: [
+          {
+            archived: {
+              equals: true,
+            },
+          },
+          {
+            publishedDate: {
+              greater_than_equal: threeMonthsAgo.toISOString(),
+            },
+          },
+        ],
+      },
+    })
+    return blogs.docs as Blog[]
+  } catch (error) {
+    console.error('Error fetching archived blogs:', error)
+    throw error
+  }
+}
