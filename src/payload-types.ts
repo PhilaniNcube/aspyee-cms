@@ -480,6 +480,8 @@ export interface Media {
 export interface Resource {
   id: number;
   title: string;
+  description: string;
+  link: string;
   /**
    * Auto-incremented total number of downloads for this resource
    */
@@ -615,8 +617,6 @@ export interface Resource {
    * Upload a featured image for this resource
    */
   featured_image?: (number | null) | Media;
-  description: string;
-  link: string;
   /**
    * Upload files related to this resource
    */
@@ -1005,6 +1005,8 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface ResourcesSelect<T extends boolean = true> {
   title?: T;
+  description?: T;
+  link?: T;
   download_count?: T;
   type?: T;
   good_practice?: T;
@@ -1017,8 +1019,6 @@ export interface ResourcesSelect<T extends boolean = true> {
   publisher?: T;
   custom_publisher?: T;
   featured_image?: T;
-  description?: T;
-  link?: T;
   files?:
     | T
     | {
