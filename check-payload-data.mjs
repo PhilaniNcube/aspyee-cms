@@ -4,7 +4,7 @@ import config from './src/payload.config.js'
 async function checkDatabase() {
   try {
     console.log('\n🔍 Checking Payload Database...\n')
-    console.log('=' .repeat(80))
+    console.log('='.repeat(80))
 
     const payload = await getPayload({ config })
 
@@ -15,7 +15,7 @@ async function checkDatabase() {
       limit: 3,
       locale: 'en',
     })
-    
+
     console.log(`Total resources: ${resources.totalDocs}`)
     console.log('\nFirst 3 resources:')
     resources.docs.forEach((doc, i) => {
@@ -47,7 +47,7 @@ async function checkDatabase() {
       limit: 3,
       locale: 'en',
     })
-    
+
     console.log(`Total blogs: ${blogs.totalDocs}`)
     console.log('\nFirst 3 blogs:')
     blogs.docs.forEach((doc, i) => {
@@ -61,7 +61,7 @@ async function checkDatabase() {
       limit: 3,
       locale: 'en',
     })
-    
+
     console.log(`Total events: ${events.totalDocs}`)
     console.log('\nFirst 3 events:')
     events.docs.forEach((doc, i) => {
@@ -75,7 +75,7 @@ async function checkDatabase() {
       limit: 10,
       locale: 'en',
     })
-    
+
     console.log(`Total categories: ${categories.totalDocs}`)
     console.log('\nAll categories:')
     categories.docs.forEach((doc, i) => {
