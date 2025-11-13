@@ -47,12 +47,17 @@ const nextConfig = {
     }
 
     // Exclude test files from node_modules to prevent "Can't resolve 'tap'" errors
-    config.module = config.module || {}
-    config.module.rules = config.module.rules || []
-    config.module.rules.push({
-      test: /node_modules\/.*\/test\/.*/,
-      use: 'null-loader',
-    })
+    config.resolve = config.resolve || {}
+    config.resolve.alias = config.resolve.alias || {}
+
+    // Ignore test files in thread-stream and other packages
+    config.plugins = config.plugins || []
+    config.plugins.push(
+      new (require('webpack').IgnorePlugin)({
+        resourceRegExp: /\.test\.js$/,
+        contextRegExp: /node_modules/,
+      }),
+    )
 
     return config
   },
