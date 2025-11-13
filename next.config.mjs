@@ -45,6 +45,15 @@ const nextConfig = {
         config.externals.push('esbuild', '@esbuild/linux-x64', 'drizzle-kit', 'esbuild-register')
       }
     }
+
+    // Exclude test files from node_modules to prevent "Can't resolve 'tap'" errors
+    config.module = config.module || {}
+    config.module.rules = config.module.rules || []
+    config.module.rules.push({
+      test: /node_modules\/.*\/test\/.*/,
+      use: 'null-loader',
+    })
+
     return config
   },
 }
