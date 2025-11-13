@@ -45,10 +45,10 @@ export default buildConfig({
         label: 'Français',
         code: 'fr',
       },
-      {
-        label: 'Español',
-        code: 'es',
-      },
+      // {
+      //   label: 'Español',
+      //   code: 'es',
+      // },
     ],
     defaultLocale: 'en',
     fallback: true,
