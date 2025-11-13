@@ -46,16 +46,31 @@ const nextConfig = {
       }
     }
 
-    // Exclude test files from node_modules to prevent "Can't resolve 'tap'" errors
+    // Exclude test files and non-JS files from node_modules to prevent build errors
     config.resolve = config.resolve || {}
     config.resolve.alias = config.resolve.alias || {}
 
-    // Ignore test files in thread-stream and other packages
+    // Ignore test files, LICENSE, and other non-JS files in node_modules
     config.plugins = config.plugins || []
     config.plugins.push(
       new (require('webpack').IgnorePlugin)({
-        resourceRegExp: /\.test\.js$/,
-        contextRegExp: /node_modules/,
+        checkResource: (resource, context) => {
+          // Ignore test directories and files
+          if (/\/test\//.test(resource) || /\.test\.js$/.test(resource)) {
+            return true
+          }
+          // Ignore LICENSE and other non-JS files in node_modules
+          if (
+            context.includes('node_modules') &&
+            (resource.includes('LICENSE') ||
+              resource.includes('README') ||
+              resource.includes('.md') ||
+              resource.includes('.txt'))
+          ) {
+            return true
+          }
+          return false
+        },
       }),
     )
 
