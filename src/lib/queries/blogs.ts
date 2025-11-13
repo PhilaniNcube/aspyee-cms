@@ -9,9 +9,18 @@ export const fetchPublishedBlogs = async (locale: string = 'en'): Promise<Blog[]
     const blogs = await payload.find({
       collection: 'blogs',
       where: {
-        published: {
-          equals: true,
-        },
+        and: [
+          {
+            published: {
+              equals: true,
+            },
+          },
+          {
+            title: {
+              exists: true,
+            },
+          },
+        ],
       },
       locale: locale as any,
     })
@@ -32,9 +41,18 @@ export const fetchBlogBySlug = async (
     const blog = await payload.find({
       collection: 'blogs',
       where: {
-        slug: {
-          equals: slug,
-        },
+        and: [
+          {
+            slug: {
+              equals: slug,
+            },
+          },
+          {
+            title: {
+              exists: true,
+            },
+          },
+        ],
       },
       locale: locale as any,
     })
@@ -67,6 +85,11 @@ export const fetchArchivedBlogs = async (locale: string = 'en'): Promise<Blog[]>
               greater_than_equal: threeMonthsAgo.toISOString(),
             },
           },
+          {
+            title: {
+              exists: true,
+            },
+          },
         ],
       },
       locale: locale as any,
@@ -88,15 +111,24 @@ export const fetchBlogsBySearchQuery = async (
     const blogs = await payload.find({
       collection: 'blogs',
       where: {
-        or: [
+        and: [
           {
-            title: {
-              contains: query,
-            },
+            or: [
+              {
+                title: {
+                  contains: query,
+                },
+              },
+              {
+                excerpt: {
+                  contains: query,
+                },
+              },
+            ],
           },
           {
-            excerpt: {
-              contains: query,
+            title: {
+              exists: true,
             },
           },
         ],
