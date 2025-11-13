@@ -50,11 +50,26 @@ const nextConfig = {
     config.resolve = config.resolve || {}
     config.resolve.alias = config.resolve.alias || {}
 
+    // Add module rules to exclude non-JS files from being processed
+    config.module = config.module || {}
+    config.module.rules = config.module.rules || []
+    config.module.rules.push({
+      test: /\/(LICENSE|README|CHANGELOG|\.md|\.txt)$/i,
+      type: 'asset/resource',
+      generator: {
+        emit: false,
+      },
+    })
+
     // Ignore test files, LICENSE, and other non-JS files in node_modules
     config.plugins = config.plugins || []
     config.plugins.push(
       new (require('webpack').IgnorePlugin)({
         checkResource: (resource, context) => {
+          // Completely ignore thread-stream test directory
+          if (context.includes('thread-stream') && resource.includes('/test/')) {
+            return true
+          }
           // Ignore test directories and files
           if (/\/test\//.test(resource) || /\.test\.js$/.test(resource)) {
             return true
@@ -62,10 +77,11 @@ const nextConfig = {
           // Ignore LICENSE and other non-JS files in node_modules
           if (
             context.includes('node_modules') &&
-            (resource.includes('LICENSE') ||
-              resource.includes('README') ||
-              resource.includes('.md') ||
-              resource.includes('.txt'))
+            (/LICENSE$/i.test(resource) ||
+              /README/i.test(resource) ||
+              /CHANGELOG/i.test(resource) ||
+              /\.md$/i.test(resource) ||
+              /\.txt$/i.test(resource))
           ) {
             return true
           }
