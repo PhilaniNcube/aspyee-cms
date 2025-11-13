@@ -24,12 +24,14 @@ export const NewsAndEventsPage: CollectionConfig = {
           type: 'text',
           required: true,
           label: 'Hero Title',
+          localized: true,
         },
         {
           name: 'heroSubtitle',
           type: 'text',
           required: true,
           label: 'Hero Subtitle',
+          localized: true,
         },
         {
           name: 'heroImage',
@@ -50,6 +52,7 @@ export const NewsAndEventsPage: CollectionConfig = {
           type: 'text',
           required: true,
           label: 'Section Title',
+          localized: true,
         },
         {
           name: 'fullWidthSection',
@@ -66,11 +69,13 @@ export const NewsAndEventsPage: CollectionConfig = {
               name: 'title',
               type: 'text',
               label: 'Title',
+              localized: true,
             },
             {
               name: 'description',
               type: 'textarea',
               label: 'Description',
+              localized: true,
             },
             {
               name: 'link',
@@ -81,6 +86,7 @@ export const NewsAndEventsPage: CollectionConfig = {
               name: 'badgeText',
               type: 'text',
               label: 'Badge Text',
+              localized: true,
             },
           ],
         },
@@ -94,12 +100,14 @@ export const NewsAndEventsPage: CollectionConfig = {
               type: 'text',
               label: 'Title',
               required: true,
+              localized: true,
             },
             {
               name: 'description',
               type: 'textarea',
               label: 'Description',
               required: true,
+              localized: true,
             },
             {
               name: 'image',
@@ -128,6 +136,7 @@ export const NewsAndEventsPage: CollectionConfig = {
           type: 'textarea',
           label: 'Tweet',
           required: true,
+          localized: true,
         },
         {
           name: 'author',

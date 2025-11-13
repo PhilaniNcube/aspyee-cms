@@ -6,6 +6,7 @@ import config from '@payload-config'
 export interface PaginationParams {
   page?: number
   limit?: number
+  locale?: string // Add locale support
 }
 
 export interface PaginatedResult<T> {
@@ -30,6 +31,7 @@ export interface ResourceFilters {
   targetGroup?: string | string[]
   yearPublished?: number | number[]
   goodPractice?: 'yes' | 'no'
+  locale?: string // Add locale support to filters too
 }
 
 /**
@@ -41,7 +43,7 @@ export async function getResourcesPaginated(
 ): Promise<PaginatedResult<Resource>> {
   try {
     const payload = await getPayload({ config })
-    const { page = 1, limit = 12 } = pagination
+    const { page = 1, limit = 12, locale = 'en' } = pagination
 
     // Build the where clause dynamically
     const where: any = {}
@@ -122,6 +124,7 @@ export async function getResourcesPaginated(
       where,
       page,
       limit,
+      locale: locale as any, // Add locale parameter
       sort: '-createdAt', // Sort by newest first
     })
 
@@ -158,6 +161,7 @@ export async function getResourcesPaginated(
 export async function getRelatedResources(
   resource: Resource,
   limit: number = 5,
+  locale: string = 'en',
 ): Promise<Resource[]> {
   try {
     const payload = await getPayload({ config })
@@ -182,6 +186,7 @@ export async function getRelatedResources(
       collection: 'resources',
       where,
       limit,
+      locale: locale as any,
     })
 
     return result.docs as Resource[]
@@ -297,13 +302,14 @@ export async function getAllResourcesWithPagination(
 /**
  * Fetches a single resource by ID
  */
-export async function getResourceById(id: number): Promise<Resource | null> {
+export async function getResourceById(id: number, locale: string = 'en'): Promise<Resource | null> {
   try {
     const payload = await getPayload({ config })
 
     const result = await payload.findByID({
       collection: 'resources',
       id,
+      locale: locale as any,
     })
 
     return result as Resource

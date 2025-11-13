@@ -34,6 +34,25 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
+  // Localization configuration
+  localization: {
+    locales: [
+      {
+        label: 'English',
+        code: 'en',
+      },
+      {
+        label: 'Français',
+        code: 'fr',
+      },
+      {
+        label: 'Español',
+        code: 'es',
+      },
+    ],
+    defaultLocale: 'en',
+    fallback: true,
+  },
   // Add Countries so the seed script can populate it
   collections: [
     Users,

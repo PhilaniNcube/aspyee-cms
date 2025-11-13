@@ -1,10 +1,29 @@
-# Payload Blank Template
+# ASPYEE CMS
 
-This template comes configured with the bare minimum to get started on anything you need.
+A multilingual content management system built with Payload CMS, Next.js, and PostgreSQL.
+
+## ✨ Features
+
+- 🌍 **Multilingual Support**: English, French, and Spanish with easy-to-add additional languages
+- 📚 **Content Collections**: Resources, Blogs, Events, Categories, and more
+- 🔒 **Authentication & Authorization**: Role-based access control
+- 📁 **Media Management**: File uploads with cloud storage
+- 🎯 **Advanced Filtering**: Search and filter resources by multiple criteria
+- 📊 **Download Tracking**: Automatic download counting for resources
+
+## 🌐 Internationalization
+
+This project includes full internationalization (i18n) support:
+- All content can be translated into multiple languages
+- Automatic fallback to English (default locale) for untranslated content
+- Easy language switching in the admin panel
+- Frontend utilities for localized content display
+
+**See [LOCALIZATION_GUIDE.md](./LOCALIZATION_GUIDE.md) for complete documentation.**
 
 ## Quick start
 
-This template can be deployed directly from our Cloud hosting and it will setup MongoDB and cloud S3 object storage for media.
+This template can be deployed directly from Payload Cloud with PostgreSQL database support.
 
 ## Quick Start - local setup
 

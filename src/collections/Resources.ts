@@ -23,6 +23,7 @@ export const Resources: CollectionConfig = {
       label: 'Title',
       type: 'text',
       required: true,
+      localized: true,
     },
     {
       name: 'download_count',
@@ -305,6 +306,7 @@ export const Resources: CollectionConfig = {
       name: 'description',
       type: 'textarea',
       required: true,
+      localized: true,
     },
     {
       name: 'link',
@@ -328,6 +330,7 @@ export const Resources: CollectionConfig = {
         {
           name: 'description',
           type: 'text',
+          localized: true,
           admin: {
             description: 'Enter a description for this file',
           },
@@ -350,6 +353,7 @@ export const Resources: CollectionConfig = {
         {
           name: 'description',
           type: 'text',
+          localized: true,
           admin: {
             description: 'Enter a description for this file',
           },

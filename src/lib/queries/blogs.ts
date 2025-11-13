@@ -3,7 +3,7 @@ import config from '@payload-config'
 import type { Blog } from '@/payload-types'
 
 // Fetch all published blogs
-export const fetchPublishedBlogs = async (): Promise<Blog[]> => {
+export const fetchPublishedBlogs = async (locale: string = 'en'): Promise<Blog[]> => {
   const payload = await getPayload({ config })
   try {
     const blogs = await payload.find({
@@ -13,6 +13,7 @@ export const fetchPublishedBlogs = async (): Promise<Blog[]> => {
           equals: true,
         },
       },
+      locale: locale as any,
     })
     return blogs.docs as Blog[]
   } catch (error) {
@@ -22,7 +23,10 @@ export const fetchPublishedBlogs = async (): Promise<Blog[]> => {
 }
 
 // Fetch a single blog by its slug
-export const fetchBlogBySlug = async (slug: string): Promise<Blog | null> => {
+export const fetchBlogBySlug = async (
+  slug: string,
+  locale: string = 'en',
+): Promise<Blog | null> => {
   const payload = await getPayload({ config })
   try {
     const blog = await payload.find({
@@ -32,6 +36,7 @@ export const fetchBlogBySlug = async (slug: string): Promise<Blog | null> => {
           equals: slug,
         },
       },
+      locale: locale as any,
     })
     return blog.docs[0] || null
   } catch (error) {
@@ -41,7 +46,7 @@ export const fetchBlogBySlug = async (slug: string): Promise<Blog | null> => {
 }
 
 // fetch all archived blogs from the last 3 months and return the paginated result
-export const fetchArchivedBlogs = async (): Promise<Blog[]> => {
+export const fetchArchivedBlogs = async (locale: string = 'en'): Promise<Blog[]> => {
   const payload = await getPayload({ config })
   try {
     // Calculate the date 3 months ago from today
@@ -64,6 +69,7 @@ export const fetchArchivedBlogs = async (): Promise<Blog[]> => {
           },
         ],
       },
+      locale: locale as any,
     })
     return blogs.docs as Blog[]
   } catch (error) {
@@ -73,7 +79,10 @@ export const fetchArchivedBlogs = async (): Promise<Blog[]> => {
 }
 
 // add a function to return blogs based on a filter/search query that searches title and excerpt
-export const fetchBlogsBySearchQuery = async (query: string): Promise<Blog[]> => {
+export const fetchBlogsBySearchQuery = async (
+  query: string,
+  locale: string = 'en',
+): Promise<Blog[]> => {
   const payload = await getPayload({ config })
   try {
     const blogs = await payload.find({
@@ -93,6 +102,7 @@ export const fetchBlogsBySearchQuery = async (query: string): Promise<Blog[]> =>
         ],
       },
       sort: '-createdAt',
+      locale: locale as any,
     })
     return blogs.docs as Blog[]
   } catch (error) {

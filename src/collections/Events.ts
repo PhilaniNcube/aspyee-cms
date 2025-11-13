@@ -27,6 +27,7 @@ export const Events: CollectionConfig = {
       type: 'text',
       label: 'Event Title',
       required: true,
+      localized: true,
     },
     {
       name: 'date',
@@ -39,12 +40,14 @@ export const Events: CollectionConfig = {
       type: 'text',
       label: 'Event Location',
       required: true,
+      localized: true,
     },
     {
       name: 'description',
       type: 'textarea',
       label: 'Event Description',
       required: true,
+      localized: true,
     },
     {
       name: 'organizer',

@@ -29,12 +29,14 @@ export const Blogs: CollectionConfig = {
       name: 'title',
       type: 'text',
       required: true,
+      localized: true,
     },
     {
       name: 'slug',
       type: 'text',
       required: true,
       unique: true,
+      localized: true,
       //   automatically generate slug from title and make it read-only in the admin
       admin: {
         // position: 'sidebar',
@@ -71,6 +73,7 @@ export const Blogs: CollectionConfig = {
       label: 'Short Description',
       type: 'textarea',
       required: true,
+      localized: true,
     },
     {
       name: 'categories',
@@ -140,6 +143,7 @@ export const Blogs: CollectionConfig = {
       label: 'Content',
       type: 'richText',
       required: true,
+      localized: true,
       editor: lexicalEditor({
         features: ({ defaultFeatures }) => [...defaultFeatures, FixedToolbarFeature()],
       }),

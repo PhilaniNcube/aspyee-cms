@@ -7,6 +7,7 @@ import { cacheLife, cacheTag } from 'next/cache'
 export interface PaginationParams {
   page?: number
   limit?: number
+  locale?: string // Add locale support
 }
 
 export interface PaginatedResult<T> {
@@ -27,6 +28,7 @@ export interface BlogFilters {
   categories?: string | string[]
   tags?: string | string[]
   author?: string
+  locale?: string // Add locale support
 }
 
 // Filter interfaces for events
@@ -37,6 +39,7 @@ export interface EventFilters {
   dateTo?: string
   tags?: string | string[]
   organizer?: string
+  locale?: string // Add locale support
 }
 
 /**
@@ -48,7 +51,7 @@ export async function getBlogsPaginated(
 ): Promise<PaginatedResult<Blog>> {
   try {
     const payload = await getPayload({ config })
-    const { page = 1, limit = 12 } = pagination
+    const { page = 1, limit = 12, locale = 'en' } = pagination
 
     // Build the where clause dynamically
     const where: any = {}
@@ -95,6 +98,7 @@ export async function getBlogsPaginated(
       limit,
       sort: '-createdAt',
       depth: 2, // Include related data like author and categories
+      locale: locale as any, // Add locale parameter
     })
 
     return {
@@ -146,7 +150,7 @@ export async function getEventsPaginated(
 ): Promise<PaginatedResult<Event>> {
   try {
     const payload = await getPayload({ config })
-    const { page = 1, limit = 12 } = pagination
+    const { page = 1, limit = 12, locale = 'en' } = pagination
 
     // Build the where clause dynamically
     const where: any = {}
@@ -200,6 +204,7 @@ export async function getEventsPaginated(
       limit,
       sort: 'date', // Sort by event date (upcoming first)
       depth: 1,
+      locale: locale as any, // Add locale parameter
     })
 
     return {
@@ -222,7 +227,7 @@ export async function getEventsPaginated(
 /**
  * Fetches a single event by ID
  */
-export async function getEventById(id: string): Promise<Event | null> {
+export async function getEventById(id: string, locale: string = 'en'): Promise<Event | null> {
   try {
     const payload = await getPayload({ config })
 
@@ -230,6 +235,7 @@ export async function getEventById(id: string): Promise<Event | null> {
       collection: 'events',
       id,
       depth: 1,
+      locale: locale as any, // Add locale parameter
     })
 
     return result || null
@@ -326,7 +332,9 @@ export async function getEventTags() {
 /**
  * Fetches the first NewsAndEventsPage configuration
  */
-export async function getNewsAndEventsPage(): Promise<NewsAndEventsPage | null> {
+export async function getNewsAndEventsPage(
+  locale: string = 'en',
+): Promise<NewsAndEventsPage | null> {
   'use cache'
 
   cacheLife('days')
@@ -339,6 +347,7 @@ export async function getNewsAndEventsPage(): Promise<NewsAndEventsPage | null> 
       collection: 'news-and-events-page',
       limit: 1,
       depth: 2, // Include related media
+      locale: locale as any, // Add locale parameter
     })
 
     return result.docs[0] || null
