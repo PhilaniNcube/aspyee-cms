@@ -26,6 +26,17 @@ export const Resources: CollectionConfig = {
       localized: true,
     },
     {
+      name: 'description',
+      type: 'textarea',
+      required: true,
+      localized: true,
+    },
+    {
+      name: 'link',
+      type: 'text',
+      required: true,
+    },
+    {
       name: 'download_count',
       label: 'Download Count',
       type: 'number',
@@ -302,17 +313,7 @@ export const Resources: CollectionConfig = {
         description: 'Upload a featured image for this resource',
       },
     },
-    {
-      name: 'description',
-      type: 'textarea',
-      required: true,
-      localized: true,
-    },
-    {
-      name: 'link',
-      type: 'text',
-      required: true,
-    },
+
     {
       name: 'files',
       type: 'array',
