@@ -1,7 +1,6 @@
 import TargetGroupHero from '@/components/ui/target-group-hero'
 import TargetGroupTitleSection from '@/components/ui/target-group-title-section'
 import ResourceList from './_components/resource-list'
-import Testimonials from '../_components/testimonials'
 import NewsEvents from './_components/news-and-events'
 
 const PolicymakersPage = async () => {

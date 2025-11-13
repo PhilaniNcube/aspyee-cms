@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { getCurrentUser } from '../profile/actions'
+import { getCurrentUser } from '../[locale]/profile/actions'
 
 // Server component that renders authentication-related links based on user session.
 // It purposefully avoids any color classes; the parent container in the client

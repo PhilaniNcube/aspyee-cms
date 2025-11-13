@@ -8,7 +8,6 @@ This project now supports internationalization (i18n) with multiple languages. A
 
 - **English (en)** - Default locale
 - **French (fr)**
-- **Spanish (es)**
 
 You can easily add more languages by updating the `localization` configuration in `src/payload.config.ts`.
 

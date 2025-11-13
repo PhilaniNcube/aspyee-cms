@@ -1,12 +1,6 @@
 import React, { Suspense } from 'react'
-import './styles.css'
-import FontendHeader from './navigation/header'
-import Footer from './_components/footer'
-import { Open_Sans } from 'next/font/google'
-import { NuqsAdapter } from 'nuqs/adapters/next/app'
-import ReactQueryProvider from './providers/react-query-provider'
-
-const openSans = Open_Sans({ subsets: ['latin'] })
+import { routing } from '@/i18n/routing'
+import { redirect } from 'next/navigation'
 
 export const metadata = {
   description:
@@ -18,22 +12,16 @@ export const metadata = {
   metadataBase: new URL('https://centre.aspyee.org'),
 }
 
-export default async function RootLayout(props: { children: React.ReactNode }) {
+// This layout serves as a redirect wrapper
+// The actual rendering happens in [locale]/layout.tsx
+export default function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
 
+  // The middleware will handle redirects, but this is a fallback
+  // In case someone accesses the root directly
   return (
-    <html lang="en">
-      <body className={openSans.className}>
-        <ReactQueryProvider>
-          <Suspense fallback={<div className="h-20" />}>
-            <FontendHeader />
-          </Suspense>
-          <main>
-            <NuqsAdapter>{children}</NuqsAdapter>
-          </main>
-          <Footer />
-        </ReactQueryProvider>
-      </body>
-    </html>
+    <>
+      <Suspense>{children}</Suspense>
+    </>
   )
 }

@@ -7,11 +7,13 @@ import MasonryGrid from './_components/masonry-grid'
 import Community from './_components/community'
 import Support from '../knowledge-centre/_components/support'
 
-const page = async () => {
+const page = async ({ params }: { params: Promise<{ locale: string }> }) => {
+  const { locale } = await params
+
   return (
     <div className="">
       <NewsAndEventsHero />
-      <EventsGrid />
+      <EventsGrid locale={locale} />
 
       <TweetGrid />
       {/* <MasonryGrid /> */}

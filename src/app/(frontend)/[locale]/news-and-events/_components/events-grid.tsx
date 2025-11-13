@@ -34,10 +34,10 @@ type EventsGridProps = {
   }
 }
 
-const EventsGrid = async () => {
+const EventsGrid = async ({ locale }: { locale: string }) => {
   'use cache'
 
-  const newsAndEventsData = await getNewsAndEventsPage()
+  const newsAndEventsData = await getNewsAndEventsPage(locale)
 
   if (!newsAndEventsData) {
     return null
@@ -371,7 +371,7 @@ const EventsGrid = async () => {
           </div>
         </div>
       )}
-      <ArchivedBlogs />
+      <ArchivedBlogs locale={locale} />
 
       <div className="mt-8 relative rounded-2xl overflow-hidden">
         <Image

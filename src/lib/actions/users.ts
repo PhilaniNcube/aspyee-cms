@@ -37,9 +37,10 @@ export async function registerProfile(prevState: unknown, formData: FormData) {
   if (!validatedFields.success) {
     console.error('[registerUser] Validation failed', validatedFields.error)
     return {
-      message: validatedFields.error.message,
+      message: 'Validation failed',
       data: validatedFields.data,
       success: false,
+      fieldErrors: validatedFields.error.flatten().fieldErrors,
     }
   }
 
@@ -69,6 +70,7 @@ export async function registerProfile(prevState: unknown, formData: FormData) {
       success: false,
       message: 'Email is already registered',
       data: validatedFields.data,
+      fieldErrors: { email: ['Email is already registered'] },
     }
   }
 
@@ -109,6 +111,7 @@ export async function registerProfile(prevState: unknown, formData: FormData) {
       message: 'Registration successful! You can now log in.',
       data: { id: created.id, email: created.email },
       success: true,
+      fieldErrors: {},
     }
   } catch (error) {
     console.error('[registerUser] Error occurred', error)
@@ -116,6 +119,7 @@ export async function registerProfile(prevState: unknown, formData: FormData) {
       message: 'User registration failed',
       data: validatedFields.data,
       success: false,
+      fieldErrors: {},
     }
   }
 }

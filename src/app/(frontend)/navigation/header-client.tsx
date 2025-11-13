@@ -18,6 +18,7 @@ import { Input } from '@/components/ui/input'
 import { Menu, ChevronDown, ChevronRight, SearchIcon, X } from 'lucide-react'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import { usePathname } from 'next/navigation'
+import { LanguageSwitcher } from '@/components/language-switcher'
 
 // Navigation routes configuration (kept client-side for interactivity only)
 const navigationRoutes = [
@@ -320,6 +321,11 @@ export default function HeaderClient() {
             )}
             onClick={() => setSearchOpen(true)}
           />
+
+          {/* Language Switcher */}
+          <div className="ml-4">
+            <LanguageSwitcher className={scrolled ? 'text-black' : 'text-white'} />
+          </div>
         </div>
 
         {/* Mobile Menu */}
@@ -344,6 +350,11 @@ export default function HeaderClient() {
                   <SearchIcon className="h-4 w-4" />
                   Search
                 </Button>
+
+                {/* Language Switcher in Mobile Menu */}
+                <div className="w-full">
+                  <LanguageSwitcher />
+                </div>
 
                 {navigationRoutes.map((route, index) => (
                   <div key={index}>

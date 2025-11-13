@@ -1,80 +1,81 @@
 'use client'
 
 /**
- * Language Switcher Component
+ * Language Switcher Component with next-intl
  *
  * Allows users to switch between available languages on the frontend.
  * Can be placed in your navigation or header.
  */
 
-import { usePathname, useRouter } from 'next/navigation'
+import { useRouter, usePathname } from '@/i18n/routing'
+import { useLocale } from 'next-intl'
+import { routing } from '@/i18n/routing'
 import {
-  locales,
-  localeConfig,
-  type SupportedLocale,
-  getLocaleFromPathname,
-  addLocaleToPath,
-  removeLocaleFromPath,
-} from '@/lib/i18n'
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 
 interface LanguageSwitcherProps {
-  currentLocale?: SupportedLocale
   className?: string
 }
 
-export function LanguageSwitcher({ currentLocale, className = '' }: LanguageSwitcherProps) {
-  const pathname = usePathname()
+const localeNames: Record<string, { label: string; flag: string }> = {
+  en: { label: 'English', flag: '🇬🇧' },
+  fr: { label: 'Français', flag: '🇫🇷' },
+}
+
+export function LanguageSwitcher({ className = '' }: LanguageSwitcherProps) {
   const router = useRouter()
+  const pathname = usePathname()
+  const locale = useLocale()
 
-  // Get current locale from pathname if not provided
-  const locale = currentLocale || getLocaleFromPathname(pathname)
-
-  const handleLocaleChange = (newLocale: SupportedLocale) => {
-    // Remove current locale from path and add new one
-    const pathWithoutLocale = removeLocaleFromPath(pathname)
-    const newPath = addLocaleToPath(pathWithoutLocale, newLocale)
-    router.push(newPath)
+  const handleLocaleChange = (newLocale: string) => {
+    router.replace(pathname, { locale: newLocale })
   }
 
   return (
-    <div className={`flex items-center gap-2 ${className}`}>
-      <label htmlFor="language-select" className="text-sm font-medium">
-        Language:
-      </label>
-      <select
-        id="language-select"
-        value={locale}
-        onChange={(e) => handleLocaleChange(e.target.value as SupportedLocale)}
-        className="border rounded px-2 py-1 text-sm bg-white"
+    <Select value={locale} onValueChange={handleLocaleChange}>
+      <SelectTrigger
+        className={`w-[140px] border rounded px-3 py-2 text-sm bg-transparent ${className}`}
       >
-        {locales.map((loc) => (
-          <option key={loc} value={loc}>
-            {localeConfig[loc].flag} {localeConfig[loc].label}
-          </option>
-        ))}
-      </select>
-    </div>
+        <SelectValue>
+          {localeNames[locale].flag} {localeNames[locale].label}
+        </SelectValue>
+      </SelectTrigger>
+      <SelectContent className="border rounded bg-white">
+        <SelectGroup>
+          <SelectLabel>Language</SelectLabel>
+          {routing.locales.map((loc) => (
+            <SelectItem key={loc} value={loc}>
+              {localeNames[loc].flag} {localeNames[loc].label}
+            </SelectItem>
+          ))}
+        </SelectGroup>
+      </SelectContent>
+    </Select>
   )
 }
 
 /**
  * Alternative: Button-based language switcher
  */
-export function LanguageSwitcherButtons({ currentLocale, className = '' }: LanguageSwitcherProps) {
-  const pathname = usePathname()
+export function LanguageSwitcherButtons({ className = '' }: LanguageSwitcherProps) {
   const router = useRouter()
+  const pathname = usePathname()
+  const locale = useLocale()
 
-  const locale = currentLocale || getLocaleFromPathname(pathname)
-
-  const handleLocaleChange = (newLocale: SupportedLocale) => {
-    const pathWithoutLocale = removeLocaleFromPath(pathname)
-    const newPath = addLocaleToPath(pathWithoutLocale, newLocale)
-    router.push(newPath)
+  const handleLocaleChange = (newLocale: string) => {
+    router.replace(pathname, { locale: newLocale })
   }
 
   return (
     <div className={`flex items-center gap-1 ${className}`}>
-      {locales.map((loc) => (
+      {routing.locales.map((loc) => (
         <button
           key={loc}
           onClick={() => handleLocaleChange(loc)}
@@ -83,9 +84,9 @@ export function LanguageSwitcherButtons({ currentLocale, className = '' }: Langu
               ? 'bg-blue-600 text-white'
               : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
           }`}
-          aria-label={`Switch to ${localeConfig[loc].label}`}
+          aria-label={`Switch to ${localeNames[loc].label}`}
         >
-          {localeConfig[loc].flag} {loc.toUpperCase()}
+          {localeNames[loc].flag} {loc.toUpperCase()}
         </button>
       ))}
     </div>

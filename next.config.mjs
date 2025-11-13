@@ -1,4 +1,7 @@
 import { withPayload } from '@payloadcms/next/withPayload'
+import createNextIntlPlugin from 'next-intl/plugin'
+
+const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -46,8 +49,10 @@ const nextConfig = {
   },
 }
 
-export default withPayload(nextConfig, {
-  devBundleServerPackages: false,
-  // Ensure server packages are properly externalized
-  serverExternals: ['esbuild', 'drizzle-kit', '@esbuild/linux-x64'],
-})
+export default withNextIntl(
+  withPayload(nextConfig, {
+    devBundleServerPackages: false,
+    // Ensure server packages are properly externalized
+    serverExternals: ['esbuild', 'drizzle-kit', '@esbuild/linux-x64'],
+  }),
+)

@@ -4,8 +4,7 @@ import React, { startTransition, useActionState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { CreateProfileSchema } from '@/lib/schema'
-import { registerProfile } from '@/app/(frontend)/register/actions'
-import type { CreateProfileInput, CreateProfileResult } from '@/app/(frontend)/register/actions'
+
 import {
   Form,
   FormControl,
@@ -29,23 +28,25 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { PlusIcon, XIcon, EyeIcon, EyeOffIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { COUNTRIES } from '@/migrations/20250831_countries_seed'
+import { registerProfile } from '@/lib/actions/users'
+import { CreateProfileInput } from '@/app/(frontend)/[locale]/register/actions'
 
 // Action state for useActionState
 type ActionState = {
   success?: boolean
   message: string | null
-  fieldErrors: Record<string, string[]>
+  fieldErrors: Record<string, string[] | undefined>
 }
 
 const initialState: ActionState = { success: undefined, message: null, fieldErrors: {} }
 
 // Wrapper action for useActionState
 async function actionWrapper(prev: ActionState, formData: FormData): Promise<ActionState> {
-  const result = await registerProfile(formData)
+  const result = await registerProfile(prev, formData)
   if (result.success) {
     return { success: true, message: result.message, fieldErrors: {} }
   }
-  return { success: false, message: result.message, fieldErrors: result.fieldErrors || {} }
+  return { success: false, message: result.message, fieldErrors: result.fieldErrors }
 }
 
 // Common country options (you can expand this list)
@@ -93,7 +94,7 @@ export function CreateProfile({ onSuccess }: CreateProfileProps) {
   React.useEffect(() => {
     if (state.fieldErrors) {
       Object.entries(state.fieldErrors).forEach(([field, errors]) => {
-        if (errors.length > 0) {
+        if (errors && errors.length > 0) {
           form.setError(field as keyof CreateProfileInput, {
             type: 'server',
             message: errors[0],

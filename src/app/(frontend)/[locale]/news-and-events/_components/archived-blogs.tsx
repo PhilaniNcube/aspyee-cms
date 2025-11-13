@@ -11,8 +11,10 @@ import {
 } from '@/components/ui/accordion'
 import { Calendar, Clock } from 'lucide-react'
 
-const ArchivedBlogs = async () => {
-  const archivedBlogs = await fetchArchivedBlogs()
+const ArchivedBlogs = async ({ locale }: { locale: string }) => {
+  const archivedBlogs = await fetchArchivedBlogs(locale)
+
+  console.log('Archived Blogs:', archivedBlogs)
 
   if (!archivedBlogs || archivedBlogs.length === 0) {
     return null

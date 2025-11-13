@@ -17,7 +17,7 @@ export const fetchPublishedBlogs = async (locale: string = 'en'): Promise<Blog[]
           },
           {
             title: {
-              exists: true,
+              not_equals: undefined,
             },
           },
         ],
@@ -49,7 +49,7 @@ export const fetchBlogBySlug = async (
           },
           {
             title: {
-              exists: true,
+              not_equals: undefined,
             },
           },
         ],
@@ -83,11 +83,6 @@ export const fetchArchivedBlogs = async (locale: string = 'en'): Promise<Blog[]>
           {
             publishedDate: {
               greater_than_equal: threeMonthsAgo.toISOString(),
-            },
-          },
-          {
-            title: {
-              exists: true,
             },
           },
         ],
@@ -128,7 +123,7 @@ export const fetchBlogsBySearchQuery = async (
           },
           {
             title: {
-              exists: true,
+              not_equals: undefined,
             },
           },
         ],
