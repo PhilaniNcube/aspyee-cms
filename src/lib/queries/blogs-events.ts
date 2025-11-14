@@ -1,3 +1,4 @@
+import 'server-only'
 import { Blog, Event, NewsAndEventsPage } from '@/payload-types'
 import { getPayload } from 'payload'
 import config from '@payload-config'
