@@ -16,11 +16,10 @@ const KnowledgeCentre: NextPage = () => {
           src="/images/adobe-stock-3110722661.png"
           alt="Policymakers Background"
           layout="fill"
-          objectFit="cover"
           className="absolute inset-0 -z-10 pointer-events-none"
         />
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/60 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-linear-to-b from-black/30 to-black/60 pointer-events-none"></div>
         <div className="relative z-10 h-[564px] flex justify-center items-center p-4">
           <div className="container mx-auto max-w-[1520px] w-[80%]  ">
             <h1 className="text-5xl font-extrabold text-white">Policy Makers</h1>

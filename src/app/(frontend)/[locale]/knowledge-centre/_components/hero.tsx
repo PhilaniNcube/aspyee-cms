@@ -9,11 +9,10 @@ const Hero = () => {
         src="https://4kav3digtb.ufs.sh/f/FBDFb9YX4geOCWACmTjj5LdxWmT7rvE2bnZNA69cODKaozRI"
         alt="Policymakers Background"
         layout="fill"
-        objectFit="cover"
-        className="absolute inset-0 -z-10 pointer-events-none"
+        className="absolute inset-0 -z-10 pointer-events-none aspect-auto object-cover"
       />
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/60 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-linear-to-b from-black/30 to-black/60 pointer-events-none"></div>
       <div className="relative z-10 lg:h-[600px] flex justify-center items-center">
         <div className="container flex items-end h-full  mx-auto max-w-[1520px] w-[80%]  ">
           <div className="bg-[#9FB23FCC] lg:w-[550px] p-0 lg:h-[250px]">

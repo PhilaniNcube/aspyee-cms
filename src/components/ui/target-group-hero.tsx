@@ -25,10 +25,10 @@ const TargetGroupHero: React.FC<TargetGroupHeroProps> = ({
             src={backgroundImage}
             alt={backgroundAlt}
             layout="fill"
-            objectFit="contain"
-            className="rounded-lg scale-x-[-1]"
+          
+            className="rounded-lg scale-x-[-1] object-cover object-center" 
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/40"></div>
+          <div className="absolute inset-0 bg-linear-to-b from-black/20 to-black/40"></div>
         </div>
         <div className="px-6 md:px-10 py-8">
           <div className="container mx-auto max-w-[1520px] w-[80%]">
@@ -63,9 +63,8 @@ const TargetGroupHero: React.FC<TargetGroupHeroProps> = ({
             src={backgroundImage}
             alt={backgroundAlt}
             layout="fill"
-            objectFit="cover"
             objectPosition="right center"
-            className="scale-x-[-1]"
+            className="scale-x-[-1] object-cover"
           />
         </div>
       </div>
