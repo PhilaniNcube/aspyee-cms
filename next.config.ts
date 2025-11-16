@@ -1,3 +1,4 @@
+import path from 'path'
 import { withPayload } from '@payloadcms/next/withPayload'
 import createNextIntlPlugin from 'next-intl/plugin'
 import type { NextConfig } from 'next'
@@ -25,7 +26,7 @@ const nextConfig: NextConfig = {
   },
   // Exclude problematic node_modules from Turbopack processing
   transpilePackages: [],
-    serverExternalPackages: [
+  serverExternalPackages: [
       '@esbuild/linux-x64',
       '@esbuild/darwin-x64',
       '@esbuild/darwin-arm64',
@@ -55,9 +56,15 @@ const nextConfig: NextConfig = {
       loader: 'ignore-loader',
     })
     config.module.rules.push({
-      test: /thread-stream[\\/]bench\.js$/,
+      test: /thread-stream[\/]bench\.js$/,
       loader: 'ignore-loader',
     })
+
+    // Ensure Payload config alias is available on both server and client
+    config.resolve.alias = {
+      ...(config.resolve.alias || {}),
+      '@payload-config': path.resolve(__dirname, './src/payload.config.ts'),
+    }
     
     return config
   },
