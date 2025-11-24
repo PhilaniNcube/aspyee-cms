@@ -21,32 +21,32 @@ const Footer = async () => {
       <div className="">
         {/* Top section with logos */}
         <div className="flex flex-wrap items-center justify-between mb-8 pb-8  mx-auto max-w-[1520px] w-[80%] ">
-          <div className="flex items-center justify-center lg:space-x-56 mb-4 lg:mb-0 w-full py-12 lg:px-12">
-            <Link href="https://skillsafrica.org/">
+          <div className="flex items-center justify-center lg:space-x-40 mb-4 lg:mb-0 w-full py-12">
+            <Link href="https://skillsafrica.org/" className='flex-1'>
               <Image
                 src="/images/sifa.png"
                 alt="SIFA Logo"
                 width={500}
                 height={261}
-                className="max-w-[280px] object-cover"
+                className="max-w-[380px] object-cover"
               />
             </Link>
-            <Link href="https://humana.org/">
+            <Link href="https://humana.org/" className='flex-1'>
               <Image
-                src="/images/humana.png"
+                src="/images/hpp.png"
                 alt="HUMANA Logo"
-                width={500}
-                height={261}
+                width={1495}
+                height={535}
                 className="max-w-[280px] object-cover"
               />
             </Link>
-            <Link href="https://giz.de/">
+            <Link href="https://giz.de/" className='flex-1'>
               <Image
                 src="/images/giz.png"
                 alt="GIZ Logo"
                 width={500}
                 height={261}
-                className="max-w-[280px] object-cover"
+                className="max-w-[380px] object-cover"
               />
             </Link>
           </div>
