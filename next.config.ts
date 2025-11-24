@@ -5,8 +5,16 @@ import type { NextConfig } from 'next'
 
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts')
 
+// This regex contains the bots that we need to do a blocking render for and can't safely stream the response
+// due to how they parse the DOM. For example, they might explicitly check for metadata in the `head` tag, so we can't stream metadata tags after the `head` was sent.
+// Note: The pattern [\w-]+-Google captures all Google crawlers with "-Google" suffix (e.g., Mediapartners-Google, AdsBot-Google, Storebot-Google)
+// as well as crawlers starting with "Google-" (e.g., Google-PageRenderer, Google-InspectionTool)
+export const HTML_LIMITED_BOT_UA_RE =
+  /[\w-]+-Google|Google-[\w-]+|Chrome-Lighthouse|Slurp|applebot|facebookexternalhit|facebookcatalog|WhatsApp|googleweblight/i
+
 const nextConfig: NextConfig = {
   cacheComponents: true,
+  htmlLimitedBots: HTML_LIMITED_BOT_UA_RE,
   images: {
     minimumCacheTTL: 60 * 60 * 24 * 30,
     remotePatterns: [
