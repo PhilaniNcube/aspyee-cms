@@ -6,7 +6,7 @@ const ArchivedBlogs = async ({ locale }: { locale: string }) => {
   const archivedBlogs = await fetchArchivedBlogs(locale)
 
   return (
-    <Suspense fallback={<div>Loading archives...</div>}>
+    <Suspense fallback={<div>Loading archives</div>}>
       <ArchivedBlogsClient blogs={archivedBlogs} />
     </Suspense>
   )
