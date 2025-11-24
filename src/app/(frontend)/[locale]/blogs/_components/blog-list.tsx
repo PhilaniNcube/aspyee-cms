@@ -32,7 +32,7 @@ export default function BlogList({ blogs, pagination }: BlogListProps) {
       {/* Blog Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
         {blogs.map((blog) => (
-          <Link className="cursor-pointer" key={blog.id} href={`/blogs/${blog.slug}`}>
+          <Link className="cursor-pointer" key={blog.id} href={`${blog.sourceLink || '#'}`}>
             <BlogCard blog={blog} />
           </Link>
         ))}
