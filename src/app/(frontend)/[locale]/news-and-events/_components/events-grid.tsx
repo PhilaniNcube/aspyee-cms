@@ -90,10 +90,10 @@ const EventsGrid = async ({ locale }: { locale: string }) => {
                       {fullWidthSection.badgeText}
                     </small>
                   )}
-                  <h3 className="text-2xl md:text-3xl font-bold mb-3">{fullWidthSection.title}</h3>
+                  <h3 className="text-lg sm:text-2xl md:text-3xl font-bold mb-3">{fullWidthSection.title}</h3>
                   <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-out">
                     <div className="overflow-hidden">
-                      <p className="text-sm mb-4 text-balance opacity-90">
+                      <p className="text-xs line-clamp-3 lg:line-clamp-none md:text-sm mb-4 text-balance opacity-90">
                         {fullWidthSection.description}
                       </p>
                       {fullWidthSection.link && (
@@ -116,8 +116,7 @@ const EventsGrid = async ({ locale }: { locale: string }) => {
       {/* News Items Grid */}
       {newsItems && newsItems.length > 0 && (
         <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:grid-rows-3"
-          style={{ gridTemplateRows: 'repeat(3, auto)', gridTemplateColumns: '1fr 1fr 0.7fr' }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1fr_1fr_0.7fr] gap-6 lg:grid-rows-[auto_auto_auto]"
         >
           {/* Item 1 - Spans 2 columns, 1 row */}
           {newsItems[0] && (
