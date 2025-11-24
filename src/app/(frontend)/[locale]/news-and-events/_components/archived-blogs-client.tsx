@@ -34,44 +34,60 @@ const ArchivedBlogsClient = ({ blogs }: ArchivedBlogsClientProps) => {
     return Array.from(uniqueYears).sort((a, b) => b.localeCompare(a))
   }, [blogs])
 
+  const effectiveYear = year || (years.length > 0 ? years[0] : null)
+
   // Extract available months for the selected year
   const months = useMemo(() => {
-    if (!year) return []
+    if (!effectiveYear) return []
     const uniqueMonths = new Set<string>()
     blogs.forEach((blog) => {
       if (blog.publishedDate) {
         const blogYear = new Date(blog.publishedDate).getFullYear().toString()
-        if (blogYear === year) {
-           const date = new Date(blog.publishedDate)
-           const monthName = date.toLocaleString('default', { month: 'long' })
-           uniqueMonths.add(monthName)
+        if (blogYear === effectiveYear) {
+          const date = new Date(blog.publishedDate)
+          const monthName = date.toLocaleString('default', { month: 'long' })
+          uniqueMonths.add(monthName)
         }
       }
     })
-    
+
     const monthNames = [
-      "January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November", "December"
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
     ]
     return Array.from(uniqueMonths).sort((a, b) => {
-        return monthNames.indexOf(a) - monthNames.indexOf(b)
+      return monthNames.indexOf(a) - monthNames.indexOf(b)
     })
-  }, [blogs, year])
+  }, [blogs, effectiveYear])
+
+  const effectiveMonth = month || (months.length > 0 ? months[months.length - 1] : null)
 
   // Filter blogs based on selection
   const filteredBlogs = useMemo(() => {
-    if (!year || !month) return []
-    return blogs.filter((blog) => {
-      if (!blog.publishedDate) return false
-      const date = new Date(blog.publishedDate)
-      const blogYear = date.getFullYear().toString()
-      const blogMonth = date.toLocaleString('default', { month: 'long' })
-      return blogYear === year && blogMonth === month
-    }).sort((a, b) => {
+    if (!effectiveYear || !effectiveMonth) return []
+    return blogs
+      .filter((blog) => {
+        if (!blog.publishedDate) return false
+        const date = new Date(blog.publishedDate)
+        const blogYear = date.getFullYear().toString()
+        const blogMonth = date.toLocaleString('default', { month: 'long' })
+        return blogYear === effectiveYear && blogMonth === effectiveMonth
+      })
+      .sort((a, b) => {
         // Sort by date descending
         return new Date(b.publishedDate!).getTime() - new Date(a.publishedDate!).getTime()
-    })
-  }, [blogs, year, month])
+      })
+  }, [blogs, effectiveYear, effectiveMonth])
 
   const handleYearChange = (value: string) => {
     setYear(value)
@@ -89,14 +105,16 @@ const ArchivedBlogsClient = ({ blogs }: ArchivedBlogsClientProps) => {
   return (
     <section className="py-8 lg:py-12 w-full mx-auto">
       <div className="mb-8">
-        <h2 className="text-3xl font-semibold text-gray-900 mb-2">Archived Blogs</h2>
+        <div className="border-l-8 border-brand-orange pl-4">
+          <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">Archived Blogs</h2>
+        </div>
         <p className="text-gray-600 mb-6">
           Select a year and month to browse our collection of {blogs.length} archived blog posts
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="w-full sm:w-48">
-            <Select value={year || ''} onValueChange={handleYearChange}>
+            <Select value={effectiveYear || ''} onValueChange={handleYearChange}>
               <SelectTrigger>
                 <SelectValue placeholder="Select Year" />
               </SelectTrigger>
@@ -111,7 +129,11 @@ const ArchivedBlogsClient = ({ blogs }: ArchivedBlogsClientProps) => {
           </div>
 
           <div className="w-full sm:w-48">
-            <Select value={month || ''} onValueChange={handleMonthChange} disabled={!year}>
+            <Select
+              value={effectiveMonth || ''}
+              onValueChange={handleMonthChange}
+              disabled={!effectiveYear}
+            >
               <SelectTrigger>
                 <SelectValue placeholder="Select Month" />
               </SelectTrigger>
@@ -129,81 +151,82 @@ const ArchivedBlogsClient = ({ blogs }: ArchivedBlogsClientProps) => {
 
       {filteredBlogs.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-            {filteredBlogs.map((blog) => {
-                const author = typeof blog.author === 'object' ? blog.author : null
-                const featuredImage = typeof blog.featuredImage === 'object' ? blog.featuredImage : null
-                const categories = Array.isArray(blog.categories) ? blog.categories : []
-                
-                return (
-                    <Link
-                      key={blog.id}
-                      href={`${blog.sourceLink || '#'}`}
-                      className="group block bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-all duration-300"
-                    >
-                      {/* Featured Image */}
-                      {featuredImage?.url && (
-                        <div className="aspect-video relative overflow-hidden bg-gray-200">
-                          <Image
-                            src={featuredImage.url}
-                            alt={featuredImage.alt || blog.title}
-                            fill
-                            className="object-cover group-hover:scale-105 transition-transform duration-300"
-                          />
-                        </div>
-                      )}
+          {filteredBlogs.map((blog) => {
+            const author = typeof blog.author === 'object' ? blog.author : null
+            const featuredImage = typeof blog.featuredImage === 'object' ? blog.featuredImage : null
+            const categories = Array.isArray(blog.categories) ? blog.categories : []
 
-                      <div className="p-5">
-                        {/* Categories */}
-                        {categories.length > 0 && (
-                          <div className="flex flex-wrap gap-2 mb-3">
-                            {categories.slice(0, 2).map((category) => {
-                              const cat = typeof category === 'object' ? category : null
-                              return cat ? (
-                                <span
-                                  key={cat.id}
-                                  className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full"
-                                >
-                                  {cat.name}
-                                </span>
-                              ) : null
-                            })}
-                          </div>
-                        )}
+            return (
+              <Link
+                key={blog.id}
+                href={`${blog.sourceLink || '#'}`}
+                className="group block bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-all duration-300"
+              >
+                {/* Featured Image */}
+                {featuredImage?.url && (
+                  <div className="aspect-video relative overflow-hidden bg-gray-200">
+                    <Image
+                      src={featuredImage.url}
+                      alt={featuredImage.alt || blog.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                )}
 
-                        {/* Title */}
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-brand-orange transition-colors">
-                          {blog.title}
-                        </h3>
+                <div className="p-5">
+                  {/* Categories */}
+                  {categories.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mb-3">
+                      {categories.slice(0, 2).map((category) => {
+                        const cat = typeof category === 'object' ? category : null
+                        return cat ? (
+                          <span
+                            key={cat.id}
+                            className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full"
+                          >
+                            {cat.name}
+                          </span>
+                        ) : null
+                      })}
+                    </div>
+                  )}
 
-                        {/* Excerpt */}
-                        {blog.excerpt && (
-                          <p className="text-gray-600 text-sm mb-4 line-clamp-2">{blog.excerpt}</p>
-                        )}
+                  {/* Title */}
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-brand-orange transition-colors">
+                    {blog.title}
+                  </h3>
 
-                        {/* Meta Information */}
-                        <div className="flex items-center gap-4 text-xs text-gray-500">
-                          {blog.publishedDate && (
-                            <div className="flex items-center gap-1">
-                              <Calendar className="w-3 h-3" />
-                              <span>{format(new Date(blog.publishedDate), 'MMM d, yyyy')}</span>
-                            </div>
-                          )}
-                          {author && author.firstName && author.lastName && (
-                            <div className="flex items-center gap-1">
-                              <span>By {`${author.firstName} ${author.lastName}`}</span>
-                            </div>
-                          )}
-                        </div>
+                  {/* Excerpt */}
+                  {blog.excerpt && (
+                    <p className="text-gray-600 text-sm mb-4 line-clamp-2">{blog.excerpt}</p>
+                  )}
+
+                  {/* Meta Information */}
+                  <div className="flex items-center gap-4 text-xs text-gray-500">
+                    {blog.publishedDate && (
+                      <div className="flex items-center gap-1">
+                        <Calendar className="w-3 h-3" />
+                        <span>{format(new Date(blog.publishedDate), 'MMM d, yyyy')}</span>
                       </div>
-                    </Link>
-                )
-            })}
+                    )}
+                    {author && author.firstName && author.lastName && (
+                      <div className="flex items-center gap-1">
+                        <span>By {`${author.firstName} ${author.lastName}`}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </Link>
+            )
+          })}
         </div>
       ) : (
-        year && month && (
-            <div className="text-center py-12 text-gray-500">
-                No blogs found for {month} {year}.
-            </div>
+        effectiveYear &&
+        effectiveMonth && (
+          <div className="text-center py-12 text-gray-500">
+            No blogs found for {effectiveMonth} {effectiveYear}.
+          </div>
         )
       )}
     </section>

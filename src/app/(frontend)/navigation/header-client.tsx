@@ -12,7 +12,7 @@ import {
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu'
 import { cn } from '@/lib/utils'
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Menu, ChevronDown, ChevronRight, SearchIcon, X } from 'lucide-react'
@@ -147,7 +147,7 @@ export default function HeaderClient() {
       {/* Auth links top bar (server-rendered content passed via props) */}
       <div
         className={cn(
-          'container mx-auto max-w-[1520px] w-[80%]  flex space-x-3 items-center justify-end text-[14px]',
+          'container mx-auto max-w-[1520px] w-[95%] lg:w-[80%] hidden lg:flex space-x-3 items-center justify-end text-[14px]',
           scrolled ? 'text-brand' : 'text-white',
         )}
       >
@@ -197,7 +197,7 @@ export default function HeaderClient() {
       </div>
 
       {/* Desktop Header */}
-      <div className="container mx-auto max-w-[1520px] w-[80%]  flex justify-between items-center">
+      <div className="container mx-auto max-w-[1520px] w-[95%] lg:w-[80%] flex justify-between items-center">
         <Link href={`${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/`}>
           <Image
             src={scrolled ? '/images/logo.png' : '/images/logo-white.png'}
@@ -248,19 +248,19 @@ export default function HeaderClient() {
                       >
                         <div
                           className={cn(
-                            'p-4 rounded-md border-0 border-none outline-none bg-brand-orange',
+                            'p-4 rounded-md border-0 border-none outline-none bg-brand-orange/80',
                             route.label === 'Programmes' ? 'w-[650px]' : 'w-[300px]',
                           )}
                         >
                           {route.label === 'Programmes' ? (
-                            <div className="grid grid-cols-3 gap-4 w-full">
+                            <div className="grid grid-cols-3 gap-4 w-full max-w-[530px]">
                               {route.subRoutes?.map((subRoute, subIndex) => (
                                 <Link key={subIndex} href={subRoute.href} passHref>
                                   <NavigationMenuLink
                                     asChild
-                                    className="block px-0 py-1 rounded-none text-xs text-white hover:bg-brand-orange-60 transition-colors"
+                                    className="block px-0 py-1 rounded-none text-xs text-white hover:bg-transparent transition-colors"
                                   >
-                                    <span className="text-white font-semibold uppercase hover:text-white border-b-2 border-brand-orange hover:border-amber-300">
+                                    <span className="text-white font-semibold uppercase hover:text-white border-b-2 border-transparent hover:border-amber-300/40">
                                       {subRoute.label}
                                     </span>
                                   </NavigationMenuLink>
@@ -274,9 +274,9 @@ export default function HeaderClient() {
                                   <Link href={subRoute.href} passHref>
                                     <NavigationMenuLink
                                       asChild
-                                      className="block px-0 py-1 text-sm rounded-none text-white hover:bg-brand-orange-60 transition-colors"
+                                      className="block px-0 py-1 text-sm rounded-none text-white hover:bg-transparent transition-colors"
                                     >
-                                      <span className="text-white uppercase font-semibold hover:text-white border-b-2 border-brand-orange hover:border-amber-300">
+                                      <span className="text-white uppercase font-semibold hover:text-white border-b-2 border-transparent hover:border-amber-300/40">
                                         {subRoute.label}
                                       </span>
                                     </NavigationMenuLink>
@@ -332,12 +332,18 @@ export default function HeaderClient() {
         <div className="lg:hidden">
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="sm">
+              <Button variant="ghost" size="sm" className={scrolled ? 'text-black' : 'text-white'}>
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-80">
-              <div className="flex flex-col space-y-4 mt-8">
+              <div className="flex flex-col space-y-4 mt-8 px-6">
+                <SheetTitle className="flex justify-between items-center mb-4">
+                  <span className="text-lg font-semibold">Menu</span>
+                  <Button variant="ghost" size="sm" onClick={() => setMobileMenuOpen(false)}>
+                    Close
+                  </Button>
+                </SheetTitle>
                 {/* Search Button in Mobile Menu */}
                 <Button
                   variant="outline"
@@ -367,8 +373,7 @@ export default function HeaderClient() {
                       >
                         <CollapsibleTrigger
                           className={cn(
-                            'flex items-center justify-between w-full text-lg font-medium py-2 hover:opacity-80 transition-colors',
-                            scrolled ? 'text-black' : 'text-white',
+                            'flex items-center justify-between w-full text-lg font-medium py-2 hover:opacity-80 transition-colors text-black',
                           )}
                         >
                           {route.label}
@@ -400,8 +405,7 @@ export default function HeaderClient() {
                       <Link
                         href={route.href}
                         className={cn(
-                          'text-lg font-medium py-2 hover:opacity-80 transition-colors',
-                          scrolled ? 'text-black' : 'text-white',
+                          'text-lg font-medium py-2 hover:opacity-80 transition-colors text-black',
                         )}
                         onClick={() => setMobileMenuOpen(false)}
                       >
@@ -410,6 +414,35 @@ export default function HeaderClient() {
                     )}
                   </div>
                 ))}
+
+                <div className="border-t border-gray-200 pt-4 mt-4 space-y-2">
+                  <Link
+                    href={`${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/news-events/`}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block text-lg font-medium py-2 text-black hover:opacity-80 transition-colors"
+                  >
+                    <span className="uppercase">News & Events</span>
+                  </Link>
+                  <Link
+                    href={`${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/connect-and-collaborate/`}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block text-lg font-medium py-2 text-black hover:opacity-80 transition-colors"
+                  >
+                    <span className="uppercase">Connect and Collaborate</span>
+                  </Link>
+                  <Link
+                    href={`${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/faq/`}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block text-lg font-medium py-2 text-black hover:opacity-80 transition-colors"
+                  >
+                    <span className="uppercase">FAQ</span>
+                  </Link>
+                  <Link href="#" onClick={() => setMobileMenuOpen(false)} className="block pt-2">
+                    <Button className="w-full rounded-full uppercase bg-brand border-2 border-brand hover:bg-teal-800 py-1 tracking-widest font-extrabold text-[14px] text-white">
+                      AFRICA CRITICAL SKILLS BANK
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </SheetContent>
           </Sheet>
@@ -419,10 +452,10 @@ export default function HeaderClient() {
       {/* Slide-in Search Input */}
       <div
         className={cn(
-          'fixed top-0 right-0 h-20 z-[100] transition-all duration-300 ease-in-out flex items-center',
+          'fixed top-0 right-0 h-20 z-100 transition-all duration-300 ease-in-out flex items-center',
           searchOpen ? 'translate-x-0' : 'translate-x-full',
+          !scrolled ? 'lg:pt-12' : '',
         )}
-        style={{ paddingTop: scrolled ? '0' : '48px' }} // Account for the auth bar height
       >
         <form onSubmit={handleSearchSubmit} className="flex items-center">
           <Input

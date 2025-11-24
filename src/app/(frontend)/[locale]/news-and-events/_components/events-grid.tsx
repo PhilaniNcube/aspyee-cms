@@ -376,9 +376,9 @@ const EventsGrid = async ({ locale }: { locale: string }) => {
           </div>
         </div>
       )}
-      <ArchivedBlogs locale={locale} />
+   
 
-      <div className="mt-8 relative rounded-2xl overflow-hidden">
+      <div className="mt-16 relative rounded-2xl overflow-hidden">
         <Image
           src="https://ernn9x55red.exactdn.com/wp-content/uploads/2025/09/African-youth-hailed-as-continents-tech-future.jpg?strip=all&lossy=1&ssl=1"
           alt="Decorative Bottom"
@@ -404,6 +404,7 @@ const EventsGrid = async ({ locale }: { locale: string }) => {
           </Link>
         </div>
       </div>
+         <ArchivedBlogs locale={locale} />
     </section>
   )
 }
