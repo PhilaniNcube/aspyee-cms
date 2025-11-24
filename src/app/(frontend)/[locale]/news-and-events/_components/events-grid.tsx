@@ -57,7 +57,7 @@ const EventsGrid = async ({ locale }: { locale: string }) => {
   }
 
   return (
-    <section className="py-16 px-4 max-w-[1520px] w-[80%] mx-auto">
+    <section className="py-16 lg:py-24 px-4 max-w-[1520px] w-[80%] mx-auto">
       {/* Section Title */}
       <div className="border-l-8 border-brand-orange pl-4 mb-12">
         <h2 className="text-2xl md:text-3xl font-semibold mb-12 text-gray-900">{sectionTitle}</h2>
@@ -65,7 +65,7 @@ const EventsGrid = async ({ locale }: { locale: string }) => {
       {/* Full Width Featured Section */}
       {fullWidthSection && (
         <div className="mb-12">
-          <Card className="overflow-hidden p-0">
+          <Card className="group overflow-hidden p-0">
             <div className="relative h-64 md:h-80 lg:h-[74vh]">
               {fullWidthSection.image && (
                 <Image
@@ -79,6 +79,8 @@ const EventsGrid = async ({ locale }: { locale: string }) => {
                   className="object-cover object-centre"
                 />
               )}
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               {/* Overlay Content */}
               <div className="absolute inset-0 flex items-end ">
                 <div className="p-6 md:p-8 text-white max-w-2xl">
@@ -89,17 +91,21 @@ const EventsGrid = async ({ locale }: { locale: string }) => {
                     </small>
                   )}
                   <h3 className="text-2xl md:text-3xl font-bold mb-3">{fullWidthSection.title}</h3>
-                  <p className="text-sm mb-4 text-balance opacity-90">
-                    {fullWidthSection.description}
-                  </p>
-                  {fullWidthSection.link && (
-                    <Button
-                      asChild
-                      className="bg-brand hover:bg-brand-dark px-8 text-white rounded-full"
-                    >
-                      <Link href={fullWidthSection.link}>Download Brochure</Link>
-                    </Button>
-                  )}
+                  <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-out">
+                    <div className="overflow-hidden">
+                      <p className="text-sm mb-4 text-balance opacity-90">
+                        {fullWidthSection.description}
+                      </p>
+                      {fullWidthSection.link && (
+                        <Button
+                          asChild
+                          className="bg-brand hover:bg-brand-dark px-8 text-white rounded-full"
+                        >
+                          <Link href={fullWidthSection.link}>Download Brochure</Link>
+                        </Button>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -138,10 +144,10 @@ const EventsGrid = async ({ locale }: { locale: string }) => {
                   </p>
                   {newsItems[0].link && (
                     <Link
-                      className="!text-brand-orange !hover:text-brand-orange-60 hover:font-bold capitalize font-medium"
+                      className="text-brand-orange! !hover:text-brand-orange-60 hover:font-bold capitalize font-medium"
                       href={newsItems[0].link}
                     >
-                      Read more
+                      <span className="text-sm">Read more</span>
                     </Link>
                   )}
                 </CardContent>
@@ -190,7 +196,7 @@ const EventsGrid = async ({ locale }: { locale: string }) => {
                     className="text-white !group-hover:text-white group-hover:text-white capitalize font-medium"
                     href={newsItems[1].link}
                   >
-                    <span className="text-white group-hover:text-white">Read more</span>
+                    <span className="text-white group-hover:text-white text-sm">Read more</span>
                   </Link>
                 )}
               </CardContent>
@@ -224,7 +230,7 @@ const EventsGrid = async ({ locale }: { locale: string }) => {
                 </div>
               </CardHeader>
               <CardContent className="group m-0 px-6 py-2 h-full bg-slate-100 transition-colors duration-300">
-                <CardTitle className="font-bold  text-md mb-2 text-gray-600  overflow-hidden">
+                <CardTitle className="text-md mb-2 text-gray-600  overflow-hidden">
                   {newsItems[4].title}
                 </CardTitle>
                 <p className="text-xs overflow-hidden leading-5 font-thin text-gray-600 ">
@@ -232,7 +238,7 @@ const EventsGrid = async ({ locale }: { locale: string }) => {
                 </p>
                 {newsItems[4].link && (
                   <Link className=" capitalize font-medium" href={newsItems[4].link}>
-                    <span className=" text-brand-orange hover:font-bold ">Read more</span>
+                    <span className=" text-brand-orange hover:font-bold text-sm">Read more</span>
                   </Link>
                 )}
               </CardContent>
@@ -250,7 +256,7 @@ const EventsGrid = async ({ locale }: { locale: string }) => {
                 />
               </div>
               <div className="group px-2 py-2  transition-colors duration-300">
-                <h3 className="font-bold text-md mb-2 leading-5 text-gray-600 overflow-hidden">
+                <h3 className=" text-md mb-2 leading-5 text-gray-600 overflow-hidden">
                   {newsItems[3].title}
                 </h3>
                 {newsItems[3].link && (
@@ -265,7 +271,7 @@ const EventsGrid = async ({ locale }: { locale: string }) => {
             </div>
           )}
 
-          <div className="flex flex-col gap-3 overflow-hidden transition-shadow duration-300 lg:col-span-1 lg:row-span-3 lg:col-start-3 lg:row-start-1 p-0 ">
+          <div className="flex flex-col gap-6 overflow-hidden transition-shadow duration-300 lg:col-span-1 lg:row-span-3 lg:col-start-3 lg:row-start-1 p-0 ">
             {newsItems[5] && (
               <Card className="p-0 rounded-2xl overflow-hidden gap-0 hover:shadow-lg">
                 <CardHeader className="p-0 m-0">
@@ -292,11 +298,11 @@ const EventsGrid = async ({ locale }: { locale: string }) => {
                   </div>
                 </CardHeader>
                 <CardContent className="group px-3 pb-5 h-full row-span-2 transition-colors duration-300">
-                  <CardTitle className="font-medium leading-5 text-md text-gray-600 overflow-hidden">
+                  <CardTitle className="font-medium text-md! text-gray-600 overflow-hidden">
                     {newsItems[5].title}
                   </CardTitle>
                   <p
-                    className="text-sm font-thin text-gray-600 overflow-hidden"
+                    className="text-xs font-thin text-gray-600 overflow-hidden"
                     style={{
                       display: '-webkit-box',
                       WebkitBoxOrient: 'vertical' as const,
@@ -310,7 +316,7 @@ const EventsGrid = async ({ locale }: { locale: string }) => {
                       className="text-brand-orange font-medium text-sm"
                       href={newsItems[5].link}
                     >
-                      <span className="text-brand-orange hover:font-bold">Read more</span>
+                      <span className="text-brand-orange hover:font-bold text-sm">Read more</span>
                     </Link>
                   )}
                 </CardContent>
@@ -342,11 +348,11 @@ const EventsGrid = async ({ locale }: { locale: string }) => {
                   </div>
                 </CardHeader>
                 <CardContent className="group px-3 pb-5 h-full row-span-2 py-1 transition-colors duration-300">
-                  <CardTitle className="font-medium  leading-5 text-md text-gray-600 overflow-hidden">
+                  <CardTitle className="font-medium text-md! text-gray-600 overflow-hidden">
                     {newsItems[6].title}
                   </CardTitle>
                   <p
-                    className="text-sm text-gray-600 font-thin overflow-hidden"
+                    className="text-xs text-gray-600 font-thin overflow-hidden"
                     style={{
                       display: '-webkit-box',
                       WebkitBoxOrient: 'vertical' as const,
@@ -360,7 +366,7 @@ const EventsGrid = async ({ locale }: { locale: string }) => {
                       className="text-brand-orange font-medium text-sm"
                       href={newsItems[6].link}
                     >
-                      <span className="text-brand-orange hover:font-bold">Read more</span>
+                      <span className="text-brand-orange hover:font-bold text-sm">Read more</span>
                     </Link>
                   )}
                 </CardContent>
@@ -395,7 +401,7 @@ const EventsGrid = async ({ locale }: { locale: string }) => {
             className="text-white px-12 py-2 font-medium text-sm bg-brand hover:bg-brand-dark rounded-full my-5"
             href="https://www.kbc.co.ke/african-youth-hailed-as-continents-tech-future/"
           >
-            <span className="text-white">Read More</span>
+            <span className="text-white text-sm">Read More</span>
           </Link>
         </div>
       </div>
