@@ -17,8 +17,9 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Menu, ChevronDown, ChevronRight, SearchIcon, X } from 'lucide-react'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { LanguageSwitcher } from '@/components/language-switcher'
+import { useQueryState, parseAsString } from 'nuqs'
 
 // Navigation routes configuration (kept client-side for interactivity only)
 const navigationRoutes = [
@@ -105,11 +106,22 @@ export default function HeaderClient() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
-  const [searchQuery, setSearchQuery] = useState('')
   const searchInputRef = useRef<HTMLInputElement>(null)
 
   // gt the pathname of the current page
   const pathname = usePathname()
+  const router = useRouter()
+
+  // Use nuqs to manage the search query state
+  const [q, setQ] = useQueryState('q', parseAsString.withDefault(''))
+
+  // Local state for the input to avoid updating URL on every keystroke
+  const [internalQuery, setInternalQuery] = useState(q || '')
+
+  // Sync internal query with URL query when URL changes
+  useEffect(() => {
+    setInternalQuery(q || '')
+  }, [q])
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 300)
@@ -125,15 +137,18 @@ export default function HeaderClient() {
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (!searchQuery.trim()) return
+    if (!internalQuery.trim()) return
 
-    // Navigate to blogs search page with query parameter
-    const searchUrl = `/blogs/search?q=${encodeURIComponent(searchQuery)}`
-    window.location.href = searchUrl
+    if (pathname?.includes('/search')) {
+      // If already on search page, just update the query param
+      setQ(internalQuery, { shallow: false })
+    } else {
+      // If not on search page, navigate to search page
+      router.push(`/search?q=${encodeURIComponent(internalQuery)}`)
+    }
 
     // Close the search form after submission
     setSearchOpen(false)
-    setSearchQuery('')
   }
 
   return (
@@ -462,8 +477,8 @@ export default function HeaderClient() {
             ref={searchInputRef}
             type="text"
             placeholder="Search..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            value={internalQuery}
+            onChange={(e) => setInternalQuery(e.target.value)}
             className={cn(
               'w-80 h-10 rounded-full border-2 focus:border-brand focus:ring-2 focus:ring-brand/20 pr-20 shadow-lg',
               scrolled
@@ -471,7 +486,7 @@ export default function HeaderClient() {
                 : 'bg-white/95 backdrop-blur-sm border-white/30',
             )}
             onBlur={() => {
-              if (!searchQuery.trim()) {
+              if (!internalQuery.trim()) {
                 setSearchOpen(false)
               }
             }}
@@ -483,7 +498,7 @@ export default function HeaderClient() {
             className="absolute right-2 h-8 w-8 p-0 hover:bg-transparent"
             onClick={() => {
               setSearchOpen(false)
-              setSearchQuery('')
+              setInternalQuery('')
             }}
           >
             <X className="h-4 w-4 text-gray-500" />

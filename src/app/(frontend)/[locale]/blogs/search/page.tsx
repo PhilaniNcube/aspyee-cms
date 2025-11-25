@@ -32,7 +32,7 @@ export default async function BlogSearchPage({ searchParams }: SearchPageProps) 
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+      <div className="bg-linear-to-r from-blue-600 to-blue-800 text-white">
         <div className="container max-w-[1520px] w-[80%] mx-auto py-12 lg:pt-36">
           <div className="flex items-center gap-3 mb-4">
             <Search className="w-8 h-8" />

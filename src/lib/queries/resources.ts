@@ -55,9 +55,6 @@ export async function getResourcesPaginated(
       where.or = [
         { title: { contains: searchTerm } },
         { description: { contains: searchTerm } },
-        { themes: { contains: searchTerm } },
-        { target_groups: { contains: searchTerm } },
-        { countries: { contains: searchTerm } },
       ]
     }
 

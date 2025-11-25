@@ -4,7 +4,7 @@ import { getMessages } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import { routing } from '@/i18n/routing'
 import '../styles.css'
-import FontendHeader from '../navigation/header'
+import FrontendHeader from '../navigation/header'
 import Footer from '../_components/footer'
 import { Open_Sans } from 'next/font/google'
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
@@ -59,13 +59,13 @@ export default async function LocaleLayout({
       <body className={openSans.className}>
         <NextIntlClientProvider messages={messages}>
           <ReactQueryProvider>
-            <Suspense fallback={<div className="h-20" />}>
-              <FontendHeader />
-            </Suspense>
-            <main>
-              <NuqsAdapter>{children}</NuqsAdapter>
-            </main>
-            <Footer />
+            <NuqsAdapter>
+              <Suspense fallback={<div className="h-20" />}>
+                <FrontendHeader />
+              </Suspense>
+              <main>{children}</main>
+              <Footer />
+            </NuqsAdapter>
           </ReactQueryProvider>
         </NextIntlClientProvider>
       </body>

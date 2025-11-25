@@ -103,29 +103,33 @@ export const fetchBlogsBySearchQuery = async (
   locale: string = 'en',
 ): Promise<Blog[]> => {
   const payload = await getPayload({ config })
+  const searchTerm = query.trim()
+
+  if (!searchTerm) return []
+
   try {
     const blogs = await payload.find({
       collection: 'blogs',
       where: {
         and: [
           {
+            published: {
+              equals: true,
+            },
+          },
+          {
             or: [
               {
                 title: {
-                  contains: query,
+                  contains: searchTerm,
                 },
               },
               {
                 excerpt: {
-                  contains: query,
+                  contains: searchTerm,
                 },
               },
             ],
-          },
-          {
-            title: {
-              not_equals: undefined,
-            },
           },
         ],
       },
