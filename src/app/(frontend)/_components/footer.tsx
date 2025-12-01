@@ -31,6 +31,15 @@ const Footer = async () => {
                 className="max-w-[380px] object-cover"
               />
             </Link>
+            <Link href="#" className='flex-1'>
+              <Image
+                src="/images/humana.png"
+                alt="HUMANA Logo"
+                width={1495}
+                height={535}
+                className="max-w-[280px] object-cover"
+              />
+            </Link>
             <Link href="https://humana.org/" className='flex-1'>
               <Image
                 src="/images/hpp.png"

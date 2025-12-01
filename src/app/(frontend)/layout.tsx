@@ -20,8 +20,10 @@ export default function RootLayout(props: { children: React.ReactNode }) {
   // The middleware will handle redirects, but this is a fallback
   // In case someone accesses the root directly
   return (
-    <>
+    <html lang="en">
+      <body>
       <Suspense>{children}</Suspense>
-    </>
+      </body>
+    </html>
   )
 }
