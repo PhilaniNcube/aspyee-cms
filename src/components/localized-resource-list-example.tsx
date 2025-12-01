@@ -77,15 +77,7 @@ function ResourceCard({ resource, locale }: { resource: Resource; locale: string
         {resource.download_count || 0} {t('downloadCount', locale as any)}
       </p>
 
-      {/* Link with localized text */}
-      <a
-        href={resource.link}
-        className="text-blue-600 hover:underline mt-2 inline-block"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {t('learnMore', locale as any)} →
-      </a>
+     
     </article>
   )
 }

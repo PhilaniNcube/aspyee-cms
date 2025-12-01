@@ -342,7 +342,7 @@ const ResourceList: React.FC<ResourceListProps> = ({
                     size="sm"
                     onClick={() => handlePageClick(page as number)}
                     disabled={isLoading}
-                    className={`min-w-[40px] ${
+                    className={`min-w-10 ${
                       currentPage === page
                         ? 'bg-orange-500 hover:bg-orange-600 text-white'
                         : 'hover:bg-orange-50'
@@ -394,7 +394,7 @@ const ResourceList: React.FC<ResourceListProps> = ({
   }
 
   return (
-    <div className="!shadow-xl">
+    <div className="shadow-xl!">
       <div className="flex container max-w-[1520px] w-[80%]  mx-auto py-8 flex-col lg:flex-row gap-8">
         {/* Filters Sidebar */}
         <div className="lg:w-1/4">
