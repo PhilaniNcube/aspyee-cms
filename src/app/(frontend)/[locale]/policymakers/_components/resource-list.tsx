@@ -74,7 +74,7 @@ export default function ResourceList(props: ResourceListServerProps) {
   return (
     <Suspense
       fallback={
-        <div className="!shadow-xl">
+        <div className="shadow-xl!">
           <div className="flex container max-w-[1520px] w-[80%]  mx-auto py-8 flex-col lg:flex-row gap-8">
             <div className="lg:w-1/4">
               <div className="animate-pulse">
