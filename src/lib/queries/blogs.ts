@@ -64,13 +64,13 @@ export const fetchBlogBySlug = async (
   }
 }
 
-// fetch all archived blogs from the last 3 months and return the paginated result
+// fetch all archived blogs from the last 6 months and return the paginated result
 export const fetchArchivedBlogs = async (locale: string = 'en'): Promise<Blog[]> => {
   const payload = await getPayload({ config })
   try {
-    // Calculate the date 3 months ago from today
-    const threeMonthsAgo = new Date()
-    threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3)
+    // Calculate the date 6 months ago from today
+    const sixMonthsAgo = new Date()
+    sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6)
 
     const blogs = await payload.find({
       collection: 'blogs',
@@ -83,7 +83,7 @@ export const fetchArchivedBlogs = async (locale: string = 'en'): Promise<Blog[]>
           },
           {
             publishedDate: {
-              greater_than_equal: threeMonthsAgo.toISOString(),
+              greater_than_equal: sixMonthsAgo.toISOString(),
             },
           },
         ],
