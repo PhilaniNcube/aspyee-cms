@@ -10,7 +10,7 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts')
 // Note: The pattern [\w-]+-Google captures all Google crawlers with "-Google" suffix (e.g., Mediapartners-Google, AdsBot-Google, Storebot-Google)
 // as well as crawlers starting with "Google-" (e.g., Google-PageRenderer, Google-InspectionTool)
 export const HTML_LIMITED_BOT_UA_RE =
-  /[\w-]+-Google|Google-[\w-]+|Chrome-Lighthouse|Slurp|applebot|facebookexternalhit|facebookcatalog|WhatsApp|googleweblight/i
+  /[\w-]+-Google|Google-[\w-]+|Chrome-Lighthouse|applebot|facebookexternalhit|WhatsApp|googleweblight/i
 
 const nextConfig: NextConfig = {
   cacheComponents: true,
