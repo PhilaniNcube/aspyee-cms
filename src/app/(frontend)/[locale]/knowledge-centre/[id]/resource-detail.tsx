@@ -90,11 +90,7 @@ const ResourceDetail = async ({ params }: { params: Promise<{ id: number }> }) =
                   <Bookmark className="inline-block  h-8 w-8" />
                 </Button>
               </form>
-              <Link href={resource.link}>
-                <Button variant="ghost" className="bg-slate-100 hover:bg-slate-200">
-                  <Share2Icon className="inline-block  h-8 w-8" />
-                </Button>
-              </Link>
+          
             </div>
           </div>
           <h2 className="text-lg md:text-2xl lg:text-3xl capitalize text-brand font-bold">
