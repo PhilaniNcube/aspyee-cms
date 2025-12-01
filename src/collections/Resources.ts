@@ -34,7 +34,7 @@ export const Resources: CollectionConfig = {
     {
       name: 'link',
       type: 'text',
-      required: true,
+      
     },
     {
       name: 'download_count',

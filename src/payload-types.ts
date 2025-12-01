@@ -481,7 +481,7 @@ export interface Resource {
   id: number;
   title: string;
   description: string;
-  link: string;
+  link?: string | null;
   /**
    * Auto-incremented total number of downloads for this resource
    */
