@@ -33,6 +33,10 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    // Custom login route - non-obvious path
+    routes: {
+      login: '/access-portal-auth-v2',
+    },
   },
   // Localization configuration
   localization: {

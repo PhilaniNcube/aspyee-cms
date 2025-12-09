@@ -5,11 +5,11 @@ export default createMiddleware(routing)
 
 export const config = {
   // Match only internationalized pathnames
-  // Exclude API routes, admin panel, and static files
+  // Exclude API routes, admin panel, custom login, and static files
   matcher: [
     // Match all pathnames except for
-    // - … if they start with `/api`, `/admin`, `/_next` or `/_vercel`
+    // - … if they start with `/api`, `/admin`, `/access-portal-auth-v2`, `/_next` or `/_vercel`
     // - … the ones containing a dot (e.g. `favicon.ico`)
-    '/((?!api|admin|_next|_vercel|.*\\..*).*)',
+    '/((?!api|admin|access-portal-auth-v2|_next|_vercel|.*\\..*).*)',
   ],
 }
