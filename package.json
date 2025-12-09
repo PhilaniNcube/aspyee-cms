@@ -110,10 +110,7 @@
       "sharp",
       "esbuild",
       "unrs-resolver"
-    ],
-    "patchedDependencies": {
-      "thread-stream@3.1.0": "patches/thread-stream@3.1.0.patch"
-    }
+    ]
   },
   "overrides": {
     "@types/react": "19.2.2",
