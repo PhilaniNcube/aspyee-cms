@@ -46,11 +46,16 @@ const nextConfig: NextConfig = {
       '@payloadcms/db-postgres',
     ],
   webpack: (config, { isServer }) => {
+    // Ensure Payload config alias is available on both server and client
+    config.resolve.alias = {
+      ...(config.resolve.alias || {}),
+      '@payload-config': path.resolve(__dirname, './src/payload.config.ts'),
+    }
+
     if (!isServer) {
       // On client-side, replace payload and logging packages with empty modules
       config.resolve.alias = {
         ...config.resolve.alias,
-        'payload': false,
         'pino': false,
         'thread-stream': false,
       }
@@ -67,12 +72,6 @@ const nextConfig: NextConfig = {
       test: /thread-stream[\/]bench\.js$/,
       loader: 'ignore-loader',
     })
-
-    // Ensure Payload config alias is available on both server and client
-    config.resolve.alias = {
-      ...(config.resolve.alias || {}),
-      '@payload-config': path.resolve(__dirname, './src/payload.config.ts'),
-    }
     
     return config
   },
