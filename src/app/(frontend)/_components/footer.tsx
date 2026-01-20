@@ -141,12 +141,7 @@ const Footer = async () => {
                 <p className="font-bold" style={{ marginBottom: 0, marginTop: '12px' }}>
                   Skills Initiative for Africa
                 </p>
-                <p className="leading-4 mt-0 mb-0" style={{ margin: 0 }}>
-                  Honore Tshitenge
-                </p>
-                <p className="leading-4 mt-0 mb-0" style={{ margin: 0 }}>
-                  honore.tshitenge@giz.de
-                </p>
+              
                 <p className="leading-4 mt-0 mb-0" style={{ margin: 0 }}>
                   aspyee@nepad.org
                 </p>
