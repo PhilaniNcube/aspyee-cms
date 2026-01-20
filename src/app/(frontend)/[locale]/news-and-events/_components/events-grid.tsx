@@ -384,7 +384,7 @@ const EventsGrid = async ({ locale }: { locale: string }) => {
           alt="Decorative Bottom"
           width={1920}
           height={1080}
-          className="w-full aspect-[8/3] object-cover h-auto"
+          className="w-full aspect-8/3 object-cover h-auto"
         />
         <div className="absolute inset-0 p-6 flex flex-col justify-end items-start bg-linear-to-r from-black/70 via-black/40 to-transparent">
           <small className="text-sm text-white">September 14 | Claire Wanja</small>
