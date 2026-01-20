@@ -7,7 +7,7 @@ const NewsAndEventsHero = () => {
     <div className="min-h-[400px] lg:min-h-[644px] relative overflow-hidden">
       {/* Background Image */}
       <Image
-        src="https://ernn9x55red.exactdn.com/wp-content/uploads/2025/09/News-1-1024x525.jpg?strip=all"
+        src="https://aspyee.org/wp-content/uploads/2025/09/News-1-1024x525.jpg"
         alt="Policymakers Background"
         width={4096}
         height={2725}
