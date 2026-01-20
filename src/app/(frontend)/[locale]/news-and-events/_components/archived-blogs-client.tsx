@@ -168,8 +168,9 @@ const ArchivedBlogsClient = ({ blogs }: ArchivedBlogsClientProps) => {
                     <Image
                       src={featuredImage.url}
                       alt={featuredImage.alt || blog.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      width={900}
+                      height={506}
+                      className="object-cover aspect-video w-full group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>
                 )}
