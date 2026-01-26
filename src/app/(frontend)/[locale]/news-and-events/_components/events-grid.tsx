@@ -41,8 +41,6 @@ const EventsGrid = async ({
   params: Promise<{ locale: string }>
   searchParams: Promise<{ page?: string; year?: string; month?: string }>
 }) => {
-  'use cache'
-
   const { locale } = await params
   const resolvedSearchParams = await searchParams
 
