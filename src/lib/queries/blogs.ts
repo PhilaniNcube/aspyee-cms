@@ -64,14 +64,12 @@ export const fetchBlogBySlug = async (
   }
 }
 
-// fetch all archived blogs from the last 36 months and return the paginated result
-export const fetchArchivedBlogs = async (locale: string = 'en'): Promise<Blog[]> => {
+// fetch all archived blogs and return the paginated result
+export const fetchArchivedBlogs = async (
+  locale: string = 'en',
+): Promise<Blog[]> => {
   const payload = await getPayload({ config })
   try {
-    // Calculate the date 36 months ago from today
-    const thirtySixMonthsAgo = new Date()
-    thirtySixMonthsAgo.setMonth(thirtySixMonthsAgo.getMonth() - 36)
-
     const blogs = await payload.find({
       collection: 'blogs',
       where: {
@@ -81,15 +79,13 @@ export const fetchArchivedBlogs = async (locale: string = 'en'): Promise<Blog[]>
               equals: true,
             },
           },
-          {
-            publishedDate: {
-              greater_than_equal: thirtySixMonthsAgo.toISOString(),
-            },
-          },
         ],
       },
       locale: locale as any,
+      limit: 1000, // Fetch all blogs for client-side filtering
+      sort: '-publishedDate',
     })
+    console.log('Fetched archived blogs:', blogs.docs.length)
     return blogs.docs as Blog[]
   } catch (error) {
     console.error('Error fetching archived blogs:', error)

@@ -34,8 +34,17 @@ type EventsGridProps = {
   }
 }
 
-const EventsGrid = async ({ locale }: { locale: string }) => {
+const EventsGrid = async ({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ locale: string }>
+  searchParams: Promise<{ page?: string; year?: string; month?: string }>
+}) => {
   'use cache'
+
+  const { locale } = await params
+  const resolvedSearchParams = await searchParams
 
   const newsAndEventsData = await getNewsAndEventsPage(locale)
 
@@ -380,7 +389,7 @@ const EventsGrid = async ({ locale }: { locale: string }) => {
 
       <div className="mt-16 relative rounded-2xl overflow-hidden">
         <Image
-          src="https://ernn9x55red.exactdn.com/wp-content/uploads/2025/09/African-youth-hailed-as-continents-tech-future.jpg?strip=all&lossy=1&ssl=1"
+          src="/images/jamies.webp"
           alt="Decorative Bottom"
           width={1920}
           height={1080}
@@ -404,7 +413,7 @@ const EventsGrid = async ({ locale }: { locale: string }) => {
           </Link>
         </div>
       </div>
-         <ArchivedBlogs locale={locale} />
+         <ArchivedBlogs locale={locale} searchParams={resolvedSearchParams} />
     </section>
   )
 }

@@ -166,12 +166,12 @@ export default function HeaderClient() {
           scrolled ? 'text-brand' : 'text-white',
         )}
       >
-        <Link href={`${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/news-events/`}>
+        <Link href={`/news-and-events/`}>
           <span
             className={cn(
               'uppercase font-semibold text-[14.39px] hover:text-brand-orange',
               scrolled ? 'text-black' : 'text-white',
-              pathname === '/news-events' ? 'text-brand' : '',
+              pathname === '/news-and-events' ? 'text-brand' : '',
             )}
           >
             News & Events
@@ -432,7 +432,7 @@ export default function HeaderClient() {
 
                 <div className="border-t border-gray-200 pt-4 mt-4 space-y-2">
                   <Link
-                    href={`${process.env.NEXT_PUBLIC_MAIN_DOMAIN}/news-events/`}
+                    href={`/news-and-events/`}
                     onClick={() => setMobileMenuOpen(false)}
                     className="block text-lg font-medium py-2 text-black hover:opacity-80 transition-colors"
                   >
