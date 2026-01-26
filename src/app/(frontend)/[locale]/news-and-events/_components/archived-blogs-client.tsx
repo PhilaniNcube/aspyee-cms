@@ -175,7 +175,7 @@ const ArchivedBlogsClient = ({ blogs }: ArchivedBlogsClientProps) => {
 
       {filteredBlogs.length > 0 ? (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mt-4">
             {paginatedBlogs.map((blog) => {
               const author = typeof blog.author === 'object' ? blog.author : null
               const featuredImage = typeof blog.featuredImage === 'object' ? blog.featuredImage : null
