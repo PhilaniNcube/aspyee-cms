@@ -4,7 +4,7 @@ import React, { useMemo } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { format } from 'date-fns'
-import { Calendar, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Calendar, ChevronLeft, ChevronRight, Search } from 'lucide-react'
 import { useQueryState } from 'nuqs'
 import {
   Select,
@@ -14,6 +14,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import type { Blog } from '@/payload-types'
 import { useRouter, usePathname } from 'next/navigation'
 
@@ -27,6 +28,7 @@ const ArchivedBlogsClient = ({ blogs }: ArchivedBlogsClientProps) => {
   const [year, setYear] = useQueryState('year')
   const [month, setMonth] = useQueryState('month')
   const [page, setPage] = useQueryState('page', { defaultValue: '1' })
+  const [searchTerm, setSearchTerm] = useQueryState('search', { defaultValue: '' })
 
   const currentPage = parseInt(page || '1', 10)
   const itemsPerPage = 10
@@ -89,13 +91,21 @@ const ArchivedBlogsClient = ({ blogs }: ArchivedBlogsClientProps) => {
         const date = new Date(blog.publishedDate)
         const blogYear = date.getFullYear().toString()
         const blogMonth = date.toLocaleString('default', { month: 'long' })
-        return blogYear === effectiveYear && blogMonth === effectiveMonth
+        const matchesDate = blogYear === effectiveYear && blogMonth === effectiveMonth
+        
+        // Apply search filter if search term exists
+        if (searchTerm && searchTerm.trim()) {
+          const matchesSearch = blog.title.toLowerCase().includes(searchTerm.toLowerCase())
+          return matchesDate && matchesSearch
+        }
+        
+        return matchesDate
       })
       .sort((a, b) => {
         // Sort by date descending
         return new Date(b.publishedDate!).getTime() - new Date(a.publishedDate!).getTime()
       })
-  }, [blogs, effectiveYear, effectiveMonth])
+  }, [blogs, effectiveYear, effectiveMonth, searchTerm])
 
   // Calculate pagination for filtered blogs
   const totalPages = Math.ceil(filteredBlogs.length / itemsPerPage)
@@ -118,6 +128,11 @@ const ArchivedBlogsClient = ({ blogs }: ArchivedBlogsClientProps) => {
     setPage(newPage.toString())
   }
 
+  const handleSearchChange = (value: string) => {
+    setSearchTerm(value)
+    setPage('1') // Reset to first page when searching
+  }
+
   if (!blogs || blogs.length === 0) {
     return null
   }
@@ -137,9 +152,9 @@ const ArchivedBlogsClient = ({ blogs }: ArchivedBlogsClientProps) => {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4">
-          <div className="w-full sm:w-48">
+          <div className="w-full sm:flex-1">
             <Select value={effectiveYear || ''} onValueChange={handleYearChange}>
-              <SelectTrigger>
+              <SelectTrigger className='w-full'>
                 <SelectValue placeholder="Select Year" />
               </SelectTrigger>
               <SelectContent>
@@ -152,13 +167,13 @@ const ArchivedBlogsClient = ({ blogs }: ArchivedBlogsClientProps) => {
             </Select>
           </div>
 
-          <div className="w-full sm:w-48">
+          <div className="w-full sm:flex-1">
             <Select
               value={effectiveMonth || ''}
               onValueChange={handleMonthChange}
               disabled={!effectiveYear}
             >
-              <SelectTrigger>
+              <SelectTrigger className='w-full'>
                 <SelectValue placeholder="Select Month" />
               </SelectTrigger>
               <SelectContent>
@@ -169,6 +184,17 @@ const ArchivedBlogsClient = ({ blogs }: ArchivedBlogsClientProps) => {
                 ))}
               </SelectContent>
             </Select>
+          </div>
+
+          <div className="relative w-full sm:flex-1">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <Input
+              type="text"
+              placeholder="Search by title..."
+              value={searchTerm || ''}
+              onChange={(e) => handleSearchChange(e.target.value)}
+              className="pl-10"
+            />
           </div>
         </div>
       </div>
