@@ -77,6 +77,7 @@ export interface Config {
     blogs: Blog;
     events: Event;
     'news-and-events-page': NewsAndEventsPage;
+    'good-practices': GoodPractice;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -94,6 +95,7 @@ export interface Config {
     blogs: BlogsSelect<false> | BlogsSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
     'news-and-events-page': NewsAndEventsPageSelect<false> | NewsAndEventsPageSelect<true>;
+    'good-practices': GoodPracticesSelect<false> | GoodPracticesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -845,6 +847,46 @@ export interface NewsAndEventsPage {
   createdAt: string;
 }
 /**
+ * Collection of good practices and case studies
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "good-practices".
+ */
+export interface GoodPractice {
+  id: number;
+  title: string;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  image: number | Media;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  author: number | User;
+  publicationDate: string;
+  /**
+   * Link to the original source if applicable
+   */
+  originalLink?: string | null;
+  published?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
@@ -907,6 +949,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'news-and-events-page';
         value: number | NewsAndEventsPage;
+      } | null)
+    | ({
+        relationTo: 'good-practices';
+        value: number | GoodPractice;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -1181,6 +1227,23 @@ export interface NewsAndEventsPageSelect<T extends boolean = true> {
         avatar?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "good-practices_select".
+ */
+export interface GoodPracticesSelect<T extends boolean = true> {
+  title?: T;
+  generateSlug?: T;
+  slug?: T;
+  image?: T;
+  content?: T;
+  author?: T;
+  publicationDate?: T;
+  originalLink?: T;
+  published?: T;
   updatedAt?: T;
   createdAt?: T;
 }

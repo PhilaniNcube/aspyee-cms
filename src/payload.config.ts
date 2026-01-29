@@ -20,6 +20,7 @@ import { Categories } from './collections/Categories'
 import { Blogs } from './collections/Blogs'
 import { Events } from './collections/Events'
 import { NewsAndEventsPage } from './collections/NewsAndEventsPage'
+import { GoodPractices } from './collections/GoodPractices'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -69,6 +70,7 @@ export default buildConfig({
     Blogs,
     Events,
     NewsAndEventsPage,
+    GoodPractices,
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
