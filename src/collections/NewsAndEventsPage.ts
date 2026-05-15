@@ -1,5 +1,11 @@
 import type { CollectionConfig } from 'payload'
+import { revalidateTag } from 'next/cache'
 import admin from './users/access/admin'
+
+// Bust the Next.js 'use cache' data whenever the page or its media changes.
+const revalidateNewsAndEvents = () => {
+  ;(revalidateTag as (tag: string) => void)('news-and-events-page')
+}
 
 export const NewsAndEventsPage: CollectionConfig = {
   slug: 'news-and-events-page',
@@ -159,4 +165,8 @@ export const NewsAndEventsPage: CollectionConfig = {
       ],
     },
   ],
+  hooks: {
+    afterChange: [() => revalidateNewsAndEvents()],
+    afterDelete: [() => revalidateNewsAndEvents()],
+  },
 }
