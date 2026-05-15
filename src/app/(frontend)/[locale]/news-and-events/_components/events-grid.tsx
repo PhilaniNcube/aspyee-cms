@@ -54,25 +54,28 @@ const EventsGrid = async ({
 
   const { sectionTitle, fullWidthSection, newsItems } = eventsGrid
 
-  // Helper function to get image URL
+  // Helper function to get image URL.
+  // Prefer constructing the URL directly from the UploadThing file key (_key)
+  // stored on every media record — this bypasses the url field which can be
+  // stale (local /api/media/file/... path) when disableLocalStorage wasn't set.
+  const UPLOADTHING_APP_ID = '4kav3digtb'
   const getImageUrl = (image: number | Media | null | undefined): string => {
-    if (!image) return ''
-    if (typeof image === 'object' && 'url' in image) {
-      const url = image.url || ''
-      // Payload returns relative paths (/api/media/file/...) for locally-stored
-      // media (uploaded before UploadThing was configured). In production
-      // (serverless) the local filesystem doesn't exist, so we prefix the
-      // Payload server origin so the request hits Payload's media API endpoint.
-      // Set NEXT_PUBLIC_SERVER_URL=https://centre.aspyee.org in production env.
-      if (url.startsWith('/')) {
-        const serverUrl =
-          process.env.NEXT_PUBLIC_SERVER_URL ||
-          'https://centre.aspyee.org'
-        return `${serverUrl}${url}`
-      }
-      return url
+    if (!image || typeof image !== 'object') return ''
+
+    // _key is the UploadThing file key — always reliable when present
+    if ('_key' in image && image._key) {
+      return `https://${UPLOADTHING_APP_ID}.ufs.sh/f/${image._key}`
     }
-    return ''
+
+    // Fall back to the url field
+    const url = ('url' in image && image.url) ? image.url : ''
+    if (!url) return ''
+
+    // If it's still a relative/local path, prepend the server URL
+    if (url.startsWith('/')) {
+      return `https://centre.aspyee.org${url}`
+    }
+    return url
   }
 
   return (
