@@ -58,7 +58,18 @@ const EventsGrid = async ({
   const getImageUrl = (image: number | Media | null | undefined): string => {
     if (!image) return ''
     if (typeof image === 'object' && 'url' in image) {
-      return image.url || ''
+      const url = image.url || ''
+      // Payload returns relative paths (/api/media/file/...) for locally-stored
+      // media. In production (serverless) these 404/400 because there's no
+      // filesystem. Prepend the server origin so the request resolves correctly.
+      if (url.startsWith('/')) {
+        const serverUrl =
+          process.env.NEXT_PUBLIC_SERVER_URL ||
+          process.env.NEXT_PUBLIC_MAIN_DOMAIN ||
+          ''
+        return `${serverUrl}${url}`
+      }
+      return url
     }
     return ''
   }

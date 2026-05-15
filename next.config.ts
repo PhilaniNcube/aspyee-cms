@@ -42,6 +42,19 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      // Legacy UploadThing CDN domains (domain changed from utfs.io → ufs.sh)
+      {
+        protocol: 'https',
+        hostname: 'utfs.io',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.ufs.sh',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
   // Exclude problematic node_modules from Turbopack processing
