@@ -431,7 +431,7 @@ const EventsGrid = async ({
               </p>
 
               {/* Meta grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-3 mb-4 gap-3">
                 <div className="bg-gray-50 rounded-xl px-4">
                   <p className="text-xs text-gray-400 uppercase tracking-wide font-semibold mb-0.5">Date</p>
                   <p className="text-sm font-semibold text-gray-800">Friday, 15 May 2026</p>
