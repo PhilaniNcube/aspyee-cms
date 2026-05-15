@@ -14,23 +14,23 @@ type EventsGridProps = {
   eventsData: {
     sectionTitle: string
     fullWidthSection?:
-      | {
-          image?: number | Media | null | undefined
-          title?: string | null
-          description?: string | null
-          link?: string | null
-          badgeText?: string | null
-        }
-      | undefined
+    | {
+      image?: number | Media | null | undefined
+      title?: string | null
+      description?: string | null
+      link?: string | null
+      badgeText?: string | null
+    }
+    | undefined
     newsItems?:
-      | {
-          title: string
-          description: string
-          image: number | Media
-          link: string
-          id?: string | null
-        }[]
-      | null
+    | {
+      title: string
+      description: string
+      image: number | Media
+      link: string
+      id?: string | null
+    }[]
+    | null
   }
 }
 
@@ -383,7 +383,84 @@ const EventsGrid = async ({
           </div>
         </div>
       )}
-   
+
+
+      {/* ── Upcoming Events ─────────────────────────────────────── */}
+      <div className="mt-16 mb-12">
+        <div className="border-l-8 border-brand-orange pl-4 mb-8">
+          <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">Upcoming Events</h2>
+        </div>
+
+        {/* SRH Webinar Card */}
+        <div className="group bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 hover:shadow-xl transition-shadow duration-300 flex flex-col md:flex-row">
+          {/* Square image */}
+          <div className="relative w-full aspect-square md:aspect-auto md:w-72 md:h-72 lg:w-80 lg:h-80 shrink-0">
+            <Image
+              src="/images/webinar.jpeg"
+              alt="AUDA-NEPAD SRH Youth Webinar"
+              fill
+              className="object-cover"
+            />
+          </div>
+
+          {/* Event details */}
+          <div className="flex flex-col justify-between p-6 md:p-8 flex-1">
+            <div>
+              <div className="flex flex-wrap items-center gap-2 mb-4">
+                <span className="inline-flex items-center gap-1.5 bg-brand-orange text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wide">
+                  Webinar
+                </span>
+                <span className="text-xs text-gray-500 font-medium">Friday, 15 May 2026</span>
+              </div>
+
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 leading-snug mb-3">
+                AUDA-NEPAD Youth Sexual &amp; Reproductive Health (SRH) Webinar
+              </h3>
+
+              <p className="text-xs text-gray-500 mb-1">
+                In partnership with the{' '}
+                <span className="font-semibold text-gray-700">Southern Africa Youth Forum (SAYoF)</span> and{' '}
+                <span className="font-semibold text-gray-700">Pan African Youth Union (PYU)</span>
+              </p>
+
+              <p className="text-xs text-gray-600 mt-3">
+                A platform for youth leaders and advocates to share experiences, best practices, and policy
+                recommendations to advance Sexual and Reproductive Health (SRH) across the continent — amplifying
+                youth voices and strengthening advocacy towards integrating SRH into national and continental
+                development frameworks.
+              </p>
+
+              {/* Meta grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div className="bg-gray-50 rounded-xl px-4">
+                  <p className="text-xs text-gray-400 uppercase tracking-wide font-semibold mb-0.5">Date</p>
+                  <p className="text-sm font-semibold text-gray-800">Friday, 15 May 2026</p>
+                </div>
+                <div className="bg-gray-50 rounded-xl px-4">
+                  <p className="text-xs text-gray-400 uppercase tracking-wide font-semibold mb-0.5">Time</p>
+                  <p className="text-sm font-semibold text-gray-800">14h30 – 16h00 (SAST)</p>
+                </div>
+                <div className="bg-gray-50 rounded-xl px-4">
+                  <p className="text-xs text-gray-400 uppercase tracking-wide font-semibold mb-0.5">Format</p>
+                  <p className="text-sm font-semibold text-gray-800">Virtual (Zoom)</p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <Link
+                href="https://zoom.us/webinar/register/WN_q6cjR-A7THOdJCMxV_BSQA"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold text-sm px-8 py-3 rounded-full transition-colors duration-200"
+              >
+                Register Here
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* ── End Upcoming Events ──────────────────────────────────── */}
 
       <div className="mt-16 relative rounded-2xl overflow-hidden">
         <Image
@@ -411,7 +488,7 @@ const EventsGrid = async ({
           </Link>
         </div>
       </div>
-         <ArchivedBlogs locale={locale} searchParams={resolvedSearchParams} />
+      <ArchivedBlogs locale={locale} searchParams={resolvedSearchParams} />
     </section>
   )
 }
