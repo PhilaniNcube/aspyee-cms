@@ -7,8 +7,12 @@
  * database record with the correct CDN URL.
  *
  * Usage:
- *   node fix-media-urls.mjs            # dry run — preview only, no writes
- *   node fix-media-urls.mjs --apply    # write changes to the database
+ *   node fix-media-urls.mjs                          # preview all matches (dry run)
+ *   node fix-media-urls.mjs --apply                  # write all matches to DB
+ *
+ *   # Fix a single record when you already have the correct URL:
+ *   node fix-media-urls.mjs --fix-one --filename="namibia_.webp" --url="https://4kav3digtb.ufs.sh/f/..."
+ *   node fix-media-urls.mjs --fix-one --id=123       --url="https://4kav3digtb.ufs.sh/f/..."
  */
 
 import pg from 'pg'
@@ -201,7 +205,86 @@ async function main() {
   process.exit(0)
 }
 
-main().catch((err) => {
-  console.error('Fatal error:', err)
-  process.exit(1)
-})
+// ── --fix-one mode ────────────────────────────────────────────────────────────
+
+async function fixOne({ filename, id, newUrl }) {
+  if (!newUrl) {
+    console.error('❌  --url is required for --fix-one mode')
+    process.exit(1)
+  }
+  if (!filename && !id) {
+    console.error('❌  Provide either --filename="..." or --id=<number> for --fix-one mode')
+    process.exit(1)
+  }
+
+  const { Client } = pg
+  const client = new Client({ connectionString: DATABASE_URL, ssl: { rejectUnauthorized: false } })
+  await client.connect()
+
+  let row
+  if (id) {
+    const { rows } = await client.query('SELECT id, url, filename FROM media WHERE id = $1', [id])
+    row = rows[0]
+  } else {
+    // Match by filename column or by the tail of the url path
+    const { rows } = await client.query(
+      `SELECT id, url, filename FROM media
+       WHERE filename = $1
+          OR url LIKE '%/' || $1
+          OR url LIKE '%/' || encode(convert_to($1, 'UTF8'), 'escape')
+       LIMIT 5`,
+      [filename]
+    )
+    if (rows.length > 1) {
+      console.log(`⚠️  Multiple records match "${filename}":`)
+      rows.forEach((r) => console.log(`   id=${r.id}  url=${r.url}`))
+      console.log('Re-run with --id=<number> to target a specific record.')
+      await client.end()
+      process.exit(1)
+    }
+    row = rows[0]
+  }
+
+  if (!row) {
+    console.error(`❌  No media record found for ${filename ? `filename="${filename}"` : `id=${id}`}`)
+    await client.end()
+    process.exit(1)
+  }
+
+  console.log()
+  console.log(`Found record  id=${row.id}`)
+  console.log(`  filename  : ${row.filename}`)
+  console.log(`  old url   : ${row.url}`)
+  console.log(`  new url   : ${newUrl}`)
+  console.log()
+
+  await client.query('UPDATE media SET url = $1 WHERE id = $2', [newUrl, row.id])
+  console.log(`✅  Updated successfully!`)
+  console.log()
+
+  await client.end()
+  process.exit(0)
+}
+
+// ── Entry point ───────────────────────────────────────────────────────────────
+
+// Parse named args: --key=value or --flag
+const args = Object.fromEntries(
+  process.argv.slice(2).map((a) => {
+    const [k, ...rest] = a.replace(/^--/, '').split('=')
+    return [k, rest.length ? rest.join('=') : true]
+  })
+)
+
+if (args['fix-one']) {
+  fixOne({ filename: args.filename, id: args.id, newUrl: args.url }).catch((err) => {
+    console.error('Fatal error:', err)
+    process.exit(1)
+  })
+} else {
+  main().catch((err) => {
+    console.error('Fatal error:', err)
+    process.exit(1)
+  })
+}
+
