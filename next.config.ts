@@ -36,6 +36,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'centre.aspyee.org',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
   // Exclude problematic node_modules from Turbopack processing
