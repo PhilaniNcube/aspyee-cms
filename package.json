@@ -1,6 +1,7 @@
 {
   "name": "aspyee",
   "version": "1.0.0",
+  "packageManager": "pnpm@11.1.2",
   "description": "Aspyee CMS - Powered by Payload CMS and Next.js",
   "license": "MIT",
   "type": "module",
