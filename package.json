@@ -109,7 +109,9 @@
     "onlyBuiltDependencies": [
       "sharp",
       "esbuild",
-      "unrs-resolver"
+      "unrs-resolver",
+      "@parcel/watcher",
+      "@swc/core"
     ],
     "overrides": {
       "@types/react": "19.2.14",
